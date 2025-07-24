@@ -1,0 +1,1297 @@
+{
+  "home": {
+    "headline": "Connect with <count></count> U.S. Government-certified Jobs and get your Work Visa.",
+    "subtext": "You don't need to pay a lawyer or get advice without results. Each company listed in our database has its own paid lawyers.",
+    "searchPlaceholder": "Search for jobs, e.g, H-2B Construction",
+    "searchButton": "SEARCH JOB",
+    "filter": {
+      "location": "Location",
+      "jobType": "Job Type",
+      "salary": "Salary",
+      "contactOutside": "Hiring Outside the Country",
+      "season": "Season",
+      "transportationHousing": "Transportation/Housing"
+    },
+    "loadMoreJobs": "Load More Jobs",
+    "testimonials": {
+      "title": "They already did it with",
+      "showcaseCountryNames": ["Mexico", "Honduras", "Colombia"],
+      "testimonials": [
+        {
+          "name": "Andrés",
+          "country": "Mexico",
+          "flag": "mx",
+          "text": "I spent months looking for a legal way to work in the United States, but everything was confusing or full of intermediaries asking for money without guarantees. With America Working, I found the company that hired me directly. Now I am working in the U.S. on an H-2B visa, no scams or tricks! Everything was easy, clear, and I did it all from Mexico.",
+          "image": "/images/andres.jpg"
+        },
+        {
+          "name": "Marco",
+          "country": "Honduras",
+          "flag": "hn",
+          "text": "I never imagined I would have the chance to legally work in the United States. Everything changed when I discovered America Working. I already have 5 contracts in the U.S., have visited several states, and it all started with a subscription. No intermediaries, no scams, just direct contact with real companies. It’s the best decision I’ve made.",
+          "image": "/images/marco.jpg"
+        },
+        {
+          "name": "Maria",
+          "country": "Colombia",
+          "flag": "co",
+          "text": "All the supposed recruiters were asking for absurd amounts of money. Paying more than $2,000 is nearly impossible for someone in Colombia. But since I found America Working, I was able to contact real companies in the U.S. directly, with no intermediaries. Now I’m in the process of moving to work in the U.S., and every step has been clear, legal, and achievable. I'm excited to start this new stage!",
+          "image": "/images/maria.jpg"
+        },
+        {
+          "name": "Ezequiel",
+          "country": "Colombia",
+          "flag": "co",
+          "text": "I sent over 1,500 applications to different companies and eventually realized that not all companies actually bring workers to the US, and I didn't know that. I was searching through endless options without the necessary tools. But with America Working's filters, I was able to easily contact real companies, without intermediaries or scams. Today, I've had an H-2B visa in the US for three years. It was totally worth it!",
+          "image": "/images/ezequiel.jpg"
+        }
+      ]
+    },
+    "job": {
+      "requirements": {
+        "label": "Special Requirements:",
+        "marketingReq": "Must have 3+ years of marketing experience and portfolio.",
+        "adminReq": "Must have U.S. work permit and administrative experience."
+      },
+      "rating": {
+        "label": "Company Rating"
+      },
+      "detail": {
+        "company": "Company Name",
+        "adminTitle": "Administrative Operations Coordinator",
+        "marketingTitle": "Marketing Specialist",
+        "basic": "Basic",
+        "pro": "Pro",
+        "city": "Location",
+        "phone": "Phone number",
+        "hiresOutside": "Hires from outside the country",
+        "season": "Hiring Season",
+        "overtime": "Overtime Possibility",
+        "hiredLastYear": "Approved to hiring out of the country the last year",
+        "employeesHired": "Employees Hired in Last 5 Years",
+        "approvalRate": "Approval Rate",
+        "transportationHousing": "Transportation / Rent Included",
+        "legalProcess": "Type of legal representation",
+        "processDuration": "Duration of the Legal process",
+        "processSpeed": "Process speed rate",
+        "approvalEfficiency": "Approval Efficiency",
+        "visaEmployees": "Visa Employees Per Year",
+        "certifications": "Approved Certifications in 5 years",
+        "accordion": {
+          "general": "General Information",
+          "international": "International Hiring",
+          "legal": "Legal Processes",
+          "efficiency": "Efficiency History"
+        }
+      },
+      "apply": {
+        "website": "WEB SITE APPLY",
+        "email": "EMAIL APPLY"
+      }
+    },
+    "filters": {
+      "jobTypes": {
+        "gardening": "Gardening and Outdoor Work",
+        "warehouse": "Warehouse and Logistics",
+        "construction": "Construction and Maintenance",
+        "cleaning": "Cleaning and Janitorial",
+        "meatProduction": "Meat Production and Manufacturing",
+        "restaurant": "Restaurants and Customer Service",
+        "other": "Other"
+      },
+      "salary": {
+        "upto13": "Up to $13/H",
+        "upto26": "Up to $26/H",
+        "above26": "$26/H+"
+      },
+      "seasons": {
+        "summer": "Summer (May – Oct)",
+        "winter": "Winter (Oct – May)",
+        "yearRound": "Year Round"
+      },
+      "contactOutside": {
+        "all": "All",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "transport": {
+        "all": "All",
+        "transport": "Transportation Provided",
+        "housing": "Housing Provided"
+      }
+    },
+    "benefits": [
+      "You don't need a university degree to find an employer",
+      "Sponsored jobs by real U.S. companies",
+      "No costly agencies or lawyers",
+      "Competitive salaries from $10 up to $25 per hour",
+      "Access from any country",
+      "Employers verified by the U.S. government",
+      "Step-by-step support",
+      "Real-time updates",
+      "Filter by salary, state, and job type",
+      "One-click job application",
+      "No scams or shady intermediaries",
+      "Mobile-optimized platform",
+      "And many more benefits"
+    ],
+    "mainBenefits": "Main Benefits",
+    "monthlyIncomeTitle": "Monthly Income by Country (Estimated in USD)",
+    "presence": {
+      "title": "We have a Presence in the",
+      "country1": "US and",
+      "country2": "Colombia",
+      "certified": "Companies Certified by the U.S Department of Labor",
+      "presence_colombia_bogota": "Presence in Colombia, Bogotá.",
+      "presence_wyoming": "Presence in Wyoming, United States."
+    }
+  },
+  "navbar": {
+    "searchJobs": "Search jobs",
+    "pricing": "Pricing",
+    "about": "About",
+    "healthProfessionals": "Health Professionals",
+    "visa": "Visa",
+    "faqs": "FAQs",
+    "contact": "Contact",
+    "login": "Login",
+    "subscribe": "Subscribe",
+    "logout": "Logout",
+    "browse_jobs": "Browse Jobs",
+    "upgrade_plan": "Upgrade Plan",
+    "settings": "Settings"
+  },
+  "hero": {
+    "headline": "Connecting Global Talent with",
+    "highlight": "U.S. Opportunity",
+    "description": "America Working was created to bridge the gap between skilled international job seekers and real U.S. employers who offer legal, visa-sponsored employment.",
+    "subheadline": "We are building a legal and transparent bridge between foreign talent and real U.S. job opportunities.",
+    "body": "America Working was created to solve a real problem: thousands of global workers struggle to access visa-sponsored jobs in the U.S. Our platform connects qualified applicants with over <bold1>240K+</bold1> certified American employers—especially those hiring under <bold2>H-2B, H-2A</bold2> and healthcare visas. We’re headquartered in Jackson, Wyoming, with a strategic base in Bogotá, Colombia—uniting North and South America through technology and opportunity.",
+    "stats": [
+      {
+        "title": "240K+",
+        "subtitle": "Certified U.S. employers"
+      },
+      {
+        "title": "2 Offices",
+        "subtitle": "USA + Colombia"
+      },
+      {
+        "title": "3 Visa Programs",
+        "subtitle": "H-2A, H-2B, Healthcare"
+      },
+      {
+        "title": "Global Access",
+        "subtitle": "Used by workers worldwide"
+      }
+    ]
+  },
+  "discover": {
+    "title": "Discover What Sets Us Apart",
+    "description": "Explore the unique mission, structure, and tools that make America Working a trusted bridge between certified U.S. employers and foreign workers worldwide.",
+    "cards": [
+      {
+        "image": "/images/card1.webp",
+        "title": "Mission-Driven Platform",
+        "description": "America Working was founded to solve the global challenge of connecting foreign workers with visa-sponsored jobs in the United States—legally, transparently, and efficiently."
+      },
+      {
+        "image": "/images/card2.webp",
+        "title": "Global Connection Engine",
+        "description": "We link over 240k certified U.S. employers with international applicants through a secure, data-backed platform that enables real-time access to legal job opportunities."
+      },
+      {
+        "image": "/images/card3.webp",
+        "title": "Visa-Specific Focus",
+        "description": "Our platform supports programs like H-2A (agricultural), H-2B (non-agricultural), and healthcare visas—helping workers understand, apply, and succeed with clarity."
+      },
+      {
+        "image": "/images/card4.webp",
+        "title": "Binational Operations",
+        "description": "With headquarters in Jackson, Wyoming and a strategic office in Bogotá, Colombia, we operate as a human and technological bridge between North and South America."
+      },
+      {
+        "image": "/images/card5.webp",
+        "title": "Empowerment Through Clarity",
+        "description": "We ensure every application counts by providing job seekers with verified employer data, legal hiring timelines, and direct access—no middlemen, no hidden processes."
+      }
+    ]
+  },
+  "healthHero": {
+    "titleStart": "With us you can become a",
+    "highlight": "Registered Nurse",
+    "titleEnd": "in the United States soon."
+  },
+  "visaProcess": {
+    "headline": "Work Visa Application Process: What the Employer",
+    "highlight": "Does for You",
+    "description": "You just need to be ready for the consular interview. The companies take care of the rest. From the time you sign the job offer until you arrive in the US, the process takes 2 to 4 months.",
+    "steps": [
+      {
+        "title": "ETA 9142B – Initial Request to the Department of Labor",
+        "description": "You don't need to pay a lawyer or get advice without results. Each company listed in our database has its own paid lawyers."
+      },
+      {
+        "title": "Prevailing Wage Determination – DOL",
+        "description": "The employer requests a prevailing wage determination from the DOL. This step ensures that H-2B workers are paid at least the average local wage for the job."
+      },
+      {
+        "title": "Recruitment and Public Job Ads",
+        "description": "The employer must post job ads in authorized media to first try recruiting U.S. workers."
+      },
+      {
+        "title": "Certification by the Department of Labor (DOL)",
+        "description": "If not enough qualified U.S. workers are found, the DOL issues a temporary labor certification."
+      },
+      {
+        "title": "Form I-129 – USCIS Petition",
+        "description": "With DOL certification, the employer files Form I-129 with USCIS to authorize the visa."
+      },
+      {
+        "title": "USCIS Approval Wait",
+        "description": "USCIS reviews the I-129 and issues an approval notice (I-797) if everything is in order."
+      },
+      {
+        "title": "Form DS-160 – Visa Application",
+        "description": "The worker completes Form DS-160 online, providing personal, job, security, and travel info."
+      },
+      {
+        "title": "Schedule Embassy Appointment",
+        "description": "After submitting DS-160, the worker schedules a consular interview at the U.S. embassy or consulate in their country."
+      },
+      {
+        "title": "Consular Interview and Approval",
+        "description": "At the embassy, the worker is interviewed. If approved, the visa is stamped in their passport."
+      },
+      {
+        "title": "Get Ready to Travel to the U.S.!",
+        "description": "With the approved and stamped visa, the worker can now plan their entry into the United States."
+      }
+    ]
+  },
+  "contact": {
+    "headline": "Contact us",
+    "description": "Need help or have a question? We're here to guide you through every step of your job search and visa journey.",
+    "emailLabel": "letstart@americaworking.co",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "What's your name?",
+      "email": "Email Address",
+      "emailPlaceholder": "What's your email?",
+      "phone": "Phone",
+      "phonePlaceholder": "What's your phone?",
+      "subject": "Subject",
+      "subjectPlaceholder": "Ex. Support",
+      "message": "Message",
+      "messagePlaceholder": "Please write your message...",
+      "submit": "Submit message",
+      "sending": "Sending...",
+      "required": "Required",
+      "error": "Invalid email",
+      "subtitle": "Fill in your details and we'll get back to you!",
+      "default": "Chat With Us"
+    }
+  },
+  "pricing": {
+    "headline": "Choose Your",
+    "highlight": "Access",
+    "end": "Level",
+    "description": "From exploring job listings to unlocking visa-specific hiring data—find the plan that fits your job search journey in the U.S.",
+    "subheadline": "Why Pay More?",
+    "subdescription": "Save Over 90% Compared to Others",
+    "disclaimer": "Recruiting agencies charge up to <strong>$2,500</strong> with no guarantee of results. Lawyers charge <strong>$200</strong> for just 30 minutes, without direct access to employers. With America Working, you pay only <strong>$28</strong> for 30 days of access to over <strong>240,000</strong> verified companies, certified jobs, and real support. <br></br> <strong>Save over 90% and work legally in the U.S.</strong>",
+    "toggleHeadline": "Pay Monthly or<bold>Save 20%</bold>by Paying Quarterly",
+    "monthly": "Monthly",
+    "quarterly": "Quarterly",
+    "benefits": {
+      "title": "Main Benefits",
+      "items": [
+        "Legal permission to work in the United States",
+        "Fair wage guaranteed by the government",
+        "Contract with clear working conditions",
+        "Free or low-cost housing (depending on the employer)",
+        "Partial or full reimbursement for travel to the job site",
+        "Legal access to services like banks, housing, and phone lines",
+        "Ability to obtain a Social Security Number",
+        "Ability to open a U.S. bank account",
+        "You can get a driver's license (depending on the state)",
+        "You can legally travel within the United States",
+        "Opportunity to extend your stay up to 3 years",
+        "Possibility to change employers with proper authorization",
+        "Option to return each year with the same employer"
+      ],
+      "chartTitle": "Cost Comparison: false intermediary vs Pro subscription",
+      "chartNote": "The high prices of fake intermediaries are no guarantee of results. With our low-cost smart search engine, you’ll find the job you want precisely and directly."
+    },
+    "pricingPlans": {
+      "free": {
+        "name": "Free",
+        "description": "Perfect for trying out our platform.",
+        "features": ["20 job searches/month", "Trial access to search engine"],
+        "buttonText": "SELECT"
+      },
+      "basic": {
+        "name": "Basic",
+        "description": "Unlock core job details and apply links.",
+        "features": [
+          "Up to $13/h job offers",
+          "Company name",
+          "Job title",
+          "Location",
+          "Wage info",
+          "Official website to apply"
+        ],
+        "buttonText": "SELECT"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Advanced tools for serious applicants.",
+        "features": [
+          "Up to $26/h job offers",
+          "All Basic features",
+          "Company email*",
+          "Approval & certification stats",
+          "Transportation/Housing info",
+          "Foreign worker hiring data",
+          "Legal representation info",
+          "Verified hires & job type stats"
+        ],
+        "buttonText": "SELECT"
+      },
+      "proPlus": {
+        "name": "Pro+",
+        "description": "Full access + consultation perks.",
+        "features": [
+          "+$27/h job offers",
+          "All Pro features",
+          "Recruiter/lawyer volume per company",
+          "Free 30-min consultation",
+          "Additional company emails*"
+        ],
+        "buttonText": "SELECT"
+      }
+    },
+    "book": {
+      "headline": "Did you receive a job offer in the US and need to apply for your <highlight>visa at the consulate?</highlight>",
+      "description": "Get our most reliable premium embassy appointment scheduling service here.",
+      "button": "Book appointment"
+    },
+    "gift": {
+      "title": "Gift a Pro Subscription",
+      "subtitle": "You can gift a <monthly>monthly</monthly> or <quarterly>quarterly</quarterly> Pro plan to a friend.",
+      "description": "Just enter their email below and we'll handle the rest.",
+      "placeholder": "Enter your friend's email",
+      "button": "GIFT NOW",
+      "processing": "Processing...",
+      "dropdown": {
+        "monthly": "Monthly",
+        "quarterly": "Quarterly"
+      },
+      "errors": {
+        "emailRequired": "Email is required",
+        "invalidEmail": "Please enter a valid email address",
+        "invalidLink": "Invalid payment link configuration"
+      },
+      "toastSuccess": "Redirecting to payment..."
+    }
+  },
+  "faq": {
+    "hero": {
+      "headline": "Need Help Understanding the <blue>Process?</blue>",
+      "description": "Browse common questions about job filters, wage access, legal hiring, and what you can unlock with each subscription level."
+    },
+    "tabs": {
+      "general": "General",
+      "timeline": "Timeline",
+      "workerRequirements": "Worker Requirements",
+      "procedures": "Procedures",
+      "contacts": "Contracts",
+      "consularProcess": "Consular Process",
+      "extensions": "Extensions",
+      "laborRights": "Labor Rights",
+      "salaryPayment": "Salary/Payment",
+      "lifeInUs": "Life in the U.S.",
+      "safetyRisks": "Safety / Risks"
+    },
+    "general": {
+      "q1": {
+        "question": "What is the H-2B visa?",
+        "answer": "The H-2B category lets U.S. employers hire foreign nationals for temporary, non-agricultural jobs when they prove there are not enough U.S. workers and that wages and conditions won’t be harmed. The cap is 66,000 visas per fiscal year, split into 33,000 for each half."
+      },
+      "q2": {
+        "question": "What is the average annual income?",
+        "answer": "Employers must pay at least the Department of Labor prevailing wage. Most H-2B offers fall around $15–18 per hour—roughly $31,000–37,000 annually for full-time seasonal work. For example, landscaping workers averaged $33,810 in 2024."
+      },
+      "q3": {
+        "question": "What types of jobs qualify?",
+        "answer": "Any seasonal, peak-load, intermittent, or one-time non-agricultural job can qualify. Common roles include landscaping, hotel housekeeping, amusement-park staff, seafood processing, restaurant cooks, and construction helpers."
+      },
+      "q4": {
+        "question": "Which sectors hire the most?",
+        "answer": "Landscaping accounts for about 37% of all certified H-2B positions (FY 2024). Other top sectors include hospitality, forestry, amusement & recreation, commercial cleaning, and seafood processing."
+      },
+      "q5": {
+        "question": "What does it mean to be a beneficiary?",
+        "answer": "A beneficiary is the foreign worker named on an approved Form I-129 petition. They may work only for the sponsoring employer during the certified dates. Changing employers or extending stay requires a new petition."
+      },
+      "q6": {
+        "question": "Which countries are eligible?",
+        "answer": "From Nov 7, 2024 to Nov 8, 2025, nationals of 89 countries (e.g., Mexico, Guatemala, Colombia, Spain, the Philippines) are eligible. Employers may also request workers from non-listed countries on a case-by-case basis."
+      },
+      "q7": {
+        "question": "What is the Temporary Worker Program?",
+        "answer": "It’s the broader H-2 framework (H-2A + H-2B). Employers first secure a Department of Labor temporary labor certification, then file Form I-129 with USCIS; approved workers apply for the visa or entry inspection at a U.S. consulate/port."
+      },
+      "q8": {
+        "question": "What happens if the economy is affected?",
+        "answer": "Downturn: Employers submit fewer petitions; some contracts end early (employers must pay return travel). Labor shortage despite slowdown: DHS can release supplemental visas—FY 2025 added 64,716 extra H-2B slots beyond the 66 000 cap."
+      },
+      "q9": {
+        "question": "What’s the difference between H-2B and H-2A?",
+        "answer": "comparison_table"
+      },
+      "comparison_table": {
+        "heading": ["Feature", "H-2B (Non-ag)", "H-2A (Ag)"],
+        "rows": [
+          ["Cap", "66,000 + supplements", "No numeric cap"],
+          [
+            "Typical work",
+            "Hotels, landscaping, forestry, etc.",
+            "Crop & livestock tasks"
+          ],
+          ["Housing/transport", "Not always required", "Must be provided free"],
+          [
+            "Need definition",
+            "Seasonal/peak-load ≤ 1 yr (one-time ≤ 3 yrs)",
+            "Seasonal ≤ 1 yr"
+          ],
+          [
+            "Same agencies",
+            "DOL → USCIS → State Dept.",
+            "DOL → USCIS → State Dept."
+          ]
+        ]
+      }
+    },
+    "timeline": {
+      "q1": {
+        "question": "How long does the H-2B process take?",
+        "answer": "Plan on about four to six months from first paperwork to worker arrival. Employers should request the prevailing-wage determination at least 60 days in advance, file the temporary labor-certification 75–90 days before the start date (inside the DOL three-day filing window), wait roughly 30 days for DOL review, and then allow up to 15 calendar days for USCIS adjudication if Premium Processing is used, plus time for consular interviews and travel."
+      },
+      "q2": {
+        "question": "How long does the visa last?",
+        "answer": "The visa’s validity matches the employer’s certified “period of need,” usually up to nine months for seasonal or peak-load work. Extensions are possible in one-year blocks, but a worker’s total stay in H-2B status cannot exceed three years."
+      },
+      "q3": {
+        "question": "How long does the recruitment phase last?",
+        "answer": "After the job order is accepted, the employer must post a notice for at least 15 consecutive business days and continue accepting U.S. applicants until 21 days before the date of need. In practice, gathering résumés, interviewing, and writing the recruitment report takes three to four weeks."
+      },
+      "q4": {
+        "question": "What is the fiscal year (FY) and how does it influence my visa?",
+        "answer": "The U.S. government FY runs October 1 – September 30. The statutory cap of 66,000 H-2B visas is split: 33,000 for jobs starting Oct 1–Mar 31 and 33,000 for Apr 1–Sep 30. Your target start date decides which half-year cap you fall under and when you are allowed to file."
+      },
+      "q5": {
+        "question": "When is the best time of year to apply?",
+        "answer": "File on the first day of the DOL three-day window that opens 90 days before the work start date. For winter positions beginning October 1, the window opens July 3–5; for spring/summer jobs beginning April 1, it opens early January. Submitting on day one maximizes the chance of getting a slot before the cap fills."
+      },
+      "q6": {
+        "question": "What does “Current Fiscal Year Cap” mean?",
+        "answer": "USCIS tracks how many petitions have counted toward each 33,000-visa allotment. When it announces the cap is “reached,” new cap-subject filings for that half-year are rejected or shifted to any supplemental pool; employers must wait for the next season or qualify for an exemption."
+      },
+      "q7": {
+        "question": "How many H-2B visas are issued per year?",
+        "answer": "Congress sets 66,000 base visas. For FY 2025, DHS added 64,716 supplemental visas, raising the practical ceiling to about 130,716 slots."
+      },
+      "q8": {
+        "question": "What is the H-2B Returning Worker Exception?",
+        "answer": "Of the FY 2025 supplemental visas, 44,716 are reserved for “returning workers”—people who held H-2B status in any of the three previous fiscal years. These beneficiaries do not count against the 66,000 cap, giving experienced employees (and their employers) faster access."
+      }
+    },
+    "workerRequirements": {
+      "q1": {
+        "question": "What requirements must I meet?",
+        "answer": "You must be from an eligible country, be physically able to work, and have a valid job offer from a U.S. employer approved by USCIS."
+      },
+      "q2": {
+        "question": "What documents do I need?",
+        "answer": "You’ll need a valid passport, job offer or contract, Form DS-160 confirmation, and an approved petition (I-129) from the employer."
+      },
+      "q3": {
+        "question": "What medical tests are required?",
+        "answer": "You may be asked for a basic physical exam or vaccinations, depending on consular processing country policies."
+      },
+      "q4": {
+        "question": "What level of English do I need?",
+        "answer": "English is not mandatory, but basic understanding may help during the visa interview or job performance, depending on the role."
+      },
+      "q5": {
+        "question": "How does my nationality affect my application?",
+        "answer": "Only nationals of countries listed by DHS as eligible for H-2A/H-2B visas can be approved without a special employer request."
+      },
+      "q6": {
+        "question": "How does my marital status affect it?",
+        "answer": "Your marital status doesn’t affect eligibility, but spouses and children (H-4 visas) can’t work in the U.S."
+      },
+      "q7": {
+        "question": "What happens if I get arrested?",
+        "answer": "An arrest—especially involving drugs, violence, or immigration fraud—may lead to visa denial depending on severity and disposition."
+      },
+      "q8": {
+        "question": "How does my immigration history affect the process?",
+        "answer": "Previous deportations, visa overstays, or illegal presence can result in bans or denials; clean history helps with approval."
+      },
+      "q9": {
+        "question": "What if I overstay my visa?",
+        "answer": "Overstaying can trigger a 3 or 10-year reentry bar and affect future visa eligibility, especially for H-2 programs."
+      }
+    },
+    "contracts": {
+      "q1": {
+        "question": "What is a sponsor?",
+        "answer": "A sponsor is the U.S. employer or agent who files the H-2B or H-2A petition and agrees to hire and follow the program’s legal requirements."
+      },
+      "q2": {
+        "question": "How do I sign a contract?",
+        "answer": "You sign a written employment agreement with the employer or recruiter before traveling, detailing wages, job duties, housing (if applicable), and terms of employment."
+      },
+      "q3": {
+        "question": "How do I verify if a contract is real?",
+        "answer": "Cross-check with official job listings, verify the employer’s name with USCIS approval, and never pay recruiters without confirmed documentation."
+      },
+      "q4": {
+        "question": "What happens if the sponsor violates the contract?",
+        "answer": "You can report violations to the Department of Labor or a local U.S. consulate. Employers can face penalties, debarment, and civil lawsuits."
+      },
+      "q5": {
+        "question": "What are the employer’s obligations?",
+        "answer": "Employers must provide fair wages, working conditions, return travel (in many cases), and, for H-2A, free housing and meals or kitchen access."
+      },
+      "q6": {
+        "question": "What happens if the employer doesn’t pay or shuts down?",
+        "answer": "You may be eligible for back wages or assistance through the Department of Labor. Seek consular support and avoid unauthorized employment."
+      },
+      "q7": {
+        "question": "What documents must the employer provide?",
+        "answer": "They must give you a copy of the work contract, job order, and USCIS-approved petition notice (Form I-797)."
+      },
+      "q8": {
+        "question": "What requirements must the employer meet?",
+        "answer": "The employer must prove a temporary need, complete the recruitment process, pay prevailing wages, and comply with all labor and immigration regulations."
+      }
+    },
+    "consularProcess": {
+      "q1": {
+        "question": "What if I arrive late to my consular appointment?",
+        "answer": "You may have to reschedule through the embassy’s system, which can delay your visa. Always notify the consulate if you know you will miss your appointment."
+      },
+      "q2": {
+        "question": "What does CBP One ask at the airport?",
+        "answer": "CBP officers verify your visa, passport, job documents, and may ask about your employer, housing, and planned duration of stay. Be honest and keep paperwork accessible."
+      },
+      "q3": {
+        "question": "What is the Non-Immigrant Visa Fee?",
+        "answer": "The fee for most non-immigrant visas, including H-2A and H-2B, is currently $205 USD. It must be paid before the visa interview."
+      },
+      "q4": {
+        "question": "What is the difference between visa stamp and visa status?",
+        "answer": "The visa stamp allows you to enter the U.S.; your status is what you maintain while inside the U.S. with a valid I-94 during authorized stay."
+      },
+      "q5": {
+        "question": "What is a non-immigrant visa?",
+        "answer": "It’s a temporary visa for individuals entering the U.S. for a specific purpose (e.g., work, tourism, study) with a defined end date."
+      },
+      "q6": {
+        "question": "What is a U.S. Consular Section?",
+        "answer": "This is the part of a U.S. embassy or consulate that handles visa interviews, application processing, and issuing non-immigrant or immigrant visas."
+      },
+      "q7": {
+        "question": "What happens on my first day?",
+        "answer": "Report to your employer at the scheduled location and time. Bring original documents. Orientation or job-specific training often happens the first day."
+      }
+    },
+    "extensions": {
+      "q1": {
+        "question": "Can the visa be extended?",
+        "answer": "Yes. H-2A and H-2B visas can be extended in one-year increments, up to a maximum of three years in total."
+      },
+      "q2": {
+        "question": "Do I need a new visa for the extension?",
+        "answer": "If you remain in the U.S., no. If you travel abroad, you may need to get a new visa stamp at a U.S. consulate before reentry."
+      },
+      "q3": {
+        "question": "What if the contract is canceled?",
+        "answer": "If canceled before travel, your visa may be voided. If already in the U.S., your employer must notify USCIS and you may have limited time to leave or change jobs legally."
+      },
+      "q4": {
+        "question": "What if I lose my job?",
+        "answer": "Losing your job can end your visa status. You may find another H-2 employer to file a new petition or return to your home country."
+      },
+      "q5": {
+        "question": "What if my employer doesn’t request the extension in time?",
+        "answer": "If your status expires before USCIS receives the petition, you may be out of status and face future visa denial. Timely filing is critical."
+      },
+      "q6": {
+        "question": "Can I change employers?",
+        "answer": "Yes, but the new employer must file a new I-129 petition and wait for USCIS approval before you start working."
+      },
+      "q7": {
+        "question": "Can I change visa categories?",
+        "answer": "Possibly, but you must meet the requirements of the new visa category, and USCIS must approve a change of status."
+      },
+      "q8": {
+        "question": "What’s the difference between an Initial and Extension Petition?",
+        "answer": "An Initial Petition is for first-time employment; an Extension Petition continues existing employment under the same or new employer."
+      }
+    },
+    "laborRights": {
+      "q1": {
+        "question": "What rights do I have?",
+        "answer": "H-2B and H-2A workers have the right to fair wages, safe conditions, freedom from discrimination, and the ability to report abuses without retaliation."
+      },
+      "q2": {
+        "question": "Can I study with an H-2B visa?",
+        "answer": "Yes, but only part-time and if it doesn’t interfere with your job. Full-time academic studies are not permitted."
+      },
+      "q3": {
+        "question": "What labor benefits are included?",
+        "answer": "You are entitled to wages per contract, overtime (if applicable), safe housing (H-2A), and reimbursement for certain travel expenses."
+      },
+      "q4": {
+        "question": "What should I do if my rights are violated?",
+        "answer": "Report violations to the Department of Labor, consular officials, or organizations like Centro de los Derechos del Migrante. Keep copies of contracts and pay stubs."
+      },
+      "q5": {
+        "question": "What should I do if I get injured at work?",
+        "answer": "Inform your employer immediately and seek medical care. You may qualify for workers’ compensation benefits under state law."
+      },
+      "q6": {
+        "question": "Can I apply for permanent residency?",
+        "answer": "It’s possible, but not through the H-2 program alone. A family petition or employer sponsorship under other visa categories is required."
+      },
+      "q7": {
+        "question": "Can I apply for asylum?",
+        "answer": "Yes, if you fear persecution in your home country. You must apply within one year of arriving in the U.S. and meet legal criteria."
+      },
+      "q8": {
+        "question": "What if I get deported?",
+        "answer": "Deportation can bar reentry for years. Seek legal help immediately. Some deportations may be appealed or waived under specific conditions."
+      },
+      "q9": {
+        "question": "What organizations offer support?",
+        "answer": "Nonprofits like CDM, Legal Aid, farmworker organizations, and consulates provide legal and humanitarian assistance to H-2 workers."
+      }
+    },
+    "salaryPayment": {
+      "q1": {
+        "question": "How is my salary calculated?",
+        "answer": "Your salary is based on the job offer and must meet or exceed the Prevailing Wage set by the Department of Labor for your job and location."
+      },
+      "q2": {
+        "question": "What is the Prevailing Wage?",
+        "answer": "It’s the minimum wage that U.S. employers must pay H-2 workers, based on occupation and region, to protect local labor standards."
+      },
+      "q3": {
+        "question": "What taxes are deducted from my pay?",
+        "answer": "H-2B workers usually pay federal, state, and local income taxes. H-2A workers are often exempt from Social Security and Medicare taxes."
+      },
+      "q4": {
+        "question": "Do I have to pay taxes in the U.S.?",
+        "answer": "Yes. All H-2 workers must file a tax return. You may be eligible for a refund depending on your income and withholdings."
+      },
+      "q5": {
+        "question": "When do I have to file my taxes?",
+        "answer": "The U.S. tax filing deadline is typically April 15 for income earned the previous year. Use IRS Form 1040-NR."
+      },
+      "q6": {
+        "question": "What is the Adverse Effect Wage Rate?",
+        "answer": "It’s a wage floor for H-2A jobs to ensure that hiring foreign workers does not negatively affect U.S. farmworker wages."
+      },
+      "q7": {
+        "question": "What is Public Charge?",
+        "answer": "It refers to someone likely to rely on government benefits. H-2 workers are generally not eligible for most public aid, so this rarely applies."
+      },
+      "q8": {
+        "question": "What if I don’t get paid?",
+        "answer": "Document everything and report it to the Department of Labor or your consulate. You may be entitled to back wages and legal action against the employer."
+      },
+      "q9": {
+        "question": "What does Peak Load Need or One-Time Need mean?",
+        "answer": "These are types of temporary labor needs justifying H-2B jobs. Peak Load means seasonal demand; One-Time Need is a rare, non-recurring situation."
+      }
+    },
+    "lifeInUs": {
+      "q1": {
+        "question": "Where will I live?",
+        "answer": "H-2A employers must provide free housing. H-2B employers may offer housing or help find it, but it's not always included."
+      },
+      "q2": {
+        "question": "Who will take me to work?",
+        "answer": "Transportation may be provided by the employer, especially for H-2A workers. In other cases, you may need to arrange your own."
+      },
+      "q3": {
+        "question": "Where do I get my driver’s license?",
+        "answer": "You apply at the local Department of Motor Vehicles (DMV) with your passport, visa, I-94, and proof of address. Requirements vary by state."
+      },
+      "q4": {
+        "question": "How long is the license valid?",
+        "answer": "It usually matches the duration of your visa or I-94 status. Some states may issue shorter-term licenses for temporary workers."
+      },
+      "q5": {
+        "question": "Can I open a bank account?",
+        "answer": "Yes, with your passport, visa, I-94, and sometimes proof of employment. Many banks offer accounts for non-residents."
+      },
+      "q6": {
+        "question": "Can I bring my family?",
+        "answer": "Spouses and children under 21 may apply for H-4 visas, but they are not allowed to work in the U.S."
+      },
+      "q7": {
+        "question": "Can I work overtime?",
+        "answer": "Yes, if the employer offers it and it complies with labor laws. Overtime is usually paid at 1.5 times the regular rate."
+      },
+      "q8": {
+        "question": "Can I have more than one job?",
+        "answer": "No. You can only work for the employer named in your petition. A second job requires a new approved petition."
+      },
+      "q9": {
+        "question": "Can I travel to other states?",
+        "answer": "Yes, but notify your employer. Always carry your documents, especially if traveling far from your worksite."
+      }
+    },
+    "safetyRisks": {
+      "q1": {
+        "question": "How do I know if a contract is legitimate?",
+        "answer": "Verify that the employer has an approved petition from USCIS. Never trust verbal promises alone."
+      },
+      "q2": {
+        "question": "What happens if I use unauthorized agents?",
+        "answer": "Using unauthorized agents can lead to fraud, visa denial, or being scammed. Only work with agents listed or approved by U.S. embassies or consulates."
+      },
+      "q3": {
+        "question": "What happens if I lose my passport?",
+        "answer": "Report it immediately to your embassy and local police. Request a replacement and notify your employer and consulate if you're in the U.S."
+      },
+      "q4": {
+        "question": "What should I do if I lose my SSN?",
+        "answer": "Report it to the Social Security Administration (SSA). You may need to request a replacement card and monitor for identity theft."
+      },
+      "q5": {
+        "question": "What happens if my visa expires?",
+        "answer": "If you overstay, you may face bans on reentry. Leave the U.S. before your I-94 expires or seek legal advice for extensions."
+      },
+      "q6": {
+        "question": "What is a Departure Record?",
+        "answer": "Also known as Form I-94, it tracks when you enter and exit the U.S. It's essential for proving lawful stay and for future visa applications."
+      }
+    }
+  },
+  "login": {
+    "title": "Join the Global Workforce Connecting to Legal <bold>U.S.</bold> Jobs",
+    "subtitle": "Log in to find your dream job in the U.S.",
+    "email": {
+      "label": "Email",
+      "error": "Email is required"
+    },
+    "password": {
+      "label": "Password",
+      "error": "Password must be at least 8 characters"
+    },
+    "terms": {
+      "label": "I accept the terms & Conditions",
+      "error": "You must accept the terms and conditions"
+    },
+    "button": {
+      "login": "Login",
+      "forgotPassword": "Forgot your password?",
+      "google": "Sign in with Google"
+    },
+    "divider": {
+      "or": "OR"
+    },
+    "signup": {
+      "prompt": "Don’t have an account?",
+      "button": "SIGN UP"
+    }
+  },
+  "headline": "Online Community for U.S. Visa Workers",
+  "description": "Find certified jobs, connect with U.S. employers, and get visa support—all in one place.",
+  "signup": {
+    "resume": {
+      "label": "Resume",
+      "upload": "Upload your resume",
+      "supported": "Supported formats: PDF, DOC, DOCX (Max 5MB)",
+      "error": {
+        "required": "Resume is required",
+        "file_size": "File size must be less than 5MB",
+        "file_format": "Unsupported file format"
+      }
+    },
+    "title": "Join the Global Workforce Connecting to Legal <bold>U.S.</bold> Jobs",
+    "subtitle": "Create your account to access verified U.S. job listings.",
+    "first_name": {
+      "label": "First name",
+      "error": "First name is required"
+    },
+    "last_name": {
+      "label": "Last name",
+      "error": "Last name is required"
+    },
+    "email": {
+      "label": "Email",
+      "error": "Email is required"
+    },
+    "password": {
+      "label": "Password",
+      "error": "Password must be at least 8 characters"
+    },
+    "phone": {
+      "label": "Phone Number",
+      "error": "Phone number is required"
+    },
+    "terms": {
+      "label": "I accept the terms & Conditions",
+      "error": "You must accept the terms and conditions"
+    },
+    "button": {
+      "signup": "Sign Up",
+      "forgotPassword": "Forgot your password?",
+      "google": "Sign up with Google"
+    },
+    "divider": {
+      "or": "OR"
+    },
+    "login": {
+      "prompt": "Already have an account?",
+      "button": "SIGN IN"
+    }
+  },
+  "forgotpassword": {
+    "title": "Forgot your password?",
+    "description": "Enter your email to reset your password",
+    "email": {
+      "label": "Email",
+      "error": "Please enter a valid email address"
+    },
+    "reset_button": "Reset Password",
+    "back_to_login": "Back to login",
+    "success_message": "Password reset link sent to your email"
+  },
+  "passwordreset": {
+    "title": "Reset Your Password",
+    "description": "Create a new password for your account",
+    "password": {
+      "label": "New Password",
+      "error": "Password must be at least 8 characters"
+    },
+    "confirm_password": {
+      "label": "Confirm New Password",
+      "error": "Passwords must match",
+      "required": "Please confirm your password"
+    },
+    "reset_button": "Reset Password",
+    "back_to_login": "Back to login",
+    "success_message": "Password reset successfully!"
+  },
+
+  "floatingBox": {
+    "visaMessage": "Only 33% of the visas are for people outside the U.S",
+    "applyNow": "Limited spots, apply now!",
+    "subscribe": "Subscribe",
+    "home_floating_message": "Only 33% of the visas are for people outside the U.S",
+    "home_floating_tagline": "Limited spots, apply now!",
+    "about_floating_message": "Legal workers in U.S earn up to 40% MORE!",
+    "about_floating_tagline": "Limited spots – sign up now!",
+    "visa_floating_message": "Employers cover all processes! ",
+    "visa_floating_tagline": "Don't fall for scams and sign up now!",
+    "faq_floating_message": "Work legally in the U.S., you can enter and leave the country ",
+    "faq_floating_tagline": "Visit your family whenever you want!"
+  },
+
+  "footer": {
+    "headline": "Ready to get started?",
+    "login": "Login",
+    "subscription": "Subscription",
+    "faqs": "FAQs",
+    "visa": "Visa Process",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "rights": "All rights reserved."
+  },
+  "dashboardnavigation": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "jobs": "Jobs",
+    "addJob": "Add Job",
+    "editPricing": "Edit Pricing",
+    "editStickyModal": "Edit Sticky Modal",
+    "editAbout": "Edit About",
+    "edit_testimonials": "Edit Testimonials"
+  },
+  "addjob": {
+    "addJob": "Add a New Job",
+    "fillForm": "Fill out the form below to post a new job opportunity",
+    "jobDetails": "Job Details",
+    "provideInfo": "Please provide comprehensive information about the job position",
+    "basicInfo": "Basic Information",
+    "jobTitle": "Job Title",
+    "companyName": "Company Name",
+    "salary": "Salary",
+    "location": "Location",
+    "companyRating": "Company Rating",
+    "phoneNumber": "Phone Number",
+    "jobSpecifications": "Job Specifications",
+    "jobType": "Job Type",
+    "season": "Season",
+    "hiresOutside": "Hires Outside",
+    "transportationHousing": "Transportation & Housing",
+    "overtimeAvailable": "Overtime Available",
+    "visaEmployees": "Visa Employees",
+    "processInfo": "Process Information",
+    "processDuration": "Process Duration",
+    "approvalRate": "Approval Rate",
+    "employeesHired": "Employees Hired",
+    "processSpeed": "Process Speed",
+    "approvalEfficiency": "Approval Efficiency",
+    "detailedInfo": "Detailed Information",
+    "jobRequirements": "Job Requirements",
+    "legalProcess": "Legal Process",
+    "certifications": "Certifications",
+    "postJob": "Post Job",
+    "postingJob": "Posting Job...",
+    "selectPlaceholder": "Select option",
+    "yes": "Yes",
+    "no": "No",
+    "sometimes": "Sometimes",
+    "fullTime": "Full-time",
+    "partTime": "Part-time",
+    "contract": "Contract",
+    "temporary": "Temporary",
+    "internship": "Internship",
+    "spring": "Spring",
+    "summer": "Summer",
+    "fall": "Fall",
+    "winter": "Winter",
+    "yearRound": "Year-round",
+    "provided": "Provided",
+    "notProvided": "Not Provided",
+    "partial": "Partial",
+    "transportationOnly": "Transportation Only",
+    "housingOnly": "Housing Only",
+    "available": "Available",
+    "notAvailable": "Not Available",
+    "limited": "Limited",
+    "fast": "Fast",
+    "medium": "Medium",
+    "slow": "Slow",
+    "high": "High",
+    "low": "Low",
+    "star": "{count} Star",
+    "stars": "{count} Stars"
+  },
+  "dashboardJobs": {
+    "btn": "View",
+    "title": "Current Jobs",
+    "jobDetailTitle": "Job Detail",
+    "UsersPage": "User"
+  },
+  "table": {
+    "name": "Name",
+    "email": "Email",
+    "subscriptionType": "Subscription Type",
+    "pricing": "Pricing"
+  },
+  "dashboard": {
+    "sections": {
+      "overview": "Overview",
+      "subscriptions": "Subscriptions",
+      "users": "Users",
+      "downloads": "Downloads"
+    },
+    "metrics": {
+      "activeUsers": "Active Users",
+      "activeSubscriptions": "Active Subscriptions",
+      "conversionRate": "Conversion Rate",
+      "newSignups": "New Signups",
+      "vsLastWeek": "vs last week",
+      "vsLastMonth": "vs last month"
+    },
+    "charts": {
+      "userActivity": "User Activity",
+      "userActivityDescription": "Active users by day this week",
+      "newSignups": "New Signups",
+      "signupsDescription": "New user signups by day this week",
+      "revenueTrends": "Revenue Trends",
+      "revenueDescription": "Daily revenue for the current month",
+      "subscriptionTypes": "Subscription Types",
+      "subscriptionTypesDescription": "Distribution of subscription plans",
+      "cancellationReasons": "Cancellation Reasons",
+      "cancellationDescription": "Top reasons users cancel subscriptions",
+      "renewalCancellation": "Renewals vs Cancellations",
+      "renewalDescription": "Weekly comparison of renewals and cancellations",
+
+      "topSearches": "Top Job Searches",
+      "searchesDescription": "Most frequent job searches this week",
+
+      "usersByCountry": "Users by Country",
+      "countryDescription": "Geographic distribution of users",
+      "avgSessionTime": "Average Session Time",
+      "avgSessionDescription": "Weekly average session duration per user (minutes)",
+      "userSearches": "Top Searches Per User",
+      "userSearchesDescription": "Most frequent job searches by individual users",
+      "globalSearches": "Global Top Job Searches",
+      "globalSearchesDescription": "Most searched job titles across all users",
+      "popularJobs": "Popular Job Postings",
+      "popularJobsDescription": "Most viewed and saved job listings",
+      "resumeUploads": "Resume Uploads",
+      "resumesDescription": "Resumes uploaded by users",
+      "highApplicationJobs": "High Application Jobs",
+      "highApplicationDescription": "Job postings with highest application rates"
+    },
+    "downloads": {
+      "title": "Data Exports",
+      "description": "Download reports in various formats",
+      "userData": "User Data",
+      "subscriptionData": "Subscription Data",
+      "activityData": "Activity Data"
+    }
+  },
+  "WelcomeSection": {
+    "greeting": "Hello, {firstName}",
+    "welcomeMessage": "Welcome to America Working"
+  },
+  "SubscriptionSection": {
+    "currentPlan": "Your current plan:",
+    "month": {
+      "one": "month",
+      "other": "months"
+    },
+    "daysLeft": "Days left",
+    "expiringSoon": "Expiring Soon",
+    "cancelButton": "Cancel Subscription",
+    "cancelTitle": "Why are you canceling?",
+    "cancelDescription": "Please let us know why you're canceling (select all that apply)",
+    "cancellationOptions": {
+      "noTime": "I haven't had time to use the platform",
+      "tooExpensive": "It felt too expensive for what it offers",
+      "foundAlternative": "I found a similar platform",
+      "noMatchingJobs": "I couldn't find visa jobs that match my profile",
+      "confusing": "I felt confused or lost while using the platform",
+      "tooManyEmails": "I receive too many emails or notifications",
+      "accessIssues": "I had issues with account access or payments",
+      "otherChannel": "I got help through another channel"
+    },
+    "other": "Other",
+    "otherPlaceholder": "Please specify...",
+    "backButton": "Back",
+    "confirmButton": "Confirm Cancellation",
+    "warningMessage": "Your subscription expires in {count} day. Consider upgrading to continue enjoying premium features."
+  },
+  "PersonalInfoSection": {
+    "title": "Personal Information",
+    "editButton": "Edit",
+    "cancelButton": "Cancel",
+    "saveButton": "Save",
+    "firstNameLabel": "First Name",
+    "lastNameLabel": "Last Name",
+    "emailLabel": "Email Address",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "Enter your phone number",
+    "notProvided": "Not provided",
+    "successMessage": "Profile updated successfully!"
+  },
+  "ResumeSection": {
+    "title": "Resume Upload",
+    "uploadedOn": "Uploaded on",
+    "uploadNewPrompt": "Want to upload a new resume?",
+    "noResume": {
+      "title": "No resume uploaded",
+      "description": "Upload your resume in PDF format (max 5MB)"
+    },
+    "actions": {
+      "view": "View",
+      "delete": "Delete",
+      "upload": "Upload Resume",
+      "replace": "Replace Resume"
+    },
+    "errors": {
+      "pdfOnly": "Please upload a PDF file only.",
+      "fileSize": "File size must be less than 5MB."
+    },
+    "success": {
+      "upload": "Resume uploaded successfully!",
+      "delete": "Resume deleted successfully!",
+      "view": "Opening resume in new tab..."
+    },
+    "confirmDelete": "Are you sure you want to delete your resume?",
+    "uploading": "Uploading...",
+    "fileSizeUnits": ["Bytes", "KB", "MB"],
+    "locale": "en-US"
+  },
+  "QuickActions": {
+    "title": "Quick Actions",
+    "actions": {
+      "browseJobs": {
+        "label": "Browse Jobs"
+      },
+      "upgradePlan": {
+        "label": "Upgrade Plan"
+      },
+      "logOut": {
+        "label": "Log Out"
+      }
+    },
+    "successMessage": "{action} clicked! This would navigate to the respective page."
+  },
+  "FavoritesSection": {
+    "title": "Favorites ({count})",
+    "searchPlaceholder": "Search favorites...",
+    "emptyState": "You haven't saved any jobs to favorites yet.",
+    "noResults": "No favorites match your search.",
+    "addedOn": "Added on",
+    "viewDetails": "View Details",
+    "remove": "Remove",
+    "confirmRemove": "Are you sure you want to remove this job from favorites?",
+    "success": {
+      "remove": "Job removed from favorites!",
+      "view": "Viewing details for: {title} at {company}"
+    }
+  },
+  "StickyModalEditor": {
+    "title": "Sticky Modal Content Editor",
+    "editSectionTitle": "Edit Content",
+    "languageLabel": "Language",
+    "pageLabel": "Page",
+    "selectLanguage": "Select language",
+    "selectPage": "Select page",
+    "titleLabel": "Title",
+    "subtitleLabel": "Subtitle (use \\n for new line)",
+    "buttonTextLabel": "Button Text",
+    "saveButton": "Save Changes",
+    "previewTitle": "Preview",
+    "successMessage": "Modal content saved successfully!"
+  },
+  "PricingPlanEditor": {
+    "title": "Pricing Plan Editor",
+    "selectLanguage": "Select language",
+    "success": {
+      "save": "Pricing plans saved successfully!",
+      "update": "{plan} plan updated"
+    },
+    "editPlans": {
+      "title": "Edit Plans",
+      "description": "Modify your pricing plans below. Changes will be reflected in the preview."
+    },
+    "tableHeaders": {
+      "plan": "Plan",
+      "monthlyPrice": "Monthly Price",
+      "quarterlyPrice": "Quarterly Price",
+      "actions": "Actions"
+    },
+    "editForm": {
+      "title": "Editing {plan}",
+      "planName": "Plan Name",
+      "description": "Description",
+      "monthlyPrice": "Monthly Price",
+      "quarterlyPrice": "Quarterly Price",
+      "monthlyUsdPrice": "Monthly USD Price",
+      "quarterlyUsdPrice": "Quarterly USD Price",
+      "buttonText": "Button Text",
+      "highlighted": "Highlighted",
+      "features": "Features",
+      "newFeaturePlaceholder": "New feature"
+    },
+    "buttons": {
+      "edit": "Edit",
+      "saveChanges": "Save Changes",
+      "remove": "Remove",
+      "addFeature": "Add Feature",
+      "cancel": "Cancel",
+      "savePlan": "Save Plan"
+    },
+    "yes": "Yes",
+    "no": "No"
+  },
+  "thankyou": {
+    "title": "Welcome to America Working",
+    "caption": "We're very excited because now it will be easier for you to work in the United States.",
+
+    "caption2": " You have made the smartest decision for your future. Now you can explore your benefits.",
+    "button_job_search": "Go to Job Search Engine",
+    "button_user_panel": "Check User Panel",
+    "benefits_title": "Benefits you Got:",
+    "benefits": [
+      "You will be able to access more than 240,000 jobs",
+      "You will be able to know the companies that hire outside the country (Pro or Pro+)",
+      "You can save the jobs you have your eye on as favorites. 👀",
+      "You will be able to contact human resources of each company (Pro or Pro+)",
+      "When available you can also apply via website (Basic, Pro or Pro+)",
+      "You'll be able to see each company's hiring history to find out which one is more accurate. (Pro or Pro+)",
+      "You will be able to increase your salary compared to the salary in your country!",
+      "And much more!"
+    ]
+  },
+  "testimonials": {
+    "title": "Edit Testimonials",
+    "form": {
+      "editTestimonial": "Edit Testimonial",
+      "addNewTestimonial": "Add New Testimonial",
+      "name": "Name",
+      "country": "Country",
+      "flag": "Flag",
+      "selectFlag": "Select a flag",
+      "testimonialText": "Testimonial Text",
+      "enterTestimonialIn": "Enter testimonial in {language}",
+      "image": "Image",
+      "uploadImage": "Upload Image",
+      "preview": "Preview",
+      "cancel": "Cancel",
+      "update": "Update",
+      "add": "Add",
+      "testimonial": "Testimonial"
+    },
+    "languages": {
+      "english": "English",
+      "spanish": "Spanish",
+      "portuguese": "Portuguese"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "countryRequired": "Country is required",
+      "flagRequired": "Flag is required",
+      "englishTextRequired": "English text is required",
+      "spanishTextRequired": "Spanish text is required",
+      "portugueseTextRequired": "Portuguese text is required",
+      "imageRequired": "Image is required"
+    },
+    "messages": {
+      "failedToLoad": "Failed to load testimonials",
+      "addedSuccessfully": "Testimonial added successfully",
+      "failedToAdd": "Failed to add testimonial",
+      "updatedSuccessfully": "Testimonial updated successfully",
+      "failedToUpdate": "Failed to update testimonial",
+      "deletedSuccessfully": "Testimonial deleted successfully",
+      "failedToDelete": "Failed to delete testimonial"
+    },
+    "list": {
+      "testimonials": "Testimonials",
+      "description": "Manage all testimonials in the system",
+      "loading": "Loading testimonials...",
+      "noTestimonials": "No testimonials found"
+    },
+    "table": {
+      "name": "Name",
+      "country": "Country",
+      "flag": "Flag",
+      "actions": "Actions"
+    },
+    "preview": {
+      "title": "Preview",
+      "country": "Country",
+      "alt": "Preview",
+      "noImage": "No image",
+      "testimonialText": "Testimonial text in {language}",
+      "name": "Name"
+    }
+  }
+}

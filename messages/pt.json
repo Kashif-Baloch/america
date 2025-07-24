@@ -1,0 +1,1299 @@
+{
+  "home": {
+    "headline": "Conecte-se com <count></count> empregos certificados pelo governo dos EUA e obtenha seu visto de trabalho.",
+    "subtext": "Você não precisa pagar um advogado nem obter conselhos sem resultados. Cada empresa listada em nosso banco de dados possui seus próprios advogados contratados.",
+    "searchPlaceholder": "Pesquise empregos, por exemplo, H-2B Construção",
+    "searchButton": "BUSCAR EMPREGO",
+    "filter": {
+      "location": "Localização",
+      "jobType": "Tipo de Trabalho",
+      "salary": "Salário",
+      "contactOutside": "Contato Externo",
+      "season": "Temporada",
+      "transportationHousing": "Transporte/Alojamento"
+    },
+    "loadMoreJobs": "Carregar mais empregos",
+    "testimonials": {
+      "title": "Eles já fizeram isso com",
+      "showcaseCountryNames": ["México", "Honduras", "Colômbia"],
+      "testimonials": [
+        {
+          "name": "Andrés",
+          "country": "México",
+          "flag": "mx",
+          "text": "Passei meses procurando uma maneira legal de trabalhar nos Estados Unidos, mas tudo era confuso ou cheio de intermediários cobrando dinheiro sem garantias. Com a America Working, encontrei diretamente a empresa que me contratou. Agora estou trabalhando nos EUA com visto H-2B, sem golpes! Foi fácil, claro, e fiz tudo do México.",
+          "image": "/images/andres.jpg"
+        },
+        {
+          "name": "Marco",
+          "country": "Honduras",
+          "flag": "hn",
+          "text": "Nunca imaginei que teria a oportunidade de trabalhar legalmente nos Estados Unidos. Tudo mudou quando conheci a America Working. Já tenho 5 contratos nos EUA, conheci vários estados, e tudo começou com uma assinatura. Sem intermediários, sem golpes, apenas contato direto com empresas reais. Foi a melhor decisão que tomei.",
+          "image": "/images/marco.jpg"
+        },
+        {
+          "name": "Maria",
+          "country": "Colômbia",
+          "flag": "co",
+          "text": "Todos os supostos recrutadores pediam quantias absurdas de dinheiro. Pagar mais de US$ 2.000 é muito difícil para alguém na Colômbia. Mas desde que conheci a America Working, consegui entrar em contato diretamente com empresas reais nos Estados Unidos, sem intermediários. Agora já estou no meu processo para trabalhar nos EUA, e cada passo foi claro, legal e possível. Estou ansiosa para começar esta nova etapa!",
+          "image": "/images/maria.jpg"
+        },
+        {
+          "name": "Ezequiel",
+          "country": "Colômbia",
+          "flag": "co",
+          "text": "Enviei mais de 1.500 candidaturas para diferentes empresas e, com o tempo, percebi que nem todas realmente levam trabalhadores para os Estados Unidos — e eu não sabia disso. Estava procurando entre inúmeras opções sem as ferramentas necessárias. Mas com os filtros da America Working, consegui entrar em contato facilmente com empresas reais, sem intermediários nem golpes. Hoje, tenho um visto H-2B nos EUA há três anos. Valeu totalmente a pena!",
+          "image": "/images/ezequiel.jpg"
+        }
+      ]
+    },
+    "job": {
+      "requirements": {
+        "label": "Requisitos Especiais:",
+        "marketingReq": "Deve ter mais de 3 anos de experiência em marketing e portfólio.",
+        "adminReq": "Deve ter autorização de trabalho nos EUA e experiência administrativa."
+      },
+      "rating": {
+        "label": "Avaliação da Empresa"
+      },
+      "detail": {
+        "company": "Nome da Empresa",
+        "adminTitle": "Coordenador de Operações Administrativas",
+        "marketingTitle": "Especialista em Marketing",
+        "basic": "Básico",
+        "pro": "Pro",
+        "city": "Cidade",
+        "phone": "Número de telefone",
+        "hiresOutside": "Contrata de fora do país",
+        "season": "Temporada de Contratação",
+        "overtime": "Possibilidade de Horas Extras",
+        "hiredLastYear": "Aprovado para contratar fora do país no último ano",
+        "employeesHired": "Funcionários Contratados nos Últimos 5 Anos",
+        "approvalRate": "Taxa de Aprovação",
+        "transportationHousing": "Transporte / Alojamento Incluído",
+        "legalProcess": "Tipo de representação legal",
+        "processDuration": "Duração do processo legal",
+        "processSpeed": "Velocidade do processo",
+        "approvalEfficiency": "Eficiência de Aprovação",
+        "visaEmployees": "Funcionários com Visto por Ano",
+        "certifications": "Certificações Aprovadas em 5 Anos",
+        "accordion": {
+          "general": "Informações gerais",
+          "international": "Contratação internacional",
+          "legal": "Processos legais",
+          "efficiency": "Histórico de eficiência"
+        }
+      },
+      "apply": {
+        "website": "CANDIDATAR-SE NO SITE",
+        "email": "CANDIDATAR-SE POR E-MAIL"
+      }
+    },
+    "filters": {
+      "jobTypes": {
+        "gardening": "Jardinagem e trabalho ao ar livre",
+        "warehouse": "Armazém e logística",
+        "construction": "Construção e manutenção",
+        "cleaning": "Limpeza e serviços gerais",
+        "meatProduction": "Produção de carne e manufatura",
+        "restaurant": "Restaurantes e atendimento ao cliente",
+        "other": "Outro"
+      },
+      "salary": {
+        "upto13": "Até $13/H",
+        "upto26": "Até $26/H",
+        "above26": "$26/H+"
+      },
+      "seasons": {
+        "summer": "Verão (maio – outubro)",
+        "winter": "Inverno (outubro – maio)",
+        "yearRound": "Durante todo o ano"
+      },
+      "contactOutside": {
+        "all": "Todos",
+        "yes": "Sim",
+        "no": "Não"
+      },
+      "transport": {
+        "all": "Todos",
+        "transport": "Transporte incluído",
+        "housing": "Moradia incluída"
+      }
+    },
+    "benefits": [
+      "Você não precisa de um diploma universitário para encontrar um empregador",
+      "Empregos patrocinados por empresas reais dos EUA",
+      "Sem agências ou advogados caros",
+      "Salários competitivos de $10 até $25 por hora",
+      "Acesso de qualquer país",
+      "Empregadores verificados pelo governo dos EUA",
+      "Suporte passo a passo",
+      "Atualizações em tempo real",
+      "Filtre por salário, estado e tipo de trabalho",
+      "Candidatura com um clique",
+      "Sem golpes ou intermediários duvidosos",
+      "Plataforma otimizada para dispositivos móveis",
+      "E muitos outros benefícios"
+    ],
+    "mainBenefits": "Principais benefícios",
+    "monthlyIncomeTitle": "Renda mensal por país (estimada em USD)",
+    "presence": {
+      "title": "Temos presença nos",
+      "country1": "EUA e",
+      "country2": "Colômbia",
+      "certified": "Empresas certificadas pelo Departamento de Trabalho dos EUA",
+      "presence_colombia_bogota": "Presença na Colômbia, Bogotá.",
+      "presence_wyoming": "Presença em Wyoming, Estados Unidos."
+    }
+  },
+  "navbar": {
+    "searchJobs": "Procurar empregos",
+    "pricing": "Preços",
+    "about": "Sobre",
+    "healthProfessionals": "Profissionais de saúde",
+    "visa": "Visto",
+    "faqs": "FAQs",
+    "contact": "Contato",
+    "login": "Entrar",
+    "subscribe": "Inscrever-se",
+    "logout": "Sair",
+    "browse_jobs": "Procurar empregos",
+    "upgrade_plan": "Atualizar plano",
+    "settings": "configurações"
+  },
+  "hero": {
+    "headline": "Conectando Talentos Globais com",
+    "highlight": "Oportunidades nos EUA",
+    "description": "A America Working foi criada para preencher a lacuna entre trabalhadores internacionais qualificados e empregadores reais nos EUA que oferecem emprego legal com visto patrocinado.",
+    "subheadline": "Estamos construindo uma ponte legal e transparente entre talentos estrangeiros e oportunidades reais de trabalho nos EUA.",
+    "body": "A America Working foi criada para resolver um problema real: milhares de trabalhadores globais têm dificuldade em acessar empregos com visto nos EUA. Nossa plataforma conecta candidatos qualificados a mais de <bold1>240 mil</bold1> empregadores americanos certificados — especialmente aqueles que contratam sob os vistos <bold2>H-2B, H-2A</bold2> e da área de saúde. Nossa sede fica em Jackson, Wyoming, com uma base estratégica em Bogotá, Colômbia — unindo América do Norte e do Sul por meio da tecnologia e oportunidade.",
+    "stats": [
+      {
+        "title": "240K+",
+        "subtitle": "Empregadores certificados nos EUA"
+      },
+      {
+        "title": "2 Escritórios",
+        "subtitle": "EUA + Colômbia"
+      },
+      {
+        "title": "3 Programas de Visto",
+        "subtitle": "H-2A, H-2B, Saúde"
+      },
+      {
+        "title": "Acesso Global",
+        "subtitle": "Usado por trabalhadores em todo o mundo"
+      }
+    ]
+  },
+  "discover": {
+    "title": "Descubra o Que Nos Torna Únicos",
+    "description": "Explore a missão, estrutura e ferramentas exclusivas que fazem da America Working uma ponte confiável entre empregadores certificados dos EUA e trabalhadores estrangeiros em todo o mundo.",
+    "cards": [
+      {
+        "image": "/images/card1.webp",
+        "title": "Plataforma Orientada por Missão",
+        "description": "A America Working foi criada para resolver o desafio global de conectar trabalhadores estrangeiros com empregos nos EUA patrocinados por visto—de forma legal, transparente e eficiente."
+      },
+      {
+        "image": "/images/card2.webp",
+        "title": "Motor de Conexão Global",
+        "description": "Conectamos mais de 240 mil empregadores certificados nos EUA com candidatos internacionais por meio de uma plataforma segura e baseada em dados, permitindo acesso em tempo real a oportunidades de emprego legais."
+      },
+      {
+        "image": "/images/card3.webp",
+        "title": "Foco em Tipos Específicos de Visto",
+        "description": "Nossa plataforma oferece suporte a programas como H-2A (agrícola), H-2B (não agrícola) e vistos de saúde—ajudando os trabalhadores a entender, se inscrever e ter sucesso com clareza."
+      },
+      {
+        "image": "/images/card4.webp",
+        "title": "Operações Binacionais",
+        "description": "Com sede em Jackson, Wyoming, e um escritório estratégico em Bogotá, Colômbia, operamos como uma ponte humana e tecnológica entre a América do Norte e a do Sul."
+      },
+      {
+        "image": "/images/card5.webp",
+        "title": "Empoderamento com Clareza",
+        "description": "Garantimos que cada candidatura seja válida, fornecendo aos candidatos dados verificados de empregadores, cronogramas legais de contratação e acesso direto—sem intermediários ou processos ocultos."
+      }
+    ]
+  },
+  "healthHero": {
+    "titleStart": "Com a nossa ajuda, você pode se tornar um(a)",
+    "highlight": "Enfermeiro(a) Registrado(a)",
+    "titleEnd": "nos Estados Unidos em breve."
+  },
+  "visaProcess": {
+    "headline": "Processo de solicitação de visto de trabalho: O que o empregador",
+    "highlight": "faz por você",
+    "description": "Você só precisa estar pronto para a entrevista consular. As empresas cuidam do resto. Desde o momento em que você assina a oferta de trabalho até a chegada nos EUA, o processo leva de 2 a 4 meses.",
+    "steps": [
+      {
+        "title": "ETA 9142B – Solicitação inicial ao Departamento de Trabalho",
+        "description": "Você não precisa pagar advogado nem buscar conselhos sem resultado. Cada empresa listada em nosso banco de dados tem seus próprios advogados contratados."
+      },
+      {
+        "title": "Determinação do Salário Prevalente – DOL",
+        "description": "O empregador solicita uma determinação de salário prevalente ao DOL. Isso garante que os trabalhadores H-2B recebam pelo menos o salário médio local para o cargo."
+      },
+      {
+        "title": "Recrutamento e anúncios públicos de emprego",
+        "description": "O empregador deve publicar anúncios em meios autorizados para tentar, primeiro, recrutar trabalhadores dos EUA."
+      },
+      {
+        "title": "Certificação pelo Departamento de Trabalho (DOL)",
+        "description": "Se não forem encontrados trabalhadores norte-americanos qualificados suficientes, o DOL emite uma certificação temporária de trabalho."
+      },
+      {
+        "title": "Formulário I-129 – Petição ao USCIS",
+        "description": "Com a certificação do DOL, o empregador apresenta o Formulário I-129 ao USCIS para autorizar o visto."
+      },
+      {
+        "title": "Aguardando aprovação do USCIS",
+        "description": "O USCIS analisa o I-129 e emite uma notificação de aprovação (I-797) se tudo estiver correto."
+      },
+      {
+        "title": "Formulário DS-160 – Solicitação de visto",
+        "description": "O trabalhador preenche o Formulário DS-160 online, fornecendo informações pessoais, de trabalho, segurança e viagem."
+      },
+      {
+        "title": "Agendar entrevista na embaixada",
+        "description": "Após enviar o DS-160, o trabalhador agenda uma entrevista consular na embaixada ou consulado dos EUA em seu país."
+      },
+      {
+        "title": "Entrevista consular e aprovação",
+        "description": "Na embaixada, o trabalhador é entrevistado. Se aprovado, o visto é carimbado no passaporte."
+      },
+      {
+        "title": "Prepare-se para viajar aos EUA!",
+        "description": "Com o visto aprovado e carimbado, o trabalhador pode planejar sua entrada nos Estados Unidos."
+      }
+    ]
+  },
+  "contact": {
+    "headline": "Contate-nos",
+    "description": "Precisa de ajuda ou tem alguma dúvida? Estamos aqui para guiá-lo em cada etapa da sua busca de emprego e processo de visto.",
+    "emailLabel": "letstart@americaworking.co",
+    "form": {
+      "name": "Nome",
+      "namePlaceholder": "Qual é o seu nome?",
+      "email": "Email",
+      "emailPlaceholder": "Qual é o seu email?",
+      "phone": "Telefone",
+      "phonePlaceholder": "Qual é o seu número de telefone?",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Ex. Suporte",
+      "message": "Mensagem",
+      "messagePlaceholder": "Por favor, escreva sua mensagem...",
+      "submit": "Enviar mensagem",
+      "sending": "Enviando...",
+      "required": "Obrigatório",
+      "error": "E-mail inválido",
+      "subtitle": "Preencha seus dados e entraremos em contato com você!",
+      "default": "Converse conosco"
+    }
+  },
+  "pricing": {
+    "headline": "Escolha Seu",
+    "highlight": "Nível de Acesso",
+    "end": "",
+    "description": "Desde explorar vagas de emprego até desbloquear dados de contratação específicos de visto—encontre o plano ideal para sua jornada de trabalho nos EUA.",
+    "subheadline": "Por que pagar mais?",
+    "subdescription": "Economize mais de 90% em comparação com outros",
+    "disclaimer": "As agências de recrutamento cobram até <strong>$2.500</strong> sem garantia de resultados. Advogados cobram <strong>$200</strong> por apenas 30 minutos, sem acesso direto aos empregadores. Com a America Working, você paga apenas <strong>$28</strong> por 30 dias de acesso a mais de <strong>240.000</strong> empresas verificadas, empregos certificados e suporte real.<br></br><strong>Economize mais de 90% e trabalhe legalmente nos EUA.</strong>",
+    "toggleHeadline": "Pague mensalmente ou<bold>economize 20%</bold>pagando trimestralmente",
+    "monthly": "Mensal",
+    "quarterly": "Trimestral",
+    "benefits": {
+      "title": "Principais Benefícios",
+      "items": [
+        "Permissão legal para trabalhar nos Estados Unidos",
+        "Salário justo garantido pelo governo",
+        "Contrato com condições de trabalho claras",
+        "Acomodação gratuita ou de baixo custo (dependendo do empregador)",
+        "Reembolso parcial ou total da viagem até o local de trabalho",
+        "Acesso legal a serviços como bancos, moradia e linhas telefônicas",
+        "Capacidade de obter um Número de Seguro Social",
+        "Capacidade de abrir uma conta bancária nos EUA",
+        "Você pode obter uma carteira de motorista (dependendo do estado)",
+        "Você pode viajar legalmente dentro dos Estados Unidos",
+        "Oportunidade de estender sua estadia por até 3 anos",
+        "Possibilidade de mudar de empregador com autorização adequada",
+        "Opção de retornar todos os anos com o mesmo empregador"
+      ],
+      "chartTitle": "Comparação de custos: intermediário falso vs assinatura Pro",
+      "chartNote": "Os altos preços de intermediários falsos não garantem resultados. Com nosso motor de busca inteligente de baixo custo, você encontrará exatamente o trabalho que deseja."
+    },
+    "pricingPlans": {
+      "free": {
+        "name": "Grátis",
+        "description": "Perfeito para testar nossa plataforma.",
+        "features": ["20 buscas de emprego/mês", "Acesso de teste ao buscador"],
+        "buttonText": "SELECIONAR"
+      },
+      "basic": {
+        "name": "Básico",
+        "description": "Desbloqueie detalhes principais e links para aplicar.",
+        "features": [
+          "Ofertas de até $13/h",
+          "Nome da empresa",
+          "Título do trabalho",
+          "Localização",
+          "Informação salarial",
+          "Site oficial para aplicar"
+        ],
+        "buttonText": "SELECIONAR"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Ferramentas avançadas para candidatos sérios.",
+        "features": [
+          "Ofertas de até $26/h",
+          "Todos os recursos do Básico",
+          "E-mail da empresa*",
+          "Estatísticas de aprovação e certificação",
+          "Informações de transporte/moradia",
+          "Dados de contratação de trabalhadores estrangeiros",
+          "Informações de representação legal",
+          "Contratações verificadas e estatísticas por tipo de trabalho"
+        ],
+        "buttonText": "SELECIONAR"
+      },
+      "proPlus": {
+        "name": "Pro+",
+        "description": "Acesso completo + benefícios de consulta.",
+        "features": [
+          "Ofertas acima de $27/h",
+          "Todos os recursos do Pro",
+          "Volume de recrutadores/advogados por empresa",
+          "Consulta gratuita de 30 minutos",
+          "E-mails adicionais de empresas*"
+        ],
+        "buttonText": "SELECIONAR"
+      }
+    },
+    "book": {
+      "headline": "Você recebeu uma oferta de trabalho nos EUA e precisa solicitar seu <highlight>visto no consulado?</highlight>",
+      "description": "Obtenha aqui nosso serviço premium mais confiável para agendar uma consulta na embaixada.",
+      "button": "Agendar consulta"
+    },
+    "gift": {
+      "title": "Presenteie uma assinatura Pro",
+      "subtitle": "Você pode presentear um plano Pro <monthly>mensal</monthly> ou <quarterly>trimestral</quarterly> para um amigo.",
+      "description": "Basta inserir o e-mail do seu amigo abaixo e cuidaremos do resto.",
+      "placeholder": "Digite o e-mail do seu amigo",
+      "button": "PRESENTEAR AGORA",
+      "processing": "Processando...",
+      "dropdown": {
+        "monthly": "Mensal",
+        "quarterly": "Trimestral"
+      },
+      "errors": {
+        "emailRequired": "O e-mail é obrigatório",
+        "invalidEmail": "Por favor, insira um endereço de e-mail válido",
+        "invalidLink": "Configuração inválida do link de pagamento"
+      },
+      "toastSuccess": "Redirecionando para o pagamento..."
+    }
+  },
+  "faq": {
+    "hero": {
+      "headline": "Precisa de ajuda para entender o <blue>processo?</blue>",
+      "description": "Veja as perguntas frequentes sobre filtros de trabalho, acesso a salários, contratação legal e o que você pode desbloquear com cada nível de assinatura."
+    },
+    "tabs": {
+      "general": "Geral",
+      "timeline": "Cronograma",
+      "workerRequirements": "Requisitos do trabalhador",
+      "procedures": "Procedimentos",
+      "contacts": "Contratos",
+      "consularProcess": "Processo consular",
+      "extensions": "Extensões",
+      "laborRights": "Direitos trabalhistas",
+      "salaryPayment": "Salário/Pagamento",
+      "lifeInUs": "Vida nos EUA",
+      "safetyRisks": "Segurança / Riscos"
+    },
+    "general": {
+      "q1": {
+        "question": "O que é o visto H-2B?",
+        "answer": "A categoria H-2B permite que empregadores dos EUA contratem estrangeiros para empregos temporários não agrícolas quando comprovam que não há trabalhadores americanos suficientes e que os salários e condições de trabalho não serão prejudicados. O limite é de 66.000 vistos por ano fiscal, dividido em 33.000 para cada semestre."
+      },
+      "q2": {
+        "question": "Qual é a renda anual média?",
+        "answer": "Os empregadores devem pagar pelo menos o salário vigente determinado pelo Departamento do Trabalho. A maioria das ofertas H-2B gira em torno de US$ 15 a US$ 18 por hora—aproximadamente US$ 31.000 a US$ 37.000 por ano para trabalho sazonal em tempo integral. Por exemplo, trabalhadores de jardinagem ganharam em média US$ 33.810 em 2024."
+      },
+      "q3": {
+        "question": "Que tipos de empregos se qualificam?",
+        "answer": "Qualquer função não agrícola que seja sazonal, de pico, intermitente ou única pode se qualificar. Exemplos comuns incluem jardinagem, limpeza de hotéis, funcionários de parques de diversões, processamento de frutos do mar, cozinheiros de restaurante e ajudantes de construção."
+      },
+      "q4": {
+        "question": "Quais setores contratam mais?",
+        "answer": "A jardinagem representa cerca de 37% de todas as posições H-2B certificadas (ano fiscal de 2024). Outros setores importantes incluem hotelaria, silvicultura, recreação e entretenimento, limpeza comercial e processamento de frutos do mar."
+      },
+      "q5": {
+        "question": "O que significa ser beneficiário?",
+        "answer": "Um beneficiário é o trabalhador estrangeiro nomeado em uma petição aprovada no Formulário I-129. Ele pode trabalhar apenas para o empregador patrocinador durante as datas certificadas. Para mudar de empregador ou estender a estadia, é necessário apresentar uma nova petição."
+      },
+      "q6": {
+        "question": "Quais países são elegíveis?",
+        "answer": "De 7 de novembro de 2024 a 8 de novembro de 2025, cidadãos de 89 países (como México, Guatemala, Colômbia, Espanha e Filipinas) são elegíveis. Os empregadores ainda podem solicitar trabalhadores de países fora da lista, caso a caso."
+      },
+      "q7": {
+        "question": "O que é o Programa de Trabalhadores Temporários?",
+        "answer": "É a estrutura mais ampla dos vistos H-2 (H-2A + H-2B). Os empregadores primeiro obtêm uma certificação de trabalho temporário do Departamento do Trabalho, depois apresentam o Formulário I-129 ao USCIS; os trabalhadores aprovados solicitam o visto ou entrada em um consulado/porto dos EUA."
+      },
+      "q8": {
+        "question": "O que acontece se a economia for afetada?",
+        "answer": "Recessão: os empregadores enviam menos petições; alguns contratos terminam antecipadamente (o empregador deve pagar a viagem de volta). Escassez de mão de obra apesar da desaceleração: o DHS pode emitir vistos suplementares—o ano fiscal de 2025 adicionou 64.716 vistos H-2B extras além do limite de 66.000."
+      },
+      "q9": {
+        "question": "Qual é a diferença entre os vistos H-2B e H-2A?",
+        "answer": "comparison_table"
+      },
+      "comparison_table": {
+        "heading": ["Característica", "H-2B (Não agrícola)", "H-2A (Agrícola)"],
+        "rows": [
+          ["Limite", "66.000 + adicionais", "Sem limite numérico"],
+          [
+            "Trabalho típico",
+            "Hotéis, jardinagem, silvicultura, etc.",
+            "Tarefas agrícolas e pecuárias"
+          ],
+          [
+            "Habitação/transporte",
+            "Nem sempre obrigatório",
+            "Deve ser fornecido gratuitamente"
+          ],
+          [
+            "Definição de necessidade",
+            "Sazonal/pico ≤ 1 ano (uma vez ≤ 3 anos)",
+            "Sazonal ≤ 1 ano"
+          ],
+          [
+            "Mesmas agências",
+            "DOL → USCIS → Departamento de Estado",
+            "DOL → USCIS → Departamento de Estado"
+          ]
+        ]
+      }
+    },
+    "timeline": {
+      "q1": {
+        "question": "Quanto tempo leva o processo H-2B?",
+        "answer": "Planeje cerca de quatro a seis meses desde a primeira documentação até a chegada do trabalhador. Os empregadores devem solicitar a determinação do salário prevalecente com pelo menos 60 dias de antecedência, apresentar a certificação de trabalho temporário de 75 a 90 dias antes da data de início (dentro da janela de três dias do DOL), esperar cerca de 30 dias pela análise do DOL e depois aguardar até 15 dias corridos para decisão do USCIS com Processamento Premium, além do tempo para entrevistas consulares e viagem."
+      },
+      "q2": {
+        "question": "Quanto tempo dura o visto?",
+        "answer": "A validade do visto corresponde ao “período de necessidade” certificado pelo empregador, geralmente de até nove meses para trabalhos sazonais ou de alta demanda. Prorrogações são possíveis em blocos de um ano, mas o tempo total de permanência com status H-2B não pode exceder três anos."
+      },
+      "q3": {
+        "question": "Quanto tempo dura a fase de recrutamento?",
+        "answer": "Após a aceitação da ordem de trabalho, o empregador deve publicar um aviso por pelo menos 15 dias úteis consecutivos e continuar aceitando candidatos dos EUA até 21 dias antes da data de início. Na prática, reunir currículos, entrevistar e elaborar o relatório de recrutamento leva de três a quatro semanas."
+      },
+      "q4": {
+        "question": "O que é o ano fiscal e como ele influencia meu visto?",
+        "answer": "O ano fiscal do governo dos EUA vai de 1º de outubro a 30 de setembro. O limite legal de 66.000 vistos H-2B é dividido: 33.000 para empregos que começam de 1º de outubro a 31 de março e 33.000 de 1º de abril a 30 de setembro. Sua data de início determina em qual semestre você se enquadra e quando pode apresentar sua petição."
+      },
+      "q5": {
+        "question": "Qual é a melhor época do ano para se candidatar?",
+        "answer": "Apresente sua petição no primeiro dia da janela de três dias do DOL, que se abre 90 dias antes da data de início do trabalho. Para cargos de inverno com início em 1º de outubro, a janela abre de 3 a 5 de julho; para trabalhos de primavera/verão com início em 1º de abril, abre no início de janeiro. Enviar no primeiro dia aumenta as chances de garantir uma vaga antes que o limite seja atingido."
+      },
+      "q6": {
+        "question": "O que significa 'limite do ano fiscal atual'?",
+        "answer": "O USCIS acompanha quantas petições contam para cada alocação de 33.000 vistos. Quando o limite é “atingido”, novas petições sujeitas ao limite para aquele semestre são rejeitadas ou transferidas para qualquer grupo suplementar; os empregadores devem aguardar a próxima temporada ou se qualificar para uma isenção."
+      },
+      "q7": {
+        "question": "Quantos vistos H-2B são emitidos por ano?",
+        "answer": "O Congresso define 66.000 vistos base. Para o ano fiscal de 2025, o DHS adicionou 64.716 vistos suplementares, elevando o teto prático para cerca de 130.716 vagas."
+      },
+      "q8": {
+        "question": "O que é a exceção para trabalhadores retornantes H-2B?",
+        "answer": "Dos vistos suplementares do ano fiscal de 2025, 44.716 são reservados para “trabalhadores retornantes”—pessoas que tiveram status H-2B em qualquer um dos três anos fiscais anteriores. Esses beneficiários não contam contra o limite de 66.000, oferecendo acesso mais rápido para eles e seus empregadores."
+      }
+    },
+    "workerRequirements": {
+      "q1": {
+        "question": "Quais requisitos devo cumprir?",
+        "answer": "Você deve ser de um país elegível, estar fisicamente apto para trabalhar e ter uma oferta de emprego válida de um empregador dos EUA aprovado pelo USCIS."
+      },
+      "q2": {
+        "question": "Quais documentos eu preciso?",
+        "answer": "Você precisará de um passaporte válido, oferta de emprego ou contrato, confirmação do Formulário DS-160 e uma petição aprovada (I-129) do empregador."
+      },
+      "q3": {
+        "question": "Quais exames médicos são exigidos?",
+        "answer": "Pode ser solicitado um exame físico básico ou vacinas, dependendo das políticas do país onde ocorrerá o processamento consular."
+      },
+      "q4": {
+        "question": "Qual nível de inglês eu preciso?",
+        "answer": "O inglês não é obrigatório, mas uma compreensão básica pode ajudar durante a entrevista do visto ou no desempenho do trabalho, dependendo da função."
+      },
+      "q5": {
+        "question": "Como minha nacionalidade afeta minha aplicação?",
+        "answer": "Apenas cidadãos de países listados pelo DHS como elegíveis para os vistos H-2A/H-2B podem ser aprovados sem solicitação especial do empregador."
+      },
+      "q6": {
+        "question": "Como meu estado civil afeta isso?",
+        "answer": "Seu estado civil não afeta a elegibilidade, mas cônjuges e filhos (vistos H-4) não podem trabalhar nos EUA."
+      },
+      "q7": {
+        "question": "O que acontece se eu for preso?",
+        "answer": "Uma prisão—especialmente por drogas, violência ou fraude imigratória—pode resultar na negação do visto, dependendo da gravidade e da decisão final."
+      },
+      "q8": {
+        "question": "Como meu histórico de imigração afeta o processo?",
+        "answer": "Deportações anteriores, permanência ilegal ou excesso de tempo nos EUA podem resultar em proibições ou recusas; um histórico limpo ajuda na aprovação."
+      },
+      "q9": {
+        "question": "O que acontece se eu ultrapassar o tempo do meu visto?",
+        "answer": "Permanecer além do prazo pode gerar uma proibição de reentrada de 3 ou 10 anos e afetar a elegibilidade para vistos futuros, especialmente nos programas H-2."
+      }
+    },
+    "contracts": {
+      "q1": {
+        "question": "O que é um patrocinador?",
+        "answer": "Um patrocinador é o empregador ou agente dos EUA que apresenta a petição H-2B ou H-2A e concorda em contratar e seguir os requisitos legais do programa."
+      },
+      "q2": {
+        "question": "Como assino um contrato?",
+        "answer": "Você assina um contrato de trabalho por escrito com o empregador ou recrutador antes de viajar, detalhando salários, funções do trabalho, moradia (se aplicável) e termos de emprego."
+      },
+      "q3": {
+        "question": "Como verifico se um contrato é verdadeiro?",
+        "answer": "Verifique com listas oficiais de empregos, confirme o nome do empregador com a aprovação do USCIS e nunca pague recrutadores sem documentação confirmada."
+      },
+      "q4": {
+        "question": "O que acontece se o patrocinador violar o contrato?",
+        "answer": "Você pode denunciar violações ao Departamento do Trabalho ou a um consulado dos EUA. Os empregadores podem ser penalizados, banidos e processados civilmente."
+      },
+      "q5": {
+        "question": "Quais são as obrigações do empregador?",
+        "answer": "Os empregadores devem oferecer salários justos, boas condições de trabalho, viagem de retorno (em muitos casos) e, para H-2A, moradia e refeições gratuitas ou acesso à cozinha."
+      },
+      "q6": {
+        "question": "O que acontece se o empregador não pagar ou encerrar as atividades?",
+        "answer": "Você pode ter direito a salários retroativos ou ajuda através do Departamento do Trabalho. Busque apoio consular e evite trabalho não autorizado."
+      },
+      "q7": {
+        "question": "Quais documentos o empregador deve fornecer?",
+        "answer": "Devem fornecer uma cópia do contrato de trabalho, ordem de serviço e notificação da petição aprovada pelo USCIS (Formulário I-797)."
+      },
+      "q8": {
+        "question": "Quais requisitos o empregador deve cumprir?",
+        "answer": "O empregador deve provar necessidade temporária, concluir o processo de recrutamento, pagar salários compatíveis e cumprir todas as regulamentações trabalhistas e imigratórias."
+      }
+    },
+    "consularProcess": {
+      "q1": {
+        "question": "E se eu chegar atrasado à minha entrevista consular?",
+        "answer": "Você pode ter que reagendar pelo sistema da embaixada, o que pode atrasar seu visto. Sempre avise o consulado se souber que vai perder sua entrevista."
+      },
+      "q2": {
+        "question": "O que o CBP One pergunta no aeroporto?",
+        "answer": "Os agentes do CBP verificam seu visto, passaporte, documentos de trabalho e podem perguntar sobre seu empregador, moradia e tempo planejado de permanência. Seja honesto e mantenha os documentos acessíveis."
+      },
+      "q3": {
+        "question": "Qual é a taxa do visto de não imigrante?",
+        "answer": "A taxa para a maioria dos vistos de não imigrante, incluindo H-2A e H-2B, atualmente é de US$205. Deve ser paga antes da entrevista de visto."
+      },
+      "q4": {
+        "question": "Qual é a diferença entre o selo do visto e o status do visto?",
+        "answer": "O selo do visto permite sua entrada nos EUA; o status é o que você mantém enquanto estiver no país com um I-94 válido durante o período autorizado."
+      },
+      "q5": {
+        "question": "O que é um visto de não imigrante?",
+        "answer": "É um visto temporário para pessoas que entram nos EUA com um propósito específico (ex: trabalho, turismo, estudo) e uma data de término definida."
+      },
+      "q6": {
+        "question": "O que é a Seção Consular dos EUA?",
+        "answer": "É a parte da embaixada ou consulado dos EUA responsável por entrevistas de visto, processamento de solicitações e emissão de vistos de imigrante ou não imigrante."
+      },
+      "q7": {
+        "question": "O que acontece no meu primeiro dia?",
+        "answer": "Apresente-se ao seu empregador no local e horário agendados. Leve os documentos originais. Normalmente, uma orientação ou treinamento específico ocorre no primeiro dia."
+      }
+    },
+    "extensions": {
+      "q1": {
+        "question": "O visto pode ser prorrogado?",
+        "answer": "Sim. Os vistos H-2A e H-2B podem ser prorrogados em incrementos de um ano, até um máximo de três anos no total."
+      },
+      "q2": {
+        "question": "Preciso de um novo visto para a prorrogação?",
+        "answer": "Se você permanecer nos EUA, não. Se viajar para fora, pode ser necessário obter um novo visto no consulado dos EUA antes de retornar."
+      },
+      "q3": {
+        "question": "O que acontece se o contrato for cancelado?",
+        "answer": "Se for cancelado antes da viagem, seu visto pode ser anulado. Se já estiver nos EUA, seu empregador deve notificar o USCIS e você poderá ter tempo limitado para sair ou mudar legalmente de trabalho."
+      },
+      "q4": {
+        "question": "O que acontece se eu perder meu emprego?",
+        "answer": "Perder o emprego pode encerrar seu status de visto. Você pode encontrar outro empregador H-2 para apresentar uma nova petição ou retornar ao seu país de origem."
+      },
+      "q5": {
+        "question": "E se meu empregador não solicitar a prorrogação a tempo?",
+        "answer": "Se seu status expirar antes que o USCIS receba a petição, você poderá ficar fora de status e enfrentar negações futuras. É fundamental apresentar em tempo hábil."
+      },
+      "q6": {
+        "question": "Posso mudar de empregador?",
+        "answer": "Sim, mas o novo empregador deve apresentar uma nova petição I-129 e aguardar a aprovação do USCIS antes que você comece a trabalhar."
+      },
+      "q7": {
+        "question": "Posso mudar de categoria de visto?",
+        "answer": "Possivelmente, mas você deve atender aos requisitos da nova categoria de visto, e o USCIS deve aprovar a mudança de status."
+      },
+      "q8": {
+        "question": "Qual é a diferença entre uma Petição Inicial e uma de Prorrogação?",
+        "answer": "Uma Petição Inicial é para o primeiro emprego; uma Petição de Extensão continua o emprego existente com o mesmo ou novo empregador."
+      }
+    },
+    "laborRights": {
+      "q1": {
+        "question": "Quais direitos eu tenho?",
+        "answer": "Trabalhadores H-2B e H-2A têm direito a salários justos, condições seguras, liberdade contra discriminação e a possibilidade de denunciar abusos sem retaliação."
+      },
+      "q2": {
+        "question": "Posso estudar com um visto H-2B?",
+        "answer": "Sim, mas apenas meio período e se não interferir com o seu trabalho. Estudos acadêmicos em tempo integral não são permitidos."
+      },
+      "q3": {
+        "question": "Quais benefícios trabalhistas estão incluídos?",
+        "answer": "Você tem direito a salários conforme contrato, horas extras (se aplicável), moradia segura (H-2A) e reembolso de certas despesas de viagem."
+      },
+      "q4": {
+        "question": "O que devo fazer se meus direitos forem violados?",
+        "answer": "Denuncie violações ao Departamento de Trabalho, autoridades consulares ou organizações como o Centro de los Derechos del Migrante. Guarde cópias de contratos e contracheques."
+      },
+      "q5": {
+        "question": "O que devo fazer se me machucar no trabalho?",
+        "answer": "Informe seu empregador imediatamente e procure atendimento médico. Você pode ter direito a benefícios de compensação trabalhista conforme a lei estadual."
+      },
+      "q6": {
+        "question": "Posso solicitar residência permanente?",
+        "answer": "É possível, mas não apenas pelo programa H-2. É necessária uma petição familiar ou patrocínio de empregador sob outras categorias de visto."
+      },
+      "q7": {
+        "question": "Posso solicitar asilo?",
+        "answer": "Sim, se você teme perseguição em seu país de origem. Você deve solicitar dentro de um ano após chegar aos EUA e cumprir os critérios legais."
+      },
+      "q8": {
+        "question": "E se eu for deportado?",
+        "answer": "A deportação pode impedir a reentrada por anos. Procure ajuda jurídica imediatamente. Algumas deportações podem ser apeladas ou dispensadas em condições específicas."
+      },
+      "q9": {
+        "question": "Quais organizações oferecem apoio?",
+        "answer": "ONGs como CDM, Legal Aid, organizações de trabalhadores rurais e consulados oferecem assistência legal e humanitária para trabalhadores H-2."
+      }
+    },
+    "salaryPayment": {
+      "q1": {
+        "question": "Como é calculado o meu salário?",
+        "answer": "Seu salário é baseado na oferta de trabalho e deve atender ou exceder o Salário Prevalecente estabelecido pelo Departamento de Trabalho dos EUA para sua função e localização."
+      },
+      "q2": {
+        "question": "O que é o salário prevalecente?",
+        "answer": "É o salário mínimo que os empregadores dos EUA devem pagar aos trabalhadores H-2, com base na ocupação e região, para proteger os padrões trabalhistas locais."
+      },
+      "q3": {
+        "question": "Quais impostos são descontados do meu pagamento?",
+        "answer": "Trabalhadores H-2B normalmente pagam impostos federais, estaduais e locais sobre a renda. Trabalhadores H-2A geralmente são isentos dos impostos de Previdência Social e Medicare."
+      },
+      "q4": {
+        "question": "Preciso pagar impostos nos EUA?",
+        "answer": "Sim. Todos os trabalhadores H-2 devem apresentar uma declaração de imposto de renda. Você pode ter direito a reembolso, dependendo da sua renda e dos valores retidos."
+      },
+      "q5": {
+        "question": "Quando devo declarar meus impostos?",
+        "answer": "O prazo para declarar impostos nos EUA é geralmente 15 de abril para rendimentos do ano anterior. Use o Formulário 1040-NR do IRS."
+      },
+      "q6": {
+        "question": "O que é a Taxa de Salário de Efeito Adverso (AEWR)?",
+        "answer": "É o piso salarial para empregos H-2A, garantindo que a contratação de trabalhadores estrangeiros não afete negativamente os salários dos trabalhadores agrícolas dos EUA."
+      },
+      "q7": {
+        "question": "O que é carga pública?",
+        "answer": "Refere-se a uma pessoa que provavelmente dependerá de benefícios do governo. Trabalhadores H-2 geralmente não são elegíveis para a maioria dos auxílios públicos, portanto isso raramente se aplica."
+      },
+      "q8": {
+        "question": "O que acontece se eu não receber meu pagamento?",
+        "answer": "Documente tudo e reporte ao Departamento de Trabalho ou ao seu consulado. Você pode ter direito a receber salários atrasados e tomar medidas legais contra o empregador."
+      },
+      "q9": {
+        "question": "O que significa Necessidade de Carga Máxima ou Necessidade Única?",
+        "answer": "São tipos de necessidades temporárias de trabalho que justificam empregos H-2B. Carga Máxima significa demanda sazonal; Necessidade Única é uma situação rara e não recorrente."
+      }
+    },
+    "lifeInUs": {
+      "q1": {
+        "question": "Onde vou morar?",
+        "answer": "Os empregadores H‑2A devem fornecer moradia gratuita. Os empregadores H‑2B podem oferecer moradia ou ajudar a encontrá-la, mas nem sempre está incluído."
+      },
+      "q2": {
+        "question": "Quem vai me levar ao trabalho?",
+        "answer": "O empregador pode fornecer transporte, especialmente para trabalhadores H‑2A. Em outros casos, você deverá providenciar por conta própria."
+      },
+      "q3": {
+        "question": "Onde obtenho minha carteira de motorista?",
+        "answer": "Você deve solicitá-la no Departamento de Veículos Motorizados local (DMV) com passaporte, visto, I‑94 e comprovante de endereço. Os requisitos variam por estado."
+      },
+      "q4": {
+        "question": "Por quanto tempo a carteira é válida?",
+        "answer": "Normalmente coincide com a duração do seu visto ou status no I‑94. Alguns estados emitem licenças de prazo curto para trabalhadores temporários."
+      },
+      "q5": {
+        "question": "Posso abrir uma conta bancária?",
+        "answer": "Sim, com passaporte, visto, I‑94 e às vezes comprovante de emprego. Muitos bancos oferecem contas para não residentes."
+      },
+      "q6": {
+        "question": "Posso trazer minha família?",
+        "answer": "Cônjuges e filhos menores de 21 anos podem solicitar visto H‑4, mas não estão autorizados a trabalhar nos EUA."
+      },
+      "q7": {
+        "question": "Posso fazer hora extra?",
+        "answer": "Sim, se o empregador oferecer e cumprir as leis trabalhistas. Horas extras geralmente são pagas a 1,5 vezes a taxa regular."
+      },
+      "q8": {
+        "question": "Posso ter mais de um emprego?",
+        "answer": "Não. Você só pode trabalhar para o empregador indicado em sua petição. Um segundo emprego requer uma nova petição aprovada."
+      },
+      "q9": {
+        "question": "Posso viajar para outros estados?",
+        "answer": "Sim, mas informe seu empregador. Leve sempre seus documentos, especialmente se viajar longe do local de trabalho."
+      }
+    },
+    "safetyRisks": {
+      "q1": {
+        "question": "Como sei se um contrato é legítimo?",
+        "answer": "Verifique se o empregador tem uma petição aprovada pelo USCIS. Nunca confie apenas em promessas verbais."
+      },
+      "q2": {
+        "question": "O que acontece se eu usar agentes não autorizados?",
+        "answer": "Usar agentes não autorizados pode resultar em fraude, recusa de visto ou golpes. Trabalhe apenas com agentes listados ou aprovados por embaixadas ou consulados dos EUA."
+      },
+      "q3": {
+        "question": "O que acontece se eu perder meu passaporte?",
+        "answer": "Informe imediatamente à sua embaixada e à polícia local. Solicite um substituto e notifique seu empregador e consulado se estiver nos EUA."
+      },
+      "q4": {
+        "question": "O que devo fazer se perder meu SSN?",
+        "answer": "Informe à Administração da Previdência Social (SSA). Pode ser necessário solicitar um novo cartão e monitorar possíveis casos de roubo de identidade."
+      },
+      "q5": {
+        "question": "O que acontece se meu visto expirar?",
+        "answer": "Se você permanecer além do prazo, poderá ser proibido de retornar. Saia dos EUA antes de o I-94 expirar ou procure orientação legal para prorrogações."
+      },
+      "q6": {
+        "question": "O que é um Registro de Saída?",
+        "answer": "Também conhecido como Formulário I-94, registra quando você entra e sai dos EUA. É essencial para comprovar estadia legal e futuras solicitações de visto."
+      }
+    }
+  },
+  "login": {
+    "title": "Junte-se à força de trabalho global conectando-se a empregos legais nos <bold>EUA</bold>",
+    "subtitle": "Faça login para encontrar seu emprego ideal nos EUA.",
+    "email": {
+      "label": "Email",
+      "error": "O email é obrigatório"
+    },
+    "password": {
+      "label": "Senha",
+      "error": "A senha deve ter pelo menos 8 caracteres"
+    },
+    "terms": {
+      "label": "Eu aceito os termos e condições",
+      "error": "Você deve aceitar os termos e condições"
+    },
+    "button": {
+      "login": "Entrar",
+      "forgotPassword": "Esqueceu sua senha?",
+      "google": "Entrar com Google"
+    },
+    "divider": {
+      "or": "OU"
+    },
+    "signup": {
+      "prompt": "Não tem uma conta?",
+      "button": "CADASTRAR"
+    }
+  },
+  "headline": "Comunidade online para trabalhadores com visto nos EUA",
+  "description": "Encontre empregos certificados, conecte-se com empregadores dos EUA e receba suporte para visto — tudo em um só lugar.",
+  "signup": {
+    "resume": {
+      "label": "Currículo",
+      "upload": "Envie seu currículo",
+      "supported": "Formatos suportados: PDF, DOC, DOCX (Máx. 5MB)",
+      "error": {
+        "required": "O currículo é obrigatório",
+        "file_size": "O arquivo deve ter menos de 5MB",
+        "file_format": "Formato de arquivo não suportado"
+      }
+    },
+    "title": "Junte-se à força de trabalho global conectando-se a empregos legais nos <bold>EUA</bold>",
+    "subtitle": "Crie sua conta para acessar vagas verificadas nos EUA.",
+    "first_name": {
+      "label": "Primeiro nome",
+      "error": "O primeiro nome é obrigatório"
+    },
+    "last_name": {
+      "label": "Sobrenome",
+      "error": "O sobrenome é obrigatório"
+    },
+    "email": {
+      "label": "E-mail",
+      "error": "E-mail é obrigatório"
+    },
+    "password": {
+      "label": "Senha",
+      "error": "A senha deve ter pelo menos 8 caracteres"
+    },
+    "phone": {
+      "label": "Número de telefone",
+      "error": "Número de telefone é obrigatório"
+    },
+    "terms": {
+      "label": "Aceito os termos e condições",
+      "error": "Você deve aceitar os termos e condições"
+    },
+    "button": {
+      "signup": "Cadastrar-se",
+      "forgotPassword": "Esqueceu sua senha?",
+      "google": "Cadastre-se com o Google"
+    },
+    "divider": {
+      "or": "OU"
+    },
+    "login": {
+      "prompt": "Já tem uma conta?",
+      "button": "ENTRAR"
+    }
+  },
+  "forgotpassword": {
+    "title": "Esqueceu sua senha?",
+    "description": "Digite seu email para redefinir sua senha",
+    "email": {
+      "label": "Email",
+      "error": "Por favor, insira um endereço de email válido"
+    },
+    "reset_button": "Redefinir Senha",
+    "back_to_login": "Voltar para o login",
+    "success_message": "Link de redefinição de senha enviado para seu email"
+  },
+  "passwordreset": {
+    "title": "Redefinir Sua Senha",
+    "description": "Crie uma nova senha para sua conta",
+    "password": {
+      "label": "Nova Senha",
+      "error": "A senha deve ter pelo menos 8 caracteres"
+    },
+    "confirm_password": {
+      "label": "Confirmar Nova Senha",
+      "error": "As senhas devem corresponder",
+      "required": "Por favor confirme sua senha"
+    },
+    "reset_button": "Redefinir Senha",
+    "back_to_login": "Voltar para o login",
+    "success_message": "Senha redefinida com sucesso!"
+  },
+  "floatingBox": {
+    "visaMessage": "Apenas 33% dos vistos são para pessoas fora dos EUA",
+    "applyNow": "Vagas limitadas, inscreva-se agora!",
+    "subscribe": "Inscrever-se",
+
+    "home_floating_message": "Apenas 33% dos vistos são para pessoas fora dos EUA",
+    "home_floating_tagline": "Vagas limitadas, inscreva-se agora!",
+    "about_floating_message": "Trabalhadores legais nos EUA ganham até 40% A MAIS!",
+    "about_floating_tagline": "Vagas limitadas - cadastre-se agora!",
+    "visa_floating_message": "Os empregadores cobrem todos os processos!",
+    "visa_floating_tagline": "Não caia em golpes e cadastre-se agora!",
+    "faq_floating_message": "Trabalhe legalmente nos EUA, você pode entrar e sair do país",
+    "faq_floating_tagline": "Visite sua família quando quiser!"
+  },
+  "footer": {
+    "headline": "Pronto para começar?",
+    "login": "Entrar",
+    "subscription": "Assinatura",
+    "faqs": "FAQs",
+    "visa": "Processo de visto",
+    "about": "Sobre nós",
+    "contact": "Contato",
+    "terms": "Termos de serviço",
+    "privacy": "Política de privacidade",
+    "rights": "Todos os direitos reservados."
+  },
+  "dashboardnavigation": {
+    "dashboard": "Painel",
+    "users": "Usuários",
+    "jobs": "Empregos",
+    "addJob": "Adicionar emprego",
+    "editPricing": "Editar Preços",
+    "editStickyModal": "Editar Modal Fixo",
+    "editAbout": "Editar Sobre",
+    "edit_testimonials": "Editar Depoimentos"
+  },
+
+  "addjob": {
+    "addJob": "Adicionar um novo emprego",
+    "fillForm": "Preencha o formulário abaixo para publicar uma nova oportunidade de emprego",
+    "jobDetails": "Detalhes do emprego",
+    "provideInfo": "Por favor, forneça informações completas sobre o cargo",
+    "basicInfo": "Informações básicas",
+    "jobTitle": "Título do emprego",
+    "companyName": "Nome da empresa",
+    "salary": "Salário",
+    "location": "Localização",
+    "companyRating": "Classificação da empresa",
+    "phoneNumber": "Número de telefone",
+    "jobSpecifications": "Especificações do emprego",
+    "jobType": "Tipo de emprego",
+    "season": "Estação",
+    "hiresOutside": "Contrata fora",
+    "transportationHousing": "Transporte e moradia",
+    "overtimeAvailable": "Horas extras disponíveis",
+    "visaEmployees": "Funcionários com visto",
+    "processInfo": "Informações do processo",
+    "processDuration": "Duração do processo",
+    "approvalRate": "Taxa de aprovação",
+    "employeesHired": "Funcionários contratados",
+    "processSpeed": "Velocidade do processo",
+    "approvalEfficiency": "Eficiência de aprovação",
+    "detailedInfo": "Informações detalhadas",
+    "jobRequirements": "Requisitos do emprego",
+    "legalProcess": "Processo legal",
+    "certifications": "Certificações",
+    "postJob": "Publicar emprego",
+    "postingJob": "Publicando emprego...",
+    "selectPlaceholder": "Selecione uma opção",
+    "yes": "Sim",
+    "no": "Não",
+    "sometimes": "Às vezes",
+    "fullTime": "Tempo integral",
+    "partTime": "Meio período",
+    "contract": "Contrato",
+    "temporary": "Temporário",
+    "internship": "Estágio",
+    "spring": "Primavera",
+    "summer": "Verão",
+    "fall": "Outono",
+    "winter": "Inverno",
+    "yearRound": "O ano todo",
+    "provided": "Fornecido",
+    "notProvided": "Não fornecido",
+    "partial": "Parcial",
+    "transportationOnly": "Apenas transporte",
+    "housingOnly": "Apenas moradia",
+    "available": "Disponível",
+    "notAvailable": "Não disponível",
+    "limited": "Limitado",
+    "fast": "Rápido",
+    "medium": "Médio",
+    "slow": "Lento",
+    "high": "Alto",
+    "low": "Baixo",
+    "star": "{count} estrela",
+    "stars": "{count} estrelas"
+  },
+  "dashboardJobs": {
+    "btn": "Visualizar",
+    "title": "Empregos atuais",
+    "jobDetailTitle": "Detalhes do emprego",
+    "UsersPage": "Usuário"
+  },
+  "table": {
+    "name": "Nome",
+    "email": "E-mail",
+    "subscriptionType": "Tipo de assinatura",
+    "pricing": "Preço"
+  },
+  "dashboard": {
+    "sections": {
+      "overview": "Visão Geral",
+      "subscriptions": "Assinaturas",
+      "users": "Usuários",
+      "downloads": "Downloads"
+    },
+    "metrics": {
+      "activeUsers": "Usuários Ativos",
+      "activeSubscriptions": "Assinaturas Ativas",
+      "conversionRate": "Taxa de Conversão",
+      "newSignups": "Novos Cadastros",
+      "vsLastWeek": "vs semana passada",
+      "vsLastMonth": "vs mês passado"
+    },
+    "charts": {
+      "userActivity": "Atividade do Usuário",
+      "userActivityDescription": "Usuários ativos por dia esta semana",
+      "newSignups": "Novos Cadastros",
+      "signupsDescription": "Novos cadastros por dia esta semana",
+      "revenueTrends": "Tendências de Receita",
+      "revenueDescription": "Receita diária do mês atual",
+      "subscriptionTypes": "Tipos de Assinatura",
+      "subscriptionTypesDescription": "Distribuição de planos de assinatura",
+      "cancellationReasons": "Motivos de Cancelamento",
+      "cancellationDescription": "Principais motivos de cancelamento de usuários",
+      "renewalCancellation": "Renovações vs Cancelamentos",
+      "renewalDescription": "Comparação semanal de renovações e cancelamentos",
+      "topSearches": "Principais Buscas",
+      "searchesDescription": "Buscas de emprego mais frequentes esta semana",
+      "usersByCountry": "Usuários por País",
+      "countryDescription": "Distribuição geográfica de usuários",
+      "avgSessionTime": "Tempo Médio de Sessão",
+      "avgSessionDescription": "Duração média semanal por usuário (minutos)",
+      "userSearches": "Principais Buscas por Usuário",
+      "userSearchesDescription": "Buscas de emprego mais frequentes por usuário",
+      "globalSearches": "Principais Buscas Globais",
+      "globalSearchesDescription": "Cargos mais buscados por todos os usuários",
+      "popularJobs": "Vagas Populares",
+      "popularJobsDescription": "Vagas mais visualizadas e salvas",
+      "resumeUploads": "Uploads de Currículos",
+      "resumesDescription": "Currículos enviados por usuários",
+      "highApplicationJobs": "Vagas com Mais Candidaturas",
+      "highApplicationDescription": "Ofertas com maiores taxas de aplicação"
+    },
+    "downloads": {
+      "title": "Exportar Dados",
+      "description": "Baixar relatórios em vários formatos",
+      "userData": "Dados de Usuário",
+      "subscriptionData": "Dados de Assinatura",
+      "activityData": "Dados de Atividade"
+    }
+  },
+  "WelcomeSection": {
+    "greeting": "Olá, {firstName}",
+    "welcomeMessage": "Bem-vindo ao America Working"
+  },
+  "SubscriptionSection": {
+    "currentPlan": "Seu plano atual:",
+    "month": {
+      "one": "mês",
+      "other": "meses"
+    },
+    "daysLeft": "Dias restantes",
+    "expiringSoon": "Expirando em breve",
+    "cancelButton": "Cancelar assinatura",
+    "cancelTitle": "Por que você está cancelando?",
+    "cancelDescription": "Por favor, nos diga por que você está cancelando (marque todas as opções que se aplicam)",
+    "cancellationOptions": {
+      "noTime": "Não tive tempo para usar a plataforma",
+      "tooExpensive": "Achei muito caro para o que oferece",
+      "foundAlternative": "Encontrei uma plataforma similar",
+      "noMatchingJobs": "Não consegui encontrar empregos de visto que correspondam ao meu perfil",
+      "confusing": "Me senti confuso ou perdido ao usar a plataforma",
+      "tooManyEmails": "Recebo muitos e-mails ou notificações",
+      "accessIssues": "Tive problemas com acesso à conta ou pagamentos",
+      "otherChannel": "Consegui ajuda através de outro canal"
+    },
+    "other": "Outro",
+    "otherPlaceholder": "Por favor especifique...",
+    "backButton": "Voltar",
+    "confirmButton": "Confirmar cancelamento",
+    "warningMessage": "Sua assinatura expira em {count} dia. Considere atualizar para continuar aproveitando os recursos premium."
+  },
+  "PersonalInfoSection": {
+    "title": "Informações Pessoais",
+    "editButton": "Editar",
+    "cancelButton": "Cancelar",
+    "saveButton": "Salvar",
+    "firstNameLabel": "Nome",
+    "lastNameLabel": "Sobrenome",
+    "emailLabel": "Endereço de E-mail",
+    "phoneLabel": "Número de Telefone",
+    "phonePlaceholder": "Digite seu número de telefone",
+    "notProvided": "Não fornecido",
+    "successMessage": "Perfil atualizado com sucesso!"
+  },
+  "ResumeSection": {
+    "title": "Enviar Currículo",
+    "uploadedOn": "Enviado em",
+    "uploadNewPrompt": "Deseja enviar um novo currículo?",
+    "noResume": {
+      "title": "Nenhum currículo enviado",
+      "description": "Envie seu currículo em formato PDF (máximo 5MB)"
+    },
+    "actions": {
+      "view": "Visualizar",
+      "delete": "Excluir",
+      "upload": "Enviar Currículo",
+      "replace": "Substituir Currículo"
+    },
+    "errors": {
+      "pdfOnly": "Por favor envie apenas arquivos PDF.",
+      "fileSize": "O tamanho do arquivo deve ser menor que 5MB."
+    },
+    "success": {
+      "upload": "Currículo enviado com sucesso!",
+      "delete": "Currículo excluído com sucesso!",
+      "view": "Abrindo currículo em nova aba..."
+    },
+    "confirmDelete": "Tem certeza que deseja excluir seu currículo?",
+    "uploading": "Enviando...",
+    "fileSizeUnits": ["Bytes", "KB", "MB"],
+    "locale": "pt-BR"
+  },
+  "QuickActions": {
+    "title": "Ações Rápidas",
+    "actions": {
+      "browseJobs": {
+        "label": "Procurar Vagas"
+      },
+      "upgradePlan": {
+        "label": "Atualizar Plano"
+      },
+      "logOut": {
+        "label": "Sair"
+      }
+    },
+    "successMessage": "{action} clicado! Isso navegaria para a página respectiva."
+  },
+  "FavoritesSection": {
+    "title": "Favoritos ({count})",
+    "searchPlaceholder": "Buscar favoritos...",
+    "emptyState": "Você ainda não salvou nenhum trabalho nos favoritos.",
+    "noResults": "Nenhum favorito corresponde à sua pesquisa.",
+    "addedOn": "Adicionado em",
+    "viewDetails": "Ver detalhes",
+    "remove": "Remover",
+    "confirmRemove": "Tem certeza que deseja remover este trabalho dos favoritos?",
+    "success": {
+      "remove": "Trabalho removido dos favoritos!",
+      "view": "Visualizando detalhes de: {title} na {company}"
+    }
+  },
+  "StickyModalEditor": {
+    "title": "Editor de Conteúdo de Modal Fixo",
+    "editSectionTitle": "Editar Conteúdo",
+    "languageLabel": "Idioma",
+    "pageLabel": "Página",
+    "selectLanguage": "Selecionar idioma",
+    "selectPage": "Selecionar página",
+    "titleLabel": "Título",
+    "subtitleLabel": "Subtítulo (use \\n para nova linha)",
+    "buttonTextLabel": "Texto do Botão",
+    "saveButton": "Salvar Alterações",
+    "previewTitle": "Pré-visualização",
+    "successMessage": "Conteúdo do modal salvo com sucesso!"
+  },
+  "PricingPlanEditor": {
+    "title": "Editor de Planos de Preços",
+    "selectLanguage": "Selecionar idioma",
+    "success": {
+      "save": "Planos de preços salvos com sucesso!",
+      "update": "Plano {plan} atualizado"
+    },
+    "editPlans": {
+      "title": "Editar Planos",
+      "description": "Modifique seus planos de preços abaixo. As alterações serão refletidas na visualização."
+    },
+    "tableHeaders": {
+      "plan": "Plano",
+      "monthlyPrice": "Preço Mensal",
+      "quarterlyPrice": "Preço Trimestral",
+      "actions": "Ações"
+    },
+    "editForm": {
+      "title": "Editando {plan}",
+      "planName": "Nome do Plano",
+      "description": "Descrição",
+      "monthlyPrice": "Preço Mensal",
+      "quarterlyPrice": "Preço Trimestral",
+      "monthlyUsdPrice": "Preço Mensal em USD",
+      "quarterlyUsdPrice": "Preço Trimestral em USD",
+      "buttonText": "Texto do Botão",
+      "highlighted": "Destacado",
+      "features": "Recursos",
+      "newFeaturePlaceholder": "Novo recurso"
+    },
+    "buttons": {
+      "edit": "Editar",
+      "saveChanges": "Salvar Alterações",
+      "remove": "Remover",
+      "addFeature": "Adicionar Recurso",
+      "cancel": "Cancelar",
+      "savePlan": "Salvar Plano"
+    },
+    "yes": "Sim",
+    "no": "Não"
+  },
+  "thankyou": {
+    "title": "Bem-vindo ao America Working",
+    "caption": "Estamos muito animados porque agora será mais fácil para você trabalhar nos Estados Unidos.",
+    "caption2": " Você tomou a decisão mais inteligente para o seu futuro. Agora você pode explorar seus benefícios.",
+    "button_job_search": "Ir para o Motor de Busca de Empregos",
+    "button_user_panel": "Ver Painel do Usuário",
+    "benefits_title": "Benefícios que Você Ganhou:",
+    "benefits": [
+      "Você poderá acessar mais de 240.000 vagas de emprego",
+      "Você poderá conhecer as empresas que contratam fora do país (Pro ou Pro+)",
+      "Você pode salvar os empregos que te interessam como favoritos. 👀",
+      "Você poderá contatar o setor de recursos humanos de cada empresa (Pro ou Pro+)",
+      "Quando disponível, você também poderá se candidatar pelo site (Básico, Pro ou Pro+)",
+      "Você poderá ver o histórico de contratações de cada empresa para saber qual é mais confiável. (Pro ou Pro+)",
+      "Você poderá aumentar seu salário em comparação ao salário em seu país!",
+      "E muito mais!"
+    ]
+  },
+
+  "testimonials": {
+    "title": "Editar Depoimentos",
+    "form": {
+      "editTestimonial": "Editar Depoimento",
+      "addNewTestimonial": "Adicionar Novo Depoimento",
+      "name": "Nome",
+      "country": "País",
+      "flag": "Bandeira",
+      "selectFlag": "Selecionar uma bandeira",
+      "testimonialText": "Texto do Depoimento",
+      "enterTestimonialIn": "Digite o depoimento em {language}",
+      "image": "Imagem",
+      "uploadImage": "Carregar Imagem",
+      "preview": "Visualização",
+      "cancel": "Cancelar",
+      "update": "Atualizar",
+      "add": "Adicionar",
+      "testimonial": "Depoimento"
+    },
+    "languages": {
+      "english": "Inglês",
+      "spanish": "Espanhol",
+      "portuguese": "Português"
+    },
+    "validation": {
+      "nameRequired": "Nome é obrigatório",
+      "countryRequired": "País é obrigatório",
+      "flagRequired": "Bandeira é obrigatória",
+      "englishTextRequired": "Texto em inglês é obrigatório",
+      "spanishTextRequired": "Texto em espanhol é obrigatório",
+      "portugueseTextRequired": "Texto em português é obrigatório",
+      "imageRequired": "Imagem é obrigatória"
+    },
+    "messages": {
+      "failedToLoad": "Falha ao carregar depoimentos",
+      "addedSuccessfully": "Depoimento adicionado com sucesso",
+      "failedToAdd": "Falha ao adicionar depoimento",
+      "updatedSuccessfully": "Depoimento atualizado com sucesso",
+      "failedToUpdate": "Falha ao atualizar depoimento",
+      "deletedSuccessfully": "Depoimento excluído com sucesso",
+      "failedToDelete": "Falha ao excluir depoimento"
+    },
+    "list": {
+      "testimonials": "Depoimentos",
+      "description": "Gerenciar todos os depoimentos no sistema",
+      "loading": "Carregando depoimentos...",
+      "noTestimonials": "Nenhum depoimento encontrado"
+    },
+    "table": {
+      "name": "Nome",
+      "country": "País",
+      "flag": "Bandeira",
+      "actions": "Ações"
+    },
+    "preview": {
+      "title": "Visualização",
+      "country": "País",
+      "alt": "Visualização",
+      "noImage": "Sem imagem",
+      "testimonialText": "Texto do depoimento em {language}",
+      "name": "Nome"
+    }
+  }
+}
