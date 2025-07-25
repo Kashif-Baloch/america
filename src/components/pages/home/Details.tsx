@@ -223,7 +223,7 @@ export function JobCardsList({
   const jobsToShow = AllJobsData.slice(0, visibleJobs);
   const allJobsLoaded = visibleJobs >= AllJobsData.length;
   return (
-    <div className="flex flex-col relative gap-y-7 max-h-[780px]  overflow-y-auto  lg:w-[540px] w-full ">
+    <div className="flex flex-col relative gap-y-7 sm:max-h-[780px] max-h-[800px]  overflow-y-auto  lg:w-[540px] w-full ">
       {jobsToShow.map((job) => (
         <JobCard
           key={job.id}
