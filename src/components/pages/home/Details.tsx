@@ -215,15 +215,15 @@ export function JobCardsList({
   selectedCard: number;
   setSelectedCard: Dispatch<SetStateAction<number>>;
 }) {
-  const [visibleJobs, setVisibleJobs] = useState<number>(3);
+  const [visibleJobs, setVisibleJobs] = useState<number>(2);
   const loadMoreJobs = () => {
-    setVisibleJobs((prev) => prev + 4);
+    setVisibleJobs((prev) => prev + 2);
   };
   const t = useTranslations("home");
   const jobsToShow = AllJobsData.slice(0, visibleJobs);
   const allJobsLoaded = visibleJobs >= AllJobsData.length;
   return (
-    <div className="flex flex-col relative gap-y-7 max-h-[780px]  overflow-y-auto  lg:w-[540px] w-full ">
+    <div className="flex flex-col relative gap-y-7 sm:max-h-[780px] max-h-[800px]  overflow-y-auto  lg:w-[540px] w-full ">
       {jobsToShow.map((job) => (
         <JobCard
           key={job.id}
