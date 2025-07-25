@@ -9,8 +9,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { SidebarTrigger } from "../ui/sidebar";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import { useSession } from "@/lib/auth-client";
+import { LogoutUser } from "@/utils/handle-logout";
+import { toast } from "sonner";
 
 const TopBar = () => {
+
+  const { data: session } = useSession();
+  const tQ = useTranslations("QuickActions");
+
   const languages = [
     { code: "en", name: "English", flag: "us" },
     { code: "es", name: "Español", flag: "es" },
@@ -32,19 +39,28 @@ const TopBar = () => {
   useClickOutsideDetector(userDropdownRef, () => setIsUserDropdownOpen(false));
 
   const handleChangeLocale = (newLocale: string) => {
-    const pathWithoutLocale = pathname.replace(/^\/(en|es|pt)/, "");
-    router.push(`/${newLocale}${pathWithoutLocale}`);
+    const segments = pathname.split('/');
+    segments[1] = newLocale;
+    router.replace(segments.join('/'));
     setIsLangDropdownOpen(false);
   };
 
-  const handleLogout = () => {
-    console.log("Logging out...");
+
+  const handleLogout = async () => {
+    await LogoutUser({
+      onSuccess: () => {
+        toast.success(
+          tQ("successMessage", { action: tQ(`actions.logOut.label`) })
+        );
+
+      }
+    })
     router.push("/login");
   };
 
   return (
     <div className="w-full py-3 font-sf  flex items-center gap-3 md:justify-end justify-between px-4 border-b border-b-[#DADADA]">
-      <Link href={"/dashboard"} className="lg:hidden">
+      <Link href={"/admin/jobs"} className="lg:hidden">
         <div className="flex items-center gap-3">
           <Image
             src={"/images/Logo.webp"}
@@ -76,9 +92,8 @@ const TopBar = () => {
             />
             <span className="ml-2 text-black capitalize">{locale}</span>
             <ChevronDown
-              className={`ml-4 h-5 w-5 text-black transition-transform ${
-                isLangDropdownOpen ? "rotate-180" : ""
-              }`}
+              className={`ml-4 h-5 w-5 text-black transition-transform ${isLangDropdownOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
 
@@ -105,8 +120,8 @@ const TopBar = () => {
             className="focus:outline-none cursor-pointer"
           >
             <Avatar className="size-10">
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src={session?.user?.image || "https://github.com/shadcn.png"} />
+              <AvatarFallback>{session?.user?.email?.slice(0, 1).toUpperCase()}</AvatarFallback>
             </Avatar>
           </button>
 

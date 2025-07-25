@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 const Presence = () => {
   const t = useTranslations("home.presence");

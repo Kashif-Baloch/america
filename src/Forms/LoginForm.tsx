@@ -1,15 +1,13 @@
 "use client";
-"use client"
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { signIn } from "@/lib/auth-client";
 import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
@@ -56,11 +54,18 @@ export default function LoginForm() {
         },
         {
           onError: (ctx) => {
-            toast.error(ctx.error.message)
+            console.log(ctx)
+            if (ctx.error.message) {
+              toast.error(ctx.error.message)
+            } else if (ctx.error.statusText) {
+              toast.error(ctx.error.statusText)
+            } else {
+              toast.error("Something went wrong please try again later")
+            }
           },
           onSuccess: () => {
             toast.success("Login Complete.")
-            router.push("/settings")
+            router.replace(`/settings`)
           }
         }
       );

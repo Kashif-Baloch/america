@@ -4,18 +4,22 @@ import { useState, useEffect, useRef } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
 import useClickOutsideDetector from "@/hooks/useClickOutsideDetector";
 
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useSession } from "@/lib/auth-client";
+import { LogoutUser } from "@/utils/handle-logout";
+import { toast } from "sonner";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
   const router = useRouter();
+  const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const tQ = useTranslations("QuickActions");
   const [isMounted, setIsMounted] = useState(false);
-  const [isLoggedin, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
   const t = useTranslations("navbar");
   const locale = useLocale();
@@ -52,10 +56,15 @@ export default function Navbar() {
 
   useClickOutsideDetector(userDropdownRef, () => setIsUserDropdownOpen(false));
 
-  const handleLogout = () => {
-    console.log("Logging out...");
-    setIsLoggedIn(false);
-    router.push("/login");
+  const handleLogout = async () => {
+    await LogoutUser({
+      onSuccess: () => {
+        toast.success(
+          tQ("successMessage", { action: tQ(`actions.logOut.label`) })
+        );
+
+      }
+    })
   };
 
   const navItems = [
@@ -66,7 +75,7 @@ export default function Navbar() {
     { name: t("visa"), href: "/visa-process" },
     { name: t("faqs"), href: "/faqs" },
     { name: t("contact"), href: "/contact" },
-    !isLoggedin ? { name: t("login"), href: "/login" } : { name: "", href: "" },
+    !session?.user ? { name: t("login"), href: "/login" } : { name: "", href: "" },
   ];
 
   if (!isMounted) {
@@ -95,8 +104,9 @@ export default function Navbar() {
   ];
 
   const handleChangeLocale = (newLocale: string) => {
-    const pathWithoutLocale = pathname.replace(/^\/(en|es|pt)/, "");
-    router.push(`/${newLocale}${pathWithoutLocale}`);
+    const segments = pathname.split('/');
+    segments[1] = newLocale;
+    router.replace(segments.join('/'));
     setIsLangDropdownOpen(false);
   };
 
@@ -104,11 +114,10 @@ export default function Navbar() {
     <>
       {/* Navbar */}
       <nav
-        className={` z-40  font-sf  ${
-          pathname === `/${locale}`
-            ? "absolute bg-white max-w-[1490px] top-5 left-1/2 -translate-x-1/2 rounded-full w-11/12 px-1"
-            : "py-[19px] relative w-full"
-        } `}
+        className={` z-40  font-sf  ${pathname === `/${locale}`
+          ? "absolute bg-white max-w-[1490px] top-5 left-1/2 -translate-x-1/2 rounded-full w-11/12 px-1"
+          : "py-[19px] relative w-full"
+          } `}
       >
         <div
           className={`${pathname === `/${locale}` ? "w-full" : "helmet px-1"}`}
@@ -134,9 +143,8 @@ export default function Navbar() {
                   key={item.name}
                   onClick={() => setIsMenuOpen(false)}
                   href={item.href}
-                  className={`min-[1350px]:text-lg text-[17px] hover:text-primary-blue font-medium transition-colors duration-200 flex items-center gap-1 ${
-                    isActive(item.href, pathname) ? "text-primary-blue" : ""
-                  }`}
+                  className={`min-[1350px]:text-lg text-[17px] hover:text-primary-blue font-medium transition-colors duration-200 flex items-center gap-1 ${isActive(item.href, pathname) ? "text-primary-blue" : ""
+                    }`}
                 >
                   {item.name}
                 </Link>
@@ -147,15 +155,15 @@ export default function Navbar() {
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
                 {/* If LoggedIn */}
-                {isLoggedin && (
+                {session?.user && (
                   <div className="relative" ref={userDropdownRef}>
                     <button
                       onClick={() => setIsUserDropdownOpen((prev) => !prev)}
                       className="focus:outline-none cursor-pointer"
                     >
                       <Avatar className="size-10">
-                        <AvatarImage src="https://github.com/shadcn.png" />
-                        <AvatarFallback>CN</AvatarFallback>
+                        <AvatarImage src={session.user.image || ""} />
+                        <AvatarFallback>{session.user.email.slice(0, 1).toUpperCase()}</AvatarFallback>
                       </Avatar>
                     </button>
 
@@ -185,15 +193,13 @@ export default function Navbar() {
                     className="flex items-center justify-center cursor-pointer  md:text-lg rounded-full border border-[#DADADA]  bg-transparent text-white h-12 hover:bg-white/10 md:min-w-[120px] max-md:px-3  w-full"
                   >
                     <span
-                      className={`fi fi-${
-                        locale === "en" ? "us" : locale
-                      } size-4`}
+                      className={`fi fi-${locale === "en" ? "us" : locale
+                        } size-4`}
                     />
                     <span className="ml-2 text-black capitalize">{locale}</span>
                     <ChevronDown
-                      className={`ml-4 h-5 w-5 text-black transition-transform ${
-                        isLangDropdownOpen ? "rotate-180" : ""
-                      }`}
+                      className={`ml-4 h-5 w-5 text-black transition-transform ${isLangDropdownOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
 
@@ -257,9 +263,8 @@ export default function Navbar() {
 
       {/* Slide-out Menu */}
       <div
-        className={`fixed top-0 font-sf left-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-[99] xl:hidden ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 font-sf left-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-[99] xl:hidden ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex flex-col h-full">
           {/* Menu Header */}
@@ -291,9 +296,8 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   onClick={closeMenu}
-                  className={`flex items-center gap-3 px-4 py-3  hover:text-primary-blue hover:bg-ghost-blue rounded-lg font-medium transition-colors duration-200  ${
-                    isActive(item.href, pathname) ? "text-primary-blue" : ""
-                  }`}
+                  className={`flex items-center gap-3 px-4 py-3  hover:text-primary-blue hover:bg-ghost-blue rounded-lg font-medium transition-colors duration-200  ${isActive(item.href, pathname) ? "text-primary-blue" : ""
+                    }`}
                 >
                   {item.name}
                 </Link>

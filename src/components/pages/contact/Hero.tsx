@@ -1,7 +1,7 @@
 import ContactForm from "@/Forms/ContactForm";
+import { Link } from "@/i18n/navigation";
 import { MailIcon } from "@/utils/Icons";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 
 export default function Hero() {
   const t = useTranslations("contact");

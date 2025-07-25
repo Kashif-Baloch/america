@@ -1,10 +1,8 @@
-//Components
 import FormLeftSection from "@/components/shared/form-left-section";
 import LoginForm from "@/Forms/LoginForm";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import React from "react";
 
 const LogInPage = () => {
   const t = useTranslations("login");
@@ -16,7 +14,7 @@ const LogInPage = () => {
       <div className="flex-1 bg-white md:mt-16 flex items-center justify-center p-8 flex-col">
         {/* Logo and Header */}
         <div className="relative z-10 md:hidden flex w-full sm:max-w-md ">
-          <Link href={"/"}>
+          <Link href={`/`} >
             <div className="flex items-center justify-start  gap-3 mb-5">
               <Image
                 src={"/images/Logo.webp"}

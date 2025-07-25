@@ -60,7 +60,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
         <SidebarTrigger className="absolute top-6 right-2  cursor-pointer lg:hidden">
           <X className="size-7" />
         </SidebarTrigger>
-        <Link href={"/dashboard"}>
+        <Link href={"/admin/jobs"}>
           <div className="flex items-center gap-3">
             <Image
               src={"/images/Logo.webp"}
@@ -81,7 +81,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
                 item.url === "/"
                   ? currentPath === "/"
                   : currentPath === item.url ||
-                    currentPath.startsWith(item.url + "/");
+                  currentPath.startsWith(item.url + "/");
               return (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton className="h-10">
@@ -89,10 +89,9 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
                       href={item.url}
                       className={`flex items-center font-sf gap-3 px-3 py-3 w-full
                         text-lg tracking-wide capitalize rounded-lg transition-colors
-                        ${
-                          isActive
-                            ? "bg-muted text-primary-blue "
-                            : "hover:bg-gray-100 text-gray-800"
+                        ${isActive
+                          ? "bg-muted text-primary-blue "
+                          : "hover:bg-gray-100 text-gray-800"
                         }`}
                     >
                       <item.icon className="w-5 h-5" />

@@ -10,41 +10,37 @@ const intlMiddleware = createMiddleware(routing);
 type Session = typeof auth.$Infer.Session;
 
 export default async function middleware(request: NextRequest) {
-    const pathname = request.nextUrl.pathname.replace(/^\/(en|es|pt)(?=\/|$)/, '');
-    console.log('Accessing route:', pathname);
+    const { pathname, origin, search } = request.nextUrl;
 
-    // 🔐 Auth check only for admin protected routes
-    if (pathname.startsWith("/admin")) {
+    // Extract locale prefix (e.g. "/en", "/es")
+    const localeMatch = pathname.match(/^\/(en|es|pt)(?=\/|$)/);
+    const localePrefix = localeMatch?.[0] || '';
+    const pathWithoutLocale = pathname.replace(/^\/(en|es|pt)(?=\/|$)/, '');
+
+    console.log('Accessing route:', pathWithoutLocale);
+
+    const isProtected = pathWithoutLocale.startsWith("/admin") || pathWithoutLocale.startsWith("/settings");
+    const isAuthPage = pathWithoutLocale === "/login" || pathWithoutLocale === "/sign-in";
+
+    if (isProtected || isAuthPage) {
         const { data: session } = await $fetch<Session>("/api/auth/get-session", {
-            baseURL: request.nextUrl.origin,
+            baseURL: origin,
             headers: {
                 cookie: request.headers.get("cookie") || "",
             },
         });
 
-        if (!session) {
-            return NextResponse.redirect(new URL("/login", request.url));
+        if (isProtected && !session) {
+            return NextResponse.redirect(new URL(`${localePrefix}/login${search}`, origin));
+        }
+
+        if (isAuthPage && session) {
+            return NextResponse.redirect(new URL(`${localePrefix}/settings${search}`, origin));
         }
     }
 
-    // 🔐 Auth check only for admin protected routes
-    if (pathname.startsWith("/settings")) {
-        const { data: session } = await $fetch<Session>("/api/auth/get-session", {
-            baseURL: request.nextUrl.origin,
-            headers: {
-                cookie: request.headers.get("cookie") || "",
-            },
-        });
-
-        if (!session) {
-            return NextResponse.redirect(new URL("/login", request.url));
-        }
-    }
-
-    // Run the intl middleware (required for translations to work)
     return intlMiddleware(request);
 }
-
 
 export const config = {
     // Match all pathnames except for

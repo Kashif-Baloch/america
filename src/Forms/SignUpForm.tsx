@@ -4,12 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { signUp } from "@/lib/auth-client";
 import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
 import { Eye, EyeOff, Loader2, Upload, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import { useRef, useState, useTransition } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
@@ -24,7 +23,6 @@ interface SignUpFormValues {
   acceptTerms: boolean;
   resume: File | null;
 }
-
 
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -111,7 +109,7 @@ export default function SignUpForm() {
           },
           onSuccess: () => {
             toast.success("Registration Complete.")
-            router.push("/settings")
+            router.replace(`/settings`)
           }
         }
       );

@@ -1,32 +1,26 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Search, CreditCard, LogOut } from "lucide-react";
-import { toast } from "sonner";
-import { useTranslations } from "next-intl";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "@/i18n/navigation";
-import { signOut } from "@/lib/auth-client";
+import { LogoutUser } from "@/utils/handle-logout";
+import { CreditCard, LogOut, Search } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 export function QuickActions() {
   const t = useTranslations("QuickActions");
 
   const handleAction = async (actionKey: string) => {
     if (actionKey === "logOut") {
-      await signOut(
-        {
-          fetchOptions: {
-            onError: (ctx) => {
-              toast.error(ctx.error.message)
-            },
-            onSuccess: () => {
-              toast.success(
-                t("successMessage", { action: t(`actions.${actionKey}.label`) })
-              );
-            }
-          }
+      await LogoutUser({
+        onSuccess: () => {
+          toast.success(
+            t("successMessage", { action: t(`actions.${actionKey}.label`) })
+          );
+
         }
-      )
+      })
     }
   };
 
