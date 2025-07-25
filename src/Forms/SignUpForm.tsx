@@ -108,7 +108,7 @@ export default function SignUpForm() {
             toast.error(ctx.error.message)
           },
           onSuccess: () => {
-            toast.success("Registration Complete.")
+            toast.success("Registration complete. You're all set.")
             router.replace(`/settings`)
           }
         }

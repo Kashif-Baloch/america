@@ -64,7 +64,7 @@ export default function LoginForm() {
             }
           },
           onSuccess: () => {
-            toast.success("Login Complete.")
+            toast.success("Login successful. Good to have you back.")
             router.replace(`/settings`)
           }
         }
