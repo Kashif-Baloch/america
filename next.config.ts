@@ -4,6 +4,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 const nextConfig: NextConfig = {
   /* config options here */
   // typescript: { ignoreBuildErrors: true },
+  serverExternalPackages: ["@node-rs/argon2"]
 };
 
 const withNextIntl = createNextIntlPlugin();

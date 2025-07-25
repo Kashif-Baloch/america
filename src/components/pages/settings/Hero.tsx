@@ -1,24 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { WelcomeSection } from "./_components/WelcomeSection";
-import { SubscriptionSection } from "./_components/SubscriptionSection";
 import { PersonalInfoSection } from "./_components/PersonalInfoSection";
 import { ResumeSection } from "./_components/ResumeSection";
+import { SubscriptionSection } from "./_components/SubscriptionSection";
+import { WelcomeSection } from "./_components/WelcomeSection";
 
-import { QuickActions } from "./_components/QuickActions";
+import { Link, redirect } from "@/i18n/navigation";
+import { useSession } from "@/lib/auth-client";
+import { Loader2 } from "lucide-react";
+import { useLocale } from "next-intl";
 import { FavoritesSection } from "./_components/FavoritesSection";
-import { Link } from "@/i18n/navigation";
-
-// Mock user data
-const mockUser = {
-  id: "1",
-  first_name: "Carlos",
-  last_name: "Rodriguez",
-  email: "carlos.rodriguez@email.com",
-  phone: "+1 (555) 123-4567",
-};
+import { QuickActions } from "./_components/QuickActions";
 
 // Mock subscription data
 const mockSubscription = {
@@ -27,23 +20,32 @@ const mockSubscription = {
   daysLeft: 48,
 };
 
-type User = {
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone?: string;
-};
-
 export default function Hero() {
-  const [user, setUser] = useState(mockUser);
+  const { data: session, isPending, error } = useSession();
+  const locale = useLocale();
 
-  const handleUserUpdate = (updatedUser: User) => {
-    setUser({ ...user, ...updatedUser });
+  // 🌀 Loading state
+  if (isPending) {
+    return (
+      <div className="h-[40dvh] flex items-center justify-center">
+        <Loader2 className="animate-spin text-black" />
+      </div>
+    );
+  }
+
+  // 🚫 Error or no session = redirect
+  if (!session || error) {
+    redirect({ href: "/", locale });
+  }
+
+  if (!session) throw new Error("Session should be defined here");
+
+  const handleUserUpdate = () => {
   };
 
   return (
     <div className="mx-auto max-w-7xl sm:px-8 px-4 py-8 font-sf">
-      <WelcomeSection firstName={user.first_name} />
+      <WelcomeSection firstName={session.user.name} />
 
       <SubscriptionSection
         planName={mockSubscription.planName}
@@ -102,7 +104,14 @@ export default function Hero() {
             </TabsList>
 
             <TabsContent value="personal" className="space-y-6">
-              <PersonalInfoSection user={user} onUpdate={handleUserUpdate} />
+              <PersonalInfoSection
+                user={{
+                  email: session.user.email,
+                  first_name: session.user.name.split(" ")[0],
+                  last_name: session.user.name.split(" ")[1],
+                  phone: "Not Yet"
+                }}
+                onUpdate={handleUserUpdate} />
             </TabsContent>
 
             <TabsContent value="jobs">

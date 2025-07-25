@@ -1149,6 +1149,8 @@
     "emptyState": "You haven't saved any jobs to favorites yet.",
     "noResults": "No favorites match your search.",
     "addedOn": "Added on",
+    "salaryRange": "",
+    "salaryNotSpecified": "",
     "viewDetails": "View Details",
     "remove": "Remove",
     "confirmRemove": "Are you sure you want to remove this job from favorites?",

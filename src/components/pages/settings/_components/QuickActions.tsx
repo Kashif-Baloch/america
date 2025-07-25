@@ -6,14 +6,28 @@ import { Search, CreditCard, LogOut } from "lucide-react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { signOut } from "@/lib/auth-client";
 
 export function QuickActions() {
   const t = useTranslations("QuickActions");
 
-  const handleAction = (actionKey: string) => {
-    toast.success(
-      t("successMessage", { action: t(`actions.${actionKey}.label`) })
-    );
+  const handleAction = async (actionKey: string) => {
+    if (actionKey === "logOut") {
+      await signOut(
+        {
+          fetchOptions: {
+            onError: (ctx) => {
+              toast.error(ctx.error.message)
+            },
+            onSuccess: () => {
+              toast.success(
+                t("successMessage", { action: t(`actions.${actionKey}.label`) })
+              );
+            }
+          }
+        }
+      )
+    }
   };
 
   return (

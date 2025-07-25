@@ -1156,6 +1156,8 @@
     "addedOn": "Agregado el",
     "viewDetails": "Ver detalles",
     "remove": "Eliminar",
+    "salaryRange": "",
+    "salaryNotSpecified": "",
     "confirmRemove": "¿Estás seguro de que quieres eliminar este trabajo de favoritos?",
     "success": {
       "remove": "¡Trabajo eliminado de favoritos!",

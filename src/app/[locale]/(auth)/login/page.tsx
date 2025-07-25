@@ -12,7 +12,6 @@ const LogInPage = () => {
     <div className="min-h-[117dvh] flex font-sf">
       {/* Left Side - Branding */}
       <FormLeftSection imgSrc="/images/login.webp" />
-
       {/* Right Side - Form */}
       <div className="flex-1 bg-white md:mt-16 flex items-center justify-center p-8 flex-col">
         {/* Logo and Header */}
@@ -26,7 +25,6 @@ const LogInPage = () => {
                 width={1000}
                 className="w-[80px] object-cover"
               />
-
               <span className="font-medium font-sf sm:text-3xl text-xl">
                 America Working
               </span>
@@ -43,7 +41,6 @@ const LogInPage = () => {
               })}
             </h1>
           </div>
-
           <LoginForm />
         </div>
       </div>

@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "../../styles/globals.css";
 import { roboto, inter, sfProDisplay } from "@/Fonts/Font";
 import "../../../node_modules/flag-icons/css/flag-icons.min.css";
-import { getMessages } from "next-intl/server";
-import { notFound } from "next/navigation";
 import { Toaster } from "sonner";
 import ScrollBtn from "@/components/shared/ScrollBtn";
-import { NextIntlClientProvider } from "next-intl";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { routing } from "@/i18n/routing";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "America Working",
@@ -23,12 +23,9 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
 
-  let messages;
-  try {
-    messages = await getMessages({ locale });
-  } catch {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
@@ -37,7 +34,7 @@ export default async function LocaleLayout({
       <body
         className={`${roboto.variable} ${inter.variable} ${sfProDisplay.variable} antialiased`}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider  >
           <ScrollBtn />
           <Toaster position="top-right" expand={false} richColors />
           {children}

@@ -1,17 +1,19 @@
 "use client";
-
-import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage, FieldProps } from "formik";
-import * as Yup from "yup";
+"use client"
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Eye, EyeOff } from "lucide-react";
-import { FcGoogle } from "react-icons/fc";
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { signIn } from "@/lib/auth-client";
+import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { toast } from "sonner";
+import * as Yup from "yup";
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
@@ -35,10 +37,9 @@ interface LoginFormValues {
 
 export default function LoginForm() {
   const t = useTranslations("login");
-
-  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter()
   const initialValues: LoginFormValues = {
     email: "",
     password: "",
@@ -47,17 +48,28 @@ export default function LoginForm() {
 
   //Handle Form Submit
   const handleSubmit = (values: LoginFormValues) => {
-    console.log("Form submitted:", values);
+    startTransition(async () => {
+      await signIn.email(
+        {
+          email: values.email,
+          password: values.password,
+        },
+        {
+          onError: (ctx) => {
+            toast.error(ctx.error.message)
+          },
+          onSuccess: () => {
+            toast.success("Login Complete.")
+            router.push("/settings")
+          }
+        }
+      );
+    });
   };
 
   //Handle Google Sign In
   const handleGoogleSignIn = () => {
     console.log("Google sign in clicked");
-  };
-
-  //Handle SignIn Button Click
-  const handleSignInClick = () => {
-    router.push("/sign-up");
   };
 
   return (
@@ -80,11 +92,10 @@ export default function LoginForm() {
                   id="email"
                   type="email"
                   placeholder="johndoe@email.com"
-                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${
-                    errors.email && touched.email
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  }`}
+                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${errors.email && touched.email
+                    ? "border-red-500"
+                    : "border-gray-300"
+                    }`}
                 />
               )}
             </Field>
@@ -110,11 +121,10 @@ export default function LoginForm() {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••••••••"
-                    className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ring-red-transparent outline-none pr-10 ${
-                      errors.password && touched.password
-                        ? "border-red-500"
-                        : "border-gray-300"
-                    }`}
+                    className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ring-red-transparent outline-none pr-10 ${errors.password && touched.password
+                      ? "border-red-500"
+                      : "border-gray-300"
+                      }`}
                   />
                 )}
               </Field>
@@ -162,9 +172,18 @@ export default function LoginForm() {
           {/* Login Button */}
           <Button
             type="submit"
+            disabled={isPending}
             className="w-full h-12 cursor-pointer text-lg bg-primary-blue hover:bg-white hover:text-primary-blue border border-primary-blue text-white font-semibold rounded-full"
           >
-            {t("button.login")}
+            {
+              isPending
+                ?
+                <Loader2 className="animate-spin" />
+                :
+                <>
+                  {t("button.login")}
+                </>
+            }
           </Button>
 
           {/* Forgot Password */}
@@ -201,13 +220,12 @@ export default function LoginForm() {
           <div className="text-center">
             <span className="text-gray-600 text-sm">
               {t("signup.prompt")}{" "}
-              <button
-                type="button"
-                onClick={handleSignInClick}
+              <Link
+                href={"/sign-up"}
                 className="text-gray-900 font-semibold pb-[1px] cursor-pointer border-b border-b-black  hover:text-blue-600"
               >
                 {t("signup.button")}
-              </button>
+              </Link>
             </span>
           </div>
         </Form>
