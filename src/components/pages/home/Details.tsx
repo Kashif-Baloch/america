@@ -215,9 +215,9 @@ export function JobCardsList({
   selectedCard: number;
   setSelectedCard: Dispatch<SetStateAction<number>>;
 }) {
-  const [visibleJobs, setVisibleJobs] = useState<number>(3);
+  const [visibleJobs, setVisibleJobs] = useState<number>(2);
   const loadMoreJobs = () => {
-    setVisibleJobs((prev) => prev + 4);
+    setVisibleJobs((prev) => prev + 2);
   };
   const t = useTranslations("home");
   const jobsToShow = AllJobsData.slice(0, visibleJobs);
