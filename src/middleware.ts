@@ -1,13 +1,14 @@
 import createMiddleware from "next-intl/middleware";
-import { routing } from "./i18n/routing";
 import { NextRequest, NextResponse } from "next/server";
+import { routing } from "./i18n/routing";
 
-import type { auth } from "./lib/auth";
-import { $fetch } from "./lib/auth-client";
+// import type { auth } from "./lib/auth";
+// import { $fetch } from "./lib/auth-client";
+import { getSessionCookie } from "better-auth/cookies";
 
 const intlMiddleware = createMiddleware(routing);
 
-type Session = typeof auth.$Infer.Session;
+// type Session = typeof auth.$Infer.Session;
 
 export default async function middleware(request: NextRequest) {
     const { pathname, origin, search } = request.nextUrl;
@@ -23,12 +24,20 @@ export default async function middleware(request: NextRequest) {
     const isAuthPage = pathWithoutLocale === "/login" || pathWithoutLocale === "/sign-in";
 
     if (isProtected || isAuthPage) {
-        const { data: session } = await $fetch<Session>("/api/auth/get-session", {
-            baseURL: origin,
-            headers: {
-                cookie: request.headers.get("cookie") || "",
-            },
-        });
+        // for checking whole session 
+
+        // const { data: session } = await $fetch<Session>("/api/auth/get-session", {
+        //     baseURL: origin,
+        //     headers: {
+        //         cookie: request.headers.get("cookie") || "",
+        //     },
+        // });
+
+        // for checking only session existance ( make sure to have page level auth check also if using this  ) 
+
+        const session = getSessionCookie(request)
+
+        console.log("Session in middleware :- ", { session })
 
         if (isProtected && !session) {
             return NextResponse.redirect(new URL(`${localePrefix}/login${search}`, origin));

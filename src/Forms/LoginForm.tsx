@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import SignInOauthButton from "@/components/ui/sign-in-oauth-button";
 import { Link, useRouter } from "@/i18n/navigation";
 import { signIn } from "@/lib/auth-client";
 import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
-import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
 import * as Yup from "yup";
 
@@ -56,9 +56,9 @@ export default function LoginForm() {
           onError: (ctx) => {
             console.log(ctx)
             if (ctx.error.message) {
-              toast.error(ctx.error.message)
+              toast.error(`Opps! ${ctx.error.message}`)
             } else if (ctx.error.statusText) {
-              toast.error(ctx.error.statusText)
+              toast.error(`Opps! ${ctx.error.statusText}`)
             } else {
               toast.error("Something went wrong please try again later")
             }
@@ -72,10 +72,6 @@ export default function LoginForm() {
     });
   };
 
-  //Handle Google Sign In
-  const handleGoogleSignIn = () => {
-    console.log("Google sign in clicked");
-  };
 
   return (
     <Formik
@@ -211,15 +207,7 @@ export default function LoginForm() {
           </div>
 
           {/* Google Sign In */}
-          <Button
-            type="button"
-            variant="outline"
-            onClick={handleGoogleSignIn}
-            className="w-full h-12 border-gray-300 cursor-pointer hover:bg-gray-50 rounded-full bg-light-gray text-gray-700"
-          >
-            <FcGoogle className="size-7" />
-            {t("button.google")}
-          </Button>
+          <SignInOauthButton text={t("button.google")} />
 
           {/* Sign In Link */}
           <div className="text-center">

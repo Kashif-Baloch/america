@@ -63,7 +63,9 @@ export default function Hero() {
         session ?
           <div className="mx-auto max-w-7xl sm:px-8 px-4 py-8 font-sf">
             <WelcomeSection firstName={session.user.name} />
-
+            <pre className="text-base overflow-clip mb-4">
+              {JSON.stringify(session, null, 2)}
+            </pre>
             <SubscriptionSection
               planName={mockSubscription.planName}
               durationMonths={mockSubscription.durationMonths}
@@ -124,8 +126,8 @@ export default function Hero() {
                     <PersonalInfoSection
                       user={{
                         email: session.user.email,
-                        first_name: session.user.name.split(" ")[0],
-                        last_name: session.user.name.split(" ")[1],
+                        role: session.user.role,
+                        name: session.user.name,
                         phone: "Not Yet"
                       }}
                       onUpdate={handleUserUpdate} />

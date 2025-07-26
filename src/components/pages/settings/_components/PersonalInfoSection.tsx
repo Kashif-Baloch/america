@@ -8,17 +8,18 @@ import { Label } from "@/components/ui/label";
 import { Edit, Save, X } from "lucide-react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { Role } from "@/generated/prisma";
 
 interface PersonalInfoSectionProps {
   user: {
-    first_name: string;
-    last_name: string;
+    name: string;
     email: string;
     phone?: string;
+    role: Role;
   };
   onUpdate: (data: {
-    first_name: string;
-    last_name: string;
+    name: string;
     email: string;
     phone?: string;
   }) => void;
@@ -31,8 +32,7 @@ export function PersonalInfoSection({
   const t = useTranslations("PersonalInfoSection");
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    first_name: user.first_name,
-    last_name: user.last_name,
+    name: user.name,
     phone: user.phone || "",
   });
 
@@ -44,8 +44,7 @@ export function PersonalInfoSection({
 
   const handleCancel = () => {
     setFormData({
-      first_name: user.first_name,
-      last_name: user.last_name,
+      name: user.name,
       phone: user.phone || "",
     });
     setIsEditing(false);
@@ -92,7 +91,7 @@ export function PersonalInfoSection({
         )}
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
             <Label className="text-xl font-normal" htmlFor="first_name">
               {t("firstNameLabel")}
@@ -101,30 +100,13 @@ export function PersonalInfoSection({
               <Input
                 className={`${isEditing ? "" : ""} !text-lg py-7`}
                 id="first_name"
-                value={formData.first_name}
+                value={formData.name}
                 onChange={(e) =>
-                  setFormData({ ...formData, first_name: e.target.value })
+                  setFormData({ ...formData, name: e.target.value })
                 }
               />
             ) : (
-              <p className="text-lg py-2">{user.first_name}</p>
-            )}
-          </div>
-          <div className="space-y-2">
-            <Label className="text-xl font-normal" htmlFor="last_name">
-              {t("lastNameLabel")}
-            </Label>
-            {isEditing ? (
-              <Input
-                className={`${isEditing ? "" : ""} !text-lg py-7`}
-                id="last_name"
-                value={formData.last_name}
-                onChange={(e) =>
-                  setFormData({ ...formData, last_name: e.target.value })
-                }
-              />
-            ) : (
-              <p className="text-lg py-2">{user.last_name}</p>
+              <p className="text-lg py-2">{user.name}</p>
             )}
           </div>
         </div>
@@ -152,6 +134,18 @@ export function PersonalInfoSection({
             <p className="text-lg py-2">{user.phone || t("notProvided")}</p>
           )}
         </div>
+        {
+          user.role === "ADMIN"
+          &&
+          <Button
+            asChild
+            className="h-12 w-44 text-base font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200 shadow-md rounded-xl"
+          >
+            <Link href="/admin">
+              🧭 Go to Dashboard
+            </Link>
+          </Button>
+        }
       </CardContent>
     </Card>
   );

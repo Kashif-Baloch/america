@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import SignInOauthButton from "@/components/ui/sign-in-oauth-button";
 import { Link, useRouter } from "@/i18n/navigation";
+import { ErrorCodeBetterAuth } from "@/lib/auth";
 import { signUp } from "@/lib/auth-client";
 import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
 import { Eye, EyeOff, Loader2, Upload, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRef, useState, useTransition } from "react";
-import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
 import * as Yup from "yup";
 
@@ -97,15 +98,29 @@ export default function SignUpForm() {
   // Handle form submission
   const handleSubmit = async (values: SignUpFormValues) => {
     startTransition(async () => {
+      // TODO: handle resume upload and set the actual link of resume 
       await signUp.email(
         {
           email: values.email,
           password: values.password,
           name: `${values.firstName} ${values.lastName || ""}`.trim(),
+          phone: values.phoneNumber,
+          resumeLink: "https://drive.google.com/file/d/1ZQ8N3OjGvZ_rq3lpHXzJneA7caTW9v6k/view?usp=sharing",
         },
         {
           onError: (ctx) => {
-            toast.error(ctx.error.message)
+            console.log(ctx)
+            if (ctx?.error?.code) {
+              const errCode = ctx.error.code ? (ctx.error?.code as ErrorCodeBetterAuth) : "UNKNOW";
+              if (errCode === "USER_ALREADY_EXISTS") {
+                toast.error("Opps! Looks like email is already in use.")
+              } else {
+                toast.error(ctx.error.message)
+              }
+
+            } else {
+              toast.error(ctx.error.message)
+            }
           },
           onSuccess: () => {
             toast.success("Registration complete. You're all set.")
@@ -115,11 +130,6 @@ export default function SignUpForm() {
       );
     });
   };
-
-  const handleGoogleSignIn = () => {
-    console.log("Google sign in clicked");
-  };
-
   const handleForgotPassword = () => {
     console.log("Forgot password clicked");
   };
@@ -396,15 +406,7 @@ export default function SignUpForm() {
           </div>
 
           {/* Google Sign In */}
-          <Button
-            type="button"
-            variant="outline"
-            onClick={handleGoogleSignIn}
-            className="w-full h-12 border-gray-300 cursor-pointer hover:bg-gray-50 rounded-full bg-light-gray text-gray-700"
-          >
-            <FcGoogle className="size-7" />
-            {t("button.google")}
-          </Button>
+          <SignInOauthButton text={t("button.google")} />
 
           {/* Sign In Link */}
           <div className="text-center">
