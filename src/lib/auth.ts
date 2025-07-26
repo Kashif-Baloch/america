@@ -5,7 +5,7 @@ import { nextCookies } from "better-auth/next-js";
 import { hashPassword, verifyPassword } from "./argon2";
 import { db } from "./prisma";
 import { normalizeName, VALID_DOMAINS } from "./utils";
-import { Role } from "@/generated/prisma";
+import { Role } from "@prisma/client";
 
 export const auth = betterAuth({
     database: prismaAdapter(db, {

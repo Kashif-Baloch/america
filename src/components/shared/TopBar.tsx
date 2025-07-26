@@ -120,7 +120,7 @@ const TopBar = () => {
             className="focus:outline-none cursor-pointer"
           >
             <Avatar className="size-10">
-              <AvatarImage src={session?.user?.image || "https://github.com/shadcn.png"} />
+              <AvatarImage src={session?.user?.image || ""} />
               <AvatarFallback>{session?.user?.email?.slice(0, 1).toUpperCase()}</AvatarFallback>
             </Avatar>
           </button>

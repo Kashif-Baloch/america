@@ -9,7 +9,7 @@ import { Edit, Save, X } from "lucide-react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Role } from "@/generated/prisma";
+import { Role } from "@prisma/client"
 
 interface PersonalInfoSectionProps {
   user: {

@@ -18,7 +18,7 @@ export default async function AdminLayout({
 
   const { locale } = await params
 
-  if (!session || session.user.role !== "ADMIN") {
+  if (!session || session?.user?.role !== "ADMIN") {
     // if you want redirect instead of error message 
     // redirect({ href: "/", locale })
     console.log(locale)
