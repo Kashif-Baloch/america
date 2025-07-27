@@ -1093,6 +1093,7 @@
     "cancelButton": "Cancel",
     "saveButton": "Save",
     "firstNameLabel": "First Name",
+    "name": "Name",
     "lastNameLabel": "Last Name",
     "emailLabel": "Email Address",
     "phoneLabel": "Phone Number",

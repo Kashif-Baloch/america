@@ -3,6 +3,7 @@ import LoginForm from "@/Forms/LoginForm";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { Suspense } from "react";
 
 const LogInPage = () => {
   const t = useTranslations("login");
@@ -39,7 +40,9 @@ const LogInPage = () => {
               })}
             </h1>
           </div>
-          <LoginForm />
+          <Suspense fallback={<>Loading...</>}>
+            <LoginForm />
+          </Suspense>
         </div>
       </div>
     </div>

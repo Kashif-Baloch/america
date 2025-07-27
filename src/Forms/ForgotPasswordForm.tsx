@@ -1,13 +1,16 @@
 "use client";
 
-import { Formik, Form, Field, ErrorMessage, FieldProps } from "formik";
-import * as Yup from "yup";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
+import { forgetPassword } from "@/lib/auth-client";
+import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
+import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
+import * as Yup from "yup";
 
 interface ForgotPasswordFormValues {
   email: string;
@@ -16,6 +19,7 @@ interface ForgotPasswordFormValues {
 export default function ForgotPasswordForm() {
   const router = useRouter();
   const t = useTranslations("forgotpassword");
+  const [isPending, setIsPending] = useState(false);
 
   // Yup Validation Schema
   const validationSchema = Yup.object({
@@ -27,10 +31,32 @@ export default function ForgotPasswordForm() {
   };
 
   // Handle form submission
-  const handleSubmit = (values: ForgotPasswordFormValues) => {
-    toast.success(t("success_message"));
-    console.log(values);
-    // Place submission logic here
+  const handleSubmit = async (values: ForgotPasswordFormValues) => {
+    setIsPending(true)
+    if (!values.email) return toast.error("Please enter your email.");
+
+    await forgetPassword({
+      email: values.email,
+      redirectTo: "/password-reset",
+      fetchOptions: {
+        onRequest: () => {
+          setIsPending(true);
+        },
+        onResponse: () => {
+          setIsPending(false);
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message);
+        },
+        onSuccess: () => {
+          toast.success(t("success_message"));
+          router.push("/forgot-password/success");
+        },
+      },
+    });
+
+    setIsPending(false)
+
   };
 
   const handleBackToLogin = () => {
@@ -59,11 +85,10 @@ export default function ForgotPasswordForm() {
                   id="email"
                   type="email"
                   placeholder="johndoe@email.com"
-                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${
-                    errors.email && touched.email
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  }`}
+                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${errors.email && touched.email
+                    ? "border-red-500"
+                    : "border-gray-300"
+                    }`}
                 />
               )}
             </Field>
@@ -80,9 +105,19 @@ export default function ForgotPasswordForm() {
           {/* Reset Password Button */}
           <Button
             type="submit"
+            disabled={isPending}
             className="w-full h-12 cursor-pointer text-lg bg-primary-blue text-white font-semibold rounded-full hover:bg-white hover:text-primary-blue border border-primary-blue"
           >
-            {t("reset_button")}
+            {
+              isPending ?
+                <>
+                  <Loader2 className="animate-spin" />
+                </>
+                :
+                <>
+                  {t("reset_button")}
+                </>
+            }
           </Button>
 
           {/* Back to Login */}

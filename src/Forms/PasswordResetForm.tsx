@@ -1,15 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage, FieldProps } from "formik";
-import * as Yup from "yup";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { resetPassword } from "@/lib/auth-client";
+import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
-import { Eye, EyeOff } from "lucide-react";
+import * as Yup from "yup";
 
 interface PasswordResetFormValues {
   newPassword: string;
@@ -17,7 +19,13 @@ interface PasswordResetFormValues {
 }
 
 export default function PasswordResetForm() {
+  const searchParams = useSearchParams()
+  const token = searchParams.get('token')
+  const [isPending, setIsPending] = useState(false);
+
   const router = useRouter();
+
+
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const t = useTranslations("passwordreset");
@@ -37,15 +45,40 @@ export default function PasswordResetForm() {
     confirmPassword: "",
   };
 
+  if (!token) {
+    router.push("/login")
+    return null
+  }
+
   // Handle form submission
-  const handleSubmit = (values: PasswordResetFormValues) => {
-    toast.success(t("success_message"));
-    console.log(values);
+  const handleSubmit = async (values: PasswordResetFormValues) => {
+    setIsPending(true)
+    try {
+      await resetPassword({
+        newPassword: values.newPassword,
+        token: token,
+        fetchOptions: {
+          onError: (ctx) => {
+            toast.error(`Opps! ${ctx.error.message}`)
+          },
+          onSuccess: () => {
+            toast.success("Your password has been reset successfully. Please log in with your new password.");
+            router.replace("/login");
+          }
+        }
+      })
+
+    } catch (error: unknown) {
+      console.log(error)
+    } finally {
+      setIsPending(false)
+
+    }
     // Place submission logic here
     // After successful reset, you might want to redirect to login
-    setTimeout(() => {
-      router.push("/login");
-    }, 1500);
+    // setTimeout(() => {
+    //   router.push("/login");
+    // }, 1500);
   };
 
   const handleBackToLogin = () => {
@@ -71,18 +104,21 @@ export default function PasswordResetForm() {
                   <Input
                     {...field}
                     id="newPassword"
+                    disabled={isPending}
+
                     type={showNewPassword ? "text" : "password"}
                     placeholder="••••••••••••••"
-                    className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 outline-none pr-10 ${
-                      errors.newPassword && touched.newPassword
-                        ? "border-red-500"
-                        : "border-gray-300"
-                    }`}
+                    className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 outline-none pr-10 ${errors.newPassword && touched.newPassword
+                      ? "border-red-500"
+                      : "border-gray-300"
+                      }`}
                   />
                 )}
               </Field>
               <button
                 type="button"
+                disabled={isPending}
+
                 onClick={() => setShowNewPassword(!showNewPassword)}
                 className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 aria-label={showNewPassword ? "Hide password" : "Show password"}
@@ -113,19 +149,21 @@ export default function PasswordResetForm() {
                 {({ field }: FieldProps) => (
                   <Input
                     {...field}
+                    disabled={isPending}
                     id="confirmPassword"
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="••••••••••••••"
-                    className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 outline-none pr-10 ${
-                      errors.confirmPassword && touched.confirmPassword
-                        ? "border-red-500"
-                        : "border-gray-300"
-                    }`}
+                    className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 outline-none pr-10 ${errors.confirmPassword && touched.confirmPassword
+                      ? "border-red-500"
+                      : "border-gray-300"
+                      }`}
                   />
                 )}
               </Field>
               <button
                 type="button"
+                disabled={isPending}
+
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 aria-label={
@@ -148,15 +186,27 @@ export default function PasswordResetForm() {
           {/* Reset Password Button */}
           <Button
             type="submit"
+
+            disabled={isPending}
             className="w-full h-12 cursor-pointer text-lg bg-primary-blue text-white font-semibold rounded-full hover:bg-white hover:text-primary-blue border border-primary-blue"
           >
-            {t("reset_button")}
+            {
+              isPending ?
+                <>
+                  <Loader2 className="animate-spin" />
+                </>
+                :
+                <>
+                  {t("reset_button")}
+                </>
+            }
           </Button>
 
           {/* Back to Login */}
           <div className="text-center">
             <button
               type="button"
+              disabled={isPending}
               onClick={handleBackToLogin}
               className="text-primary-blue hover:text-blue-700 cursor-pointer underline"
             >

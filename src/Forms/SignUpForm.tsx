@@ -122,9 +122,9 @@ export default function SignUpForm() {
               toast.error(ctx.error.message)
             }
           },
-          onSuccess: () => {
-            toast.success("Registration complete. You're all set.")
-            router.replace(`/settings`)
+          onSuccess: async () => {
+            toast.success("Registration complete. We've sent you a verification link. Please check your email.")
+            router.replace(`/sign-up/success`)
           }
         }
       );

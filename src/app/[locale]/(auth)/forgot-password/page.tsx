@@ -1,13 +1,12 @@
-//Components
 import FormLeftSection from "@/components/shared/form-left-section";
 import ForgotPasswordForm from "@/Forms/ForgotPasswordForm";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import React from "react";
 
 const ForgotPassword = () => {
   const t = useTranslations("forgotpassword");
+
   return (
     <div className="min-h-[117dvh] flex font-sf">
       {/* Left Side - Branding */}

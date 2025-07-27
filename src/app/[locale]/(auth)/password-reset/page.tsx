@@ -1,10 +1,10 @@
-//Components
 import FormLeftSection from "@/components/shared/form-left-section";
 import PasswordResetForm from "@/Forms/PasswordResetForm";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import React from "react";
+import { Suspense } from "react";
+
 
 const PasswordReset = () => {
   const t = useTranslations("passwordreset");
@@ -41,8 +41,9 @@ const PasswordReset = () => {
 
             <p className="text-xl text-gray-700">{t("description")}</p>
           </div>
-
-          <PasswordResetForm />
+          <Suspense fallback={<>Loading...</>}>
+            <PasswordResetForm />
+          </Suspense>
         </div>
       </div>
     </div>

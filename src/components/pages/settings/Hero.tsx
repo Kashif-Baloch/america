@@ -9,10 +9,11 @@ import { WelcomeSection } from "./_components/WelcomeSection";
 
 import { Button } from "@/components/ui/button";
 import { Link, useRouter } from "@/i18n/navigation";
-import { useSession } from "@/lib/auth-client";
+import { updateUser, useSession } from "@/lib/auth-client";
 import { LogoutUser } from "@/utils/handle-logout";
 import { CreditCard, Loader2, LogOut, Search } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { toast } from "sonner";
 import { FavoritesSection } from "./_components/FavoritesSection";
 
@@ -25,8 +26,10 @@ const mockSubscription = {
 
 export default function Hero() {
   const { data: session, isPending, error } = useSession();
+  const [isUpdatePending, setIsUpdatePending] = useState(false);
   const router = useRouter()
   const tQ = useTranslations("QuickActions");
+  const t = useTranslations("PersonalInfoSection");
 
   if (isPending) {
     return (
@@ -41,7 +44,34 @@ export default function Hero() {
     router.push("/");
   }
 
-  const handleUserUpdate = () => {
+  const handleUserUpdate = async (data: {
+    name: string;
+    phone?: string;
+  }) => {
+    try {
+      setIsUpdatePending(true);
+
+      console.log(data)
+      await updateUser({
+        name: data?.name || session?.user.name,
+        phone: data?.phone,
+        fetchOptions: {
+          onError: (ctx) => {
+            toast.error(ctx.error.message);
+          },
+          onSuccess: () => {
+            toast.success(t("successMessage"));
+          },
+        },
+      });
+      console.log("Refreshing router...");
+
+      // window.location.reload();
+      setIsUpdatePending(false);
+
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const handleAction = async (actionKey: string) => {
@@ -62,6 +92,7 @@ export default function Hero() {
       {
         session ?
           <div className="mx-auto max-w-7xl sm:px-8 px-4 py-8 font-sf">
+
             <WelcomeSection firstName={session.user.name} />
             {/* <pre className="text-base overflow-clip mb-4">
               {JSON.stringify(session, null, 2)}
@@ -122,13 +153,23 @@ export default function Hero() {
                     </TabsTrigger>
                   </TabsList>
 
-                  <TabsContent value="personal" className="space-y-6">
+                  <TabsContent value="personal" className="space-y-6 relative">
+                    {
+                      isUpdatePending
+                      &&
+                      <div className="w-full h-full absolute top-0 left-0 flex gap-2 items-center justify-center flex-col bg-white/80">
+                        <Loader2 className="animate-spin" />
+                        <p>
+                          Updating user..
+                        </p>
+                      </div>
+                    }
                     <PersonalInfoSection
                       user={{
                         email: session.user.email,
                         role: session.user.role,
                         name: session.user.name,
-                        phone: "Not Yet"
+                        phone: session.user.phone
                       }}
                       onUpdate={handleUserUpdate} />
                   </TabsContent>

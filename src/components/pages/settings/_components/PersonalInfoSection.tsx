@@ -1,15 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Edit, Save, X } from "lucide-react";
-import { toast } from "sonner";
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Role } from "@prisma/client"
+import { Role } from "@prisma/client";
+import { Edit, Save, X } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 interface PersonalInfoSectionProps {
   user: {
@@ -20,7 +19,6 @@ interface PersonalInfoSectionProps {
   };
   onUpdate: (data: {
     name: string;
-    email: string;
     phone?: string;
   }) => void;
 }
@@ -37,9 +35,8 @@ export function PersonalInfoSection({
   });
 
   const handleSave = () => {
-    onUpdate({ ...user, ...formData });
+    onUpdate({ name: formData.name, phone: formData.phone });
     setIsEditing(false);
-    toast.success(t("successMessage"));
   };
 
   const handleCancel = () => {
@@ -94,7 +91,7 @@ export function PersonalInfoSection({
         <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
             <Label className="text-xl font-normal" htmlFor="first_name">
-              {t("firstNameLabel")}
+              {t("name")}
             </Label>
             {isEditing ? (
               <Input

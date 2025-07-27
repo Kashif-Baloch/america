@@ -17,11 +17,11 @@ const SignInOauthButton = ({ text }: { text: string }) => {
             await signIn.social({
                 provider: "google",
                 callbackURL: `/${locale}/settings`,
-                errorCallbackURL: `/${locale}/login?error=true`,
+                errorCallbackURL: `/${locale}/login`,
                 fetchOptions: {
                     onError: (ctx) => {
                         toast.error(ctx.error.message)
-                    }
+                    },
                 }
             })
         } catch (error) {

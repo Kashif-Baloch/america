@@ -1095,6 +1095,7 @@
     "cancelButton": "Cancelar",
     "saveButton": "Salvar",
     "firstNameLabel": "Nome",
+    "name": "Nome",
     "lastNameLabel": "Sobrenome",
     "emailLabel": "Endereço de E-mail",
     "phoneLabel": "Número de Telefone",

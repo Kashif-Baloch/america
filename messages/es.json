@@ -1098,6 +1098,7 @@
     "cancelButton": "Cancelar",
     "saveButton": "Guardar",
     "firstNameLabel": "Nombre",
+    "name": "Nombre",
     "lastNameLabel": "Apellido",
     "emailLabel": "Correo Electrónico",
     "phoneLabel": "Número de Teléfono",

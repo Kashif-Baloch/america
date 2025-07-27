@@ -6,9 +6,11 @@ import { Label } from "@/components/ui/label";
 import SignInOauthButton from "@/components/ui/sign-in-oauth-button";
 import { Link, useRouter } from "@/i18n/navigation";
 import { signIn } from "@/lib/auth-client";
+import clsx from "clsx";
 import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
 import * as Yup from "yup";
@@ -35,6 +37,9 @@ interface LoginFormValues {
 
 export default function LoginForm() {
   const t = useTranslations("login");
+  const searchParams = useSearchParams()
+  const error = searchParams.get('error')
+
   const [showPassword, setShowPassword] = useState(false);
   const [isPending, startTransition] = useTransition();
   const router = useRouter()
@@ -55,6 +60,11 @@ export default function LoginForm() {
         {
           onError: (ctx) => {
             console.log(ctx)
+            if (ctx?.error?.code === "EMAIL_NOT_VERIFIED") {
+              toast.error(`Oops! ${ctx.error.message} We've sent a verification link to your email on signup. Please check your inbox.`);
+              router.push("/verify?error=email_not_verified")
+              return;
+            }
             if (ctx.error.message) {
               toast.error(`Opps! ${ctx.error.message}`)
             } else if (ctx.error.statusText) {
@@ -82,6 +92,24 @@ export default function LoginForm() {
       {({ values, setFieldValue, errors, touched }) => (
         <Form className="space-y-6">
           {/* Email Field */}
+          {
+            error
+            &&
+            error == "account_not_linked"
+            &&
+            <div
+              className={clsx(
+                'w-full max-w-lg mx-auto px-4 py-3 rounded-md border border-red-300 bg-red-50 text-red-700 flex items-start gap-3 shadow-sm'
+              )}
+            >
+              <AlertCircle className="mt-1 h-5 w-5 text-red-500" />
+              <div>
+                <h3 className="font-semibold text-sm">Sign-In Issue</h3>
+                <p className="text-sm mt-1">
+                  This email is already associated with a different sign-in method. Please try logging in using the correct provider (e.g., Google, Credentials, etc.) linked to your account.
+                </p>
+              </div>
+            </div>}
           <div className="space-y-2">
             <Label htmlFor="email" className="text-gray-700 font-medium">
               {t("email.label")}
