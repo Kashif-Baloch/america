@@ -31,6 +31,7 @@ model User {
 
   sessions Session[]
   accounts Account[]
+  Job      Job[]
 
   @@map("users")
 }
@@ -83,4 +84,91 @@ model Verification {
   value      String
 
   @@map("verifications")
+}
+
+// Seperate Models from authentication 
+
+model Job {
+  id                    String                @id @default(uuid())
+  title                 String
+  company               String
+  salary                String
+  location              String
+  user                  User                  @relation(fields: [userId], references: [id])
+  rating                Rating
+  hiresOutside          HiresOutside
+  requirements          String
+  jobType               JobType
+  season                JobSeason
+  transportationHousing TransportationHousing
+  phoneNumber           String
+  overtime              OvertimeAvailability
+  legalProcess          String
+  processDuration       String
+  approvalRate          String
+  employeesHired        String
+  processSpeed          ProcessSpeed
+  approvalEfficiency    ApprovalEfficiency
+  visaEmployees         String
+  certifications        String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+}
+
+enum Rating {
+  One   @map("1")
+  Two   @map("2")
+  Three @map("3")
+  Four  @map("4")
+  Five  @map("5")
+}
+
+enum HiresOutside {
+  yes
+  no
+  sometimes
+}
+
+enum JobType {
+  full_time
+  part_time
+  contract
+  temporary
+  internship
+}
+
+enum JobSeason {
+  spring
+  summer
+  fall
+  winter
+  year_round
+}
+
+enum TransportationHousing {
+  provided
+  not_provided
+  partial
+  transportation_only
+  housing_only
+}
+
+enum OvertimeAvailability {
+  available
+  not_available
+  limited
+}
+
+enum ProcessSpeed {
+  fast
+  medium
+  slow
+}
+
+enum ApprovalEfficiency {
+  high
+  medium
+  low
 }
