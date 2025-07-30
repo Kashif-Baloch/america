@@ -89,12 +89,32 @@ model Verification {
 // Seperate Models from authentication 
 
 model Job {
-  id                    String                @id @default(uuid())
+  id           String           @id @default(uuid())
+  userId       String
+  user         User             @relation(fields: [userId], references: [id])
+  translations JobTranslation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("jobs")
+}
+
+enum Language {
+  en
+  es
+  pt
+}
+
+model JobTranslation {
+  id       String   @id @default(cuid())
+  jobId    String
+  language Language
+
   title                 String
   company               String
   salary                String
   location              String
-  user                  User                  @relation(fields: [userId], references: [id])
   rating                Rating
   hiresOutside          HiresOutside
   requirements          String
@@ -112,9 +132,13 @@ model Job {
   visaEmployees         String
   certifications        String
 
+  job Job @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  userId    String
+
+  @@unique([jobId, language])
+  @@map("job_translations")
 }
 
 enum Rating {

@@ -1,10 +1,10 @@
 "use client";
 
-import { Formik, Form, Field, FieldProps, FormikHelpers } from "formik";
-import * as Yup from "yup";
-import { useTranslations } from "next-intl";
 import CustomDropdown from "@/components/common/CustomDropdown";
+import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import * as Yup from "yup";
 
 interface JobData {
   title: string;
@@ -152,6 +152,7 @@ export default function AddJobForm() {
                       placeholder={t("jobTitle")}
                       className="block w-full border rounded px-4 py-3 text-base placeholder:text-lg focus:ring focus:ring-blue-200 focus:border-blue-400 transition"
                     />
+
                   </FormField>
                   <FormField
                     label={t("companyName")}
@@ -335,7 +336,7 @@ export default function AddJobForm() {
                     name="transportationHousing"
                     error={
                       errors.transportationHousing &&
-                      touched.transportationHousing
+                        touched.transportationHousing
                         ? t("transportationHousing") + " required"
                         : null
                     }
