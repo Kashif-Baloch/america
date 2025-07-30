@@ -196,3 +196,30 @@ enum ApprovalEfficiency {
   medium
   low
 }
+
+// Sticky Model
+model ModalContent {
+  id   String @id @default(cuid())
+  page String @unique
+
+  en Json
+  es Json
+  pt Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Testimonials 
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  country   String
+  flag      String
+  image     String
+  textEn    String
+  textEs    String
+  textPt    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

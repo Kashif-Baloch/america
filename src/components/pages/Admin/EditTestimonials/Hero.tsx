@@ -351,9 +351,8 @@ export default function TestimonialsCMS() {
                     </span>
                   )}
                   <svg
-                    className={`w-4 h-4 ml-2 transition-transform ${
-                      isOpen ? "transform rotate-180" : ""
-                    }`}
+                    className={`w-4 h-4 ml-2 transition-transform ${isOpen ? "transform rotate-180" : ""
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -375,11 +374,10 @@ export default function TestimonialsCMS() {
                     {flagOptions.map((option) => (
                       <div
                         key={option.value}
-                        className={`cursor-pointer select-none px-3 py-2 flex items-center gap-2 hover:bg-gray-100 ${
-                          selectedValue === option.value
+                        className={`cursor-pointer select-none px-3 py-2 flex items-center gap-2 hover:bg-gray-100 ${selectedValue === option.value
                             ? "bg-gray-200 font-semibold"
                             : ""
-                        }`}
+                          }`}
                         onClick={() => handleSelect(option.value)}
                         role="option"
                         aria-selected={selectedValue === option.value}
