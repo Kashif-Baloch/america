@@ -47,6 +47,7 @@ export default function Hero() {
   const handleUserUpdate = async (data: {
     name: string;
     phone?: string;
+    resumeLink?: string
   }) => {
     try {
       setIsUpdatePending(true);
@@ -97,6 +98,7 @@ export default function Hero() {
             {/* <pre className="text-base overflow-clip mb-4">
               {JSON.stringify(session, null, 2)}
             </pre> */}
+
             <SubscriptionSection
               planName={mockSubscription.planName}
               durationMonths={mockSubscription.durationMonths}
@@ -179,7 +181,7 @@ export default function Hero() {
                   </TabsContent>
 
                   <TabsContent value="resume">
-                    <ResumeSection />
+                    <ResumeSection resumeLink={session?.user?.resumeLink} name={session.user.name} phone={session.user.phone} />
                   </TabsContent>
 
                   <TabsContent value="quick-actions">

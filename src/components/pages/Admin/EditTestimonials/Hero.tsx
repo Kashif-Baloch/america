@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useTranslations } from "next-intl";
+import { v4 as uuid } from "uuid"
 import {
   Card,
   CardHeader,
@@ -24,12 +25,15 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
-import { LucideQuote, Pencil, Trash2, Upload } from "lucide-react";
+import { Loader2, LucideQuote, Pencil, Trash2, Upload } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
 import "flag-icons/css/flag-icons.min.css";
 import flagOptions from "@/utils/constant/FlagOptions";
 import useClickOutsideDetector from "@/hooks/useClickOutsideDetector";
+import { computeSHA256 } from "@/lib/utils";
+import { getSignedURL } from "@/lib/s3";
+import kyInstance from "@/lib/ky";
 
 // Types
 type Testimonial = {
@@ -48,9 +52,12 @@ type Testimonial = {
 export default function TestimonialsCMS() {
   const t = useTranslations("testimonials");
 
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([
+
+  ]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isUploading, setIsUploading] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>("");
   const [activeLanguage, setActiveLanguage] = useState<"en" | "es" | "pt">(
     "en"
@@ -122,6 +129,7 @@ export default function TestimonialsCMS() {
     try {
       const newTestimonial = {
         ...values,
+        image: "https://avatars.githubusercontent.com/u/61820514?v=4",
         id: Date.now().toString(),
       };
 
@@ -153,6 +161,7 @@ export default function TestimonialsCMS() {
     try {
       const updatedTestimonial = {
         ...values,
+        image: values.image,
         id: editingId,
       };
 
@@ -206,21 +215,46 @@ export default function TestimonialsCMS() {
       country: testimonial.country,
       flag: testimonial.flag,
       text: testimonial.text,
+      // image: testimonial.image,
       image: testimonial.image,
     });
+    setPreviewImage(testimonial.image)
     setEditingId(testimonial.id);
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          formik.setFieldValue("image", event.target.result as string);
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      setIsUploading(true)
+      const file = e.target.files?.[0];
+      if (file) {
+        const checksum = await computeSHA256(file);
+        const signedURLResult = await getSignedURL(file.type, file.size, checksum, `${uuid()}-${uuid()}`);
+
+        if (signedURLResult.error !== undefined) {
+          toast.error("Can't get signedURL from server");
+          return;
         }
-      };
-      reader.readAsDataURL(file);
+
+        const url = signedURLResult.data.url;
+        const mainURL = url.split("?")[0];
+
+        await kyInstance.put(url, {
+          body: file,
+          headers: { 'Content-Type': file.type },
+          timeout: 120_000
+        });
+
+        formik.setFieldValue("image", mainURL as string);
+        // const reader = new FileReader();
+        // reader.onload = (event) => {
+        //   if (event.target?.result) {
+        //     formik.setFieldValue("image", event.target.result as string);
+        //   }
+        // };
+        // reader.readAsDataURL(file);
+      }
+    } finally {
+      setIsUploading(false)
     }
   };
 
@@ -259,7 +293,13 @@ export default function TestimonialsCMS() {
   };
 
   return (
-    <div className="sm:px-12 px-4 py-8 font-sf">
+    <div className="sm:px-12 px-4 py-8 font-sf relative">
+      {isUploading
+        &&
+        <div className="absolute top-0 left-0 w-full h-full z-[100] bg-white/70 flex items-center flex-col gap-1 justify-center">
+          <Loader2 className="animate-spin" />
+          Uploading Image..
+        </div>}
       <h2 className="md:text-[40px] text-center sm:text-[32px] text-[26px] font-bold leading-[1.2] mb-6">
         {t("title")}
       </h2>
@@ -375,8 +415,8 @@ export default function TestimonialsCMS() {
                       <div
                         key={option.value}
                         className={`cursor-pointer select-none px-3 py-2 flex items-center gap-2 hover:bg-gray-100 ${selectedValue === option.value
-                            ? "bg-gray-200 font-semibold"
-                            : ""
+                          ? "bg-gray-200 font-semibold"
+                          : ""
                           }`}
                         onClick={() => handleSelect(option.value)}
                         role="option"

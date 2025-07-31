@@ -8,12 +8,16 @@ import SignInOauthButton from "@/components/ui/sign-in-oauth-button";
 import { Link, useRouter } from "@/i18n/navigation";
 import { ErrorCodeBetterAuth } from "@/lib/auth";
 import { signUp } from "@/lib/auth-client";
+import { computeSHA256 } from "@/lib/utils";
 import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
 import { Eye, EyeOff, Loader2, Upload, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRef, useState, useTransition } from "react";
 import { toast } from "sonner";
 import * as Yup from "yup";
+import { v4 as uuid } from "uuid"
+import { getSignedPDFUrl } from "@/lib/s3";
+import kyInstance from "@/lib/ky";
 
 interface SignUpFormValues {
   firstName: string;
@@ -97,38 +101,70 @@ export default function SignUpForm() {
 
   // Handle form submission
   const handleSubmit = async (values: SignUpFormValues) => {
-    startTransition(async () => {
-      // TODO: handle resume upload and set the actual link of resume 
-      await signUp.email(
-        {
-          email: values.email,
-          password: values.password,
-          name: `${values.firstName} ${values.lastName || ""}`.trim(),
-          phone: values.phoneNumber,
-          resumeLink: "https://drive.google.com/file/d/1ZQ8N3OjGvZ_rq3lpHXzJneA7caTW9v6k/view?usp=sharing",
-        },
-        {
-          onError: (ctx) => {
-            console.log(ctx)
-            if (ctx?.error?.code) {
-              const errCode = ctx.error.code ? (ctx.error?.code as ErrorCodeBetterAuth) : "UNKNOW";
-              if (errCode === "USER_ALREADY_EXISTS") {
-                toast.error("Opps! Looks like email is already in use.")
-              } else {
-                toast.error(ctx.error.message)
-              }
+    const file = values.resume;
 
-            } else {
-              toast.error(ctx.error.message)
-            }
-          },
-          onSuccess: async () => {
-            toast.success("Registration complete. We've sent you a verification link. Please check your email.")
-            router.replace(`/sign-up/success`)
-          }
+    if (!file || file.type !== "application/pdf") {
+      toast.error("Please upload a valid PDF file.");
+      return;
+    }
+
+    try {
+      startTransition(async () => {
+        const checksum = await computeSHA256(file);
+        const fileName = `${uuid()}-${uuid()}`;
+        const signedURLResult = await getSignedPDFUrl(file.type, file.size, checksum, fileName);
+
+        if (!signedURLResult.success || !signedURLResult.data?.url) {
+          toast.error(signedURLResult.error || "Failed to get signed URL for resume.");
+          return;
         }
-      );
-    });
+
+        const signedUrl = signedURLResult.data.url;
+        const publicResumeUrl = signedUrl.split("?")[0];
+
+        // Upload the PDF file to S3
+        await kyInstance.put(signedUrl, {
+          body: file,
+          headers: {
+            "Content-Type": file.type,
+          },
+          timeout: 120_000,
+        });
+
+        // Proceed with signup
+        await signUp.email(
+          {
+            email: values.email,
+            password: values.password,
+            name: `${values.firstName} ${values.lastName || ""}`.trim(),
+            phone: values.phoneNumber,
+            resumeLink: publicResumeUrl,
+          },
+          {
+            onError: (ctx) => {
+              if (ctx?.error?.code) {
+                const errCode = ctx.error.code as ErrorCodeBetterAuth || "UNKNOW";
+                if (errCode === "USER_ALREADY_EXISTS") {
+                  toast.error("Oops! Looks like email is already in use.");
+                } else {
+                  toast.error(ctx.error.message);
+                }
+              } else {
+                toast.error(ctx.error.message);
+              }
+            },
+            onSuccess: async () => {
+              toast.success("Registration complete. We've sent you a verification link. Please check your email.");
+              router.replace(`/sign-up/success`);
+            }
+          }
+        );
+      });
+
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong during resume upload.");
+    }
   };
   const handleForgotPassword = () => {
     console.log("Forgot password clicked");
