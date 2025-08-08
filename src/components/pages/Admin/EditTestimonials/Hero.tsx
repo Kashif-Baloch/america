@@ -127,9 +127,10 @@ export default function TestimonialsCMS() {
 
   const addTestimonial = async (values: Omit<Testimonial, "id">) => {
     try {
+      setIsLoading(true)
       const newTestimonial = {
         ...values,
-        image: "https://avatars.githubusercontent.com/u/61820514?v=4",
+        image: values.image,
         id: Date.now().toString(),
       };
 
@@ -145,6 +146,7 @@ export default function TestimonialsCMS() {
       if (response.ok) {
         setTestimonials([...testimonials, newTestimonial]);
         formik.resetForm();
+        setPreviewImage("")
         toast.success(t("messages.addedSuccessfully"));
       } else {
         throw new Error("Failed to add testimonial");
@@ -152,6 +154,8 @@ export default function TestimonialsCMS() {
     } catch (error) {
       console.error("Error adding testimonial:", error);
       toast.error(t("messages.failedToAdd"));
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -159,6 +163,7 @@ export default function TestimonialsCMS() {
     if (!editingId) return;
 
     try {
+      setIsLoading(true)
       const updatedTestimonial = {
         ...values,
         image: values.image,
@@ -180,6 +185,7 @@ export default function TestimonialsCMS() {
         );
         formik.resetForm();
         setEditingId(null);
+        setPreviewImage("")
         toast.success(t("messages.updatedSuccessfully"));
       } else {
         throw new Error("Failed to update testimonial");
@@ -187,6 +193,8 @@ export default function TestimonialsCMS() {
     } catch (error) {
       console.error("Error updating testimonial:", error);
       toast.error(t("messages.failedToUpdate"));
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -529,13 +537,23 @@ export default function TestimonialsCMS() {
                       formik.resetForm();
                       setEditingId(null);
                     }}
+                    className="px-4 h-12 text-base"
                   >
                     {t("form.cancel")}
                   </Button>
                 )}
                 <Button type="submit" className="text-base px-4 h-12">
-                  {editingId ? t("form.update") : t("form.add")}{" "}
-                  {t("form.testimonial")}
+                  {
+                    isLoading ?
+                      <>
+                        <Loader2 className="animate-spin" />
+                      </>
+                      :
+                      <>
+                        {editingId ? t("form.update") : t("form.add")}{" "}
+                        {t("form.testimonial")}
+                      </>
+                  }
                 </Button>
               </CardFooter>
             </form>

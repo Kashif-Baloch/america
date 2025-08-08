@@ -2,9 +2,11 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { Locale, useLocale, useTranslations } from "next-intl";
 import "flag-icons/css/flag-icons.min.css";
 import { LucideQuote } from "lucide-react";
+import { useTestimonialsQuery } from "@/lib/testimonials-get-api";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // Infinite smooth horizontal carousel that resumes from where it was paused
 function InfiniteHorizontalCarousel({
@@ -142,17 +144,37 @@ const TestimonialCard = ({
   </div>
 );
 
+
 export default function Testimonials() {
+  const locale = useLocale() as Locale;
   const t = useTranslations("home.testimonials");
-  const testimonials = t.raw("testimonials") as {
-    name: string;
-    country: string;
-    flag: string;
-    text: string;
-    image: string;
-  }[];
+  const { data, isLoading, isError, refetch } = useTestimonialsQuery();
+
+  if (isLoading) {
+    return (
+      <Skeleton className="h-[400px] animate-pulse w-full rounded-none" />
+    );
+  }
+
+  if (isError || !data?.length) {
+    return (
+      <div className="py-10 text-center text-red-500">
+        <p className="mb-4 text-sm">
+          Something went wrong while loading testimonials.
+        </p>
+        <button
+          onClick={() => refetch()}
+          className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+        >
+          Try Again
+        </button>
+      </div>
+    );
+  }
+
+
   const showcaseCountryNames = t.raw("showcaseCountryNames") as string[];
-  const flagKeys = testimonials.map((testimonial) => testimonial.flag);
+  const flagKeys = data.map((testimonial) => testimonial.flag);
 
   return (
     <div className=" my-16 font-sf helmet">
@@ -181,8 +203,14 @@ export default function Testimonials() {
         </span>
       </h1>
       <InfiniteHorizontalCarousel>
-        {testimonials.map((testimonial) => (
-          <TestimonialCard key={testimonial.name} testimonial={testimonial} />
+        {data.map((testimonial) => (
+          <TestimonialCard key={testimonial.name} testimonial={{
+            country: testimonial.country,
+            flag: testimonial.flag,
+            image: testimonial.image,
+            name: testimonial.name,
+            text: testimonial.text[locale] || "en"
+          }} />
         ))}
       </InfiniteHorizontalCarousel>
     </div>

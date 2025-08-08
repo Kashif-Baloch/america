@@ -1,4 +1,5 @@
 import { routing } from "@/i18n/routing";
+import ReactQueryProvider from "@/providers/react-query-provider";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 
@@ -16,8 +17,10 @@ export default async function LocaleLayout({
   }
 
   return (
-    <NextIntlClientProvider locale={locale}>
-      {children}
-    </NextIntlClientProvider>
+    <ReactQueryProvider>
+      <NextIntlClientProvider locale={locale}>
+        {children}
+      </NextIntlClientProvider>
+    </ReactQueryProvider>
   );
 }

@@ -1,4 +1,9 @@
 import { ApprovalEfficiency, HiresOutside, JobSeason, JobType, OvertimeAvailability, ProcessSpeed, Rating, TransportationHousing } from "@prisma/client"
+import type { Job, JobTranslation } from "@prisma/client";
+
+export type JobWithTranslations = Job & {
+    translations: JobTranslation[];
+};
 
 export interface JobTranslatableFields {
     title: string
@@ -34,3 +39,9 @@ export interface JobFormData {
         pt: JobTranslatableFields
     }
 }
+
+export type ApiResponse<T> = {
+    success: boolean;
+    data: T | null;
+    message: string;
+};

@@ -7,7 +7,10 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
-import { JobFormData } from "@/lib/types"
+import { jobsKeys } from "@/lib/jobs-queries"
+import kyInstance from "@/lib/ky"
+import { approvalEfficiencyLabels, hiresOutsideLabels, jobFormSchema, jobSeasonLabels, jobTypeLabels, languageLabels, overtimeLabels, processSpeedLabels, ratingLabels, transportationHousingLabels } from "@/lib/schemas"
+import { ApiResponse, JobFormData } from "@/lib/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
     ApprovalEfficiency,
@@ -19,115 +22,23 @@ import {
     Rating,
     TransportationHousing,
 } from "@prisma/client"
+import { useQueryClient } from "@tanstack/react-query"
+import { HTTPError } from "ky"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { IoReload } from "react-icons/io5"
-import { z } from "zod"
+import { toast } from "sonner"
 
 // Update the validation schema and form structure
 
 // Update validation schemas
-const jobTranslatableSchema = z.object({
-    title: z.string().min(1, "Title is required"),
-    company: z.string().min(1, "Company is required"),
-    salary: z.string().min(1, "Salary is required"),
-    location: z.string().min(1, "Location is required"),
-    requirements: z.string().min(1, "Requirements are required"),
-    phoneNumber: z.string().min(1, "Phone number is required"),
-    legalProcess: z.string().min(1, "Legal process is required"),
-    processDuration: z.string().min(1, "Process duration is required"),
-    approvalRate: z.string().min(1, "Approval rate is required"),
-    employeesHired: z.string().min(1, "Employees hired is required"),
-    visaEmployees: z.string().min(1, "Visa employees is required"),
-    certifications: z.string().min(1, "Certifications are required"),
-})
 
-const jobStaticSchema = z.object({
-    rating: z.nativeEnum(Rating),
-    hiresOutside: z.nativeEnum(HiresOutside),
-    jobType: z.nativeEnum(JobType),
-    season: z.nativeEnum(JobSeason),
-    transportationHousing: z.nativeEnum(TransportationHousing),
-    overtime: z.nativeEnum(OvertimeAvailability),
-    processSpeed: z.nativeEnum(ProcessSpeed),
-    approvalEfficiency: z.nativeEnum(ApprovalEfficiency),
-})
-
-const jobFormSchema = z.object({
-    staticFields: jobStaticSchema,
-    translations: z.object({
-        en: jobTranslatableSchema,
-        es: jobTranslatableSchema,
-        pt: jobTranslatableSchema,
-    }),
-})
-
-const languageLabels = {
-    en: "English",
-    es: "Español",
-    pt: "Português",
-}
-
-const ratingLabels = {
-    [Rating.One]: "1 Star",
-    [Rating.Two]: "2 Stars",
-    [Rating.Three]: "3 Stars",
-    [Rating.Four]: "4 Stars",
-    [Rating.Five]: "5 Stars",
-}
-
-const hiresOutsideLabels = {
-    [HiresOutside.yes]: "Yes",
-    [HiresOutside.no]: "No",
-    [HiresOutside.sometimes]: "Sometimes",
-}
-
-const jobTypeLabels = {
-    [JobType.full_time]: "Full Time",
-    [JobType.part_time]: "Part Time",
-    [JobType.contract]: "Contract",
-    [JobType.temporary]: "Temporary",
-    [JobType.internship]: "Internship",
-}
-
-const jobSeasonLabels = {
-    [JobSeason.spring]: "Spring",
-    [JobSeason.summer]: "Summer",
-    [JobSeason.fall]: "Fall",
-    [JobSeason.winter]: "Winter",
-    [JobSeason.year_round]: "Year Round",
-}
-
-const transportationHousingLabels = {
-    [TransportationHousing.provided]: "Provided",
-    [TransportationHousing.not_provided]: "Not Provided",
-    [TransportationHousing.partial]: "Partial",
-    [TransportationHousing.transportation_only]: "Transportation Only",
-    [TransportationHousing.housing_only]: "Housing Only",
-}
-
-const overtimeLabels = {
-    [OvertimeAvailability.available]: "Available",
-    [OvertimeAvailability.not_available]: "Not Available",
-    [OvertimeAvailability.limited]: "Limited",
-}
-
-const processSpeedLabels = {
-    [ProcessSpeed.fast]: "Fast",
-    [ProcessSpeed.medium]: "Medium",
-    [ProcessSpeed.slow]: "Slow",
-}
-
-const approvalEfficiencyLabels = {
-    [ApprovalEfficiency.high]: "High",
-    [ApprovalEfficiency.medium]: "Medium",
-    [ApprovalEfficiency.low]: "Low",
-}
 
 export default function JobForm() {
     const [activeTab, setActiveTab] = useState("en")
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const queryClient = useQueryClient();
 
     // Update default values
     const form = useForm<JobFormData>({
@@ -192,23 +103,43 @@ export default function JobForm() {
 
     const onSubmit = async (data: JobFormData) => {
         setIsSubmitting(true)
+
         try {
-            // Here you would typically send the data to your API
-            console.log("Form data:", data)
+            // If your API expects { userId, data }, include userId here
+            const res = await kyInstance
+                .post("/api/jobs", {
+                    json: {
+                        // userId,  // <- if your route derives user from session, omit this
+                        data,
+                    },
+                })
+                .json<ApiResponse<null>>();
 
-            // Example API call:
-            // const response = await fetch('/api/jobs', {
-            //   method: 'POST',
-            //   headers: { 'Content-Type': 'application/json' },
-            //   body: JSON.stringify(data)
-            // })
-
-            alert("Job created successfully!")
-        } catch (error) {
-            console.error("Error creating job:", error)
-            alert("Error creating job. Please try again.")
+            if (res.success) {
+                //  success 
+                toast.success(res.message || "Job created successfully!");
+                form.reset();
+                //  Invalidate the jobs query so it refetches
+                queryClient.invalidateQueries({ queryKey: jobsKeys.all() });
+            } else {
+                // ❌ backend returned success: false
+                alert(res.message || "Could not create job.");
+            }
+        } catch (err) {
+            // KY rich error handling
+            if (err instanceof HTTPError) {
+                try {
+                    const body = (await err.response.json()) as Partial<ApiResponse<null>>;
+                    alert(body?.message || `Request failed (${err.response.status})`);
+                } catch {
+                    alert(`Request failed (${(err as HTTPError).response.status})`);
+                }
+            } else {
+                console.error("Unexpected error:", err);
+                alert("Something went wrong. Please try again.");
+            }
         } finally {
-            setIsSubmitting(false)
+            setIsSubmitting(false);
         }
     }
 
