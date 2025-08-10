@@ -156,7 +156,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 {/* If LoggedIn */}
                 {session?.user && (
-                  <div className="relative" ref={userDropdownRef}>
+                  <div className="relative sm:flex hidden" ref={userDropdownRef}>
                     <button
                       onClick={() => setIsUserDropdownOpen((prev) => !prev)}
                       className="focus:outline-none cursor-pointer"
@@ -307,16 +307,73 @@ export default function Navbar() {
 
           {/* Menu Footer */}
           <div className="p-6 ">
-            <Link
-              href={"/pricing"}
-              onClick={() => {
-                onLoginClick?.();
-                closeMenu();
-              }}
-              className="w-full flex items-center justify-center bg-primary-blue cursor-pointer  text-white  md:h-14 h-12 text-lg rounded-full font-semibold hover:bg-white hover:text-primary-blue border border-primary-blue "
-            >
-              {t("subscribe")}
-            </Link>
+            {session?.user ? (
+              <div className="relative sm:hidden w-full" ref={userDropdownRef}>
+                <div className="relative sm:hidden w-full" >
+                  <div
+                    onClick={() => setIsUserDropdownOpen(prev => !prev)}
+                    aria-haspopup="menu"
+                    aria-expanded={isUserDropdownOpen}
+                    className="flex items-center justify-start cursor-pointer gap-3">
+                    <button
+                      type="button"
+                      className="focus:outline-none cursor-pointer"
+
+                    >
+                      <Avatar className="size-10">
+                        <AvatarImage src={session.user.image || ""} />
+                        <AvatarFallback>
+                          {(session.user.email?.slice(0, 1) || "U").toUpperCase()}
+                        </AvatarFallback>
+                      </Avatar>
+                    </button>
+
+                    {/* Name + Email */}
+                    <div className="min-w-0">
+                      <p className="font-medium leading-tight">{session.user.name}</p>
+                      <p className="text-xs text-slate-500 truncate max-w-[200px]">
+                        {session.user.email}
+                      </p>
+                    </div>
+                  </div>
+
+                  {isUserDropdownOpen && (
+                    <div
+                      role="menu"
+                      className="absolute left-0 bottom-full mb-2 w-full bg-white border border-gray-200 rounded-sm shadow-lg z-50 overflow-hidden"
+                    >
+                      <button
+                        onClick={handleLogout}
+                        className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-100 cursor-pointer font-medium"
+                        role="menuitem"
+                      >
+                        {t("logout")}
+                      </button>
+                      <Link
+                        href="/settings"
+                        className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-100 cursor-pointer font-medium"
+                        role="menuitem"
+                      >
+                        {t("settings")}
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )
+              :
+              <Link
+                href={"/pricing"}
+                onClick={() => {
+                  onLoginClick?.();
+                  closeMenu();
+                }}
+                className="w-full flex items-center justify-center bg-primary-blue cursor-pointer  text-white  md:h-14 h-12 text-lg rounded-full font-semibold hover:bg-white hover:text-primary-blue border border-primary-blue "
+              >
+                {t("subscribe")}
+              </Link>
+            }
+
           </div>
         </div>
       </div>
