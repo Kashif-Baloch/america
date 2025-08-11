@@ -1,66 +1,24 @@
-"use client";
-import Hero from "@/components/pages/Admin/jobdetails/Hero";
-import { JobData } from "@/components/pages/home/Details";
-import { useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
-import React from "react";
+import React from 'react'
+import DetailsPage from './client'
+import { db } from '@/lib/prisma';
+import NotFound from '@/app/[locale]/not-found';
 
-const DetailsPage = () => {
-  const params = useParams();
-  const jobId = Number(params.details);
-  const t = useTranslations("home");
-
-  const AllJobsData: JobData[] = [
-    {
-      id: 1,
-      title: t("job.detail.adminTitle"),
-      company: t("job.detail.basic"),
-      salary: "$25 - $30",
-      location: "Pro",
-      rating: "4.9",
-      hiresOutside: "Pro",
-      requirements: t("job.requirements.adminReq"),
-      jobType: "Pro",
-      season: "Pro",
-      transportationHousing: "Pro",
-      phoneNumber: "Pro",
-      overtime: "Pro",
-      legalProcess: "Pro",
-      processDuration: "Pro",
-      approvalRate: "Pro",
-      employeesHired: "Pro",
-      processSpeed: "Pro+",
-      approvalEfficiency: "Pro+",
-      visaEmployees: "Pro+",
-      certifications: "Pro+",
+const Page = async ({ params }: { params: Promise<{ details: string }> }) => {
+  const { details } = await params
+  const job = await db.job.findUnique({
+    where: {
+      id: details,
     },
-    {
-      id: 2,
-      title: t("job.detail.marketingTitle"),
-      company: t("job.detail.basic"),
-      salary: "$30 - $35",
-      location: "Pro",
-      rating: "4.7",
-      hiresOutside: "Pro",
-      requirements: t("job.requirements.marketingReq"),
-      jobType: "Pro",
-      season: "Pro",
-      transportationHousing: "Pro",
-      phoneNumber: "Pro",
-      overtime: "Pro",
-      legalProcess: "Pro",
-      processDuration: "Pro",
-      approvalRate: "Pro",
-      employeesHired: "Pro",
-      processSpeed: "Pro+",
-      approvalEfficiency: "Pro+",
-      visaEmployees: "Pro+",
-      certifications: "Pro+",
+    include: {
+      translations: true,
     },
-  ];
+  });
+  if (!job) {
+    return <NotFound />
+  }
+  return (
+    <DetailsPage job={job} />
+  )
+}
 
-  const job = AllJobsData.find((job) => job.id === jobId) || AllJobsData[0];
-  return <Hero job={job} />;
-};
-
-export default DetailsPage;
+export default Page

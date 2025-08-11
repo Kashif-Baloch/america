@@ -1,3 +1,4 @@
+import { Rating } from "@prisma/client";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -35,3 +36,27 @@ export const computeSHA256 = async (file: File) => {
     .join("");
   return hashHex;
 };
+
+type HasLanguage = { language: string };
+
+export function getTranslation<T extends HasLanguage>(
+  translations: T[],
+  locale: string,
+  fallback: string = "en"
+): T | undefined {
+  return (
+    translations.find(t => t.language === locale) ??
+    translations.find(t => t.language === fallback) ??
+    translations[0]
+  );
+}
+
+export function ratingToNumber(rating: Rating): number {
+  switch (rating) {
+    case "One": return 1;
+    case "Two": return 2;
+    case "Three": return 3;
+    case "Four": return 4;
+    case "Five": return 5;
+  }
+}

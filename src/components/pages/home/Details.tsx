@@ -1,41 +1,19 @@
 "use client";
-import { Star } from "lucide-react";
-import { useState, Dispatch, SetStateAction } from "react";
+import { usePublicJobsQuery } from "@/lib/jobs-queries";
+import { Loader2, Star } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { Dispatch, SetStateAction, useState } from "react";
 import DetailRow from "./components/DetailRow";
-import JobCard from "./components/JobCard";
 import { JobApplicationButtons } from "./components/JobApplicationButtons";
-import { useTranslations } from "next-intl";
+import JobCard from "./components/JobCard";
 import FilterSection from "./Filters";
-export interface JobData {
-  id: number;
-  title: string;
-  company: string;
-  salary: string;
-  location: string;
-  rating: string;
-  hiresOutside: string;
-  requirements: string;
-  jobType: string;
-  season: string;
-  transportationHousing: string;
-  phoneNumber: string;
-  overtime: string;
-  legalProcess: string;
-  processDuration: string;
-  approvalRate: string;
-  employeesHired: string;
-  processSpeed: string;
-  approvalEfficiency: string;
-  visaEmployees: string;
-  certifications: string;
-}
+import { JobWithTranslations } from "@/lib/types";
+import { getTranslation, ratingToNumber } from "@/lib/utils";
 
 export default function Details() {
-  const t = useTranslations("home");
 
   return (
     <div className="bg-white helmet mt-28 md:mt-14 font-sf">
-      <FilterSection t={t} />
       <JobContentSection />
     </div>
   );
@@ -43,166 +21,39 @@ export default function Details() {
 
 function JobContentSection() {
   const t = useTranslations("home");
-  const [selectedCard, setSelectedCard] = useState<number>(1);
 
-  const AllJobsData: JobData[] = [
-    {
-      id: 1,
-      title: t("job.detail.adminTitle"),
-      company: t("job.detail.basic"),
-      salary: "$25 - $30",
-      location: "Pro",
-      rating: "4.9",
-      hiresOutside: "Pro",
-      requirements: t("job.requirements.adminReq"),
-      jobType: "Pro",
-      season: "Pro",
-      transportationHousing: "Pro",
-      phoneNumber: "Pro",
-      overtime: "Pro",
-      legalProcess: "Pro",
-      processDuration: "Pro",
-      approvalRate: "Pro",
-      employeesHired: "Pro",
-      processSpeed: "Pro+",
-      approvalEfficiency: "Pro+",
-      visaEmployees: "Pro+",
-      certifications: "Pro+",
-    },
-    {
-      id: 2,
-      title: t("job.detail.marketingTitle"),
-      company: t("job.detail.basic"),
-      salary: "$30 - $35",
-      location: "Pro",
-      rating: "4.7",
-      hiresOutside: "Pro",
-      requirements: t("job.requirements.marketingReq"),
-      jobType: "Pro",
-      season: "Pro",
-      transportationHousing: "Pro",
-      phoneNumber: "Pro",
-      overtime: "Pro",
-      legalProcess: "Pro",
-      processDuration: "Pro",
-      approvalRate: "Pro",
-      employeesHired: "Pro",
-      processSpeed: "Pro+",
-      approvalEfficiency: "Pro+",
-      visaEmployees: "Pro+",
-      certifications: "Pro+",
-    },
-    {
-      id: 3,
-      title: t("job.detail.adminTitle"),
-      company: t("job.detail.basic"),
-      salary: "$25 - $30",
-      location: "Pro",
-      rating: "4.9",
-      hiresOutside: "Pro",
-      requirements: t("job.requirements.adminReq"),
-      jobType: "Pro",
-      season: "Pro",
-      transportationHousing: "Pro",
-      phoneNumber: "Pro",
-      overtime: "Pro",
-      legalProcess: "Pro",
-      processDuration: "Pro",
-      approvalRate: "Pro",
-      employeesHired: "Pro",
-      processSpeed: "Pro+",
-      approvalEfficiency: "Pro+",
-      visaEmployees: "Pro+",
-      certifications: "Pro+",
-    },
-    {
-      id: 4,
-      title: t("job.detail.marketingTitle"),
-      company: t("job.detail.basic"),
-      salary: "$30 - $35",
-      location: "Pro",
-      rating: "4.7",
-      hiresOutside: "Pro",
-      requirements: t("job.requirements.marketingReq"),
-      jobType: "Pro",
-      season: "Pro",
-      transportationHousing: "Pro",
-      phoneNumber: "Pro",
-      overtime: "Pro",
-      legalProcess: "Pro",
-      processDuration: "Pro",
-      approvalRate: "Pro",
-      employeesHired: "Pro",
-      processSpeed: "Pro+",
-      approvalEfficiency: "Pro+",
-      visaEmployees: "Pro+",
-      certifications: "Pro+",
-    },
-    {
-      id: 6,
-      title: t("job.detail.adminTitle"),
-      company: t("job.detail.basic"),
-      salary: "$25 - $30",
-      location: "Pro",
-      rating: "4.9",
-      hiresOutside: "Pro",
-      requirements: t("job.requirements.adminReq"),
-      jobType: "Pro",
-      season: "Pro",
-      transportationHousing: "Pro",
-      phoneNumber: "Pro",
-      overtime: "Pro",
-      legalProcess: "Pro",
-      processDuration: "Pro",
-      approvalRate: "Pro",
-      employeesHired: "Pro",
-      processSpeed: "Pro+",
-      approvalEfficiency: "Pro+",
-      visaEmployees: "Pro+",
-      certifications: "Pro+",
-    },
-    {
-      id: 7,
-      title: t("job.detail.marketingTitle"),
-      company: t("job.detail.basic"),
-      salary: "$30 - $35",
-      location: "Pro",
-      rating: "4.7",
-      hiresOutside: "Pro",
-      requirements: t("job.requirements.marketingReq"),
-      jobType: "Pro",
-      season: "Pro",
-      transportationHousing: "Pro",
-      phoneNumber: "Pro",
-      overtime: "Pro",
-      legalProcess: "Pro",
-      processDuration: "Pro",
-      approvalRate: "Pro",
-      employeesHired: "Pro",
-      processSpeed: "Pro+",
-      approvalEfficiency: "Pro+",
-      visaEmployees: "Pro+",
-      certifications: "Pro+",
-    },
-  ];
+  const [selectedCard, setSelectedCard] = useState<string>("");
+
+  const { data: jobs, isLoading, isError } = usePublicJobsQuery();
+
+  if (isLoading) {
+    return <div className="w-full min-h-[500px] flex items-center justify-center"><Loader2 className="animate-spin" /></div>;
+  }
+
+  if (isError || !jobs) {
+    return <div>{t("error")}</div>;
+  }
 
   return (
-    <div className="w-full">
-      <div className="flex gap-10 lg:flex-row flex-col w-full ">
-        <JobCardsList
-          AllJobsData={AllJobsData}
-          selectedCard={selectedCard}
-          setSelectedCard={setSelectedCard}
-        />
-
-        <JobDetails
-          t={t}
-          job={
-            AllJobsData.find((job) => job.id === selectedCard) || AllJobsData[0]
-          }
-        />
+    <>
+      <FilterSection t={t} />
+      <div className="w-full">
+        <div className="flex gap-10 lg:flex-row flex-col w-full ">
+          <JobCardsList
+            AllJobsData={jobs}
+            selectedCard={selectedCard}
+            setSelectedCard={setSelectedCard}
+          />
+          <JobDetails
+            t={t}
+            job={
+              jobs.find((job) => job.id === selectedCard) || jobs[0]
+            }
+          />
+        </div>
       </div>
-    </div>
+    </>
+
   );
 }
 
@@ -211,9 +62,9 @@ export function JobCardsList({
   selectedCard,
   setSelectedCard,
 }: {
-  AllJobsData: JobData[];
-  selectedCard: number;
-  setSelectedCard: Dispatch<SetStateAction<number>>;
+  AllJobsData: JobWithTranslations[];
+  selectedCard: string;
+  setSelectedCard: Dispatch<SetStateAction<string>>;
 }) {
   const [visibleJobs, setVisibleJobs] = useState<number>(2);
   const loadMoreJobs = () => {
@@ -248,15 +99,18 @@ function JobDetails({
   job,
   t,
 }: {
-  job: JobData;
+  job: JobWithTranslations;
   t: ReturnType<typeof useTranslations>;
 }) {
+  const locale = useLocale()
+  const tr = getTranslation(job.translations, locale, "en")
+  if (!tr) return null
   return (
     <div className="lg:grid gap-8 w-full hidden lg:w-[calc(100%-420px)]">
       <div className="sm:p-14 p-4 max-sm:py-8 border border-[#DADADA] rounded-2xl">
-        <JobDetailsHeader t={t} title={job.title} rating={job.rating} />
-        <JobSalaryInfo t={t} salary={job.salary} />
-        <JobRequirements t={t} requirements={job.requirements} />
+        <JobDetailsHeader t={t} title={tr.title} rating={`${ratingToNumber(tr.rating).toFixed(1)}`} />
+        <JobSalaryInfo t={t} salary={tr.salary} />
+        <JobRequirements t={t} requirements={tr.requirements} />
         <JobDetailsList t={t} job={job} />
         <JobApplicationButtons t={t} />
       </div>
@@ -321,89 +175,92 @@ function JobDetailsList({
   job,
   t,
 }: {
-  job: JobData;
+  job: JobWithTranslations;
   t: ReturnType<typeof useTranslations>;
 }) {
+  const locale = useLocale()
+  const tr = getTranslation(job.translations, locale, "en")
+  if (!tr) return null
   return (
     <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 gap-y-1 mb-6">
       <DetailRow
         label={t("job.detail.company")}
-        value={job.company}
+        value={tr.company}
         valueType="basic"
       />
       <DetailRow label={t("job.detail.city")} value={"Pro"} valueType="pro" />
       <DetailRow
         label={t("job.detail.phone")}
-        value={job.phoneNumber}
+        value={tr.phoneNumber}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.hiresOutside")}
-        value={job.hiresOutside}
+        value={tr.hiresOutside}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.season")}
-        value={job.season}
+        value={tr.season}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.overtime")}
-        value={job.overtime}
+        value={tr.overtime}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.hiredLastYear")}
-        value={job.hiresOutside}
+        value={tr.hiresOutside}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.employeesHired")}
-        value={job.employeesHired}
+        value={tr.employeesHired}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.approvalRate")}
-        value={job.approvalRate}
+        value={tr.approvalRate}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.transportationHousing")}
-        value={job.transportationHousing}
+        value={tr.transportationHousing}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.legalProcess")}
-        value={job.legalProcess}
+        value={tr.legalProcess}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.processDuration")}
-        value={job.processDuration}
+        value={tr.processDuration}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.processSpeed")}
-        value={job.processSpeed}
+        value={tr.processSpeed}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.approvalEfficiency")}
-        value={job.approvalEfficiency}
+        value={tr.approvalEfficiency}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.visaEmployees")}
-        value={job.visaEmployees}
+        value={tr.visaEmployees}
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.certifications")}
-        value={job.certifications}
+        value={tr.certifications}
         valueType="pro"
       />
 
-      <MobileCompanyRating rating={job.rating} t={t} />
+      <MobileCompanyRating rating={`${ratingToNumber(tr.rating).toFixed(1)}`} t={t} />
     </div>
   );
 }

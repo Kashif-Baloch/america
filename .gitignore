@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/prisma/seed.ts
+/prisma/seed.js
 /src/generated
 # next.js
 /.next/

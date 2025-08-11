@@ -1,9 +1,11 @@
-import { ApprovalEfficiency, HiresOutside, JobSeason, JobType, OvertimeAvailability, ProcessSpeed, Rating, TransportationHousing } from "@prisma/client"
-import type { Job, JobTranslation } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
+import { ApprovalEfficiency, HiresOutside, JobSeason, JobType, OvertimeAvailability, ProcessSpeed, Rating, TransportationHousing } from "@prisma/client";
 
-export type JobWithTranslations = Job & {
-    translations: JobTranslation[];
-};
+export type JobWithTranslations = Prisma.JobGetPayload<{
+    include: { translations: true }
+}>;
+
+
 
 export interface JobTranslatableFields {
     title: string

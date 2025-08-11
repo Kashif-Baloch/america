@@ -1,10 +1,14 @@
-import React from "react";
-import { JobData } from "../../home/Details";
-import { useTranslations } from "next-intl";
+import { JobWithTranslations } from "@/lib/types";
+import { getTranslation, ratingToNumber } from "@/lib/utils";
+import { Loader2, Star } from "lucide-react";
+import { Locale, useLocale, useTranslations } from "next-intl";
 import DetailRow from "../../home/components/DetailRow";
-import { Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link, useRouter } from "@/i18n/navigation";
+import { useDeleteJob } from "@/lib/jobs-queries";
+import { toast } from "sonner";
 
-const Hero = ({ job }: { job: JobData }) => {
+const Hero = ({ job }: { job: JobWithTranslations }) => {
   console.log(job);
   const t = useTranslations("home");
   const t2 = useTranslations("dashboardJobs");
@@ -27,16 +31,117 @@ function JobDetails({
   job,
   t,
 }: {
-  job: JobData;
+  job: JobWithTranslations;
   t: ReturnType<typeof useTranslations>;
 }) {
+  const locale = useLocale() as Locale
+  const tr = getTranslation(job.translations, locale, "en")
+  if (!tr) return null
+  const editLabel =
+    locale === "es"
+      ? "Editar"
+      : locale === "pt"
+        ? "Editar"
+        : "Edit"; // default English
   return (
     <div className=" gap-8 w-full  ">
       <div className="sm:p-8 p-4 max-sm:py-8 border border-[#DADADA] rounded-2xl">
-        <JobDetailsHeader t={t} title={job.title} rating={job.rating} />
-        <JobSalaryInfo t={t} salary={job.salary} />
-        <JobRequirements t={t} requirements={job.requirements} />
-        <JobDetailsList t={t} job={job} />
+        <JobDetailsHeader t={t} title={tr?.title} rating={`${ratingToNumber(tr.rating).toFixed(1)}`} />
+        <JobSalaryInfo t={t} salary={tr.salary} />
+        <JobRequirements t={t} requirements={tr.requirements} />
+        {/* job detasils  */}
+        <div className="flex flex-col gap-y-1 mb-6">
+          <DetailRow
+            label={t("job.detail.company")}
+            value={tr.company}
+            valueType="basic"
+          />
+          <DetailRow label={t("job.detail.city")} value={"Pro"} valueType="pro" />
+          <DetailRow
+            label={t("job.detail.phone")}
+            value={tr.phoneNumber}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.hiresOutside")}
+            value={tr.hiresOutside}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.season")}
+            value={tr.season}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.overtime")}
+            value={tr.overtime}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.hiredLastYear")}
+            value={tr.hiresOutside}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.employeesHired")}
+            value={tr.employeesHired}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.approvalRate")}
+            value={tr.approvalRate}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.transportationHousing")}
+            value={tr.transportationHousing}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.legalProcess")}
+            value={tr.legalProcess}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.processDuration")}
+            value={tr.processDuration}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.processSpeed")}
+            value={tr.processSpeed}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.approvalEfficiency")}
+            value={tr.approvalEfficiency}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.visaEmployees")}
+            value={tr.visaEmployees}
+            valueType="pro"
+          />
+          <DetailRow
+            label={t("job.detail.certifications")}
+            value={tr.certifications}
+            valueType="pro"
+          />
+
+          <MobileCompanyRating rating={`${ratingToNumber(tr.rating)}`} t={t} />
+          <div className=" flex items-center gap-4">
+
+            <DeleteJobbutton jobId={job.id} locale={locale} />
+            <Link href={`/admin/jobs/edit/${job.id}`} className="">
+              <Button
+                variant="outline"
+                className="border-gray-300 text-gray-700 shadow-md hover:bg-gray-100 max-sm:w-full px-5 cursor-pointer md:h-14 h-12 rounded-xl xl:text-lg sm:font-bold font-normal tracking-wider"
+              >
+                {editLabel}
+              </Button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -95,96 +200,6 @@ function JobRequirements({
   );
 }
 
-function JobDetailsList({
-  job,
-  t,
-}: {
-  job: JobData;
-  t: ReturnType<typeof useTranslations>;
-}) {
-  return (
-    <div className="flex flex-col gap-y-1 mb-6">
-      <DetailRow
-        label={t("job.detail.company")}
-        value={job.company}
-        valueType="basic"
-      />
-      <DetailRow label={t("job.detail.city")} value={"Pro"} valueType="pro" />
-      <DetailRow
-        label={t("job.detail.phone")}
-        value={job.phoneNumber}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.hiresOutside")}
-        value={job.hiresOutside}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.season")}
-        value={job.season}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.overtime")}
-        value={job.overtime}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.hiredLastYear")}
-        value={job.hiresOutside}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.employeesHired")}
-        value={job.employeesHired}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.approvalRate")}
-        value={job.approvalRate}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.transportationHousing")}
-        value={job.transportationHousing}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.legalProcess")}
-        value={job.legalProcess}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.processDuration")}
-        value={job.processDuration}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.processSpeed")}
-        value={job.processSpeed}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.approvalEfficiency")}
-        value={job.approvalEfficiency}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.visaEmployees")}
-        value={job.visaEmployees}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.certifications")}
-        value={job.certifications}
-        valueType="pro"
-      />
-
-      <MobileCompanyRating rating={job.rating} t={t} />
-    </div>
-  );
-}
 
 function MobileCompanyRating({
   rating,
@@ -204,4 +219,40 @@ function MobileCompanyRating({
       </div>
     </div>
   );
+}
+
+
+const DeleteJobbutton = ({ locale, jobId }: { locale: Locale, jobId: string }) => {
+  const router = useRouter();
+
+  const { mutate, isPending } = useDeleteJob();
+
+  const handleDelete = () => {
+    mutate(jobId, {
+      onSuccess: () => {
+        toast.success(
+          locale === "es"
+            ? "Trabajo eliminado con éxito"
+            : locale === "pt"
+              ? "Trabalho excluído com sucesso"
+              : "Job deleted successfully"
+        );
+        router.push("/admin/jobs");
+      },
+    });
+  };
+
+  const deleteLabel =
+    locale === "es" ? "Eliminar" :
+      locale === "pt" ? "Excluir" :
+        "Delete"; // default to en
+  return (
+    <Button
+      variant={"destructive"}
+      onClick={handleDelete}
+      disabled={isPending}
+      className="w-fit py-0 md:h-14 h-12 rounded-xl xl:text-lg shadow-md sm:font-bold font-normal tracking-wider px-5">
+      {isPending ? <Loader2 className="animate-spin" /> : deleteLabel}
+    </Button>
+  )
 }

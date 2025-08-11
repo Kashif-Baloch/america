@@ -8,6 +8,7 @@ import { Locale, useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { JobWithTranslations } from "@/lib/types";
+import { getTranslation, ratingToNumber } from "@/lib/utils";
 
 export default function JobCardCorrectType({ job }: { job: JobWithTranslations }) {
     const t = useTranslations("home");
@@ -15,17 +16,19 @@ export default function JobCardCorrectType({ job }: { job: JobWithTranslations }
     const t2 = useTranslations("dashboardJobs");
 
     // pick translation by locale, then fall back
-    const tr =
-        job.translations.find((x) => x.language === locale) ??
-        job.translations.find((x) => x.language === "en") ??
-        job.translations[0];
+    const tr = getTranslation(job.translations, locale, "en")
 
     if (!tr) return null;
-
+    const editLabel =
+        locale === "es"
+            ? "Editar"
+            : locale === "pt"
+                ? "Editar"
+                : "Edit"; // default English
     return (
         <Card
-            className={`border  border-[#DADADA]
-       rounded-2xl lg:h-[412px] lg:w-[458px] cursor-pointer w-full`}
+            className={`border border-[#DADADA]
+       rounded-2xl  cursor-pointer py-2 pb-0`}
         >
             <CardContent className="p-4">
                 <div className="flex items-start justify-between mb-3">
@@ -71,14 +74,29 @@ export default function JobCardCorrectType({ job }: { job: JobWithTranslations }
                         </span>
                         <div className="flex items-center gap-1">
                             <FaStar className="fill-primary-yellow text-2xl" />
-                            <span className="font-roboto">{tr.rating}</span>
+                            <span className="font-roboto">{ratingToNumber(tr.rating).toFixed(1)}</span>
                         </div>
                     </div>
-                    <Link href={`/admin/jobs/${job.id}`}>
-                        <Button className="bg-primary-blue mt-5 max-sm:w-full px-5 cursor-pointer md:h-14 h-12 rounded-xl xl:text-lg sm:font-bold font-normal tracking-wider text-white blue-btn-shadow">
-                            {t2("btn")}
-                        </Button>
-                    </Link>
+                    <div>
+                        <div className="flex gap-4 flex-wrap mt-5">
+                            {/* View Button */}
+                            <Link href={`/admin/jobs/${job.id}`} className="">
+                                <Button className="bg-primary-blue max-sm:w-full px-5 cursor-pointer md:h-14 h-12 rounded-xl xl:text-lg sm:font-bold font-normal tracking-wider text-white blue-btn-shadow">
+                                    {t2("btn")}
+                                </Button>
+                            </Link>
+
+                            {/* Edit Button */}
+                            <Link href={`/admin/jobs/edit/${job.id}`} className="">
+                                <Button
+                                    variant="outline"
+                                    className="border-gray-300 text-gray-700 shadow-md hover:bg-gray-100 max-sm:w-full px-5 cursor-pointer md:h-14 h-12 rounded-xl xl:text-lg sm:font-bold font-normal tracking-wider"
+                                >
+                                    {editLabel}
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </CardContent>
         </Card>

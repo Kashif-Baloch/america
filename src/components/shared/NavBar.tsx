@@ -156,7 +156,8 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 {/* If LoggedIn */}
                 {session?.user && (
-                  <div className="relative sm:flex hidden" ref={userDropdownRef}>
+                  <div className="relative sm:flex hidden" ref={userDropdownRef}
+                  >
                     <button
                       onClick={() => setIsUserDropdownOpen((prev) => !prev)}
                       className="focus:outline-none cursor-pointer"

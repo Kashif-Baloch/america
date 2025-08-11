@@ -83,7 +83,7 @@ const Hero = () => {
       <h2 className="text-4xl text-center font-bold text-gray-900 mb-2">
         {t2("title")}
       </h2>
-      <div className="flex flex-wrap gap-5 mt-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-10">
         {data.map((item, index) => (
           <JobCardCorrectType key={index} job={item} />
         ))}

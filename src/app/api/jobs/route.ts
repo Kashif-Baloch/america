@@ -112,6 +112,22 @@ export async function POST(req: Request) {
 
 export async function GET() {
     try {
+
+        // Admin session check
+        const session = await auth.api.getSession({
+            headers: await headers(),
+        });
+
+        if (!session?.user || session.user.role !== "ADMIN") {
+            return NextResponse.json(
+                {
+                    success: false,
+                    data: null,
+                    message: "Unauthorized",
+                },
+                { status: 403 }
+            );
+        }
         const jobs = await db.job.findMany({
             orderBy: { createdAt: "desc" },
             include: {

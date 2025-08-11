@@ -6,13 +6,14 @@ import { FaStar } from "react-icons/fa";
 
 import MobileJobDetails from "./MobileJobDetails";
 import { JobApplicationButtons } from "./JobApplicationButtons";
-import { JobData } from "../Details";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { JobWithTranslations } from "@/lib/types";
+import { getTranslation, ratingToNumber } from "@/lib/utils";
 
 interface JobCardProps {
-  job: JobData;
-  selectedCard: number;
-  setSelectedCard: Dispatch<SetStateAction<number>>;
+  job: JobWithTranslations;
+  selectedCard: string;
+  setSelectedCard: Dispatch<SetStateAction<string>>;
 }
 
 export default function JobCard({
@@ -21,17 +22,19 @@ export default function JobCard({
   setSelectedCard,
 }: JobCardProps) {
   const t = useTranslations("home");
+  const locale = useLocale()
+  const tr = getTranslation(job.translations, locale, "en")
+  if (!tr) return null
   return (
     <Card
       onClick={() => setSelectedCard(job.id)}
-      className={`border ${
-        selectedCard === job.id ? "border-primary-blue" : "border-[#DADADA]"
-      } rounded-2xl lg:h-[342px] lg:w-[458px] cursor-pointer w-full`}
+      className={`border ${selectedCard === job.id ? "border-primary-blue" : "border-[#DADADA]"
+        } rounded-2xl lg:h-[342px] lg:w-[458px] cursor-pointer w-full`}
     >
       <CardContent className="p-4">
         <div className="flex items-start justify-between mb-3">
           <h3 className="font-bold font-roboto sm:text-3xl text-2xl leading-[1.1]  w-11/12">
-            {job.title}
+            {tr.title}
           </h3>
           <BsFillBookmarkFill className="fill-primary-yellow size-6" />
         </div>
@@ -43,13 +46,13 @@ export default function JobCard({
               variant="secondary"
               className="lg:text-[17px] text-sm px-3 text-secondary-green bg-ghost-green"
             >
-              {job.company}
+              {tr.company}
             </Badge>
           </div>
 
-          <div className="text-2xl font-semibold">{job.salary}</div>
+          <div className="text-2xl font-semibold">{tr.salary}</div>
 
-          <div className="">10 min • {job.location}</div>
+          <div className="">Location:- {tr.location}</div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -60,7 +63,7 @@ export default function JobCard({
                 variant="secondary"
                 className="bg-ghost-golden px-3 text-golden lg:text-lg text-sm"
               >
-                {job.hiresOutside ? "Yes" : "No"}
+                {tr.hiresOutside ? "Yes" : "No"}
               </Badge>
             </div>
           </div>
@@ -71,7 +74,7 @@ export default function JobCard({
             </span>
             <div className="flex items-center gap-1">
               <FaStar className="fill-primary-yellow text-2xl" />
-              <span className="font-roboto">{job.rating}</span>
+              <span className="font-roboto">{ratingToNumber(tr.rating).toFixed(1)}</span>
             </div>
           </div>
 
