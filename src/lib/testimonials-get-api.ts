@@ -24,8 +24,8 @@ export const testimonialsKeys = {
 };
 
 // Defaults for THIS query only (5 min fresh; 10 min GC)
-export const TESTIMONIALS_STALE_TIME = 5 * 60 * 1000;
-export const TESTIMONIALS_GC_TIME = 10 * 60 * 1000;
+export const TESTIMONIALS_STALE_TIME = 1 * 60 * 1000;
+export const TESTIMONIALS_GC_TIME = 5 * 60 * 1000;
 
 export function useTestimonialsQuery(
     options?: Omit<
