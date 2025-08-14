@@ -51,10 +51,13 @@ export default function Navbar() {
   //If Loggedin
 
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+  const [isUserDropdownOpen2, setIsUserDropdownOpen2] = useState(false);
 
   const userDropdownRef = useRef<HTMLDivElement>(null);
+  const userDropdownRef2 = useRef<HTMLDivElement>(null);
 
   useClickOutsideDetector(userDropdownRef, () => setIsUserDropdownOpen(false));
+  useClickOutsideDetector(userDropdownRef2, () => setIsUserDropdownOpen2(false));
 
   const handleLogout = async () => {
     await LogoutUser({
@@ -169,15 +172,21 @@ export default function Navbar() {
                     </button>
 
                     {isUserDropdownOpen && (
-                      <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-sm shadow-lg z-50 overflow-hidden">
+                      <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 top-full rounded-sm shadow-lg z-50 overflow-hidden">
                         <button
-                          onClick={handleLogout}
+                          onClick={() => {
+                            handleLogout()
+                            setIsUserDropdownOpen(false);
+                          }}
                           className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-100 cursor-pointer font-medium"
                         >
                           {t("logout")}
                         </button>
                         <Link
                           href={"/settings"}
+                          onClick={() => {
+                            setIsUserDropdownOpen(false);
+                          }}
                           className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-100 cursor-pointer font-medium"
                         >
                           {t("settings")}
@@ -309,12 +318,12 @@ export default function Navbar() {
           {/* Menu Footer */}
           <div className="p-6 ">
             {session?.user ? (
-              <div className="relative sm:hidden w-full" ref={userDropdownRef}>
+              <div className="relative sm:hidden w-full" ref={userDropdownRef2}>
                 <div className="relative sm:hidden w-full" >
                   <div
-                    onClick={() => setIsUserDropdownOpen(prev => !prev)}
+                    onClick={() => setIsUserDropdownOpen2(prev => !prev)}
                     aria-haspopup="menu"
-                    aria-expanded={isUserDropdownOpen}
+                    aria-expanded={isUserDropdownOpen2}
                     className="flex items-center justify-start cursor-pointer gap-3">
                     <button
                       type="button"
@@ -338,13 +347,17 @@ export default function Navbar() {
                     </div>
                   </div>
 
-                  {isUserDropdownOpen && (
+                  {isUserDropdownOpen2 && (
                     <div
                       role="menu"
                       className="absolute left-0 bottom-full mb-2 w-full bg-white border border-gray-200 rounded-sm shadow-lg z-50 overflow-hidden"
                     >
                       <button
-                        onClick={handleLogout}
+                        onClick={() => {
+                          handleLogout()
+                          closeMenu();
+
+                        }}
                         className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-100 cursor-pointer font-medium"
                         role="menuitem"
                       >
@@ -352,6 +365,9 @@ export default function Navbar() {
                       </button>
                       <Link
                         href="/settings"
+                        onClick={() => {
+                          closeMenu();
+                        }}
                         className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-100 cursor-pointer font-medium"
                         role="menuitem"
                       >
