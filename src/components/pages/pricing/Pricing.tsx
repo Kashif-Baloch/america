@@ -104,40 +104,11 @@ import { useTranslations } from "next-intl";
 import { getPricingPlansForLanguage } from "@/lib/pricing-plans";
 import { useLocale } from "next-intl";
 
-const paymentLinks = {
-  monthly: {
-    basic: "https://biz.payulatam.com/L0fa642E5545E9B",
-    pro: "https://biz.payulatam.com/L0fa6426B94E895",
-    proPlus: "https://biz.payulatam.com/L0fa64273BA9049",
-  },
-  quarterly: {
-    basic: "https://biz.payulatam.com/L0fa6425B3F4871",
-    pro: "https://biz.payulatam.com/L0fa64257C078EA",
-    proPlus: "https://biz.payulatam.com/L0fa6420A9C0E29",
-  },
-};
-
 export default function PricingTable() {
   const t = useTranslations("pricing");
   const locale = useLocale();
   const plans = getPricingPlansForLanguage(locale);
   const [isQuarterly, setIsQuarterly] = useState(false);
-
-  const getPaymentLink = (planName: string) => {
-    const links = isQuarterly ? paymentLinks.quarterly : paymentLinks.monthly;
-
-    switch (planName.toLowerCase()) {
-      case "basic":
-      case "básico":
-        return links.basic;
-      case "pro":
-        return links.pro;
-      case "proplus":
-        return links.proPlus;
-      default:
-        return "#";
-    }
-  };
 
   return (
     <div className="helmet font-sf md:my-32 pt-10 order-1 md:order-2">
@@ -172,18 +143,10 @@ export default function PricingTable() {
       </div>
 
       {/* Desktop Cards */}
-      <DesktopCards
-        plans={plans}
-        isQuarterly={isQuarterly}
-        getPaymentLink={getPaymentLink}
-      />
+      <DesktopCards plans={plans} isQuarterly={isQuarterly} />
 
       {/* Mobile Cards */}
-      <MobileCards
-        plans={plans}
-        isQuarterly={isQuarterly}
-        getPaymentLink={getPaymentLink}
-      />
+      <MobileCards plans={plans} isQuarterly={isQuarterly} />
     </div>
   );
 }

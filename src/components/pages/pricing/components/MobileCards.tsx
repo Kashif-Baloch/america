@@ -10,20 +10,14 @@ import {
 } from "@/components/ui/card";
 import { GoCheckCircleFill } from "react-icons/go";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { PricingPlan } from "@/Data/PricingPlan";
 
 interface MobileCardsProps {
   plans: PricingPlan[];
   isQuarterly: boolean;
-  getPaymentLink: (planName: string) => string;
 }
 
-export default function MobileCards({
-  plans,
-  isQuarterly,
-  getPaymentLink,
-}: MobileCardsProps) {
+export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
 
@@ -173,9 +167,18 @@ export default function MobileCards({
                   {plan.buttonText}
                 </Button>
               ) : (
-                <Link
-                  target="_blank"
-                  href={getPaymentLink(plan.name)}
+                <Button
+                  onClick={() => {
+                    const params = new URLSearchParams({
+                      name: plan.type,
+                      price: isQuarterly
+                        ? plan.quarterlyPrice
+                        : plan.monthlyPrice,
+                      description: `${plan.name} subscription`,
+                    });
+
+                    window.location.href = `/api/payments/checkout?${params.toString()}`;
+                  }}
                   className={`w-11/12 rounded-full absolute bottom-9 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold justify-center items-center cursor-pointer h-16 ${
                     plan.highlighted
                       ? "bg-white text-black hover:bg-black hover:text-white"
@@ -183,7 +186,7 @@ export default function MobileCards({
                   }`}
                 >
                   {plan.buttonText}
-                </Link>
+                </Button>
               )}
             </CardContent>
           </Card>

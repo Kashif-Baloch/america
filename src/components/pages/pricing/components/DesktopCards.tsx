@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/card";
 import { GoCheckCircleFill } from "react-icons/go";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { PricingPlan } from "@/Data/PricingPlan";
 import { useLocale } from "next-intl";
 
@@ -16,13 +15,11 @@ import { useLocale } from "next-intl";
 interface DesktopCardsProps {
   plans: PricingPlan[];
   isQuarterly: boolean;
-  getPaymentLink: (planName: string) => string;
 }
 
 export default function DesktopCards({
   plans,
   isQuarterly,
-  getPaymentLink,
 }: DesktopCardsProps) {
   const locale = useLocale();
   return (
@@ -119,9 +116,18 @@ export default function DesktopCards({
                 {plan.buttonText}
               </Button>
             ) : (
-              <Link
-                target="_blank"
-                href={getPaymentLink(plan.type)}
+              <Button
+                onClick={() => {
+                  const params = new URLSearchParams({
+                    name: plan.type,
+                    price: isQuarterly
+                      ? plan.quarterlyPrice
+                      : plan.monthlyPrice,
+                    description: `${plan.name} subscription`,
+                  });
+
+                  window.location.href = `/api/payments/checkout?${params.toString()}`;
+                }}
                 className={`w-11/12 justify-center items-center rounded-full absolute bottom-6 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold cursor-pointer h-16 ${
                   plan.highlighted
                     ? "bg-white text-black hover:bg-black hover:text-white"
@@ -129,7 +135,7 @@ export default function DesktopCards({
                 }`}
               >
                 {plan.buttonText}
-              </Link>
+              </Button>
             )}
           </CardContent>
         </Card>
