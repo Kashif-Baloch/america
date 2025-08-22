@@ -40,7 +40,7 @@ export default function PortuguesePricingEditor() {
           setPlans(updatedPlans);
           toast.success(t("success.save"));
         } catch (error) {
-          toast.error(t("error.error"));
+          toast.error(t("success.error"));
           console.error("Failed to save pricing plans:", error);
         } finally {
           setLoading(false);
