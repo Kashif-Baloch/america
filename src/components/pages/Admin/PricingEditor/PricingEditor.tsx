@@ -41,12 +41,14 @@ interface PricingPlan {
 interface PricingPlanEditorProps {
   initialPlans: PricingPlan[];
   onSave: (plans: PricingPlan[]) => void;
+  loading?: boolean;
   languages: { code: string; name: string }[];
 }
 
 export function PricingPlanEditor({
   initialPlans,
   onSave,
+  loading,
   languages,
 }: PricingPlanEditorProps) {
   const t = useTranslations("PricingPlanEditor");
@@ -61,9 +63,8 @@ export function PricingPlanEditor({
     setOpen(false);
   });
 
-  const handleSave = () => {
+  const handleSave = async () => {
     onSave(plans);
-    toast.success(t("success.save"));
   };
 
   const handleEditPlan = (plan: PricingPlan) => {
@@ -191,8 +192,12 @@ export function PricingPlanEditor({
               </Table>
 
               <div className="flex gap-4 mt-6">
-                <Button className="text-base h-12 w-40" onClick={handleSave}>
-                  {t("buttons.saveChanges")}
+                <Button
+                  disabled={loading}
+                  className="text-base h-12 w-40"
+                  onClick={handleSave}
+                >
+                  {loading ? "Saving..." : t("buttons.saveChanges")}
                 </Button>
               </div>
             </CardContent>

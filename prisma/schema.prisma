@@ -141,6 +141,44 @@ model JobTranslation {
   @@map("job_translations")
 }
 
+// Pricing Plans
+model PricingPlan {
+  id          String                      @id @default(cuid())
+  type        String                      @unique
+  highlighted Boolean                     @default(false)
+  order       Int?
+
+  translations PricingPlanTranslation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("pricing_plans")
+}
+
+model PricingPlanTranslation {
+  id               String    @id @default(cuid())
+  planId           String
+  language         Language
+
+  name             String
+  description      String
+  monthlyPrice     String
+  quarterlyPrice   String
+  monthlyUsdPrice  String
+  quarterlyUsdPrice String
+  buttonText       String
+  features         Json
+
+  plan PricingPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([planId, language])
+  @@map("pricing_plan_translations")
+}
+
 enum Rating {
   One   @map("1")
   Two   @map("2")

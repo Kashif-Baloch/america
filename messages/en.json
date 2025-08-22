@@ -1179,7 +1179,8 @@
     "selectLanguage": "Select language",
     "success": {
       "save": "Pricing plans saved successfully!",
-      "update": "{plan} plan updated"
+      "update": "{plan} plan updated",
+      "error": "Failed to save pricing plans"
     },
     "editPlans": {
       "title": "Edit Plans",

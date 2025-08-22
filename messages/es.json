@@ -1184,7 +1184,8 @@
     "selectLanguage": "Seleccionar idioma",
     "success": {
       "save": "¡Planes de precios guardados con éxito!",
-      "update": "Plan {plan} actualizado"
+      "update": "Plan {plan} actualizado",
+      "error": "No se pudieron guardar los planes de precios"
     },
     "editPlans": {
       "title": "Editar Planes",

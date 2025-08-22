@@ -194,19 +194,35 @@ export const defaultPlans: Record<string, PricingPlan[]> = {
   ],
 };
 
-export function getPricingPlansForLanguage(locale: string): PricingPlan[] {
-  if (typeof window !== "undefined") {
-    const saved = localStorage.getItem(`pricingPlans-${locale}`);
-    if (saved) return JSON.parse(saved);
+export async function getPricingPlansForLanguage(
+  locale: string
+): Promise<PricingPlan[]> {
+  try {
+    const res = await fetch(`/api/pricing-plans/${locale}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error("Failed to fetch plans");
+    const data = (await res.json()) as PricingPlan[];
+    return data;
+  } catch (e) {
+    console.error("Failed to fetch plans:", e);
+    // Fallback to in-memory defaults on error
+    return defaultPlans[locale] || defaultPlans.en;
   }
-  return defaultPlans[locale] || defaultPlans.en;
 }
 
-export function savePricingPlansForLanguage(
+export async function savePricingPlansForLanguage(
   locale: string,
   plans: PricingPlan[]
-) {
-  if (typeof window !== "undefined") {
-    localStorage.setItem(`pricingPlans-${locale}`, JSON.stringify(plans));
+): Promise<void> {
+  const res = await fetch(`/api/pricing-plans/${locale}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(plans),
+  });
+  if (!res.ok) {
+    throw new Error("Failed to save pricing plans");
   }
 }

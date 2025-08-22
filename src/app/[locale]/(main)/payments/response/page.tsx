@@ -127,7 +127,7 @@ export default function ThankYouPage() {
           setShowPage(false);
         });
     }
-  }, []);
+  }, [router]);
 
   if (showPage) {
     return (
