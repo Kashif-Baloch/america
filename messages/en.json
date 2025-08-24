@@ -13,6 +13,10 @@
       "transportationHousing": "Transportation/Housing"
     },
     "loadMoreJobs": "Load More Jobs",
+    "quota": {
+      "limitReached": "You've reached your monthly search limit for your plan. Upgrade to continue searching without limits.",
+      "upgradeCta": "Upgrade Plan"
+    },
     "testimonials": {
       "title": "They already did it with",
       "showcaseCountryNames": ["Mexico", "Honduras", "Colombia"],
@@ -87,7 +91,9 @@
       "apply": {
         "website": "WEB SITE APPLY",
         "email": "EMAIL APPLY"
-      }
+      },
+      "favorite": "Add to favorites",
+      "unfavorite": "Remove from favorites"
     },
     "filters": {
       "jobTypes": {
@@ -146,8 +152,35 @@
       "presence_wyoming": "Presence in Wyoming, United States."
     }
   },
+  "favorites": {
+    "title": "Your Saved Jobs",
+    "emptyState": "You haven't saved any jobs yet.",
+    "noResults": "No jobs match your search.",
+    "savedJobs": "Saved Jobs",
+    "storageUsage": "Storage Usage",
+    "jobs": "jobs",
+    "upgradeMessage": "You've reached your favorite jobs limit.",
+    "upgradePrompt": "You've reached your favorite jobs limit.",
+    "upgradeNow": "Upgrade Now",
+    "error": {
+      "fetchingFavorites": "Error loading your saved jobs. Please try again.",
+      "removingFavorite": "Error removing job from favorites."
+    },
+    "viewDetails": "View Details",
+    "remove": "Remove",
+    "addedOn": "Added on",
+    "removedFromFavorites": "Job removed from favorites!"
+  },
+  "common": {
+    "noTitle": "No title",
+    "noCompany": "No company",
+    "salaryNotSpecified": "Salary not specified",
+    "noLocation": "No location",
+    "noJobType": "No job type"
+  },
   "navbar": {
     "searchJobs": "Search jobs",
+    "favorites": "My Favorites",
     "pricing": "Pricing",
     "about": "About",
     "healthProfessionals": "Health Professionals",
@@ -291,6 +324,17 @@
       "subtitle": "Fill in your details and we'll get back to you!",
       "default": "Chat With Us"
     }
+  },
+  "subscription": {
+    "upgradeRequired": "Upgrade Required",
+    "unlockFeature": "Unlock {feature}",
+    "featureRequiresPlan": "{feature} requires a {plan} plan or higher.",
+    "upgradeNow": "Upgrade Now",
+    "comparePlans": "Compare Plans",
+    "featureLocked": "This feature is locked",
+    "upgradeToAccess": "Upgrade your plan to access this feature",
+    "currentPlan": "Your current plan: {plan}",
+    "requiredPlan": "Required plan: {plan}"
   },
   "pricing": {
     "headline": "Choose Your",

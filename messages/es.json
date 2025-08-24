@@ -12,7 +12,11 @@
       "season": "Temporada",
       "transportationHousing": "Transporte/Hospedaje"
     },
-    "loadMoreJobs": "Cargar más trabajos",
+    "loadMoreJobs": "Cargar más empleos",
+    "quota": {
+      "limitReached": "Has alcanzado tu límite mensual de búsquedas para tu plan. Mejora tu plan para seguir buscando sin límites.",
+      "upgradeCta": "Mejorar plan"
+    },
     "testimonials": {
       "title": " Ya lo hicieron con",
       "showcaseCountryNames": ["México", "Honduras", "Colombia"],
@@ -88,7 +92,9 @@
       "apply": {
         "website": "APLICAR EN SITIO WEB",
         "email": "APLICAR POR CORREO"
-      }
+      },
+      "favorite": "Agregar a favoritos",
+      "unfavorite": "Quitar de favoritos"
     },
     "filters": {
       "jobTypes": {
@@ -292,6 +298,43 @@
       "subtitle": "Completa tus datos y nos pondremos en contacto contigo!",
       "default": "Chatea con nosotros"
     }
+  },
+  "subscription": {
+    "upgradeRequired": "Actualización Requerida",
+    "unlockFeature": "Desbloquear {feature}",
+    "featureRequiresPlan": "{feature} requiere un plan {plan} o superior.",
+    "upgradeNow": "Actualizar Ahora",
+    "comparePlans": "Comparar Planes",
+    "featureLocked": "Esta función está bloqueada",
+    "upgradeToAccess": "Actualiza tu plan para acceder a esta función",
+    "currentPlan": "Tu plan actual: {plan}",
+    "requiredPlan": "Plan requerido: {plan}"
+  },
+  "favorites": {
+    "title": "Tus Trabajos Guardados",
+    "emptyState": "Aún no has guardado ningún trabajo.",
+    "noResults": "No hay trabajos que coincidan con tu búsqueda.",
+    "savedJobs": "Trabajos Guardados",
+    "storageUsage": "Uso de Almacenamiento",
+    "jobs": "trabajos",
+    "upgradeMessage": "Has alcanzado tu límite de trabajos favoritos.",
+    "upgradePrompt": "Has alcanzado tu límite de trabajos favoritos.",
+    "upgradeNow": "Actualizar Ahora",
+    "error": {
+      "fetchingFavorites": "Error al cargar tus trabajos guardados. Por favor, intenta de nuevo.",
+      "removingFavorite": "Error al eliminar el trabajo de favoritos."
+    },
+    "viewDetails": "Ver Detalles",
+    "remove": "Eliminar",
+    "addedOn": "Agregado el",
+    "removedFromFavorites": "¡Trabajo eliminado de favoritos!"
+  },
+  "common": {
+    "noTitle": "Sin título",
+    "noCompany": "Sin empresa",
+    "salaryNotSpecified": "Salario no especificado",
+    "noLocation": "Sin ubicación",
+    "noJobType": "Sin tipo de trabajo"
   },
   "pricing": {
     "headline": "Elige tu",

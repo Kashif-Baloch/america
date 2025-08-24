@@ -13,10 +13,52 @@ enum Role {
   ADMIN
 }
 
+enum SubscriptionPlan {
+  NONE
+  FREE
+  BASIC
+  PRO
+  PRO_PLUS
+}
+
+model Consultation {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  scheduledAt DateTime
+  status      String   @default("scheduled") // scheduled, completed, cancelled
+  notes       String?
+  meetingLink String?
+
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  Subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
+  subscriptionId String?
+
+  @@index([userId])
+}
+
+model Subscription {
+  id            String           @id @default(cuid())
+  userId        String           @unique
+  user          User             @relation(fields: [userId], references: [id])
+  plan          SubscriptionPlan @default(NONE)
+  status        String           @default("inactive") // active, expired, canceled
+  searchCount   Int              @default(0)
+  consultations Consultation[]
+  startedAt     DateTime?        @default(now())
+  endsAt        DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model User {
-  id        String   @id @default(uuid())
-  createdAt DateTime
-  updatedAt DateTime
+  id           String        @id @default(uuid())
+  createdAt    DateTime
+  updatedAt    DateTime
+  subscription Subscription?
+  favorites    Favorite[]
 
   name          String
   email         String    @unique
@@ -29,9 +71,10 @@ model User {
   banReason     String?
   banExpires    DateTime?
 
-  sessions Session[]
-  accounts Account[]
-  Job      Job[]
+  sessions     Session[]
+  accounts     Account[]
+  Job          Job[]
+  Consultation Consultation[]
 
   @@map("users")
 }
@@ -97,6 +140,9 @@ model Job {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  detail   JobDetail?
+  Favorite Favorite[]
+
   @@map("jobs")
 }
 
@@ -143,9 +189,9 @@ model JobTranslation {
 
 // Pricing Plans
 model PricingPlan {
-  id          String                      @id @default(cuid())
-  type        String                      @unique
-  highlighted Boolean                     @default(false)
+  id          String  @id @default(cuid())
+  type        String  @unique
+  highlighted Boolean @default(false)
   order       Int?
 
   translations PricingPlanTranslation[]
@@ -157,18 +203,18 @@ model PricingPlan {
 }
 
 model PricingPlanTranslation {
-  id               String    @id @default(cuid())
-  planId           String
-  language         Language
+  id       String   @id @default(cuid())
+  planId   String
+  language Language
 
-  name             String
-  description      String
-  monthlyPrice     String
-  quarterlyPrice   String
-  monthlyUsdPrice  String
+  name              String
+  description       String
+  monthlyPrice      String
+  quarterlyPrice    String
+  monthlyUsdPrice   String
   quarterlyUsdPrice String
-  buttonText       String
-  features         Json
+  buttonText        String
+  features          Json
 
   plan PricingPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
 
@@ -207,6 +253,18 @@ enum JobSeason {
   fall
   winter
   year_round
+}
+
+model Favorite {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  jobId     String
+  job       Job      @relation(fields: [jobId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, jobId])
 }
 
 enum TransportationHousing {
@@ -260,4 +318,63 @@ model Testimonial {
   textPt    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// ------------------- JOB EXTENSIONS -------------------
+
+model JobDetail {
+  id    String @id @default(uuid())
+  jobId String @unique
+  job   Job    @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  typeJobId String?
+  typeJob   TypeJob? @relation(fields: [typeJobId], references: [id])
+
+  employerId String?
+  employer   Employer? @relation(fields: [employerId], references: [id])
+
+  basicWageRateFrom        Float?
+  basicWageRateTo          Float?
+  per                      String?
+  worksiteCity             String?
+  worksiteState            String?
+  worksitePostalCode       Int?
+  requestedBeginDate       DateTime?
+  requestedEndDate         DateTime?
+  hiringSeason             String?
+  overtimeAvailable        Boolean?
+  boardLodging             Boolean?
+  dailyTransportation      Boolean?
+  receivedDate             DateTime?
+  decisionDate             DateTime?
+  specialRequirements      String?
+  hiringOutsideNow         Boolean?
+  hiringOutsideLast3       Int?
+  hiringOutsideLastYr      Int?
+  caseApprovalRate         Float?
+  typeOfRepresentation     String?
+  daysOfGovReception       Int?
+  approvalEfficiency       String?
+  totalWorkersCertified    Int?
+  phoneNumber              String?
+  emailToApply             String?
+  employerPocEmail         String?
+  approvedCertifications5Y Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("job_details")
+}
+
+model Employer {
+  id   String      @id @default(uuid())
+  name String
+  jobs JobDetail[]
+}
+
+model TypeJob {
+  id   String      @id @default(uuid())
+  name String
+  jobs JobDetail[]
 }

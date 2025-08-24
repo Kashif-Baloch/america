@@ -5,19 +5,24 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import DetailRow from "./DetailRow";
-import { JobData } from "../Details";
 import { ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import type { JobWithTranslations, Plan } from "@/lib/types";
+import { getTranslation } from "@/lib/utils";
 
 function MobileJobDetails({
   job,
   t,
+  plan,
 }: {
-  job: JobData;
+  job: JobWithTranslations;
   t: ReturnType<typeof useTranslations>;
+  plan: Plan;
 }) {
-  // console.log(job);
+  const locale = useLocale();
+  const tr = getTranslation(job.translations, locale, "en");
+  if (!tr) return null;
   return (
     <div className="lg:hidden mt-4 ">
       <Accordion type="multiple" className="flex flex-col gap-y-4 w-full">
@@ -50,32 +55,56 @@ function MobileJobDetails({
             <div className="grid p-2">
               <DetailRow
                 label={t("job.detail.company")}
-                value={job.company}
+                value={
+                  plan === "BASIC" || plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.company
+                    : t("job.detail.basic")
+                }
                 valueType="basic"
               />
               <DetailRow
                 label={t("job.detail.city")}
-                value={job.location}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.location
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
               <DetailRow
                 label={t("job.detail.phone")}
-                value={job.phoneNumber}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.phoneNumber
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
               <DetailRow
                 label={t("job.detail.season")}
-                value={job.season}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.season
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
               <DetailRow
                 label={t("job.detail.overtime")}
-                value={job.overtime}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.overtime
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
               <DetailRow
                 label={t("job.detail.transportationHousing")}
-                value={job.transportationHousing}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.transportationHousing
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
             </div>
@@ -96,17 +125,29 @@ function MobileJobDetails({
             <div className="grid  p-2">
               <DetailRow
                 label={t("job.detail.hiresOutside")}
-                value={job.hiresOutside}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.hiresOutside
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
               <DetailRow
                 label={t("job.detail.employeesHired")}
-                value={job.employeesHired}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.employeesHired
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
               <DetailRow
                 label={t("job.detail.visaEmployees")}
-                value={job.visaEmployees}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.visaEmployees
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
             </div>
@@ -127,17 +168,29 @@ function MobileJobDetails({
             <div className="grid p-2">
               <DetailRow
                 label={t("job.detail.legalProcess")}
-                value={job.legalProcess}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.legalProcess
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
               <DetailRow
                 label={t("job.detail.processDuration")}
-                value={job.processDuration}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.processDuration
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
               <DetailRow
                 label={t("job.detail.processSpeed")}
-                value={job.processSpeed}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.processSpeed
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
             </div>
@@ -158,17 +211,29 @@ function MobileJobDetails({
             <div className="grid p-2">
               <DetailRow
                 label={t("job.detail.approvalEfficiency")}
-                value={job.approvalRate}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.approvalRate
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
               <DetailRow
                 label={t("job.detail.approvalEfficiency")}
-                value={job.approvalEfficiency}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.approvalEfficiency
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
               <DetailRow
                 label={t("job.detail.certifications")}
-                value={job.certifications}
+                value={
+                  plan === "PRO" || plan === "PRO_PLUS"
+                    ? tr.certifications
+                    : t("job.detail.pro")
+                }
                 valueType="pro"
               />
             </div>

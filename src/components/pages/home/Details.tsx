@@ -1,17 +1,21 @@
 "use client";
-import { usePublicJobsQuery } from "@/lib/jobs-queries";
+import { PublicJobFilters, usePublicJobsQuery } from "@/lib/jobs-queries";
 import { Loader2, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import DetailRow from "./components/DetailRow";
 import { JobApplicationButtons } from "./components/JobApplicationButtons";
-import JobCard from "./components/JobCard";
+import { JobCard } from "./components/JobCard";
 import FilterSection from "./Filters";
 import { JobWithTranslations } from "@/lib/types";
 import { getTranslation, ratingToNumber } from "@/lib/utils";
+import { useSubscriptionPlan } from "@/lib/subscription-queries";
+import type { Plan } from "@/lib/types";
+import type { Filters } from "./Filters";
+import Link from "next/link";
 
 export default function Details() {
-
   return (
     <div className="bg-white helmet mt-28 md:mt-14 font-sf">
       <JobContentSection />
@@ -21,39 +25,172 @@ export default function Details() {
 
 function JobContentSection() {
   const t = useTranslations("home");
-
+  const { data: sub } = useSubscriptionPlan();
+  const plan: Plan = sub?.plan ?? "NONE";
+  const searchParams = useSearchParams();
+  const [filters, setFilters] = useState<Filters>({
+    location: t("filter.location"),
+    jobType: [],
+    salary: t("filter.salary"),
+    contactOutside: t("filter.contactOutside"),
+    season: [],
+    transportationHousing: t("filter.transportationHousing"),
+  });
   const [selectedCard, setSelectedCard] = useState<string>("");
 
-  const { data: jobs, isLoading, isError } = usePublicJobsQuery();
+  useEffect(() => {
+    const loc = searchParams.get("location");
+    setFilters((prev) => ({
+      ...prev,
+      location: loc && loc.trim() ? loc : t("filter.location"),
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
+  const apiFilters: PublicJobFilters = useMemo(() => {
+    const f: PublicJobFilters = {};
+    const q = searchParams.get("q");
+    if (q && q.trim()) f.q = q.trim();
+    if (filters.location && filters.location !== t("filter.location")) {
+      f.location = filters.location;
+    }
+
+    if (filters.jobType && filters.jobType.length > 0) {
+      const jtMap: Record<string, string> = {
+        [t("filters.jobTypes.gardening")]: "gardening",
+        [t("filters.jobTypes.warehouse")]: "warehouse",
+        [t("filters.jobTypes.construction")]: "construction",
+        [t("filters.jobTypes.cleaning")]: "cleaning",
+        [t("filters.jobTypes.meatProduction")]: "meat_production",
+        [t("filters.jobTypes.restaurant")]: "restaurant",
+        [t("filters.jobTypes.other")]: "other",
+      };
+      f.jobType = filters.jobType
+        .map((s) => jtMap[s])
+        .filter(Boolean) as string[];
+    }
+
+    if (
+      filters.contactOutside &&
+      filters.contactOutside !== t("filter.contactOutside") &&
+      filters.contactOutside !== t("filters.contactOutside.all")
+    ) {
+      if (filters.contactOutside === t("filters.contactOutside.yes"))
+        f.hiresOutside = "yes";
+      else if (filters.contactOutside === t("filters.contactOutside.no"))
+        f.hiresOutside = "no";
+    }
+
+    if (filters.season && filters.season.length > 0) {
+      const map: Record<string, string> = {
+        [t("filters.seasons.summer")]: "summer",
+        [t("filters.seasons.winter")]: "winter",
+        [t("filters.seasons.yearRound")]: "year_round",
+      };
+      f.season = filters.season.map((s) => map[s]).filter(Boolean) as string[];
+    }
+
+    if (
+      filters.transportationHousing &&
+      filters.transportationHousing !== t("filter.transportationHousing") &&
+      filters.transportationHousing !== t("filters.transport.all")
+    ) {
+      const thMap: Record<string, string> = {
+        [t("filters.transport.transport")]: "transport",
+        [t("filters.transport.housing")]: "housing",
+      };
+      const v = thMap[filters.transportationHousing];
+      if (v) f.transportationHousing = v as any;
+    }
+
+    if (filters.salary && filters.salary !== t("filter.salary")) {
+      const sMap: Record<string, string> = {
+        [t("filters.salary.upto13")]: "upto13",
+        [t("filters.salary.upto26")]: "upto26",
+        [t("filters.salary.above26")]: "above26",
+      };
+      const sv = sMap[filters.salary];
+      if (sv) f.salary = sv as any;
+    }
+
+    return f;
+  }, [filters, t, searchParams]);
+
+  const {
+    data: jobs,
+    isLoading,
+    isError,
+    error,
+  } = usePublicJobsQuery(apiFilters);
 
   if (isLoading) {
-    return <div className="w-full min-h-[500px] flex items-center justify-center"><Loader2 className="animate-spin" /></div>;
+    return (
+      <div className="w-full min-h-[500px] flex items-center justify-center">
+        <Loader2 className="animate-spin" />
+      </div>
+    );
   }
 
+  const quotaReached =
+    !!error &&
+    typeof error.message === "string" &&
+    error.message.toLowerCase().includes("monthly search limit");
+
+  const Banner = () => (
+    <div className="w-full mb-4 p-4 rounded-lg border border-yellow-300 bg-yellow-50 text-yellow-900">
+      <div className="flex items-center justify-between gap-4">
+        <p className="text-sm sm:text-base">{t("quota.limitReached")}</p>
+        <Link
+          href="/pricing"
+          className="shrink-0 inline-flex items-center justify-center rounded-md bg-primary-blue text-white px-3 py-2 text-sm font-semibold hover:opacity-90"
+        >
+          {t("quota.upgradeCta")}
+        </Link>
+      </div>
+    </div>
+  );
+
   if (isError || !jobs) {
-    return <div>{t("error")}</div>;
+    return (
+      <>
+        <FilterSection
+          t={t}
+          plan={plan}
+          filters={filters}
+          setFilters={setFilters}
+        />
+        {quotaReached ? <Banner /> : <div>{t("error")}</div>}
+      </>
+    );
   }
 
   return (
     <>
-      <FilterSection t={t} />
+      <FilterSection
+        t={t}
+        plan={plan}
+        filters={filters}
+        setFilters={setFilters}
+      />
+      {quotaReached && <Banner />}
       <div className="w-full">
         <div className="flex gap-10 lg:flex-row flex-col w-full ">
           <JobCardsList
             AllJobsData={jobs}
             selectedCard={selectedCard}
             setSelectedCard={setSelectedCard}
+            plan={plan}
           />
-          <JobDetails
-            t={t}
-            job={
-              jobs.find((job) => job.id === selectedCard) || jobs[0]
-            }
-          />
+          {jobs.length > 0 && plan !== "NONE" && (
+            <JobDetails
+              t={t}
+              job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+              plan={plan}
+            />
+          )}
         </div>
       </div>
     </>
-
   );
 }
 
@@ -61,26 +198,42 @@ export function JobCardsList({
   AllJobsData,
   selectedCard,
   setSelectedCard,
+  plan,
 }: {
   AllJobsData: JobWithTranslations[];
   selectedCard: string;
   setSelectedCard: Dispatch<SetStateAction<string>>;
+  plan: Plan;
 }) {
-  const [visibleJobs, setVisibleJobs] = useState<number>(2);
+  const [visibleJobs, setVisibleJobs] = useState<number>(6);
   const loadMoreJobs = () => {
     setVisibleJobs((prev) => prev + 2);
   };
   const t = useTranslations("home");
-  const jobsToShow = AllJobsData.slice(0, visibleJobs);
-  const allJobsLoaded = visibleJobs >= AllJobsData.length;
+
+  const jobsToShow = AllJobsData.slice(
+    0,
+    plan === "PRO" || plan === "PRO_PLUS"
+      ? visibleJobs
+      : Math.min(AllJobsData.length, 15)
+  );
+
+  const allJobsLoaded =
+    plan === "PRO" || plan === "PRO_PLUS"
+      ? visibleJobs >= AllJobsData.length
+      : true;
+
   return (
     <div className="flex flex-col relative gap-y-7 sm:max-h-[780px] max-h-[800px]  overflow-y-auto  lg:w-[540px] w-full ">
       {jobsToShow.map((job) => (
         <JobCard
           key={job.id}
           job={job}
+          setSelectedCard={(id: string | null) => {
+            setSelectedCard(id || "");
+          }}
           selectedCard={selectedCard}
-          setSelectedCard={setSelectedCard}
+          plan={plan}
         />
       ))}
       {!allJobsLoaded && (
@@ -98,21 +251,33 @@ export function JobCardsList({
 function JobDetails({
   job,
   t,
+  plan,
 }: {
   job: JobWithTranslations;
   t: ReturnType<typeof useTranslations>;
+  plan: Plan;
 }) {
-  const locale = useLocale()
-  const tr = getTranslation(job.translations, locale, "en")
-  if (!tr) return null
+  const locale = useLocale();
+  const tr = getTranslation(job.translations, locale, "en");
+  if (!tr) return null;
   return (
     <div className="lg:grid gap-8 w-full hidden lg:w-[calc(100%-420px)]">
       <div className="sm:p-14 p-4 max-sm:py-8 border border-[#DADADA] rounded-2xl">
-        <JobDetailsHeader t={t} title={tr.title} rating={`${ratingToNumber(tr.rating).toFixed(1)}`} />
+        <JobDetailsHeader
+          t={t}
+          title={tr.title}
+          rating={`${ratingToNumber(tr.rating).toFixed(1)}`}
+        />
         <JobSalaryInfo t={t} salary={tr.salary} />
-        <JobRequirements t={t} requirements={tr.requirements} />
-        <JobDetailsList t={t} job={job} />
-        <JobApplicationButtons t={t} />
+        {/* FREE and above can see Special Requirements */}
+        {(plan === "FREE" ||
+          plan === "BASIC" ||
+          plan === "PRO" ||
+          plan === "PRO_PLUS") && (
+          <JobRequirements t={t} requirements={tr.requirements} />
+        )}
+        <JobDetailsList t={t} job={job} plan={plan} />
+        <JobApplicationButtons t={t} plan={plan} />
       </div>
     </div>
   );
@@ -174,93 +339,161 @@ function JobRequirements({
 function JobDetailsList({
   job,
   t,
+  plan,
 }: {
   job: JobWithTranslations;
   t: ReturnType<typeof useTranslations>;
+  plan: Plan;
 }) {
-  const locale = useLocale()
-  const tr = getTranslation(job.translations, locale, "en")
-  if (!tr) return null
+  const locale = useLocale();
+  const tr = getTranslation(job.translations, locale, "en");
+  if (!tr) return null;
   return (
     <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 gap-y-1 mb-6">
       <DetailRow
         label={t("job.detail.company")}
-        value={tr.company}
-        valueType="basic"
+        value={
+          plan === "BASIC" || plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.company
+            : t("job.detail.basic")
+        }
+        valueType={
+          plan === "BASIC" || plan === "PRO" || plan === "PRO_PLUS"
+            ? "basic"
+            : "basic"
+        }
       />
-      <DetailRow label={t("job.detail.city")} value={"Pro"} valueType="pro" />
+      <DetailRow
+        label={t("job.detail.city")}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.location
+            : t("job.detail.pro")
+        }
+        valueType="pro"
+      />
       <DetailRow
         label={t("job.detail.phone")}
-        value={tr.phoneNumber}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.phoneNumber
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.hiresOutside")}
-        value={tr.hiresOutside}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.hiresOutside
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.season")}
-        value={tr.season}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.season
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.overtime")}
-        value={tr.overtime}
-        valueType="pro"
-      />
-      <DetailRow
-        label={t("job.detail.hiredLastYear")}
-        value={tr.hiresOutside}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.overtime
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.employeesHired")}
-        value={tr.employeesHired}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.employeesHired
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.approvalRate")}
-        value={tr.approvalRate}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.approvalRate
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.transportationHousing")}
-        value={tr.transportationHousing}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.transportationHousing
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.legalProcess")}
-        value={tr.legalProcess}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.legalProcess
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.processDuration")}
-        value={tr.processDuration}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.processDuration
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.processSpeed")}
-        value={tr.processSpeed}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.processSpeed
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.approvalEfficiency")}
-        value={tr.approvalEfficiency}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.approvalEfficiency
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.visaEmployees")}
-        value={tr.visaEmployees}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.visaEmployees
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
       <DetailRow
         label={t("job.detail.certifications")}
-        value={tr.certifications}
+        value={
+          plan === "PRO" || plan === "PRO_PLUS"
+            ? tr.certifications
+            : t("job.detail.pro")
+        }
         valueType="pro"
       />
 
-      <MobileCompanyRating rating={`${ratingToNumber(tr.rating).toFixed(1)}`} t={t} />
+      <MobileCompanyRating
+        rating={`${ratingToNumber(tr.rating).toFixed(1)}`}
+        t={t}
+      />
     </div>
   );
 }

@@ -1,23 +1,67 @@
-import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/lib/prisma";
+import { NextResponse } from "next/server";
+import { SubscriptionPlan } from "@prisma/client";
+import { sendSubscriptionWelcomeEmail } from "@/actions/send-email.action";
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const referenceCode = searchParams.get("referenceCode");
-  const status = searchParams.get("status");
+export async function POST(req: Request) {
+  try {
+    const { email, referenceCode, status } = await req.json();
 
-  console.log("referenceCode", referenceCode);
-  console.log("status", status);
+    if (status !== "APPROVED") {
+      return NextResponse.json(
+        { ok: false, message: "Payment not approved" },
+        { status: 400 }
+      );
+    }
 
-  if (!referenceCode || !status) {
-    return NextResponse.json(
-      {
-        error: "Missing referenceCode or status",
+    const planMatch = referenceCode.match(/^plan-(.+?)-/);
+    const plan = planMatch ? planMatch[1].toUpperCase() : "NONE"; // BASIC / PRO / PRO_PLUS
+
+    const user = await db.user.findUnique({ where: { email } });
+    if (!user) {
+      return NextResponse.json(
+        { ok: false, message: "User not found" },
+        { status: 404 }
+      );
+    }
+
+    const now = new Date();
+    const endsAt = new Date();
+    endsAt.setMonth(now.getMonth() + 1);
+
+    const updatedPlan = plan === "PROPLUS" ? "PRO_PLUS" : plan;
+
+    await db.subscription.upsert({
+      where: { userId: user.id },
+      update: {
+        plan: updatedPlan,
+        status: "active",
+        searchCount: 0,
+        startedAt: now,
+        endsAt,
       },
-      { status: 400 }
+      create: {
+        userId: user.id,
+        plan: updatedPlan,
+        status: "active",
+        searchCount: 0,
+        startedAt: now,
+        endsAt,
+      },
+    });
+
+    await sendSubscriptionWelcomeEmail({
+      to: email,
+      userName: user.name || "Valued Customer",
+      plan: updatedPlan as SubscriptionPlan,
+    });
+
+    return NextResponse.json({ ok: true, message: "Payment successful" });
+  } catch (err: any) {
+    console.error(err);
+    return NextResponse.json(
+      { ok: false, error: err.message },
+      { status: 500 }
     );
   }
-
-  return NextResponse.json({
-    status,
-  });
 }

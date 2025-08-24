@@ -18,7 +18,7 @@ export default async function middleware(request: NextRequest) {
   const localePrefix = localeMatch?.[0] || "";
   const pathWithoutLocale = pathname.replace(/^\/(en|es|pt)(?=\/|$)/, "");
 
-  console.log("Accessing route:", pathWithoutLocale);
+  // console.log("Accessing route:", pathWithoutLocale);
 
   const isProtected =
     pathWithoutLocale.startsWith("/admin") ||
@@ -40,7 +40,7 @@ export default async function middleware(request: NextRequest) {
 
     const session = getSessionCookie(request);
 
-    console.log("Session in middleware :- ", { session });
+    // console.log("Session in middleware :- ", { session });
 
     if (isProtected && !session) {
       return NextResponse.redirect(

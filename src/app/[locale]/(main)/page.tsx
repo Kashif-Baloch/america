@@ -18,8 +18,7 @@ export default function Home() {
       <Presence />
       <GiftProSubscription />
       <SocialLinks />
-      <FloatingBox
-      />
+      <FloatingBox />
     </>
   );
 }

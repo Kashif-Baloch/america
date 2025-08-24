@@ -103,6 +103,7 @@ import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export default function ThankYouPage() {
   const t = useTranslations("thankyou");
@@ -115,16 +116,31 @@ export default function ThankYouPage() {
     const params = new URLSearchParams(window.location.search);
     const referenceCode = params.get("referenceCode");
     const status = params.get("lapTransactionState");
+    const email = params.get("buyerEmail");
 
     if (!referenceCode) {
+      toast.error("Payment failed");
       router.push("/pricing");
     } else {
-      fetch(
-        `/api/payments/confirmation?referenceCode=${referenceCode}&status=${status}`
-      )
-        .then((res) => res.json())
+      fetch(`/api/payments/confirmation`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          referenceCode,
+          status,
+        }),
+      })
         .then(() => {
           setShowPage(false);
+          toast.success("Payment successful");
+        })
+        .catch((err) => {
+          console.error(err);
+          toast.error("Payment failed");
+          router.push("/pricing");
         });
     }
   }, [router]);

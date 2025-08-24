@@ -29,15 +29,13 @@ export const auth = betterAuth({
       await sendEmailAction({
         to: user.email,
         subject: "Verify your email address",
-        meta: {
-          html: `
+        html: `
                           <div style="${styles.container}">
                           <h1 style="${styles.heading}">Verify your email address</h1>
                           <p style="${styles.paragraph}">Please verify your email address to complete the registration process.</p>
                           <a href="${link}" style="${styles.link}">Click Here</a>
                           </div>
                           `,
-        },
       });
     },
   },
@@ -55,15 +53,13 @@ export const auth = betterAuth({
       await sendEmailAction({
         to: user.email,
         subject: "Reset your password",
-        meta: {
-          html: `
+        html: `
                           <div style="${styles.container}">
                           <h1 style="${styles.heading}">Reset your password</h1>
                           <p style="${styles.paragraph}">Please click the link below to reset your password.</p>
                           <a href="${url}" style="${styles.link}">Click Here</a>
                           </div>
                           `,
-        },
       });
     },
   },
@@ -106,8 +102,8 @@ export const auth = betterAuth({
           await sendEmailAction({
             to: user.email,
             subject: "Gracias por registrarte en America Working 🇺🇸",
-            meta: {
-              html: `
+
+            html: `
                           <div style="${styles.container}">
                             <p style="font-size: 18px; line-height: 1.6;">
                               Gracias por registrarte en <strong>America Working 🇺🇸</strong>
@@ -141,7 +137,6 @@ export const auth = betterAuth({
                             </p>
                           </div>
                         `,
-            },
           });
 
           if (ADMIN_EMAILS.includes(user.email)) {

@@ -12,7 +12,11 @@
       "season": "Temporada",
       "transportationHousing": "Transporte/Alojamento"
     },
-    "loadMoreJobs": "Carregar mais empregos",
+    "loadMoreJobs": "Carregar mais vagas",
+    "quota": {
+      "limitReached": "Você atingiu o limite mensal de buscas do seu plano. Faça upgrade para continuar pesquisando sem limites.",
+      "upgradeCta": "Fazer upgrade"
+    },
     "testimonials": {
       "title": "Eles já fizeram isso com",
       "showcaseCountryNames": ["México", "Honduras", "Colômbia"],
@@ -87,7 +91,9 @@
       "apply": {
         "website": "CANDIDATAR-SE NO SITE",
         "email": "CANDIDATAR-SE POR E-MAIL"
-      }
+      },
+      "favorite": "Adicionar aos favoritos",
+      "unfavorite": "Remover dos favoritos"
     },
     "filters": {
       "jobTypes": {
@@ -292,7 +298,71 @@
       "default": "Converse conosco"
     }
   },
+  "subscription": {
+    "upgradeRequired": "Atualização Necessária",
+    "unlockFeature": "Desbloquear {feature}",
+    "featureRequiresPlan": "{feature} requer um plano {plan} ou superior.",
+    "upgradeNow": "Atualizar Agora",
+    "comparePlans": "Comparar Planos",
+    "featureLocked": "Este recurso está bloqueado",
+    "upgradeToAccess": "Atualize seu plano para acessar este recurso",
+    "currentPlan": "Seu plano atual: {plan}",
+    "requiredPlan": "Plano necessário: {plan}"
+  },
+  "favorites": {
+    "title": "Seus Empregos Salvos",
+    "emptyState": "Você ainda não salvou nenhum emprego.",
+    "noResults": "Nenhum emprego corresponde à sua pesquisa.",
+    "savedJobs": "Empregos Salvos",
+    "storageUsage": "Uso de Armazenamento",
+    "jobs": "empregos",
+    "upgradeMessage": "Você atingiu seu limite de empregos favoritos.",
+    "upgradePrompt": "Você atingiu seu limite de empregos favoritos.",
+    "upgradeNow": "Atualizar Agora",
+    "error": {
+      "fetchingFavorites": "Erro ao carregar seus empregos salvos. Por favor, tente novamente.",
+      "removingFavorite": "Erro ao remover o emprego dos favoritos."
+    },
+    "viewDetails": "Ver Detalhes",
+    "remove": "Remover",
+    "addedOn": "Adicionado em",
+    "removedFromFavorites": "Emprego removido dos favoritos!"
+  },
+  "common": {
+    "noTitle": "Sem título",
+    "noCompany": "Sem empresa",
+    "salaryNotSpecified": "Salário não especificado",
+    "noLocation": "Sem localização",
+    "noJobType": "Sem tipo de emprego"
+  },
   "pricing": {
+    "feature": "Recurso",
+    "currentPlan": "Seu Plano",
+    "comparePlans": "Compare Planos",
+    "seeAllPlans": "Ver Todos os Planos",
+    "upgrade": "Atualizar",
+    "getStarted": "Começar",
+    "plans": {
+      "free": {
+        "name": "Grátis"
+      },
+      "basic": {
+        "name": "Básico"
+      },
+      "pro": {
+        "name": "Pro"
+      },
+      "proPlus": {
+        "name": "Pro+"
+      }
+    },
+    "features": {
+      "jobSearch": "Busca de Empregos",
+      "companyContact": "Informações de Contato da Empresa",
+      "saveJobs": "Salvar Vagas",
+      "prioritySupport": "Suporte Prioritário",
+      "directContact": "Contato Direto com Empregadores"
+    },
     "headline": "Escolha Seu",
     "highlight": "Nível de Acesso",
     "end": "",

@@ -47,3 +47,9 @@ export type ApiResponse<T> = {
     data: T | null;
     message: string;
 };
+
+export type Plan = "NONE" | "FREE" | "BASIC" | "PRO" | "PRO_PLUS";
+
+export type SubscriptionMe = {
+    plan: Plan;
+};

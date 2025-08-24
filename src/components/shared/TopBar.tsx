@@ -14,7 +14,6 @@ import { LogoutUser } from "@/utils/handle-logout";
 import { toast } from "sonner";
 
 const TopBar = () => {
-
   const { data: session } = useSession();
   const tQ = useTranslations("QuickActions");
 
@@ -39,12 +38,11 @@ const TopBar = () => {
   useClickOutsideDetector(userDropdownRef, () => setIsUserDropdownOpen(false));
 
   const handleChangeLocale = (newLocale: string) => {
-    const segments = pathname.split('/');
+    const segments = pathname.split("/");
     segments[1] = newLocale;
-    router.replace(segments.join('/'));
+    router.replace(segments.join("/"));
     setIsLangDropdownOpen(false);
   };
-
 
   const handleLogout = async () => {
     await LogoutUser({
@@ -52,9 +50,8 @@ const TopBar = () => {
         toast.success(
           tQ("successMessage", { action: tQ(`actions.logOut.label`) })
         );
-
-      }
-    })
+      },
+    });
     router.push("/login");
   };
 
@@ -92,8 +89,9 @@ const TopBar = () => {
             />
             <span className="ml-2 text-black capitalize">{locale}</span>
             <ChevronDown
-              className={`ml-4 h-5 w-5 text-black transition-transform ${isLangDropdownOpen ? "rotate-180" : ""
-                }`}
+              className={`ml-4 h-5 w-5 text-black transition-transform ${
+                isLangDropdownOpen ? "rotate-180" : ""
+              }`}
             />
           </button>
 
@@ -121,7 +119,9 @@ const TopBar = () => {
           >
             <Avatar className="size-10">
               <AvatarImage src={session?.user?.image || ""} />
-              <AvatarFallback>{session?.user?.email?.slice(0, 1).toUpperCase()}</AvatarFallback>
+              <AvatarFallback>
+                {session?.user?.email?.slice(0, 1).toUpperCase()}
+              </AvatarFallback>
             </Avatar>
           </button>
 
