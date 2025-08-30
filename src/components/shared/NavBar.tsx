@@ -1,18 +1,19 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-import Image from "next/image";
 import useClickOutsideDetector from "@/hooks/useClickOutsideDetector";
+import Image from "next/image";
 
-import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useSession } from "@/lib/auth-client";
 import { LogoutUser } from "@/utils/handle-logout";
-import { toast } from "sonner";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import LangSwitcher from "./lang-switcher";
 
 export default function Navbar() {
   const router = useRouter();
@@ -23,9 +24,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const t = useTranslations("navbar");
   const locale = useLocale();
-
-  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
-  const langDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -43,10 +41,6 @@ export default function Navbar() {
     setIsMenuOpen(false);
     router.push("/pricing");
   };
-
-  useClickOutsideDetector(langDropdownRef, () => {
-    setIsLangDropdownOpen(false);
-  });
 
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isUserDropdownOpen2, setIsUserDropdownOpen2] = useState(false);
@@ -127,27 +121,15 @@ export default function Navbar() {
     return normalizedPath.startsWith(href);
   };
 
-  const languages = [
-    { code: "en", name: "English", flag: "us" },
-    { code: "es", name: "Español", flag: "es" },
-    { code: "pt", name: "Português", flag: "pt" },
-  ];
 
-  const handleChangeLocale = (newLocale: string) => {
-    const segments = pathname.split("/");
-    segments[1] = newLocale;
-    router.replace(segments.join("/"));
-    setIsLangDropdownOpen(false);
-  };
 
   return (
     <>
       <nav
-        className={` z-40  font-sf  ${
-          pathname === `/${locale}`
-            ? "absolute bg-white max-w-[1490px] top-5 left-1/2 -translate-x-1/2 rounded-full w-11/12 px-1"
-            : "py-[19px] relative w-full"
-        } `}
+        className={` z-40  font-sf  ${pathname === `/${locale}`
+          ? "absolute bg-white max-w-[1490px] top-5 left-1/2 -translate-x-1/2 rounded-full w-11/12 px-1"
+          : "py-[19px] relative w-full"
+          } `}
       >
         <div
           className={`${pathname === `/${locale}` ? "w-full" : "helmet px-1"}`}
@@ -173,9 +155,8 @@ export default function Navbar() {
                   key={item.name}
                   onClick={() => setIsMenuOpen(false)}
                   href={item.href}
-                  className={`min-[1350px]:text-lg text-[17px] hover:text-primary-blue font-medium transition-colors duration-200 flex items-center gap-1 ${
-                    isActive(item.href, pathname) ? "text-primary-blue" : ""
-                  }`}
+                  className={`min-[1350px]:text-lg text-[17px] hover:text-primary-blue font-medium transition-colors duration-200 flex items-center gap-1 ${isActive(item.href, pathname) ? "text-primary-blue" : ""
+                    }`}
                 >
                   {item.name}
                 </Link>
@@ -227,44 +208,8 @@ export default function Navbar() {
                     )}
                   </div>
                 )}
-                {/* Language Dropdown */}
-                <div className="relative" ref={langDropdownRef}>
-                  <button
-                    type="button"
-                    onClick={() => setIsLangDropdownOpen((prev) => !prev)}
-                    className="flex items-center justify-center cursor-pointer  md:text-lg rounded-full border border-[#DADADA]  bg-transparent text-white h-12 hover:bg-white/10 md:min-w-[120px] max-md:px-3  w-full"
-                  >
-                    <span
-                      className={`fi fi-${
-                        locale === "en" ? "us" : locale
-                      } size-4`}
-                    />
-                    <span className="ml-2 text-black capitalize">{locale}</span>
-                    <ChevronDown
-                      className={`ml-4 h-5 w-5 text-black transition-transform ${
-                        isLangDropdownOpen ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
 
-                  {isLangDropdownOpen && (
-                    <div className="absolute -left-9 mt-2 w-max bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
-                      {languages.map((lang) => (
-                        <button
-                          key={lang.code}
-                          type="button"
-                          onClick={() => handleChangeLocale(lang.code)}
-                          className="w-full text-left px-6 py-3 text-gray-700 font-medium font-sf sm:text-lg hover:bg-gray-50 focus:bg-gray-50 cursor-pointer flex items-center gap-2"
-                        >
-                          <span
-                            className={`fi fi-${lang.flag} flex-shrink-0 size-4`}
-                          />
-                          {lang.name}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <LangSwitcher />
 
                 {/* Login Button - Hidden below 768px, shown above 768px */}
                 <Link
@@ -307,9 +252,8 @@ export default function Navbar() {
 
       {/* Slide-out Menu */}
       <div
-        className={`fixed top-0 font-sf left-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-[99] xl:hidden ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 font-sf left-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-[99] xl:hidden ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex flex-col h-full">
           {/* Menu Header */}
@@ -341,9 +285,8 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   onClick={closeMenu}
-                  className={`flex items-center gap-3 px-4 py-3  hover:text-primary-blue hover:bg-ghost-blue rounded-lg font-medium transition-colors duration-200  ${
-                    isActive(item.href, pathname) ? "text-primary-blue" : ""
-                  }`}
+                  className={`flex items-center gap-3 px-4 py-3  hover:text-primary-blue hover:bg-ghost-blue rounded-lg font-medium transition-colors duration-200  ${isActive(item.href, pathname) ? "text-primary-blue" : ""
+                    }`}
                 >
                   {item.name}
                 </Link>

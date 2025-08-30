@@ -163,6 +163,7 @@ export const auth = betterAuth({
         type: "string",
         input: true,
       },
+
     },
   },
   session: {

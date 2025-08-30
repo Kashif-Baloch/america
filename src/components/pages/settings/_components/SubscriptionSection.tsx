@@ -94,7 +94,7 @@ export function SubscriptionSection({
           </div>
         </div>
 
-        <div className="mt-4 flex justify-end">
+        {/* <div className="mt-4 flex justify-end">
           <Button
             variant="outline"
             onClick={() => setShowCancelForm(!showCancelForm)}
@@ -102,7 +102,7 @@ export function SubscriptionSection({
           >
             {t("cancelButton")}
           </Button>
-        </div>
+        </div> */}
 
         {showCancelForm && (
           <div className="mt-4 p-4 border rounded-lg bg-gray-50/50">

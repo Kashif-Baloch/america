@@ -11,11 +11,12 @@ import { Button } from "@/components/ui/button";
 import { Link, useRouter } from "@/i18n/navigation";
 import { updateUser, useSession } from "@/lib/auth-client";
 import { LogoutUser } from "@/utils/handle-logout";
-import { CreditCard, Loader2, LogOut, Search } from "lucide-react";
+import { CreditCard, Loader2, LogOut, Search, XCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { toast } from "sonner";
 import { FavoritesSection } from "./_components/FavoritesSection";
+// import { useSubscriptionMeDetails } from "@/lib/subscription-queries";
 
 // Mock subscription data
 const mockSubscription = {
@@ -26,10 +27,12 @@ const mockSubscription = {
 
 export default function Hero() {
   const { data: session, isPending, error } = useSession();
+  // const { data: subscription, isPending: SubIsPending, error: SubError } = useSubscriptionMeDetails()
   const [isUpdatePending, setIsUpdatePending] = useState(false);
   const router = useRouter()
   const tQ = useTranslations("QuickActions");
   const t = useTranslations("PersonalInfoSection");
+  const ts = useTranslations("SubscriptionSection");
 
   if (isPending) {
     return (
@@ -98,137 +101,154 @@ export default function Hero() {
             {/* <pre className="text-base overflow-clip mb-4">
               {JSON.stringify(session, null, 2)}
             </pre> */}
+            {
+              session?.user?.resumeLink ?
+                <>
+                  <SubscriptionSection
+                    planName={mockSubscription.planName}
+                    durationMonths={mockSubscription.durationMonths}
+                    daysLeft={mockSubscription.daysLeft}
+                  />
 
-            <SubscriptionSection
-              planName={mockSubscription.planName}
-              durationMonths={mockSubscription.durationMonths}
-              daysLeft={mockSubscription.daysLeft}
-            />
+                  <div className=" gap-6">
+                    <div className="">
+                      <Tabs defaultValue="personal" className="space-y-6">
+                        <TabsList className="grid w-full grid-cols-4 sm:gap-3 gap-0 h-16">
+                          <TabsTrigger
+                            value="personal"
+                            className="data-[state=active]:bg-primary-blue cursor-pointer flex h-14 data-[state=active]:text-white sm:text-xl"
+                          >
+                            <Link
+                              href={"/settings?tab=personal"}
+                              className="w-full h-full flex items-center justify-center"
+                            >
+                              <span>Personal</span>
+                            </Link>
+                          </TabsTrigger>
+                          <TabsTrigger
+                            value="jobs"
+                            className="data-[state=active]:bg-primary-blue cursor-pointer flex h-14 data-[state=active]:text-white sm:text-xl"
+                          >
+                            <Link
+                              href={"/settings?tab=jobs"}
+                              className="w-full h-full flex items-center justify-center"
+                            >
+                              <span>Jobs</span>
+                            </Link>
+                          </TabsTrigger>
+                          <TabsTrigger
+                            value="resume"
+                            className="data-[state=active]:bg-primary-blue cursor-pointer flex h-14 data-[state=active]:text-white sm:text-xl"
+                          >
+                            <Link
+                              href={"/settings?tab=resume"}
+                              className="w-full h-full flex items-center justify-center"
+                            >
+                              <span>Resume</span>
+                            </Link>
+                          </TabsTrigger>
+                          <TabsTrigger
+                            value="quick-actions"
+                            className="data-[state=active]:bg-primary-blue cursor-pointer flex h-14 data-[state=active]:text-white sm:text-xl"
+                          >
+                            <Link
+                              href={"/settings?tab=quickactions"}
+                              className="w-full h-full flex items-center justify-center"
+                            >
+                              <span>Quick Actions</span>
+                            </Link>
+                          </TabsTrigger>
+                        </TabsList>
 
-            <div className=" gap-6">
-              <div className="">
-                <Tabs defaultValue="personal" className="space-y-6">
-                  <TabsList className="grid w-full grid-cols-4 sm:gap-3 gap-0 h-16">
-                    <TabsTrigger
-                      value="personal"
-                      className="data-[state=active]:bg-primary-blue cursor-pointer flex h-14 data-[state=active]:text-white sm:text-xl"
-                    >
-                      <Link
-                        href={"/settings?tab=personal"}
-                        className="w-full h-full flex items-center justify-center"
-                      >
-                        <span>Personal</span>
-                      </Link>
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="jobs"
-                      className="data-[state=active]:bg-primary-blue cursor-pointer flex h-14 data-[state=active]:text-white sm:text-xl"
-                    >
-                      <Link
-                        href={"/settings?tab=jobs"}
-                        className="w-full h-full flex items-center justify-center"
-                      >
-                        <span>Jobs</span>
-                      </Link>
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="resume"
-                      className="data-[state=active]:bg-primary-blue cursor-pointer flex h-14 data-[state=active]:text-white sm:text-xl"
-                    >
-                      <Link
-                        href={"/settings?tab=resume"}
-                        className="w-full h-full flex items-center justify-center"
-                      >
-                        <span>Resume</span>
-                      </Link>
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="quick-actions"
-                      className="data-[state=active]:bg-primary-blue cursor-pointer flex h-14 data-[state=active]:text-white sm:text-xl"
-                    >
-                      <Link
-                        href={"/settings?tab=quickactions"}
-                        className="w-full h-full flex items-center justify-center"
-                      >
-                        <span>Quick Actions</span>
-                      </Link>
-                    </TabsTrigger>
-                  </TabsList>
+                        <TabsContent value="personal" className="space-y-6 relative">
+                          {
+                            isUpdatePending
+                            &&
+                            <div className="w-full h-full absolute top-0 left-0 flex gap-2 items-center justify-center flex-col bg-white/80">
+                              <Loader2 className="animate-spin" />
+                              <p>
+                                Updating user..
+                              </p>
+                            </div>
+                          }
+                          <PersonalInfoSection
+                            user={{
+                              email: session.user.email,
+                              role: session.user.role,
+                              name: session.user.name,
+                              phone: session.user.phone
+                            }}
+                            onUpdate={handleUserUpdate} />
+                        </TabsContent>
 
-                  <TabsContent value="personal" className="space-y-6 relative">
-                    {
-                      isUpdatePending
-                      &&
-                      <div className="w-full h-full absolute top-0 left-0 flex gap-2 items-center justify-center flex-col bg-white/80">
-                        <Loader2 className="animate-spin" />
-                        <p>
-                          Updating user..
-                        </p>
-                      </div>
-                    }
-                    <PersonalInfoSection
-                      user={{
-                        email: session.user.email,
-                        role: session.user.role,
-                        name: session.user.name,
-                        phone: session.user.phone
-                      }}
-                      onUpdate={handleUserUpdate} />
-                  </TabsContent>
+                        <TabsContent value="jobs">
+                          <FavoritesSection />
+                        </TabsContent>
 
-                  <TabsContent value="jobs">
-                    <FavoritesSection />
-                  </TabsContent>
+                        <TabsContent value="resume">
+                          <ResumeSection resumeLink={session?.user?.resumeLink} name={session.user.name} phone={session.user.phone} />
+                        </TabsContent>
 
-                  <TabsContent value="resume">
-                    <ResumeSection resumeLink={session?.user?.resumeLink} name={session.user.name} phone={session.user.phone} />
-                  </TabsContent>
+                        <TabsContent value="quick-actions">
+                          <Card>
+                            <CardHeader>
+                              <CardTitle>
+                                <h2 className="md:text-[40px] sm:text-[32px] text-[26px] font-bold leading-[1.2] mb-6">
+                                  {tQ("title")}
+                                </h2>
+                              </CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                              <Button
+                                className="w-full justify-start bg-transparent text-lg h-14 cursor-pointer"
+                                variant="outline"
+                              >
+                                <Link href={"/"} className="flex gap-2">
+                                  <Search className="size-6 mr-2" />
+                                  {tQ("actions.browseJobs.label")}
+                                </Link>
+                              </Button>
+                              <Button
+                                className="w-full justify-start bg-transparent text-lg h-14 cursor-pointer"
+                                variant="outline"
+                                onClick={() => handleAction("browseJobs")}
+                              >
+                                <CreditCard className="size-6 mr-2" />
+                                {tQ("actions.upgradePlan.label")}
+                              </Button>
+                              <Button
+                                className="w-full justify-start bg-transparent text-lg h-14 cursor-pointer"
+                                variant="outline"
+                                onClick={() => handleAction("logOut")}
+                              >
+                                <LogOut className="size-6 mr-2" />
+                                {tQ("actions.logOut.label")}
+                              </Button>
+                              <Button
+                                className="w-full justify-start hover:opacity-70 text-lg h-14 cursor-pointer"
+                                variant="destructive"
+                                onClick={() => { }}
+                              >
+                                <XCircle className="size-6 mr-2" />
+                                {ts("cancelButton")}
+                              </Button>
+                            </CardContent>
+                          </Card>
+                        </TabsContent>
+                      </Tabs>
+                    </div>
 
-                  <TabsContent value="quick-actions">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>
-                          <h2 className="md:text-[40px] sm:text-[32px] text-[26px] font-bold leading-[1.2] mb-6">
-                            {tQ("title")}
-                          </h2>
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <Button
-                          className="w-full justify-start bg-transparent text-lg h-14 cursor-pointer"
-                          variant="outline"
-                        >
-                          <Link href={"/"} className="flex gap-2">
-                            <Search className="size-6 mr-2" />
-                            {tQ("actions.browseJobs.label")}
-                          </Link>
-                        </Button>
-                        <Button
-                          className="w-full justify-start bg-transparent text-lg h-14 cursor-pointer"
-                          variant="outline"
-                          onClick={() => handleAction("browseJobs")}
-                        >
-                          <CreditCard className="size-6 mr-2" />
-                          {tQ("actions.upgradePlan.label")}
-                        </Button>
-                        <Button
-                          className="w-full justify-start bg-transparent text-lg h-14 cursor-pointer"
-                          variant="outline"
-                          onClick={() => handleAction("logOut")}
-                        >
-                          <LogOut className="size-6 mr-2" />
-                          {tQ("actions.logOut.label")}
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </TabsContent>
-                </Tabs>
-              </div>
+                    <div className="lg:col-span-1">
+                      {/* Additional sidebar content can go here if needed */}
+                    </div>
+                  </div>
+                </>
+                :
+                <div className="w-full">
+                  <ResumeSection resumeLink={session?.user?.resumeLink} name={session.user.name} phone={session.user.phone} />
+                </div>
+            }
 
-              <div className="lg:col-span-1">
-                {/* Additional sidebar content can go here if needed */}
-              </div>
-            </div>
           </div>
           :
           <div className="h-[100dvh] flex items-center justify-center">
