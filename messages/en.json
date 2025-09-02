@@ -1184,6 +1184,9 @@
       },
       "logOut": {
         "label": "Log Out"
+      },
+      "cancelSubscription": {
+        "label": "Cancel Subscription"
       }
     },
     "successMessage": "{action} clicked! This would navigate to the respective page."

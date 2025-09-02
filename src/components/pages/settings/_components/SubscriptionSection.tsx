@@ -12,13 +12,16 @@ interface SubscriptionSectionProps {
   planName: string;
   durationMonths: number;
   daysLeft: number | null;
+  onUpgrade?: () => void;
 }
 
 export function SubscriptionSection({
   planName,
   durationMonths,
   daysLeft,
+  onUpgrade,
 }: SubscriptionSectionProps) {
+  const tQ = useTranslations("QuickActions");
   const t = useTranslations("SubscriptionSection");
   const [showCancelForm, setShowCancelForm] = useState(false);
   const [cancellationReasons, setCancellationReasons] = useState<string[]>([]);
@@ -78,30 +81,32 @@ export function SubscriptionSection({
               </p>
             )}
           </div>
-          <div className="flex items-center gap-2">
-            {showWarning && (
-              <div className="flex items-center gap-1 text-orange-600">
-                <AlertTriangle className="h-4 w-4" />
-                <span className="text-sm font-medium">{t("expiringSoon")}</span>
-              </div>
-            )}
-            <Badge
-              className="text-base"
-              variant={planName === "Free" ? "secondary" : "default"}
-            >
-              {planName}
-            </Badge>
+          <div className="flex flex-col justify-end items-end gap-2">
+            <div className="flex items-center gap-2">
+              {showWarning && (
+                <div className="flex items-center gap-1 text-orange-600">
+                  <AlertTriangle className="h-4 w-4" />
+                  <span className="text-sm font-medium">
+                    {t("expiringSoon")}
+                  </span>
+                </div>
+              )}
+              <Badge
+                className="text-base"
+                variant={planName === "Free" ? "secondary" : "default"}
+              >
+                {planName}
+              </Badge>
+            </div>
+            <div className="mt-4">
+              <Button
+                className="bg-golden hover:bg-golden/90"
+                onClick={onUpgrade}
+              >
+                {tQ("actions.upgradePlan.label")}
+              </Button>
+            </div>
           </div>
-        </div>
-
-        <div className="mt-4 flex justify-end">
-          <Button
-            variant="outline"
-            onClick={() => setShowCancelForm(!showCancelForm)}
-            className="bg-red-500 text-white h-12 w-44 text-base"
-          >
-            {t("cancelButton")}
-          </Button>
         </div>
 
         {showCancelForm && (

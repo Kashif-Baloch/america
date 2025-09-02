@@ -1212,6 +1212,9 @@
       },
       "logOut": {
         "label": "Sair"
+      },
+      "cancelSubscription": {
+        "label": "Cancelar Assinatura"
       }
     },
     "successMessage": "{action} clicado! Isso navegaria para a página respectiva."

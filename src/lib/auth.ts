@@ -98,57 +98,75 @@ export const auth = betterAuth({
       create: {
         before: async (user) => {
           const ADMIN_EMAILS = process.env.ADMIN_EMAILS?.split(",") ?? [];
+          const isAdmin = ADMIN_EMAILS.includes(user.email);
+          const userData = { ...user, role: isAdmin ? Role.ADMIN : Role.USER };
 
+          // Send welcome email
           await sendEmailAction({
             to: user.email,
             subject: "Gracias por registrarte en America Working 🇺🇸",
-
             html: `
-                          <div style="${styles.container}">
-                            <p style="font-size: 18px; line-height: 1.6;">
-                              Gracias por registrarte en <strong>America Working 🇺🇸</strong>
-                            </p>
-                    
-                            <p style="font-size: 16px; line-height: 1.6;">
-                              ¡Ya formas parte de nuestra comunidad! Tu cuenta ha sido creada con éxito y estás a un paso de acceder a cientos de empleadores que buscan personas como tú para trabajar legalmente en Estados Unidos.
-                            </p>
-                    
-                            <p style="font-size: 16px; line-height: 1.6;">
-                              Explora nuestros diferentes planes y funciones disponibles en<br>
-                              👉 <a href="https://www.americaworking.co" target="_blank" style="color: #1a73e8;">www.americaworking.co</a>
-                            </p>
-                    
-                            <p style="font-size: 16px; line-height: 1.6;">
-                              <strong>Solo te falta un paso más:</strong><br>
-                              activar tu suscripción para desbloquear todas las herramientas.
-                            </p>
-                    
-                            <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
-                    
-                            <p style="font-size: 15px; line-height: 1.6;">
-                              ¿Tienes preguntas?<br>
-                              Escríbenos a <a href="mailto:letstart@americaworking.co">letstart@americaworking.co</a> o por WhatsApp desde la página web.
-                            </p>
-                    
-                            <p style="font-size: 15px; line-height: 1.6;">
-                              Gracias por confiar en nosotros.<br>
-                              <strong>El equipo de America Working</strong><br>
-                              <a href="https://www.americaworking.co" target="_blank">www.americaworking.co</a>
-                            </p>
-                          </div>
-                        `,
+              <div style="${styles.container}">
+                <p style="font-size: 18px; line-height: 1.6;">
+                  Gracias por registrarte en <strong>America Working 🇺🇸</strong>
+                </p>
+        
+                <p style="font-size: 16px; line-height: 1.6;">
+                  ¡Ya formas parte de nuestra comunidad! Tu cuenta ha sido creada con éxito y estás a un paso de acceder a cientos de empleadores que buscan personas como tú para trabajar legalmente en Estados Unidos.
+                </p>
+        
+                <p style="font-size: 16px; line-height: 1.6;">
+                  Explora nuestros diferentes planes y funciones disponibles en<br>
+                  👉 <a href="https://www.americaworking.co" target="_blank" style="color: #1a73e8;">www.americaworking.co</a>
+                </p>
+        
+                <p style="font-size: 16px; line-height: 1.6;">
+                  <strong>¡Buenas noticias!</strong><br>
+                  Has recibido una suscripción GRATIS para empezar a explorar nuestra plataforma.
+                </p>
+        
+                <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
+        
+                <p style="font-size: 15px; line-height: 1.6;">
+                  ¿Tienes preguntas?<br>
+                  Escríbenos a <a href="mailto:letstart@americaworking.co">letstart@americaworking.co</a> o por WhatsApp desde la página web.
+                </p>
+        
+                <p style="font-size: 15px; line-height: 1.6;">
+                  Gracias por confiar en nosotros.<br>
+                  <strong>El equipo de America Working</strong><br>
+                  <a href="https://www.americaworking.co" target="_blank">www.americaworking.co</a>
+                </p>
+              </div>
+            `,
           });
 
-          if (ADMIN_EMAILS.includes(user.email)) {
-            return { data: { ...user, role: Role.ADMIN } };
-          }
+          return { data: userData };
+        },
+        after: async (user) => {
+          // Check if user already has a subscription
+          const existingSubscription = await db.subscription.findUnique({
+            where: { userId: user.id }
+          });
 
-          return { data: { ...user, role: Role.USER } };
+          // Only create a FREE subscription if one doesn't exist
+          if (!existingSubscription) {
+            await db.subscription.create({
+              data: {
+                userId: user.id,
+                plan: "FREE",
+                status: "active",
+                searchCount: 0,
+                startedAt: new Date(),
+                endsAt: null // FREE plan lasts forever
+              },
+            });
+          }
+          // No return needed as the function returns Promise<void>
         },
       },
     },
   },
-  // for user roles
   user: {
     additionalFields: {
       role: {

@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SignInOauthButton from "@/components/ui/sign-in-oauth-button";
 import { Link, useRouter } from "@/i18n/navigation";
-import { ErrorCodeBetterAuth } from "@/lib/auth";
 import { signUp } from "@/lib/auth-client";
 import { computeSHA256 } from "@/lib/utils";
 import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
@@ -15,7 +14,7 @@ import { useTranslations } from "next-intl";
 import { useRef, useState, useTransition } from "react";
 import { toast } from "sonner";
 import * as Yup from "yup";
-import { v4 as uuid } from "uuid"
+import { v4 as uuid } from "uuid";
 import { getSignedPDFUrl } from "@/lib/s3";
 import kyInstance from "@/lib/ky";
 
@@ -34,7 +33,7 @@ export default function SignUpForm() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const t = useTranslations("signup");
   const [isPending, startTransition] = useTransition();
-  const router = useRouter()
+  const router = useRouter();
   // Yup Validation Schema WITH required resume, file type, and max size checks
   const validationSchema = Yup.object({
     firstName: Yup.string().required(t("first_name.error")),
@@ -50,24 +49,23 @@ export default function SignUpForm() {
       .oneOf([true], t("terms.error"))
       .required(t("terms.error")),
     resume: Yup.mixed<File>()
-      .required(t("resume.error.required"))
-      .test(
-        "fileSize",
-        t("resume.error.file_size"),
-        (file: File | null) => !file || (file && file.size <= 5 * 1024 * 1024)
-      )
-      .test(
-        "fileFormat",
-        t("resume.error.file_format"),
-        (file: File | null) =>
-          !file ||
-          (file &&
-            [
-              "application/pdf",
-              "application/msword",
-              "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            ].includes(file.type))
-      ),
+      .nullable()
+      .notRequired()
+      .test("fileSize", t("resume.error.file_size"), (value) => {
+        if (!value) return true; // allow empty
+        const file = value as File;
+        return file.size <= 5 * 1024 * 1024;
+      })
+      .test("fileFormat", t("resume.error.file_format"), (value) => {
+        if (!value) return true; // allow empty
+        const file = value as File;
+        const allowed = [
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        ];
+        return allowed.includes(file.type);
+      }),
   });
 
   const initialValues: SignUpFormValues = {
@@ -103,64 +101,87 @@ export default function SignUpForm() {
   const handleSubmit = async (values: SignUpFormValues) => {
     const file = values.resume;
 
-    if (!file || file.type !== "application/pdf") {
-      toast.error("Please upload a valid PDF file.");
-      return;
-    }
-
     try {
-      startTransition(async () => {
-        const checksum = await computeSHA256(file);
-        const fileName = `${uuid()}-${uuid()}`;
-        const signedURLResult = await getSignedPDFUrl(file.type, file.size, checksum, fileName);
+      startTransition(() => {
+        (async () => {
+          let publicResumeUrl: string | undefined;
 
-        if (!signedURLResult.success || !signedURLResult.data?.url) {
-          toast.error(signedURLResult.error || "Failed to get signed URL for resume.");
-          return;
-        }
+          // Only process upload if a file is provided
+          if (file) {
+            const allowedTypes = [
+              "application/pdf",
+              "application/msword",
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            ];
+            if (!allowedTypes.includes(file.type)) {
+              toast.error(t("resume.error.file_format"));
+              return;
+            }
 
-        const signedUrl = signedURLResult.data.url;
-        const publicResumeUrl = signedUrl.split("?")[0];
+            const checksum = await computeSHA256(file);
+            const fileName = `${uuid()}-${uuid()}`;
+            const signedURLResult = await getSignedPDFUrl(
+              file.type,
+              file.size,
+              checksum,
+              fileName
+            );
 
-        // Upload the PDF file to S3
-        await kyInstance.put(signedUrl, {
-          body: file,
-          headers: {
-            "Content-Type": file.type,
-          },
-          timeout: 120_000,
-        });
+            if (!signedURLResult.success || !signedURLResult.data?.url) {
+              toast.error(
+                signedURLResult.error || "Failed to get signed URL for resume."
+              );
+              return;
+            }
 
-        // Proceed with signup
-        await signUp.email(
-          {
-            email: values.email,
-            password: values.password,
-            name: `${values.firstName} ${values.lastName || ""}`.trim(),
-            phone: values.phoneNumber,
-            resumeLink: publicResumeUrl,
-          },
-          {
-            onError: (ctx) => {
-              if (ctx?.error?.code) {
-                const errCode = ctx.error.code as ErrorCodeBetterAuth || "UNKNOW";
-                if (errCode === "USER_ALREADY_EXISTS") {
-                  toast.error("Oops! Looks like email is already in use.");
+            const signedUrl = signedURLResult.data.url;
+            publicResumeUrl = signedUrl.split("?")[0];
+
+            // Upload the PDF file to S3
+            await kyInstance.put(signedUrl, {
+              body: file,
+              headers: {
+                "Content-Type": file.type,
+              },
+              timeout: 120_000,
+            });
+          }
+
+          // Proceed with signup (resumeLink only if available)
+          await signUp.email(
+            {
+              email: values.email,
+              password: values.password,
+              name: `${values.firstName} ${values.lastName || ""}`.trim(),
+              phone: values.phoneNumber,
+              ...(publicResumeUrl ? { resumeLink: publicResumeUrl } : {}),
+            } as any,
+            {
+              onError: (ctx) => {
+                if (ctx?.error?.code) {
+                  const errCode = String(ctx.error.code ?? "UNKNOWN");
+                  if (errCode === "USER_ALREADY_EXISTS") {
+                    toast.error("Oops! Looks like email is already in use.");
+                  } else {
+                    toast.error(ctx.error.message);
+                  }
                 } else {
                   toast.error(ctx.error.message);
                 }
-              } else {
-                toast.error(ctx.error.message);
-              }
-            },
-            onSuccess: async () => {
-              toast.success("Registration complete. We've sent you a verification link. Please check your email.");
-              router.replace(`/sign-up/success`);
+              },
+              onSuccess: async () => {
+                toast.success(
+                  "Registration complete. We've sent you a verification link. Please check your email."
+                );
+                router.replace(`/sign-up/success`);
+              },
             }
-          }
-        );
+          );
+        })().catch((error) => {
+          console.error(error);
+          toast.error("Something went wrong during resume upload.");
+        });
       });
-
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong during resume upload.");
@@ -190,10 +211,11 @@ export default function SignUpForm() {
                   id="firstName"
                   type="text"
                   placeholder="John"
-                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${errors.firstName && touched.firstName
-                    ? "border-red-500"
-                    : "border-gray-300"
-                    }`}
+                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${
+                    errors.firstName && touched.firstName
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
                 />
               )}
             </Field>
@@ -219,10 +241,11 @@ export default function SignUpForm() {
                   id="lastName"
                   type="text"
                   placeholder="Doe"
-                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${errors.lastName && touched.lastName
-                    ? "border-red-500"
-                    : "border-gray-300"
-                    }`}
+                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${
+                    errors.lastName && touched.lastName
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
                 />
               )}
             </Field>
@@ -240,10 +263,11 @@ export default function SignUpForm() {
                   id="email"
                   type="email"
                   placeholder="johndoe@email.com"
-                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${errors.email && touched.email
-                    ? "border-red-500"
-                    : "border-gray-300"
-                    }`}
+                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${
+                    errors.email && touched.email
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
                 />
               )}
             </Field>
@@ -270,10 +294,11 @@ export default function SignUpForm() {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••••••••"
-                    className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 outline-none pr-10 ${errors.password && touched.password
-                      ? "border-red-500"
-                      : "border-gray-300"
-                      }`}
+                    className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 outline-none pr-10 ${
+                      errors.password && touched.password
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    }`}
                   />
                 )}
               </Field>
@@ -308,10 +333,11 @@ export default function SignUpForm() {
                   id="phoneNumber"
                   type="tel"
                   placeholder="+91 123 456 789"
-                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${errors.phoneNumber && touched.phoneNumber
-                    ? "border-red-500"
-                    : "border-gray-300"
-                    }`}
+                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${
+                    errors.phoneNumber && touched.phoneNumber
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
                 />
               )}
             </Field>
@@ -325,7 +351,7 @@ export default function SignUpForm() {
             />
           </div>
 
-          {/* Resume Upload Field (required) */}
+          {/* Resume Upload Field (optional) */}
           <div className="space-y-2">
             <Label htmlFor="resume" className="text-gray-700 font-medium">
               {t("resume.label")}
@@ -388,7 +414,7 @@ export default function SignUpForm() {
               id="acceptTerms"
               checked={values.acceptTerms}
               onCheckedChange={(checked) =>
-                setFieldValue("acceptTerms", checked)
+                setFieldValue("acceptTerms", checked === true)
               }
               className="data-[state=checked]:bg-ghost-blue cursor-pointer data-[state=checked]:border-[#153CF517] data-[state=checked]:text-primary-blue size-6 text-2xl"
             />
@@ -411,14 +437,11 @@ export default function SignUpForm() {
             disabled={isPending}
             className="w-full h-12 cursor-pointer text-lg bg-primary-blue text-white font-semibold rounded-full hover:bg-white hover:text-primary-blue border border-primary-blue"
           >
-            {
-              isPending ?
-                <Loader2 className="animate-spin" />
-                :
-                <>
-                  {t("button.signup")}
-                </>
-            }
+            {isPending ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              <>{t("button.signup")}</>
+            )}
           </Button>
 
           {/* Forgot Password */}

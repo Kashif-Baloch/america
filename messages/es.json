@@ -1188,6 +1188,9 @@
       },
       "logOut": {
         "label": "Cerrar Sesión"
+      },
+      "cancelSubscription": {
+        "label": "Cancelar Suscripción"
       }
     },
     "successMessage": "¡{action} clickeado! Esto navegaría a la página respectiva."

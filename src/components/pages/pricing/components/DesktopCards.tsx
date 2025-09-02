@@ -10,6 +10,8 @@ import { GoCheckCircleFill } from "react-icons/go";
 import { Button } from "@/components/ui/button";
 import { PricingPlan } from "@/Data/PricingPlan";
 import { useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useSession } from "@/lib/auth-client";
 
 //TS Interface
 interface DesktopCardsProps {
@@ -22,6 +24,8 @@ export default function DesktopCards({
   isQuarterly,
 }: DesktopCardsProps) {
   const locale = useLocale();
+  const router = useRouter();
+  const { data: session, isPending } = useSession();
   return (
     <div className="grid max-xl:hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
       {plans.map((plan, index) => (
@@ -118,6 +122,11 @@ export default function DesktopCards({
             ) : (
               <Button
                 onClick={() => {
+                  if (!session) {
+                    router.push("/login");
+                    return;
+                  }
+
                   const params = new URLSearchParams({
                     name: plan.type,
                     price: isQuarterly
