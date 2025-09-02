@@ -284,9 +284,9 @@ export default function Hero() {
                           <DialogHeader>
                             <DialogTitle>Upgrade Plan</DialogTitle>
                             <DialogDescription>
-                              According to America Working's Terms & Conditions,
-                              you will lose the benefits of your current plan
-                              when upgrading.
+                              According to America Working&apos;s Terms &
+                              Conditions, you will lose the benefits of your
+                              current plan when upgrading.
                             </DialogDescription>
                           </DialogHeader>
                           <DialogFooter className="mt-4">

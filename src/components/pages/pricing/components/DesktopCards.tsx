@@ -25,7 +25,7 @@ export default function DesktopCards({
 }: DesktopCardsProps) {
   const locale = useLocale();
   const router = useRouter();
-  const { data: session, isPending } = useSession();
+  const { data: session } = useSession();
   return (
     <div className="grid max-xl:hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
       {plans.map((plan, index) => (

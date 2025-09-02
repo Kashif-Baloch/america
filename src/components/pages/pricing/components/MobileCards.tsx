@@ -23,7 +23,7 @@ export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
   const router = useRouter();
-  const { data: session, isPending } = useSession();
+  const { data: session } = useSession();
 
   useEffect(() => {
     const container = containerRef.current;
@@ -174,19 +174,19 @@ export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
                 <Button
                   onClick={() => {
                     if (!session) {
-                    router.push('/login');
-                    return;
-                  }
-                  
-                  const params = new URLSearchParams({
-                    name: plan.type,
-                    price: isQuarterly
-                      ? plan.quarterlyPrice
-                      : plan.monthlyPrice,
-                    description: `${plan.name} subscription`,
-                  });
+                      router.push("/login");
+                      return;
+                    }
 
-                  window.location.href = `/api/payments/checkout?${params.toString()}`;
+                    const params = new URLSearchParams({
+                      name: plan.type,
+                      price: isQuarterly
+                        ? plan.quarterlyPrice
+                        : plan.monthlyPrice,
+                      description: `${plan.name} subscription`,
+                    });
+
+                    window.location.href = `/api/payments/checkout?${params.toString()}`;
                   }}
                   className={`w-11/12 rounded-full absolute bottom-9 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold justify-center items-center cursor-pointer h-16 ${
                     plan.highlighted
