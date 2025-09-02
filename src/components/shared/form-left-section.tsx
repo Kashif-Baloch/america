@@ -2,6 +2,7 @@ import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
+import LangSwitcher from "./lang-switcher";
 interface FormProps {
   imgSrc?: string;
 }
@@ -15,8 +16,8 @@ const FormLeftSection: React.FC<FormProps> = ({ imgSrc }) => {
 
       {/* Logo and Header */}
       <div className="relative z-10 p-8">
-        <Link href={"/"}>
-          <div className="flex items-center justify-center gap-3 mb-16">
+        <div className="flex items-center justify-center gap-3 mb-16">
+          <Link href={"/"}>
             <Image
               src={"/images/Logo-with-text.svg"}
               alt="Logo"
@@ -24,10 +25,10 @@ const FormLeftSection: React.FC<FormProps> = ({ imgSrc }) => {
               width={1000}
               className="w-[356px] object-cover"
             />
-
-            {/* <span className="text-white text-3xl">America Working</span> */}
-          </div>
-        </Link>
+          </Link>
+          <LangSwitcher textColor="white" />
+          {/* <span className="text-white text-3xl">America Working</span> */}
+        </div>
       </div>
 
       {/* Illustration Area */}

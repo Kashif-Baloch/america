@@ -31,6 +31,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { toast } from "sonner";
 import { FavoritesSection } from "./_components/FavoritesSection";
+// import { useSubscriptionMeDetails } from "@/lib/subscription-queries";
 
 // Mock subscription data
 const mockSubscription = {
@@ -41,6 +42,7 @@ const mockSubscription = {
 
 export default function Hero() {
   const { data: session, isPending, error } = useSession();
+  // const { data: subscription, isPending: SubIsPending, error: SubError } = useSubscriptionMeDetails()
   const [isUpdatePending, setIsUpdatePending] = useState(false);
   const [showUpgradeDialog, setShowUpgradeDialog] = useState(false);
   const [showCancelForm, setShowCancelForm] = useState(false);
@@ -160,7 +162,6 @@ export default function Hero() {
           {/* <pre className="text-base overflow-clip mb-4">
               {JSON.stringify(session, null, 2)}
             </pre> */}
-
           <SubscriptionSection
             planName={mockSubscription.planName}
             durationMonths={mockSubscription.durationMonths}

@@ -53,3 +53,8 @@ export type Plan = "NONE" | "FREE" | "BASIC" | "PRO" | "PRO_PLUS";
 export type SubscriptionMe = {
     plan: Plan;
 };
+
+
+export type SubscriptionWithConsultations = Prisma.SubscriptionGetPayload<{
+    include: { consultations: true };
+}>;

@@ -160,7 +160,7 @@ export default function ThankYouPage() {
           <Image
             height={900}
             width={900}
-            src="/images/logo.webp"
+            src="/images/Logo.webp"
             alt="America Working Logo"
             className="h-24 w-auto"
           />

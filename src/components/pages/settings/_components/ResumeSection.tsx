@@ -10,7 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Upload, FileText, Eye, Trash2 } from "lucide-react";
+import { Upload, FileText, Eye } from "lucide-react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { updateUser } from "@/lib/auth-client";
@@ -133,48 +133,48 @@ export function ResumeSection({ resumeLink, name, phone }: ResumeSectionProps) {
     }
   };
 
-  const handleDelete = async () => {
-    if (!resume?.url) return;
+  // const handleDelete = async () => {
+  //   if (!resume?.url) return;
 
-    if (!confirm(t("confirmDelete"))) return;
+  //   if (!confirm(t("confirmDelete"))) return;
 
-    try {
-      const res = await fetch("/api/resume", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ resumeLink: resume.url }),
-      });
+  //   try {
+  //     const res = await fetch("/api/resume", {
+  //       method: "DELETE",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ resumeLink: resume.url }),
+  //     });
 
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Failed to delete resume");
-      }
+  //     if (!res.ok) {
+  //       const data = await res.json();
+  //       throw new Error(data.error || "Failed to delete resume");
+  //     }
 
-      // Clear UI
-      setResume(null);
-      toast.success(t("success.delete"));
+  //     // Clear UI
+  //     setResume(null);
+  //     toast.success(t("success.delete"));
 
-      // Update user record in DB
-      await updateUser({
-        resumeLink: undefined,
-        name,
-        phone,
-        fetchOptions: {
-          onError: (ctx) => {
-            toast.error(ctx.error.message);
-          },
-          onSuccess: () => {
-            toast.success(t("successMessage"));
-            window.location.href = window.location.href;
-          },
-        },
-      });
-    } catch (error: any) {
-      toast.error(error.message || "Something went wrong while deleting resume.");
-    }
-  };
+  //     // Update user record in DB
+  //     await updateUser({
+  //       resumeLink: "",
+  //       name,
+  //       phone,
+  //       fetchOptions: {
+  //         onError: (ctx) => {
+  //           toast.error(ctx.error.message);
+  //         },
+  //         onSuccess: () => {
+  //           toast.success(t("successMessage"));
+  //           window.location.href = window.location.href;
+  //         },
+  //       },
+  //     });
+  //   } catch (error: any) {
+  //     toast.error(error.message || "Something went wrong while deleting resume.");
+  //   }
+  // };
 
   // const formatFileSize = (bytes: number) => {
   //   if (bytes === 0) return "0 Bytes";
@@ -240,7 +240,7 @@ export function ResumeSection({ resumeLink, name, phone }: ResumeSectionProps) {
                     />
                   </DialogContent>
                 </Dialog>
-                <Button
+                {/* <Button
                   variant="outline"
                   className="cursor-pointer text-base"
                   size="lg"
@@ -248,7 +248,7 @@ export function ResumeSection({ resumeLink, name, phone }: ResumeSectionProps) {
                 >
                   <Trash2 className="size-6 mr-2" />
                   {t("actions.delete")}
-                </Button>
+                </Button> */}
               </div>
             </div>
             <div className="text-center">
