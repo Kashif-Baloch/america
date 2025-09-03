@@ -47,6 +47,7 @@ export default function Hero() {
   const tQ = useTranslations("QuickActions");
   const t = useTranslations("PersonalInfoSection");
   const tSub = useTranslations("SubscriptionSection");
+  const tdia = useTranslations("DialogSub");
 
   const cancellationOptions = [
     tSub("cancellationOptions.noTime"),
@@ -191,24 +192,21 @@ export default function Hero() {
           <Dialog open={showUpgradeDialog} onOpenChange={setShowUpgradeDialog}>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
-                <DialogTitle>Upgrade Your Plan</DialogTitle>
-                <DialogDescription>
-                  You&apos;re about to upgrade your plan. This will redirect you
-                  to our pricing page.
-                </DialogDescription>
+                <DialogTitle>{tdia("title")}</DialogTitle>
+                <DialogDescription>{tdia("description")}</DialogDescription>
               </DialogHeader>
               <DialogFooter className="mt-4">
                 <Button
                   variant="outline"
                   onClick={() => setShowUpgradeDialog(false)}
                 >
-                  Cancel
+                  {tdia("cancelButton")}
                 </Button>
                 <Button
                   onClick={() => handleAction("confirmUpgrade")}
                   className="bg-golden hover:bg-golden/90"
                 >
-                  Continue to Pricing
+                  {tdia("confirmButton")}
                 </Button>
               </DialogFooter>
             </DialogContent>
@@ -322,33 +320,6 @@ export default function Hero() {
                         {tQ("actions.upgradePlan.label")}
                       </Button>
 
-                      <Dialog
-                        open={showUpgradeDialog}
-                        onOpenChange={setShowUpgradeDialog}
-                      >
-                        <DialogContent className="sm:max-w-[425px]">
-                          <DialogHeader>
-                            <DialogTitle>Upgrade Plan</DialogTitle>
-                            <DialogDescription>
-                              You&apos;ll be redirected to our pricing page to
-                              select a new plan.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <DialogFooter>
-                            <Button
-                              variant="outline"
-                              onClick={() => setShowUpgradeDialog(false)}
-                            >
-                              Cancel
-                            </Button>
-                            <Button
-                              onClick={() => handleAction("confirmUpgrade")}
-                            >
-                              Continue to Pricing
-                            </Button>
-                          </DialogFooter>
-                        </DialogContent>
-                      </Dialog>
                       <Button
                         className="w-full justify-start bg-transparent text-lg h-14 cursor-pointer"
                         variant="outline"

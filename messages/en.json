@@ -964,6 +964,7 @@
   },
   "dashboardnavigation": {
     "dashboard": "Dashboard",
+    "consultations": "Consultations",
     "users": "Users",
     "jobs": "Jobs",
     "addJob": "Add Job",
@@ -1106,6 +1107,7 @@
   },
   "SubscriptionSection": {
     "currentPlan": "Your current plan:",
+    "loading": "Loading...",
     "month": {
       "one": "month",
       "other": "months"
@@ -1118,6 +1120,7 @@
     "cancellationOptions": {
       "noTime": "I haven't had time to use the platform",
       "tooExpensive": "It felt too expensive for what it offers",
+      "prompt": "prompt",
       "foundAlternative": "I found a similar platform",
       "noMatchingJobs": "I couldn't find visa jobs that match my profile",
       "confusing": "I felt confused or lost while using the platform",
@@ -1343,6 +1346,39 @@
       "noImage": "No image",
       "testimonialText": "Testimonial text in {language}",
       "name": "Name"
+    }
+  },
+  "DialogSub": {
+    "title": "Upgrade Plan",
+    "description": "You'll be redirected to our pricing page to select a new plan.",
+    "cancelButton": "Cancel",
+    "confirmButton": "Continue to Pricing"
+  },
+  "AdminConsultations": {
+    "title": "Manage Consultations",
+    "noConsultations": "No consultations found",
+    "table": {
+      "user": "User",
+      "email": "Email",
+      "scheduledAt": "Scheduled At",
+      "status": "Status",
+      "notes": "Notes",
+      "actions": "Actions",
+      "cancel": "Cancel",
+      "completed": "Mark as Completed"
+    },
+    "status": {
+      "scheduled": "Scheduled",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "success": {
+      "cancelled": "Consultation cancelled successfully",
+      "completed": "Consultation marked as completed"
+    },
+    "error": {
+      "fetchFailed": "Failed to fetch consultations",
+      "updateFailed": "Failed to update consultation"
     }
   }
 }

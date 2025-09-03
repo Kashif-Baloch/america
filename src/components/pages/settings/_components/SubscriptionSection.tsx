@@ -58,15 +58,19 @@ export function SubscriptionSection({ onUpgrade }: { onUpgrade?: () => void }) {
             <p className="sm:text-3xl text-2xl">
               {t("currentPlan")}{" "}
               <strong className="pr-2">{subscription?.plan || "Free"}</strong>
-              {!subscription?.plan || subscription.plan === 'FREE' ? (
+              {!subscription?.plan || subscription.plan === "FREE" ? (
                 <span className="text-muted-foreground">forever</span>
               ) : subscription?.durationMonths ? (
                 `(${subscription.durationMonths} ${
-                  subscription.durationMonths > 1 ? t("month.other") : t("month.one")
+                  subscription.durationMonths > 1
+                    ? t("month.other")
+                    : t("month.one")
                 })`
               ) : null}
             </p>
-            {subscription?.plan && subscription.plan !== 'FREE' && subscription?.daysLeft !== null &&
+            {subscription?.plan &&
+              subscription.plan !== "FREE" &&
+              subscription?.daysLeft !== null &&
               subscription?.daysLeft !== undefined && (
                 <p className="text-xl text-muted-foreground mt-1">
                   {t("daysLeft")}:{" "}

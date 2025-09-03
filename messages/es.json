@@ -971,6 +971,7 @@
   "dashboardnavigation": {
     "dashboard": "Tablero",
     "users": "Usuarios",
+    "consultations": "Consultas",
     "jobs": "Trabajos",
     "addJob": "Agregar trabajo",
     "editPricing": "Editar Precios",
@@ -1111,6 +1112,7 @@
   },
   "SubscriptionSection": {
     "currentPlan": "Tu plan actual:",
+    "loading": "Cargando...",
     "month": {
       "one": "mes",
       "other": "meses"
@@ -1121,6 +1123,7 @@
     "cancelTitle": "¿Por qué estás cancelando?",
     "cancelDescription": "Por favor dinos por qué estás cancelando (selecciona todas las opciones que apliquen)",
     "cancellationOptions": {
+      "prompt": "prompt",
       "noTime": "No he tenido tiempo para usar la plataforma",
       "tooExpensive": "Me pareció demasiado caro para lo que ofrece",
       "foundAlternative": "Encontré una plataforma similar",
@@ -1347,6 +1350,39 @@
       "noImage": "Sin imagen",
       "testimonialText": "Texto del testimonio en {language}",
       "name": "Nombre"
+    }
+  },
+  "DialogSub": {
+    "title": "Actualizar Plan",
+    "description": "Te redirigiremos a nuestra página de precios para seleccionar un nuevo plan.",
+    "cancelButton": "Cancelar",
+    "confirmButton": "Continuar a Precio"
+  },
+  "AdminConsultations": {
+    "title": "Gestionar Consultas",
+    "noConsultations": "No se encontraron consultas",
+    "table": {
+      "user": "Usuario",
+      "email": "Correo electrónico",
+      "scheduledAt": "Programado para",
+      "status": "Estado",
+      "notes": "Notas",
+      "actions": "Acciones",
+      "cancel": "Cancelar",
+      "completed": "Marcar como Completado"
+    },
+    "status": {
+      "scheduled": "Programada",
+      "completed": "Completada",
+      "cancelled": "Cancelada"
+    },
+    "success": {
+      "cancelled": "Consulta cancelada exitosamente",
+      "completed": "Consulta marcada como completada"
+    },
+    "error": {
+      "fetchFailed": "Error al cargar las consultas",
+      "updateFailed": "Error al actualizar la consulta"
     }
   }
 }

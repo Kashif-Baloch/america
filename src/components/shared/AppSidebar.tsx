@@ -8,6 +8,7 @@ import {
   X,
   StickyNote,
   Tag,
+  Video,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import {
@@ -50,6 +51,12 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
       url: "/admin/edit-testimonials",
       icon: GoCodeReview,
     },
+    {
+      title: t("consultations"),
+      url: "/admin/consultations",
+      // as consultation doesn't exist in lucide icon so similar to consultaiton from lucide icons
+      icon: Video,
+    },
   ];
   const pathname = usePathname();
   const currentPath = stripLocale(pathname);
@@ -81,7 +88,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
                 item.url === "/"
                   ? currentPath === "/"
                   : currentPath === item.url ||
-                  currentPath.startsWith(item.url + "/");
+                    currentPath.startsWith(item.url + "/");
               return (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton className="h-10">
@@ -89,9 +96,10 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
                       href={item.url}
                       className={`flex items-center font-sf gap-3 px-3 py-3 w-full
                         text-lg tracking-wide capitalize rounded-lg transition-colors
-                        ${isActive
-                          ? "bg-muted text-primary-blue "
-                          : "hover:bg-gray-100 text-gray-800"
+                        ${
+                          isActive
+                            ? "bg-muted text-primary-blue "
+                            : "hover:bg-gray-100 text-gray-800"
                         }`}
                     >
                       <item.icon className="w-5 h-5" />

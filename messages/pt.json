@@ -993,6 +993,7 @@
     "rights": "Todos os direitos reservados."
   },
   "dashboardnavigation": {
+    "consultations": "Consultas",
     "dashboard": "Painel",
     "users": "Usuários",
     "jobs": "Empregos",
@@ -1135,6 +1136,7 @@
   },
   "SubscriptionSection": {
     "currentPlan": "Seu plano atual:",
+    "loading": "Carregando...",
     "month": {
       "one": "mês",
       "other": "meses"
@@ -1145,6 +1147,7 @@
     "cancelTitle": "Por que você está cancelando?",
     "cancelDescription": "Por favor, nos diga por que você está cancelando (marque todas as opções que se aplicam)",
     "cancellationOptions": {
+      "prompt": "prompt",
       "noTime": "Não tive tempo para usar a plataforma",
       "tooExpensive": "Achei muito caro para o que oferece",
       "foundAlternative": "Encontrei uma plataforma similar",
@@ -1372,6 +1375,39 @@
       "noImage": "Sem imagem",
       "testimonialText": "Texto do depoimento em {language}",
       "name": "Nome"
+    }
+  },
+  "DialogSub": {
+    "title": "Atualizar Plano",
+    "description": "Você será redirecionado à nossa página de preços para selecionar um novo plano.",
+    "cancelButton": "Cancelar",
+    "confirmButton": "Continuar para Preços"
+  },
+  "AdminConsultations": {
+    "title": "Gerenciar Consultas",
+    "noConsultations": "Nenhuma consulta encontrada",
+    "table": {
+      "user": "Usuário",
+      "email": "E-mail",
+      "scheduledAt": "Agendado para",
+      "status": "Status",
+      "notes": "Notas",
+      "actions": "Ações",
+      "cancel": "Cancelar",
+      "completed": "Marcar como Concluído"
+    },
+    "status": {
+      "scheduled": "Agendada",
+      "completed": "Concluída",
+      "cancelled": "Cancelada"
+    },
+    "success": {
+      "cancelled": "Consulta cancelada com sucesso",
+      "completed": "Consulta marcada como concluída"
+    },
+    "error": {
+      "fetchFailed": "Falha ao carregar as consultas",
+      "updateFailed": "Falha ao atualizar a consulta"
     }
   }
 }
