@@ -1101,6 +1101,7 @@
       "activityData": "Activity Data"
     }
   },
+
   "WelcomeSection": {
     "greeting": "Hello, {firstName}",
     "welcomeMessage": "Welcome to America Working"
@@ -1365,6 +1366,7 @@
       "notes": "Notes",
       "actions": "Actions",
       "cancel": "Cancel",
+      "processing": "Processing",
       "completed": "Mark as Completed"
     },
     "status": {

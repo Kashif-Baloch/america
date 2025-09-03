@@ -1389,6 +1389,7 @@
     "table": {
       "user": "Usuário",
       "email": "E-mail",
+      "processing": "Processando",
       "scheduledAt": "Agendado para",
       "status": "Status",
       "notes": "Notas",

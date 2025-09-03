@@ -1368,6 +1368,7 @@
       "status": "Estado",
       "notes": "Notas",
       "actions": "Acciones",
+      "processing": "Procesando",
       "cancel": "Cancelar",
       "completed": "Marcar como Completado"
     },
