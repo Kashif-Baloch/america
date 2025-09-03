@@ -161,6 +161,7 @@ export default function ThankYouPage() {
             height={900}
             width={900}
             src="/images/Logo.webp"
+            priority
             alt="America Working Logo"
             className="h-24 w-auto"
           />
