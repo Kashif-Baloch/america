@@ -18,13 +18,31 @@ const Searchbar = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchQuery === "") {
+        handleSearch();
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
   const handleSearch = () => {
-    const params = new URLSearchParams(searchParams?.toString());
+    const params = new URLSearchParams();
+    
+    // Only add 'q' parameter if there's a search query
     if (searchQuery.trim()) {
       params.set("q", searchQuery.trim());
-    } else {
-      params.delete("q");
     }
+    
+    // Preserve other URL parameters
+    searchParams?.forEach((value, key) => {
+      if (key !== 'q') {
+        params.set(key, value);
+      }
+    });
+    
     router.push(`${pathname}?${params.toString()}`);
   };
 

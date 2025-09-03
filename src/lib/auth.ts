@@ -146,19 +146,26 @@ export const auth = betterAuth({
         after: async (user) => {
           // Check if user already has a subscription
           const existingSubscription = await db.subscription.findUnique({
-            where: { userId: user.id }
+            where: { userId: user.id },
           });
 
-          // Only create a FREE subscription if one doesn't exist
+          // Get user with role from database to ensure we have the correct role
+          const userWithRole = await db.user.findUnique({
+            where: { id: user.id },
+            select: { role: true },
+          });
+
+          // Only create a subscription if one doesn't exist
           if (!existingSubscription) {
+            const isAdmin = userWithRole?.role === "ADMIN";
             await db.subscription.create({
               data: {
                 userId: user.id,
-                plan: "FREE",
+                plan: isAdmin ? "PRO_PLUS" : "FREE",
                 status: "active",
                 searchCount: 0,
                 startedAt: new Date(),
-                endsAt: null // FREE plan lasts forever
+                endsAt: null, // Both plans last forever, but with different features
               },
             });
           }
@@ -181,7 +188,6 @@ export const auth = betterAuth({
         type: "string",
         input: true,
       },
-
     },
   },
   session: {

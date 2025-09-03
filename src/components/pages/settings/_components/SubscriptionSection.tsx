@@ -1,33 +1,23 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useTranslations } from "next-intl";
+import { useSubscription } from "@/hooks/useSubscription";
 
-interface SubscriptionSectionProps {
-  planName: string;
-  durationMonths: number;
-  daysLeft: number | null;
-  onUpgrade?: () => void;
-}
-
-export function SubscriptionSection({
-  planName,
-  durationMonths,
-  daysLeft,
-  onUpgrade,
-}: SubscriptionSectionProps) {
+export function SubscriptionSection({ onUpgrade }: { onUpgrade?: () => void }) {
+  const { data: subscription, isLoading } = useSubscription();
   const tQ = useTranslations("QuickActions");
   const t = useTranslations("SubscriptionSection");
   const [showCancelForm, setShowCancelForm] = useState(false);
   const [cancellationReasons, setCancellationReasons] = useState<string[]>([]);
   const [otherReason, setOtherReason] = useState("");
 
-  const showWarning = daysLeft !== null && daysLeft < 7;
+  const showWarning = (subscription?.daysLeft ?? 0) < 7;
 
   const cancellationOptions = [
     t("cancellationOptions.noTime"),
@@ -66,20 +56,29 @@ export function SubscriptionSection({
         <div className="flex items-center justify-between">
           <div>
             <p className="sm:text-3xl text-2xl">
-              {t("currentPlan")} <strong className="pr-2">{planName}</strong>(
-              {durationMonths}{" "}
-              {durationMonths > 0 ? t("month.other") : t("month.one")})
+              {t("currentPlan")}{" "}
+              <strong className="pr-2">{subscription?.plan || "Free"}</strong>
+              {!subscription?.plan || subscription.plan === 'FREE' ? (
+                <span className="text-muted-foreground">forever</span>
+              ) : subscription?.durationMonths ? (
+                `(${subscription.durationMonths} ${
+                  subscription.durationMonths > 1 ? t("month.other") : t("month.one")
+                })`
+              ) : null}
             </p>
-            {daysLeft !== null && (
-              <p className="text-xl text-muted-foreground mt-1">
-                {t("daysLeft")}:{" "}
-                <span
-                  className={showWarning ? "text-orange-600 font-semibold" : ""}
-                >
-                  {daysLeft}
-                </span>
-              </p>
-            )}
+            {subscription?.plan && subscription.plan !== 'FREE' && subscription?.daysLeft !== null &&
+              subscription?.daysLeft !== undefined && (
+                <p className="text-xl text-muted-foreground mt-1">
+                  {t("daysLeft")}:{" "}
+                  <span
+                    className={
+                      showWarning ? "text-orange-600 font-semibold" : ""
+                    }
+                  >
+                    {subscription.daysLeft}
+                  </span>
+                </p>
+              )}
           </div>
           <div className="flex flex-col justify-end items-end gap-2">
             <div className="flex items-center gap-2">
@@ -93,18 +92,32 @@ export function SubscriptionSection({
               )}
               <Badge
                 className="text-base"
-                variant={planName === "Free" ? "secondary" : "default"}
+                variant={
+                  !subscription?.plan || subscription.plan === "FREE"
+                    ? "secondary"
+                    : "default"
+                }
               >
-                {planName}
+                {subscription?.plan || "FREE"}
               </Badge>
             </div>
             <div className="mt-4">
-              <Button
-                className="bg-golden hover:bg-golden/90"
-                onClick={onUpgrade}
-              >
-                {tQ("actions.upgradePlan.label")}
-              </Button>
+              {subscription?.plan !== "PRO_PLUS" && (
+                <Button
+                  className="bg-golden hover:bg-golden/90"
+                  onClick={onUpgrade}
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      {t("loading")}
+                    </>
+                  ) : (
+                    tQ("actions.upgradePlan.label")
+                  )}
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -180,10 +193,10 @@ export function SubscriptionSection({
           </div>
         )}
 
-        {showWarning && (
+        {showWarning && subscription?.daysLeft !== undefined && (
           <div className="mt-3 p-3 bg-orange-50 border border-orange-200 rounded-md">
             <p className="text-sm text-orange-800">
-              {t("warningMessage", { count: daysLeft })}
+              {t("warningMessage", { count: subscription.daysLeft ?? 0 })}
             </p>
           </div>
         )}

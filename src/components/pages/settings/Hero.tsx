@@ -33,12 +33,7 @@ import { toast } from "sonner";
 import { FavoritesSection } from "./_components/FavoritesSection";
 // import { useSubscriptionMeDetails } from "@/lib/subscription-queries";
 
-// Mock subscription data
-const mockSubscription = {
-  planName: "PRO+",
-  durationMonths: 3,
-  daysLeft: 48,
-};
+// Subscription data is now handled by the useSubscription hook in SubscriptionSection
 
 export default function Hero() {
   const { data: session, isPending, error } = useSession();
@@ -71,15 +66,49 @@ export default function Hero() {
     }
   };
 
-  const handleSubmitCancellation = () => {
-    const allReasons = otherReason
-      ? [...cancellationReasons, `${tSub("other")}: ${otherReason}`]
-      : cancellationReasons;
-    console.log("Cancellation reasons:", allReasons);
-    setShowCancelForm(false);
-    setCancellationReasons([]);
-    setOtherReason("");
-    toast.success(tSub("cancellationSuccess"));
+  const [isCancelling, setIsCancelling] = useState(false);
+
+  const handleSubmitCancellation = async () => {
+    try {
+      setIsCancelling(true);
+      const allReasons = otherReason
+        ? [...cancellationReasons, `${tSub("other")}: ${otherReason}`]
+        : cancellationReasons;
+
+      // Log cancellation reasons (you might want to send this to your analytics)
+      console.log("Cancellation reasons:", allReasons);
+
+      // Call the update subscription API
+      const response = await fetch("/api/subscription/update", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to cancel subscription");
+      }
+
+      // Show success message
+      toast.success(tSub("cancellationSuccess"));
+
+      // Reset form
+      setShowCancelForm(false);
+      setCancellationReasons([]);
+      setOtherReason("");
+
+      // Refresh the page to show updated subscription status
+      window.location.reload();
+    } catch (error) {
+      console.error("Error cancelling subscription:", error);
+      toast.error(
+        error instanceof Error ? error.message : tSub("cancellationError")
+      );
+    } finally {
+      setIsCancelling(false);
+    }
   };
 
   if (isPending) {
@@ -125,7 +154,7 @@ export default function Hero() {
     }
   };
 
-  const handleAction = (action: string) => {
+  const handleAction = async (action: string) => {
     switch (action) {
       case "browseJobs":
         router.push("/");
@@ -134,20 +163,14 @@ export default function Hero() {
         setShowUpgradeDialog(true);
         break;
       case "confirmUpgrade":
-        setShowUpgradeDialog(false);
         router.push("/pricing");
+        setShowUpgradeDialog(false);
         break;
       case "cancelSubscription":
         setShowCancelForm(true);
         break;
       case "logOut":
-        LogoutUser({
-          onSuccess: () => {
-            toast.success(
-              tQ("successMessage", { action: tQ(`actions.${action}.label`) })
-            );
-          },
-        });
+        LogoutUser({ onSuccess: () => router.push("/") });
         break;
       default:
         break;
@@ -162,14 +185,36 @@ export default function Hero() {
           {/* <pre className="text-base overflow-clip mb-4">
               {JSON.stringify(session, null, 2)}
             </pre> */}
-          <SubscriptionSection
-            planName={mockSubscription.planName}
-            durationMonths={mockSubscription.durationMonths}
-            daysLeft={mockSubscription.daysLeft}
-            onUpgrade={() => handleAction("upgradePlan")}
-          />
+          <SubscriptionSection onUpgrade={() => handleAction("upgradePlan")} />
 
-          <div className=" gap-6">
+          {/* Upgrade Plan Dialog */}
+          <Dialog open={showUpgradeDialog} onOpenChange={setShowUpgradeDialog}>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Upgrade Your Plan</DialogTitle>
+                <DialogDescription>
+                  You&apos;re about to upgrade your plan. This will redirect you
+                  to our pricing page.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="mt-4">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowUpgradeDialog(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={() => handleAction("confirmUpgrade")}
+                  className="bg-golden hover:bg-golden/90"
+                >
+                  Continue to Pricing
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
+          <div className="gap-6">
             <div className="">
               <Tabs defaultValue="personal" className="space-y-6">
                 <TabsList className="grid w-full grid-cols-4 sm:gap-3 gap-0 h-16">
@@ -285,12 +330,11 @@ export default function Hero() {
                           <DialogHeader>
                             <DialogTitle>Upgrade Plan</DialogTitle>
                             <DialogDescription>
-                              According to America Working&apos;s Terms &
-                              Conditions, you will lose the benefits of your
-                              current plan when upgrading.
+                              You&apos;ll be redirected to our pricing page to
+                              select a new plan.
                             </DialogDescription>
                           </DialogHeader>
-                          <DialogFooter className="mt-4">
+                          <DialogFooter>
                             <Button
                               variant="outline"
                               onClick={() => setShowUpgradeDialog(false)}
@@ -299,7 +343,6 @@ export default function Hero() {
                             </Button>
                             <Button
                               onClick={() => handleAction("confirmUpgrade")}
-                              className="bg-primary hover:bg-primary/90"
                             >
                               Continue to Pricing
                             </Button>
@@ -428,7 +471,9 @@ export default function Hero() {
                                   !otherReason.trim())
                               }
                             >
-                              {tSub("confirmButton")}
+                              {isCancelling
+                                ? "Cancelling Subscription"
+                                : tSub("confirmButton")}
                             </Button>
                           </DialogFooter>
                         </DialogContent>
