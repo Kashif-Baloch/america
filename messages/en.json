@@ -97,13 +97,11 @@
     },
     "filters": {
       "jobTypes": {
-        "gardening": "Gardening and Outdoor Work",
-        "warehouse": "Warehouse and Logistics",
-        "construction": "Construction and Maintenance",
-        "cleaning": "Cleaning and Janitorial",
-        "meatProduction": "Meat Production and Manufacturing",
-        "restaurant": "Restaurants and Customer Service",
-        "other": "Other"
+        "full_time": "Full Time",
+        "part_time": "Part Time",
+        "contract": "Contract",
+        "temporary": "Temporary",
+        "internship": "Internship"
       },
       "salary": {
         "upto13": "Up to $13/H",
@@ -1135,6 +1133,13 @@
     "confirmButton": "Confirm Cancellation",
     "warningMessage": "Your subscription expires in {count} day. Consider upgrading to continue enjoying premium features."
   },
+  "SettingsTabs": {
+    "personal": "Personal",
+    "jobs": "Jobs",
+    "resume": "Resume",
+    "quickactions": "Quick Actions",
+    "favorites": "Favorites"
+  },
   "PersonalInfoSection": {
     "title": "Personal Information",
     "editButton": "Edit",
@@ -1351,9 +1356,9 @@
   },
   "DialogSub": {
     "title": "Upgrade Plan",
-    "description": "You'll be redirected to our pricing page to select a new plan.",
+    "description": "According to America Working’s Terms & Conditions, you will lose the benefits of your current plan if you cancel your subscription.",
     "cancelButton": "Cancel",
-    "confirmButton": "Continue to Pricing"
+    "confirmButton": "Continue"
   },
   "AdminConsultations": {
     "title": "Manage Consultations",

@@ -27,7 +27,7 @@ export default function DesktopCards({
   const router = useRouter();
   const { data: session } = useSession();
   return (
-    <div className="grid max-xl:hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
+    <div className="grid max-xl:hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
       {plans.map((plan, index) => (
         <Card
           key={plan.name}
@@ -123,7 +123,7 @@ export default function DesktopCards({
               <Button
                 onClick={() => {
                   if (!session) {
-                    router.push("/login");
+                    router.push("/sign-up");
                     return;
                   }
 

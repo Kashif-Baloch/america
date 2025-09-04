@@ -37,12 +37,12 @@ interface LoginFormValues {
 
 export default function LoginForm() {
   const t = useTranslations("login");
-  const searchParams = useSearchParams()
-  const error = searchParams.get('error')
+  const searchParams = useSearchParams();
+  const error = searchParams.get("error");
 
   const [showPassword, setShowPassword] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const router = useRouter()
+  const router = useRouter();
   const initialValues: LoginFormValues = {
     email: "",
     password: "",
@@ -59,29 +59,30 @@ export default function LoginForm() {
         },
         {
           onError: (ctx) => {
-            console.log(ctx)
+            console.log(ctx);
             if (ctx?.error?.code === "EMAIL_NOT_VERIFIED") {
-              toast.error(`Oops! ${ctx.error.message} We've sent a verification link to your email on signup. Please check your inbox.`);
-              router.push("/verify?error=email_not_verified")
+              toast.error(
+                `Oops! ${ctx.error.message} We've sent a verification link to your email on signup. Please check your inbox.`
+              );
+              router.push("/verify?error=email_not_verified");
               return;
             }
             if (ctx.error.message) {
-              toast.error(`Opps! ${ctx.error.message}`)
+              toast.error(`Opps! ${ctx.error.message}`);
             } else if (ctx.error.statusText) {
-              toast.error(`Opps! ${ctx.error.statusText}`)
+              toast.error(`Opps! ${ctx.error.statusText}`);
             } else {
-              toast.error("Something went wrong please try again later")
+              toast.error("Something went wrong please try again later");
             }
           },
           onSuccess: () => {
-            toast.success("Login successful. Good to have you back.")
-            router.replace(`/settings`)
-          }
+            toast.success("Login successful. Good to have you back.");
+            router.replace(`/pricing`);
+          },
         }
       );
     });
   };
-
 
   return (
     <Formik
@@ -92,24 +93,23 @@ export default function LoginForm() {
       {({ values, setFieldValue, errors, touched }) => (
         <Form className="space-y-6">
           {/* Email Field */}
-          {
-            error
-            &&
-            error == "account_not_linked"
-            &&
+          {error && error == "account_not_linked" && (
             <div
               className={clsx(
-                'w-full max-w-lg mx-auto px-4 py-3 rounded-md border border-red-300 bg-red-50 text-red-700 flex items-start gap-3 shadow-sm'
+                "w-full max-w-lg mx-auto px-4 py-3 rounded-md border border-red-300 bg-red-50 text-red-700 flex items-start gap-3 shadow-sm"
               )}
             >
               <AlertCircle className="mt-1 h-5 w-5 text-red-500" />
               <div>
                 <h3 className="font-semibold text-sm">Sign-In Issue</h3>
                 <p className="text-sm mt-1">
-                  This email is already associated with a different sign-in method. Please try logging in using the correct provider (e.g., Google, Credentials, etc.) linked to your account.
+                  This email is already associated with a different sign-in
+                  method. Please try logging in using the correct provider
+                  (e.g., Google, Credentials, etc.) linked to your account.
                 </p>
               </div>
-            </div>}
+            </div>
+          )}
           <div className="space-y-2">
             <Label htmlFor="email" className="text-gray-700 font-medium">
               {t("email.label")}
@@ -121,10 +121,11 @@ export default function LoginForm() {
                   id="email"
                   type="email"
                   placeholder="johndoe@email.com"
-                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${errors.email && touched.email
-                    ? "border-red-500"
-                    : "border-gray-300"
-                    }`}
+                  className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ${
+                    errors.email && touched.email
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
                 />
               )}
             </Field>
@@ -150,10 +151,11 @@ export default function LoginForm() {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••••••••"
-                    className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ring-red-transparent outline-none pr-10 ${errors.password && touched.password
-                      ? "border-red-500"
-                      : "border-gray-300"
-                      }`}
+                    className={`h-12 border-0 border-b-2 rounded-none bg-transparent focus:border-blue-600 ring-red-transparent outline-none pr-10 ${
+                      errors.password && touched.password
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    }`}
                   />
                 )}
               </Field>
@@ -204,15 +206,11 @@ export default function LoginForm() {
             disabled={isPending}
             className="w-full h-12 cursor-pointer text-lg bg-primary-blue hover:bg-white hover:text-primary-blue border border-primary-blue text-white font-semibold rounded-full"
           >
-            {
-              isPending
-                ?
-                <Loader2 className="animate-spin" />
-                :
-                <>
-                  {t("button.login")}
-                </>
-            }
+            {isPending ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              <>{t("button.login")}</>
+            )}
           </Button>
 
           {/* Forgot Password */}

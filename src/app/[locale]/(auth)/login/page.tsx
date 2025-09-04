@@ -16,7 +16,7 @@ const LogInPage = () => {
         {/* Logo and Header */}
 
         <div className="relative z-10 md:hidden flex w-full sm:max-w-md ">
-          <Link href={`/`} >
+          <Link href={`/`}>
             <div className="flex items-center justify-start  gap-3 mb-5">
               <Image
                 src={"/images/Logo.webp"}
@@ -34,7 +34,6 @@ const LogInPage = () => {
 
         <div className="w-full sm:max-w-md">
           <div className="mb-8">
-
             <h1 className="md:text-3xl text-2xl font-bold  mb-2">
               {t.rich("title", {
                 bold: (chunks) => (
@@ -42,7 +41,6 @@ const LogInPage = () => {
                 ),
               })}
             </h1>
-
           </div>
           <Suspense fallback={<>Loading...</>}>
             <LoginForm />

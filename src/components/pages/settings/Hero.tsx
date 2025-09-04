@@ -46,6 +46,7 @@ export default function Hero() {
   const router = useRouter();
   const tQ = useTranslations("QuickActions");
   const t = useTranslations("PersonalInfoSection");
+  const tTab = useTranslations("SettingsTabs");
   const tSub = useTranslations("SubscriptionSection");
   const tdia = useTranslations("DialogSub");
 
@@ -171,7 +172,7 @@ export default function Hero() {
         setShowCancelForm(true);
         break;
       case "logOut":
-        LogoutUser({ onSuccess: () => router.push("/") });
+        LogoutUser({ onSuccess: () => (window.location.href = "/") });
         break;
       default:
         break;
@@ -224,7 +225,7 @@ export default function Hero() {
                       href={"/settings?tab=personal"}
                       className="w-full h-full flex items-center justify-center"
                     >
-                      <span>Personal</span>
+                      <span>{tTab("personal")}</span>
                     </Link>
                   </TabsTrigger>
                   <TabsTrigger
@@ -235,7 +236,7 @@ export default function Hero() {
                       href={"/settings?tab=jobs"}
                       className="w-full h-full flex items-center justify-center"
                     >
-                      <span>Jobs</span>
+                      <span>{tTab("jobs")}</span>
                     </Link>
                   </TabsTrigger>
                   <TabsTrigger
@@ -246,7 +247,7 @@ export default function Hero() {
                       href={"/settings?tab=resume"}
                       className="w-full h-full flex items-center justify-center"
                     >
-                      <span>Resume</span>
+                      <span>{tTab("resume")}</span>
                     </Link>
                   </TabsTrigger>
                   <TabsTrigger
@@ -257,7 +258,7 @@ export default function Hero() {
                       href={"/settings?tab=quickactions"}
                       className="w-full h-full flex items-center justify-center"
                     >
-                      <span>Quick Actions</span>
+                      <span>{tTab("quickactions")}</span>
                     </Link>
                   </TabsTrigger>
                 </TabsList>

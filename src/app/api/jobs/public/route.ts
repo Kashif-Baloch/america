@@ -5,11 +5,44 @@ import { headers } from "next/headers";
 import { Prisma, SubscriptionPlan } from "@prisma/client";
 import { filterJobData, getVisibleFields } from "@/lib/subscription-utils";
 
+// Track search counts in memory (in production, use a proper rate limiting solution like Redis)
+const searchCounts = new Map<string, { count: number; lastSearch: number }>();
+const ANONYMOUS_SEARCH_LIMIT = 5;
+const RATE_LIMIT_WINDOW = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
 export async function GET(req: Request) {
   try {
     const session = await auth.api.getSession({ headers: await headers() });
+    // const ip = headersList.get("x-forwarded-for") || "unknown";
 
     let plan: SubscriptionPlan = SubscriptionPlan.NONE;
+
+    // Handle rate limiting for non-logged-in users
+    // if (!session?.user?.id) {
+    //   const now = Date.now();
+    //   const userData = searchCounts.get(ip) || { count: 0, lastSearch: 0 };
+
+    //   // Reset count if window has passed
+    //   if (now - userData.lastSearch > RATE_LIMIT_WINDOW) {
+    //     userData.count = 0;
+    //   }
+
+    //   // Check if user has exceeded the limit
+    //   if (userData.count >= ANONYMOUS_SEARCH_LIMIT) {
+    //     return NextResponse.json(
+    //       {
+    //         success: false,
+    //         message: `Anonymous users are limited to ${ANONYMOUS_SEARCH_LIMIT} searches per day. Please sign in for more.`,
+    //       },
+    //       { status: 429 }
+    //     );
+    //   }
+
+    //   // Increment search count
+    //   userData.count++;
+    //   userData.lastSearch = now;
+    //   searchCounts.set(ip, userData);
+    // }
 
     // let subId: string | null = null;
 

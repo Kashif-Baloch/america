@@ -26,7 +26,7 @@ export default function Details() {
 function JobContentSection() {
   const t = useTranslations("home");
   const { data: sub } = useSubscriptionPlan();
-  const plan: Plan = sub?.plan ?? "NONE";
+  const plan: Plan = sub?.plan === "NONE" ? "FREE" : sub?.plan ?? "FREE";
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState<Filters>({
     location: t("filter.location"),
@@ -57,13 +57,11 @@ function JobContentSection() {
 
     if (filters.jobType && filters.jobType.length > 0) {
       const jtMap: Record<string, string> = {
-        [t("filters.jobTypes.gardening")]: "gardening",
-        [t("filters.jobTypes.warehouse")]: "warehouse",
-        [t("filters.jobTypes.construction")]: "construction",
-        [t("filters.jobTypes.cleaning")]: "cleaning",
-        [t("filters.jobTypes.meatProduction")]: "meat_production",
-        [t("filters.jobTypes.restaurant")]: "restaurant",
-        [t("filters.jobTypes.other")]: "other",
+        [t("filters.jobTypes.full_time")]: "full_time",
+        [t("filters.jobTypes.part_time")]: "part_time",
+        [t("filters.jobTypes.contract")]: "contract",
+        [t("filters.jobTypes.temporary")]: "temporary",
+        [t("filters.jobTypes.internship")]: "internship",
       };
       f.jobType = filters.jobType
         .map((s) => jtMap[s])
@@ -132,7 +130,9 @@ function JobContentSection() {
   }
 
   const quotaReached =
-    !!error &&
+    error &&
+    typeof error === "object" &&
+    "message" in error &&
     typeof error.message === "string" &&
     error.message.toLowerCase().includes("monthly search limit");
 
@@ -181,7 +181,7 @@ function JobContentSection() {
             setSelectedCard={setSelectedCard}
             plan={plan}
           />
-          {jobs.length > 0 && plan !== "NONE" && (
+          {jobs.length > 0 && plan && (
             <JobDetails
               t={t}
               job={jobs.find((job) => job.id === selectedCard) || jobs[0]}

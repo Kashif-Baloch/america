@@ -42,7 +42,7 @@ model Subscription {
   id            String           @id @default(cuid())
   userId        String           @unique
   user          User             @relation(fields: [userId], references: [id])
-  plan          SubscriptionPlan @default(NONE)
+  plan          SubscriptionPlan @default(FREE)
   status        String           @default("inactive") // active, expired, canceled
   searchCount   Int              @default(0)
   consultations Consultation[]

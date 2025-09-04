@@ -62,7 +62,7 @@ export default function Navbar() {
           tQ("successMessage", { action: tQ(`actions.logOut.label`) })
         );
         setShowConsultation(false);
-        router.push("/");
+        window.location.href = "/";
       },
     });
   };
@@ -121,15 +121,14 @@ export default function Navbar() {
     return normalizedPath.startsWith(href);
   };
 
-
-
   return (
     <>
       <nav
-        className={` z-40  font-sf  ${pathname === `/${locale}`
-          ? "absolute bg-white max-w-[1490px] top-5 left-1/2 -translate-x-1/2 rounded-full w-11/12 px-1"
-          : "py-[19px] relative w-full"
-          } `}
+        className={` z-40  font-sf  ${
+          pathname === `/${locale}`
+            ? "absolute bg-white max-w-[1490px] top-5 left-1/2 -translate-x-1/2 rounded-full w-11/12 px-1"
+            : "py-[19px] relative w-full"
+        } `}
       >
         <div
           className={`${pathname === `/${locale}` ? "w-full" : "helmet px-1"}`}
@@ -155,8 +154,9 @@ export default function Navbar() {
                   key={item.name}
                   onClick={() => setIsMenuOpen(false)}
                   href={item.href}
-                  className={`min-[1350px]:text-lg text-[17px] hover:text-primary-blue font-medium transition-colors duration-200 flex items-center gap-1 ${isActive(item.href, pathname) ? "text-primary-blue" : ""
-                    }`}
+                  className={`min-[1350px]:text-lg text-[17px] hover:text-primary-blue font-medium transition-colors duration-200 flex items-center gap-1 ${
+                    isActive(item.href, pathname) ? "text-primary-blue" : ""
+                  }`}
                 >
                   {item.name}
                 </Link>
@@ -252,8 +252,9 @@ export default function Navbar() {
 
       {/* Slide-out Menu */}
       <div
-        className={`fixed top-0 font-sf left-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-[99] xl:hidden ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+        className={`fixed top-0 font-sf left-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-[99] xl:hidden ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         <div className="flex flex-col h-full">
           {/* Menu Header */}
@@ -285,8 +286,9 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   onClick={closeMenu}
-                  className={`flex items-center gap-3 px-4 py-3  hover:text-primary-blue hover:bg-ghost-blue rounded-lg font-medium transition-colors duration-200  ${isActive(item.href, pathname) ? "text-primary-blue" : ""
-                    }`}
+                  className={`flex items-center gap-3 px-4 py-3  hover:text-primary-blue hover:bg-ghost-blue rounded-lg font-medium transition-colors duration-200  ${
+                    isActive(item.href, pathname) ? "text-primary-blue" : ""
+                  }`}
                 >
                   {item.name}
                 </Link>

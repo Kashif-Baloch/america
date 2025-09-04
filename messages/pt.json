@@ -97,13 +97,11 @@
     },
     "filters": {
       "jobTypes": {
-        "gardening": "Jardinagem e trabalho ao ar livre",
-        "warehouse": "Armazém e logística",
-        "construction": "Construção e manutenção",
-        "cleaning": "Limpeza e serviços gerais",
-        "meatProduction": "Produção de carne e manufatura",
-        "restaurant": "Restaurantes e atendimento ao cliente",
-        "other": "Outro"
+        "full_time": "Tempo integral",
+        "part_time": "Meio período",
+        "contract": "Contrato",
+        "temporary": "Temporário",
+        "internship": "Estágio"
       },
       "salary": {
         "upto13": "Até $13/H",
@@ -1377,9 +1375,16 @@
       "name": "Nome"
     }
   },
+  "SettingsTabs": {
+    "personal": "Pessoal",
+    "jobs": "Trabalhos",
+    "resume": "Curriculum",
+    "quickactions": "Ações Rápidas",
+    "favorites": "Favoritos"
+  },
   "DialogSub": {
     "title": "Atualizar Plano",
-    "description": "Você será redirecionado à nossa página de preços para selecionar um novo plano.",
+    "description": "Segundo os Termos e Condições da America Working, você perderá os benefícios do seu plano atual se cancelar sua assinatura.",
     "cancelButton": "Cancelar",
     "confirmButton": "Continuar para Preços"
   },

@@ -174,7 +174,7 @@ export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
                 <Button
                   onClick={() => {
                     if (!session) {
-                      router.push("/login");
+                      router.push("/sign-up");
                       return;
                     }
 

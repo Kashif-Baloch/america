@@ -16,7 +16,7 @@ const SignInOauthButton = ({ text }: { text: string }) => {
     try {
       await signIn.social({
         provider: "google",
-        callbackURL: `/${locale}/settings`,
+        callbackURL: `/${locale}/pricing`,
         errorCallbackURL: `/${locale}/login`,
         fetchOptions: {
           onError: (ctx) => {

@@ -23,7 +23,7 @@ const FormLeftSection: React.FC<FormProps> = ({ imgSrc }) => {
               alt="Logo"
               height={1000}
               width={1000}
-              className="w-[356px] object-cover"
+              className="w-[356px] object-cover z-[-10]"
             />
           </Link>
           <LangSwitcher textColor="white" />
@@ -32,7 +32,7 @@ const FormLeftSection: React.FC<FormProps> = ({ imgSrc }) => {
       </div>
 
       {/* Illustration Area */}
-      <div className="relative z-10 flex items-center justify-center  mb-8">
+      <div className="relative flex items-center justify-center  mb-8">
         <Image
           src={imgSrc || "/images/signup.png"}
           alt="Logo"
@@ -49,7 +49,6 @@ const FormLeftSection: React.FC<FormProps> = ({ imgSrc }) => {
         </h2>
         <p className="text-white/90 text-center text-lg max-w-sm mx-auto leading-relaxed">
           {t("description")}
-
         </p>
       </div>
 
