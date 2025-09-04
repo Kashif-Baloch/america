@@ -6,9 +6,9 @@ import { Prisma, SubscriptionPlan } from "@prisma/client";
 import { filterJobData, getVisibleFields } from "@/lib/subscription-utils";
 
 // Track search counts in memory (in production, use a proper rate limiting solution like Redis)
-const searchCounts = new Map<string, { count: number; lastSearch: number }>();
-const ANONYMOUS_SEARCH_LIMIT = 5;
-const RATE_LIMIT_WINDOW = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+// const searchCounts = new Map<string, { count: number; lastSearch: number }>();
+// const ANONYMOUS_SEARCH_LIMIT = 5;
+// const RATE_LIMIT_WINDOW = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 export async function GET(req: Request) {
   try {
