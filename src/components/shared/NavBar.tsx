@@ -87,6 +87,7 @@ export default function Navbar() {
     { name: t("searchJobs"), href: "/" },
 
     ...(session?.user ? [{ name: t("favorites"), href: `/favorites` }] : []),
+    ...(session?.user ? [{ name: t("jobs"), href: `/jobs` }] : []),
 
     ...(showConsultation
       ? [{ name: "Consultation", href: `/consultation` }]

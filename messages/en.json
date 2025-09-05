@@ -178,6 +178,7 @@
   },
   "navbar": {
     "searchJobs": "Search jobs",
+    "jobs": "Jobs",
     "favorites": "My Favorites",
     "pricing": "Pricing",
     "about": "About",
