@@ -10,8 +10,8 @@ const SubscriptionPage = () => {
     <>
       <Hero />
       <div className="w-full flex flex-col">
-        <Pricing />
         <Benefits />
+        <Pricing />
       </div>
       <BookAppointment />
       <GiftProSubscription />

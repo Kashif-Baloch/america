@@ -7,13 +7,13 @@ import { useSearchParams } from "next/navigation";
 import DetailRow from "./components/DetailRow";
 import { JobApplicationButtons } from "./components/JobApplicationButtons";
 import { JobCard } from "./components/JobCard";
-import FilterSection from "./Filters";
 import { JobWithTranslations } from "@/lib/types";
 import { getTranslation, ratingToNumber } from "@/lib/utils";
 import { useSubscriptionPlan } from "@/lib/subscription-queries";
 import type { Plan } from "@/lib/types";
-import type { Filters } from "./Filters";
 import Link from "next/link";
+import SubFilterSection from "./DetailsSubFilters";
+import { Filters } from "./Filters";
 
 export default function DetailsSub() {
   return (
@@ -153,7 +153,7 @@ function JobContentSection() {
   if (isError || !jobs) {
     return (
       <>
-        <FilterSection
+        <SubFilterSection
           t={t}
           plan={plan}
           filters={filters}
@@ -166,20 +166,29 @@ function JobContentSection() {
 
   return (
     <>
-      <FilterSection
-        t={t}
-        plan={plan}
-        filters={filters}
-        setFilters={setFilters}
-      />
       {quotaReached && <Banner />}
-      <div className="w-full px-4 md:px-6 lg:px-8 py-6">
-        <JobCardsList
-          AllJobsData={jobs}
-          selectedCard={selectedCard}
-          setSelectedCard={setSelectedCard}
+      <div className="w-full flex gap-10">
+        <SubFilterSection
+          t={t}
           plan={plan}
+          filters={filters}
+          setFilters={setFilters}
         />
+        <div className="flex gap-10 lg:flex-row flex-col w-full ">
+          <JobCardsList
+            AllJobsData={jobs}
+            selectedCard={selectedCard}
+            setSelectedCard={setSelectedCard}
+            plan={plan}
+          />
+          {jobs.length > 0 && plan && (
+            <JobDetails
+              t={t}
+              job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+              plan={plan}
+            />
+          )}
+        </div>
       </div>
     </>
   );
@@ -197,10 +206,8 @@ export function JobCardsList({
   plan: Plan;
 }) {
   const [visibleJobs, setVisibleJobs] = useState<number>(6);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const loadMoreJobs = () => {
-    setVisibleJobs((prev) => prev + 6); // Load more jobs in multiples of 6 for better grid layout
+    setVisibleJobs((prev) => prev + 2);
   };
   const t = useTranslations("home");
 
@@ -216,141 +223,26 @@ export function JobCardsList({
       ? visibleJobs >= AllJobsData.length
       : true;
 
-  const handleCardClick = (id: string | null) => {
-    if (id) {
-      setSelectedCard(id);
-      setIsModalOpen(true);
-    }
-  };
-
   return (
-    <div className="w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-        {jobsToShow.map((job) => (
-          <div key={job.id} className="w-full">
-            <JobCard
-              job={job}
-              setSelectedCard={handleCardClick}
-              selectedCard={selectedCard}
-              plan={plan}
-            />
-          </div>
-        ))}
-      </div>
-
+    <div className="flex flex-col relative gap-y-7 sm:max-h-[780px] max-h-[800px]  overflow-y-auto  lg:w-[540px] w-full ">
+      {jobsToShow.map((job) => (
+        <JobCard
+          key={job.id}
+          job={job}
+          setSelectedCard={(id: string | null) => {
+            setSelectedCard(id || "");
+          }}
+          selectedCard={selectedCard}
+          plan={plan}
+        />
+      ))}
       {!allJobsLoaded && (
-        <div className="w-full flex justify-center mt-6">
-          <button
-            onClick={loadMoreJobs}
-            className="bg-primary-blue rounded-full px-6 text-white cursor-pointer text-lg py-3 hover:opacity-90 transition-opacity"
-          >
-            {t("loadMoreJobs")}
-          </button>
-        </div>
-      )}
-
-      {/* Enhanced Job Details Modal */}
-      {isModalOpen && selectedCard && (
-        <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity duration-300 animate-fadeIn"
-          onClick={() => setIsModalOpen(false)}
+        <button
+          onClick={loadMoreJobs}
+          className=" sticky bottom-5 w-max left-1/2 -translate-x-1/2 bg-primary-blue rounded-full px-6 text-white cursor-pointer text-lg py-4"
         >
-          <div
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[95vh] overflow-hidden transform transition-all duration-300 scale-95 hover:scale-100 "
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            {/* <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-6 text-white">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-1">
-                    {AllJobsData.find((job) => job.id === selectedCard)
-                      ?.translations[0]?.title || "Job Details"}
-                  </h2>
-                  <div className="flex items-center space-x-2 text-blue-100 text-sm">
-                    <span>Full-time</span>
-                    <span>•</span>
-                    <span>Remote</span>
-                    <span>•</span>
-                    <span>Posted 2 days ago</span>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="p-2 rounded-full hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/50"
-                  aria-label="Close modal"
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div> */}
-
-            {/* Scrollable Content */}
-            <div className="overflow-y-auto max-h-[100vh]  p-6 md:p-8">
-              <div className="pb-8 prose max-w-full min-w-full">
-                <JobDetails
-                  t={t}
-                  job={
-                    AllJobsData.find((job) => job.id === selectedCard) ||
-                    AllJobsData[0]
-                  }
-                  plan={plan}
-                />
-              </div>
-            </div>
-
-            {/* Footer */}
-            {/* <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 sticky bottom-0">
-              <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-600">Share this job:</span>
-                  <div className="flex space-x-2">
-                    <button className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors">
-                      <span className="sr-only">Share on LinkedIn</span>
-                      <svg
-                        className="w-5 h-5 text-gray-700"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </button>
-                    <button className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors">
-                      <span className="sr-only">Share on Twitter</span>
-                      <svg
-                        className="w-5 h-5 text-blue-400"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <div className="flex space-x-3 w-full sm:w-auto">
-                  <button className="px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors w-full sm:w-auto">
-                    Save Job
-                  </button>
-                  <button className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors w-full sm:w-auto">
-                    Apply Now
-                  </button>
-                </div>
-              </div>
-            </div> */}
-          </div>
-        </div>
+          {t("loadMoreJobs")}
+        </button>
       )}
     </div>
   );
@@ -369,7 +261,7 @@ function JobDetails({
   const tr = getTranslation(job.translations, locale, "en");
   if (!tr) return null;
   return (
-    <div className="lg:grid gap-8 bg-white h-full w-full">
+    <div className="lg:grid gap-8 w-full hidden lg:w-[calc(100%-420px)]">
       <div className="sm:p-14 p-4 max-sm:py-8 border border-[#DADADA] rounded-2xl">
         <JobDetailsHeader
           t={t}

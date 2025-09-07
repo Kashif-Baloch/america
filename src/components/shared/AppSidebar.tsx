@@ -9,6 +9,7 @@ import {
   StickyNote,
   Tag,
   Video,
+  Clock,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import {
@@ -40,6 +41,11 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
     { title: t("jobs"), url: "/admin/jobs", icon: FileText },
     { title: t("addJob"), url: "/admin/addjob", icon: FilePlus2 },
     { title: t("editPricing"), url: "/admin/edit-pricing", icon: Tag },
+    {
+      title: t("pricingTimer"),
+      url: "/admin/pricing-timer",
+      icon: Clock,
+    },
     {
       title: t("editStickyModal"),
       url: "/admin/sticky-modals",

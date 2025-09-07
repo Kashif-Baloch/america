@@ -6,10 +6,10 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const Page = () => {
-  const { data: session } = useSession();
-  if (!session) {
-    redirect(`/login`);
-  }
+  // const { data: session } = useSession();
+  // if (!session) {
+  //   redirect(`/login`);
+  // }
   return (
     <div>
       <DetailsSub />

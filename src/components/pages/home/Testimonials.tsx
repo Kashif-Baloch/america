@@ -144,16 +144,13 @@ const TestimonialCard = ({
   </div>
 );
 
-
 export default function Testimonials() {
   const locale = useLocale() as Locale;
   const t = useTranslations("home.testimonials");
   const { data, isLoading, isError, refetch } = useTestimonialsQuery();
 
   if (isLoading) {
-    return (
-      <Skeleton className="h-[400px] animate-pulse w-full rounded-none" />
-    );
+    return <Skeleton className="h-[400px] animate-pulse w-full rounded-none" />;
   }
 
   if (isError || !data?.length) {
@@ -172,12 +169,11 @@ export default function Testimonials() {
     );
   }
 
-
   const showcaseCountryNames = t.raw("showcaseCountryNames") as string[];
   const flagKeys = data.map((testimonial) => testimonial.flag);
 
   return (
-    <div className=" my-16 font-sf helmet">
+    <div className="my-16 mt-36 font-sf helmet">
       <h1 className="md:text-5xl  sm:text-4xl text-3xl font-bold leading-[1.2] text-center mb-10">
         {t.rich("title", {
           flags: () => (
@@ -204,13 +200,16 @@ export default function Testimonials() {
       </h1>
       <InfiniteHorizontalCarousel>
         {data.map((testimonial) => (
-          <TestimonialCard key={testimonial.name} testimonial={{
-            country: testimonial.country,
-            flag: testimonial.flag,
-            image: testimonial.image,
-            name: testimonial.name,
-            text: testimonial.text[locale] || "en"
-          }} />
+          <TestimonialCard
+            key={testimonial.name}
+            testimonial={{
+              country: testimonial.country,
+              flag: testimonial.flag,
+              image: testimonial.image,
+              name: testimonial.name,
+              text: testimonial.text[locale] || "en",
+            }}
+          />
         ))}
       </InfiniteHorizontalCarousel>
     </div>
