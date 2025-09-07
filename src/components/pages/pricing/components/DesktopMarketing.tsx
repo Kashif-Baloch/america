@@ -15,11 +15,13 @@ import { useLocale } from "next-intl";
 interface DesktopCardsProps {
   plans: PricingPlan[];
   isQuarterly: boolean;
+  oldprice: string;
 }
 
 export default function DesktopMarketing({
   plans,
   isQuarterly,
+  oldprice,
 }: DesktopCardsProps) {
   const locale = useLocale();
 
@@ -60,7 +62,7 @@ export default function DesktopMarketing({
                       plan.highlighted ? "text-white" : "text-black"
                     }`}
                   >
-                    480.000 COP
+                    {`${oldprice}.000`} COP
                   </h3>
                   <h3
                     className={`sm:text-[31px] text-2xl font-bold leading-[1.2] text-center ${

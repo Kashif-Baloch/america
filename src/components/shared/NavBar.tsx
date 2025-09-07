@@ -14,6 +14,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import LangSwitcher from "./lang-switcher";
+import { useSubscriptionPlan } from "@/lib/subscription-queries";
 
 export default function Navbar() {
   const router = useRouter();
@@ -66,6 +67,7 @@ export default function Navbar() {
       },
     });
   };
+  const { data: sub } = useSubscriptionPlan();
 
   useEffect(() => {
     const checkSubscription = async () => {
@@ -84,10 +86,12 @@ export default function Navbar() {
   }, [session]);
 
   const navItems = [
-    { name: t("searchJobs"), href: "/" },
+    {
+      name: t("searchJobs"),
+      href: sub?.plan === "NONE" || sub?.plan === "FREE" ? "/" : "/jobs",
+    },
 
     ...(session?.user ? [{ name: t("favorites"), href: `/favorites` }] : []),
-    ...(session?.user ? [{ name: t("jobs"), href: `/jobs` }] : []),
 
     ...(showConsultation
       ? [{ name: "Consultation", href: `/consultation` }]

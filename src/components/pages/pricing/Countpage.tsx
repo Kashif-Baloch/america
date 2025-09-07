@@ -134,11 +134,13 @@ const CountPage = () => {
               <>
                 {/* Desktop Cards */}
                 <DesktopMarketing
+                  oldprice={pricingMarket.oldPrice}
                   plans={plans.slice(2, 3)}
                   isQuarterly={isQuarterly}
                 />
                 {/* Mobile Cards */}
                 <MobileMarketing
+                  oldprice={pricingMarket.oldPrice}
                   plans={plans.slice(2, 3)}
                   isQuarterly={isQuarterly}
                 />

@@ -16,11 +16,13 @@ import { PricingPlan } from "@/Data/PricingPlan";
 interface MobileCardsProps {
   plans: PricingPlan[];
   isQuarterly: boolean;
+  oldprice: string;
 }
 
 export default function MobileMarketing({
   plans,
   isQuarterly,
+  oldprice,
 }: MobileCardsProps) {
   const router = useRouter();
   const { data: session } = useSession();
@@ -64,8 +66,7 @@ export default function MobileMarketing({
                         plan.highlighted ? "text-white" : "text-black"
                       }`}
                     >
-                      {isQuarterly ? plan.quarterlyPrice : plan.monthlyPrice}
-                      <span className="text-lg font-normal">/month</span>
+                      {`${oldprice}.000`} COP
                     </h3>
                     {/* discount price */}
                     <h3

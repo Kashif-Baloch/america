@@ -3,7 +3,7 @@ import { PublicJobFilters, usePublicJobsQuery } from "@/lib/jobs-queries";
 import { Loader2, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import DetailRow from "./components/DetailRow";
 import { JobApplicationButtons } from "./components/JobApplicationButtons";
 import { JobCard } from "./components/JobCard";
@@ -16,6 +16,11 @@ import SubFilterSection from "./DetailsSubFilters";
 import { Filters } from "./Filters";
 
 export default function DetailsSub() {
+  const { data: sub } = useSubscriptionPlan();
+  if (sub?.plan === "NONE" || sub?.plan === "FREE") {
+    redirect(`/`);
+  }
+
   return (
     <div className="bg-white helmet mt-28 md:mt-14 font-sf">
       <JobContentSection />
@@ -121,13 +126,13 @@ function JobContentSection() {
     error,
   } = usePublicJobsQuery(apiFilters);
 
-  if (isLoading) {
-    return (
-      <div className="w-full min-h-[500px] flex items-center justify-center">
-        <Loader2 className="animate-spin" />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="w-full min-h-[500px] flex items-center justify-center">
+  //       <Loader2 className="animate-spin" />
+  //     </div>
+  //   );
+  // }
 
   const quotaReached =
     error &&
@@ -174,21 +179,27 @@ function JobContentSection() {
           filters={filters}
           setFilters={setFilters}
         />
-        <div className="flex gap-10 lg:flex-row flex-col w-full ">
-          <JobCardsList
-            AllJobsData={jobs}
-            selectedCard={selectedCard}
-            setSelectedCard={setSelectedCard}
-            plan={plan}
-          />
-          {jobs.length > 0 && plan && (
-            <JobDetails
-              t={t}
-              job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+        {isLoading ? (
+          <div className="w-full min-h-[500px] flex items-center justify-center">
+            <Loader2 className="animate-spin" />
+          </div>
+        ) : (
+          <div className="flex gap-10 lg:flex-row flex-col w-full ">
+            <JobCardsList
+              AllJobsData={jobs}
+              selectedCard={selectedCard}
+              setSelectedCard={setSelectedCard}
               plan={plan}
             />
-          )}
-        </div>
+            {jobs.length > 0 && plan && (
+              <JobDetails
+                t={t}
+                job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+                plan={plan}
+              />
+            )}
+          </div>
+        )}
       </div>
     </>
   );
