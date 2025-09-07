@@ -89,7 +89,7 @@ const CountPage = () => {
   const t = useTranslations("dashboardnavigation");
 
   const locale = useLocale();
-  const [isQuarterly, _setIsQuarterly] = useState(false);
+  const isQuarterly = false;
   const [plans, setPlans] = useState<PricingPlan[] | null>(null);
 
   useEffect(() => {
@@ -103,6 +103,12 @@ const CountPage = () => {
     };
   }, [locale]);
 
+  useEffect(() => {
+    if (!isLoading && !pricingMarket?.isActive) {
+      router.push("/");
+    }
+  }, [isLoading, pricingMarket, router]);
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -112,9 +118,8 @@ const CountPage = () => {
   }
 
   if (!pricingMarket?.isActive) {
-    return router.push("/");
+    return null; // or a loading/redirecting message
   }
-
   return (
     <div className="min-h-[120dvh]  flex font-sf">
       {/* Left Side - Branding */}
