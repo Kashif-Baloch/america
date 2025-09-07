@@ -111,11 +111,6 @@ export async function GET(req: Request) {
         ? "housing_only"
         : undefined;
 
-    // salary filter omitted due to string storage; handled client-side visibility
-    // Note: we'll handle salary server-side post-query using buckets
-
-    // Enforce plan-based filter availability on server too
-    // Salary buckets per plan
     if (plan === SubscriptionPlan.NONE || plan === SubscriptionPlan.FREE) {
       salary = undefined;
     } else if (plan === SubscriptionPlan.BASIC) {
