@@ -111,8 +111,8 @@
         "above26": "$26/H+"
       },
       "seasons": {
-        "summer": "Summer (May – Oct)",
-        "winter": "Winter (Oct – May)",
+        "summer": "Summer",
+        "winter": "Winter",
         "yearRound": "Year Round"
       },
       "contactOutside": {
@@ -1411,5 +1411,10 @@
       "fetchFailed": "Failed to fetch consultations",
       "updateFailed": "Failed to update consultation"
     }
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backToHome": "Back to Home"
   }
 }

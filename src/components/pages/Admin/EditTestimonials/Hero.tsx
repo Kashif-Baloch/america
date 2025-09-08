@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useTranslations } from "next-intl";
-import { v4 as uuid } from "uuid"
+import { v4 as uuid } from "uuid";
 import {
   Card,
   CardHeader,
@@ -52,9 +52,7 @@ type Testimonial = {
 export default function TestimonialsCMS() {
   const t = useTranslations("testimonials");
 
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([
-
-  ]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
@@ -127,7 +125,7 @@ export default function TestimonialsCMS() {
 
   const addTestimonial = async (values: Omit<Testimonial, "id">) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const newTestimonial = {
         ...values,
         image: values.image,
@@ -146,7 +144,7 @@ export default function TestimonialsCMS() {
       if (response.ok) {
         setTestimonials([...testimonials, newTestimonial]);
         formik.resetForm();
-        setPreviewImage("")
+        setPreviewImage("");
         toast.success(t("messages.addedSuccessfully"));
       } else {
         throw new Error("Failed to add testimonial");
@@ -155,7 +153,7 @@ export default function TestimonialsCMS() {
       console.error("Error adding testimonial:", error);
       toast.error(t("messages.failedToAdd"));
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -163,7 +161,7 @@ export default function TestimonialsCMS() {
     if (!editingId) return;
 
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const updatedTestimonial = {
         ...values,
         image: values.image,
@@ -185,7 +183,7 @@ export default function TestimonialsCMS() {
         );
         formik.resetForm();
         setEditingId(null);
-        setPreviewImage("")
+        setPreviewImage("");
         toast.success(t("messages.updatedSuccessfully"));
       } else {
         throw new Error("Failed to update testimonial");
@@ -194,7 +192,7 @@ export default function TestimonialsCMS() {
       console.error("Error updating testimonial:", error);
       toast.error(t("messages.failedToUpdate"));
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -226,17 +224,22 @@ export default function TestimonialsCMS() {
       // image: testimonial.image,
       image: testimonial.image,
     });
-    setPreviewImage(testimonial.image)
+    setPreviewImage(testimonial.image);
     setEditingId(testimonial.id);
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
-      setIsUploading(true)
+      setIsUploading(true);
       const file = e.target.files?.[0];
       if (file) {
         const checksum = await computeSHA256(file);
-        const signedURLResult = await getSignedURL(file.type, file.size, checksum, `${uuid()}-${uuid()}`);
+        const signedURLResult = await getSignedURL(
+          file.type,
+          file.size,
+          checksum,
+          `${uuid()}-${uuid()}`
+        );
 
         if (signedURLResult.error !== undefined) {
           toast.error("Can't get signedURL from server");
@@ -248,8 +251,8 @@ export default function TestimonialsCMS() {
 
         await kyInstance.put(url, {
           body: file,
-          headers: { 'Content-Type': file.type },
-          timeout: 120_000
+          headers: { "Content-Type": file.type },
+          timeout: 120_000,
         });
 
         formik.setFieldValue("image", mainURL as string);
@@ -262,7 +265,7 @@ export default function TestimonialsCMS() {
         // reader.readAsDataURL(file);
       }
     } finally {
-      setIsUploading(false)
+      setIsUploading(false);
     }
   };
 
@@ -302,12 +305,12 @@ export default function TestimonialsCMS() {
 
   return (
     <div className="sm:px-12 px-4 py-8 font-sf relative">
-      {isUploading
-        &&
+      {isUploading && (
         <div className="absolute top-0 left-0 w-full h-full z-[100] bg-white/70 flex items-center flex-col gap-1 justify-center">
           <Loader2 className="animate-spin" />
           Uploading Image..
-        </div>}
+        </div>
+      )}
       <h2 className="md:text-[40px] text-center sm:text-[32px] text-[26px] font-bold leading-[1.2] mb-6">
         {t("title")}
       </h2>
@@ -399,8 +402,9 @@ export default function TestimonialsCMS() {
                     </span>
                   )}
                   <svg
-                    className={`w-4 h-4 ml-2 transition-transform ${isOpen ? "transform rotate-180" : ""
-                      }`}
+                    className={`w-4 h-4 ml-2 transition-transform ${
+                      isOpen ? "transform rotate-180" : ""
+                    }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -422,10 +426,11 @@ export default function TestimonialsCMS() {
                     {flagOptions.map((option) => (
                       <div
                         key={option.value}
-                        className={`cursor-pointer select-none px-3 py-2 flex items-center gap-2 hover:bg-gray-100 ${selectedValue === option.value
-                          ? "bg-gray-200 font-semibold"
-                          : ""
-                          }`}
+                        className={`cursor-pointer select-none px-3 py-2 flex items-center gap-2 hover:bg-gray-100 ${
+                          selectedValue === option.value
+                            ? "bg-gray-200 font-semibold"
+                            : ""
+                        }`}
                         onClick={() => handleSelect(option.value)}
                         role="option"
                         aria-selected={selectedValue === option.value}
@@ -543,17 +548,16 @@ export default function TestimonialsCMS() {
                   </Button>
                 )}
                 <Button type="submit" className="text-base px-4 h-12">
-                  {
-                    isLoading ?
-                      <>
-                        <Loader2 className="animate-spin" />
-                      </>
-                      :
-                      <>
-                        {editingId ? t("form.update") : t("form.add")}{" "}
-                        {t("form.testimonial")}
-                      </>
-                  }
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      {editingId ? t("form.update") : t("form.add")}{" "}
+                      {t("form.testimonial")}
+                    </>
+                  )}
                 </Button>
               </CardFooter>
             </form>

@@ -105,7 +105,7 @@ const CountPage = () => {
 
   useEffect(() => {
     if (!isLoading && !pricingMarket?.isActive) {
-      router.push("/");
+      router.push("/not-found");
     }
   }, [isLoading, pricingMarket, router]);
 
@@ -126,7 +126,7 @@ const CountPage = () => {
       <PriceLeftSection />
       {/* Right Side - Form */}
       <div className="flex-1 bg-white md:mt-16 flex items-center justify-center p-8 flex-col">
-        <div className="w-full sm:max-w-lg">
+        <div className="w-full sm:max-w-md">
           <Suspense fallback={<>Loading...</>}>
             <CountdownTimer timeLeft={timeLeft} />
 

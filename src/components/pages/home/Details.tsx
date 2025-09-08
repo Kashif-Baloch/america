@@ -179,23 +179,29 @@ function JobContentSection() {
         setFilters={setFilters}
       />
       {quotaReached && <Banner />}
-      <div className="w-full">
-        <div className="flex gap-10 lg:flex-row flex-col w-full ">
-          <JobCardsList
-            AllJobsData={jobs}
-            selectedCard={selectedCard}
-            setSelectedCard={setSelectedCard}
-            plan={plan}
-          />
-          {jobs.length > 0 && plan && (
-            <JobDetails
-              t={t}
-              job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+      {jobs.length === 0 ? (
+        <div className="flex items-center justify-center h-[200px]">
+          <h1 className="text-gray-600 font-bold">No Jobs Found</h1>
+        </div>
+      ) : (
+        <div className="w-full">
+          <div className="flex gap-10 lg:flex-row flex-col w-full ">
+            <JobCardsList
+              AllJobsData={jobs}
+              selectedCard={selectedCard}
+              setSelectedCard={setSelectedCard}
               plan={plan}
             />
-          )}
+            {jobs.length > 0 && plan && (
+              <JobDetails
+                t={t}
+                job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+                plan={plan}
+              />
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
@@ -212,9 +218,17 @@ export function JobCardsList({
   plan: Plan;
 }) {
   const [visibleJobs, setVisibleJobs] = useState<number>(6);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
   const loadMoreJobs = () => {
-    setVisibleJobs((prev) => prev + 2);
+    setIsLoadingMore(true);
+    // Simulate loading delay for better UX
+    setTimeout(() => {
+      setVisibleJobs((prev) => prev + 2);
+      setIsLoadingMore(false);
+    }, 500);
   };
+
   const t = useTranslations("home");
 
   const jobsToShow = AllJobsData.slice(
@@ -245,9 +259,18 @@ export function JobCardsList({
       {!allJobsLoaded && (
         <button
           onClick={loadMoreJobs}
-          className=" sticky bottom-5 w-max left-1/2 -translate-x-1/2 bg-primary-blue rounded-full px-6 text-white cursor-pointer text-lg py-4"
+          disabled={isLoadingMore}
+          className={`sticky bottom-5 w-max left-1/2 -translate-x-1/2 bg-primary-blue rounded-full px-6 text-white cursor-pointer text-lg py-4 flex items-center justify-center gap-2 min-w-[180px] ${
+            isLoadingMore ? "opacity-75" : "hover:bg-primary-blue/90"
+          }`}
         >
-          {t("loadMoreJobs")}
+          {isLoadingMore ? (
+            <>
+              <Loader2 className="animate-spin h-5 w-5" />
+            </>
+          ) : (
+            t("loadMoreJobs")
+          )}
         </button>
       )}
     </div>

@@ -112,8 +112,8 @@
         "above26": "$26/H+"
       },
       "seasons": {
-        "summer": "Verão (maio – outubro)",
-        "winter": "Inverno (outubro – maio)",
+        "summer": "Verão",
+        "winter": "Inverno",
         "yearRound": "Durante todo o ano"
       },
       "contactOutside": {
@@ -1439,5 +1439,10 @@
       "fetchFailed": "Falha ao carregar as consultas",
       "updateFailed": "Falha ao atualizar a consulta"
     }
+  },
+  "NotFound": {
+    "title": "Página Não Encontrada",
+    "description": "A página que você está procurando não existe ou foi movida.",
+    "backToHome": "Voltar para o Início"
   }
 }

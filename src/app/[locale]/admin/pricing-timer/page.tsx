@@ -162,10 +162,10 @@ export default function PricingTimerPage() {
   }
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container sm:px-12 px-4 mx-auto py-8">
       <h1 className="text-3xl font-bold mb-8">{t("pricingTimerTitle")}</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 gap-8">
         <Card>
           <CardHeader>
             <CardTitle>{t("pricingTimer")}</CardTitle>
