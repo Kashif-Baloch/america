@@ -4,6 +4,7 @@
     "subtext": "You don't need to pay a lawyer or get advice without results. Each company listed in our database has its own paid lawyers.",
     "searchPlaceholder": "Search for jobs, e.g, H-2B Construction",
     "searchButton": "SEARCH JOB",
+    "error": "Error loading jobs",
     "filter": {
       "title": "Filter",
       "location": "Location",

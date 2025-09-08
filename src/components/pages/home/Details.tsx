@@ -159,7 +159,13 @@ function JobContentSection() {
           filters={filters}
           setFilters={setFilters}
         />
-        {quotaReached ? <Banner /> : <div>{t("error")}</div>}
+        {quotaReached ? (
+          <Banner />
+        ) : (
+          <div className="flex items-center justify-center h-[200px]">
+            {t("error")}
+          </div>
+        )}
       </>
     );
   }

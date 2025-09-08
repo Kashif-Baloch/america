@@ -4,6 +4,7 @@
     "subtext": "Você não precisa pagar um advogado nem obter conselhos sem resultados. Cada empresa listada em nosso banco de dados possui seus próprios advogados contratados.",
     "searchPlaceholder": "Pesquise empregos, por exemplo, H-2B Construção",
     "searchButton": "BUSCAR EMPREGO",
+    "error": "Erro ao carregar empregos",
     "filter": {
       "title": "Filtros",
       "location": "Localização",
