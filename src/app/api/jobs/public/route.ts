@@ -14,7 +14,6 @@ export async function GET(req: Request) {
   try {
     const session = await auth.api.getSession({ headers: await headers() });
 
-    alsa;
 
     // const ip = headersList.get("x-forwarded-for") || "unknown";
 
