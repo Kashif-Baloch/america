@@ -126,14 +126,6 @@ function JobContentSection() {
     error,
   } = usePublicJobsQuery(apiFilters);
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="w-full min-h-[500px] flex items-center justify-center">
-  //       <Loader2 className="animate-spin" />
-  //     </div>
-  //   );
-  // }
-
   const quotaReached =
     error &&
     typeof error === "object" &&
@@ -164,7 +156,7 @@ function JobContentSection() {
           filters={filters}
           setFilters={setFilters}
         />
-        {quotaReached ? <Banner /> : <div>{t("error")}</div>}
+        {/* {quotaReached ? <Banner /> : <div>{t("error")}</div>} */}
       </>
     );
   }
