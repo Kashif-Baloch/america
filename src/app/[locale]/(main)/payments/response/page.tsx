@@ -181,12 +181,16 @@ export default function ThankYouPage() {
         </p>
 
         <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-12">
-          <a
-            href="/"
+          <button
+            onClick={() => {
+              window.location.href = "/";
+            }}
             className="hidden md:inline-flex justify-center items-center bg-primary-blue cursor-pointer text-white w-60 md:h-14 h-12 text-lg py-2 rounded-full font-semibold hover:bg-white hover:text-primary-blue border border-primary-blue duration-300"
           >
             {t("button_job_search")}
-          </a>
+          </button>
+          {/* allow a tag for build npm run build */}
+          {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
           <Link
             href="/settings"
             className="hidden md:inline-flex justify-center items-center hover:bg-primary-blue cursor-pointer hover:text-white w-44 md:h-14 h-12 text-lg py-2 rounded-full font-semibold bg-white text-primary-blue border border-primary-blue duration-300"

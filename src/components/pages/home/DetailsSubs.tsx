@@ -147,7 +147,7 @@ function JobContentSection() {
     </div>
   );
 
-  if (isError || !jobs) {
+  if ((!isLoading && isError) || !jobs) {
     return (
       <>
         <SubFilterSection
@@ -156,7 +156,7 @@ function JobContentSection() {
           filters={filters}
           setFilters={setFilters}
         />
-        {/* {quotaReached ? <Banner /> : <div>{t("error")}</div>} */}
+        {quotaReached ? <Banner /> : <div>{t("error")}</div>}
       </>
     );
   }
