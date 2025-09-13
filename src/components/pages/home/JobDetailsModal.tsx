@@ -18,7 +18,7 @@ export function JobDetailsModal({
   onOpenChange: (open: boolean) => void;
   plan: any;
 }) {
-  const t = useTranslations();
+  const t = useTranslations("home");
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [mounted, setMounted] = useState(false);
 

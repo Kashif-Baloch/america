@@ -160,7 +160,7 @@ function JobContentSection() {
           filters={filters}
           setFilters={setFilters}
         />
-        {quotaReached ? <Banner /> : <div>{t("error")}</div>}
+        {quotaReached ? <Banner /> : <div>Loading...</div>}
       </>
     );
   }
