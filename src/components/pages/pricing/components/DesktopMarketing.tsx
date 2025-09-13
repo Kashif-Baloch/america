@@ -94,7 +94,7 @@ export default function DesktopMarketing({
             >
               {plan.description}
 
-              <ul className="space-y-3 mt-4 mb-8">
+              <ul className="space-y-3 mt-4 mb-8 h-[85vh]">
                 {plan.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-start gap-3">
                     <GoCheckCircleFill

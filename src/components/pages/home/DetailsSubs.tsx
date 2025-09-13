@@ -3,6 +3,8 @@ import { PublicJobFilters, usePublicJobsQuery } from "@/lib/jobs-queries";
 import { Loader2, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { JobDetailsModal } from "./JobDetailsModal";
 import { redirect, useSearchParams } from "next/navigation";
 import DetailRow from "./components/DetailRow";
 import { JobApplicationButtons } from "./components/JobApplicationButtons";
@@ -22,7 +24,7 @@ export default function DetailsSub() {
   }
 
   return (
-    <div className="bg-white helmet mt-28 md:mt-14 font-sf">
+    <div className="bg-white  w-[98%] mb-20 mx-auto mt-28 md:mt-14 font-sf">
       <JobContentSection />
     </div>
   );
@@ -42,6 +44,8 @@ function JobContentSection() {
     transportationHousing: t("filter.transportationHousing"),
   });
   const [selectedCard, setSelectedCard] = useState<string>("");
+  const [mobileModalOpen, setMobileModalOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     const loc = searchParams.get("location");
@@ -164,7 +168,7 @@ function JobContentSection() {
   return (
     <>
       {quotaReached && <Banner />}
-      <div className="w-full flex gap-10">
+      <div className="w-full flex gap-10 flex-wrap md:flex-nowrap">
         <SubFilterSection
           t={t}
           plan={plan}
@@ -184,15 +188,30 @@ function JobContentSection() {
             <JobCardsList
               AllJobsData={jobs}
               selectedCard={selectedCard}
-              setSelectedCard={setSelectedCard}
+              setSelectedCard={(id) => {
+                setSelectedCard(id);
+                if (isMobile) {
+                  setMobileModalOpen(true);
+                }
+              }}
               plan={plan}
             />
             {jobs.length > 0 && plan && (
-              <JobDetails
-                t={t}
-                job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
-                plan={plan}
-              />
+              <>
+                {!isMobile && (
+                  <JobDetails
+                    t={t}
+                    job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+                    plan={plan}
+                  />
+                )}
+                <JobDetailsModal
+                  job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+                  isOpen={mobileModalOpen && isMobile}
+                  onOpenChange={setMobileModalOpen}
+                  plan={plan}
+                />
+              </>
             )}
           </div>
         )}
@@ -272,7 +291,7 @@ export function JobCardsList({
   );
 }
 
-function JobDetails({
+export function JobDetails({
   job,
   t,
   plan,
@@ -285,7 +304,7 @@ function JobDetails({
   const tr = getTranslation(job.translations, locale, "en");
   if (!tr) return null;
   return (
-    <div className="lg:grid gap-8 w-full hidden lg:w-[calc(100%-420px)]">
+    <div className="lg:grid gap-8 w-full lg:w-[calc(100%-420px)]">
       <div className="sm:p-14 p-4 max-sm:py-8 border border-[#DADADA] rounded-2xl">
         <JobDetailsHeader
           t={t}

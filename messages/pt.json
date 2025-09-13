@@ -100,11 +100,13 @@
     },
     "filters": {
       "jobTypes": {
-        "full_time": "Tempo integral",
-        "part_time": "Meio período",
-        "contract": "Contrato",
-        "temporary": "Temporário",
-        "internship": "Estágio"
+        "gardening": "Jardinagem e trabalho ao ar livre",
+        "warehouse": "Armazém e logística",
+        "construction": "Construção e manutenção",
+        "cleaning": "Limpeza e serviços gerais",
+        "meatProduction": "Produção de carne e manufatura",
+        "restaurant": "Restaurantes e atendimento ao cliente",
+        "other": "Outro"
       },
       "salary": {
         "upto13": "Até $13/H",

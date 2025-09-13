@@ -82,11 +82,13 @@ function SubFilterSection({
   };
 
   const jobTypeOptions = [
-    t("filters.jobTypes.full_time"),
-    t("filters.jobTypes.part_time"),
-    t("filters.jobTypes.contract"),
-    t("filters.jobTypes.temporary"),
-    t("filters.jobTypes.internship"),
+    t("filters.jobTypes.gardening"),
+    t("filters.jobTypes.warehouse"),
+    t("filters.jobTypes.construction"),
+    t("filters.jobTypes.cleaning"),
+    t("filters.jobTypes.meatProduction"),
+    t("filters.jobTypes.restaurant"),
+    t("filters.jobTypes.other"),
   ];
 
   const allSalaryOptions = [
@@ -127,9 +129,9 @@ function SubFilterSection({
   };
 
   return (
-    <div className="mb-9">
+    <div className="mb-9 w-full md:w-fit">
       <div className="flex">
-        <div className="w-72 bg-gray-50 p-4 rounded-md border ">
+        <div className="md:w-72 w-full bg-gray-50 p-4 rounded-md border ">
           <h3 className="text-lg font-semibold mb-4">{t("filter.title")}</h3>
           <div className="flex flex-col gap-4">
             <DropdownFilter

@@ -126,7 +126,7 @@ const CountPage = () => {
       <PriceLeftSection />
       {/* Right Side - Form */}
       <div className="flex-1 bg-white md:mt-16 flex items-center justify-center p-8 flex-col">
-        <div className="w-full sm:max-w-md">
+        <div className="w-full sm:max-w-lg">
           <Suspense fallback={<>Loading...</>}>
             <CountdownTimer timeLeft={timeLeft} />
 

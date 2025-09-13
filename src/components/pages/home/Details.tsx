@@ -5,6 +5,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import DetailRow from "./components/DetailRow";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { JobDetailsModal } from "./JobDetailsModal";
 import { JobApplicationButtons } from "./components/JobApplicationButtons";
 import { JobCard } from "./components/JobCard";
 import FilterSection from "./Filters";
@@ -37,6 +39,8 @@ function JobContentSection() {
     transportationHousing: t("filter.transportationHousing"),
   });
   const [selectedCard, setSelectedCard] = useState<string>("");
+  const [mobileModalOpen, setMobileModalOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     const loc = searchParams.get("location");
@@ -189,15 +193,30 @@ function JobContentSection() {
             <JobCardsList
               AllJobsData={jobs}
               selectedCard={selectedCard}
-              setSelectedCard={setSelectedCard}
+              setSelectedCard={(id) => {
+                setSelectedCard(id);
+                if (isMobile) {
+                  setMobileModalOpen(true);
+                }
+              }}
               plan={plan}
             />
             {jobs.length > 0 && plan && (
-              <JobDetails
-                t={t}
-                job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
-                plan={plan}
-              />
+              <>
+                {!isMobile && (
+                  <JobDetails
+                    t={t}
+                    job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+                    plan={plan}
+                  />
+                )}
+                <JobDetailsModal
+                  job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+                  isOpen={mobileModalOpen && isMobile}
+                  onOpenChange={setMobileModalOpen}
+                  plan={plan}
+                />
+              </>
             )}
           </div>
         </div>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
-// import { roboto, inter, sfProDisplay } from "@/Fonts/Font";
 import ScrollBtn from "@/components/shared/ScrollBtn";
 import { Toaster } from "sonner";
 import "../../node_modules/flag-icons/css/flag-icons.min.css";

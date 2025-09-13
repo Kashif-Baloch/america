@@ -99,11 +99,13 @@
     },
     "filters": {
       "jobTypes": {
-        "full_time": "Full Time",
-        "part_time": "Part Time",
-        "contract": "Contract",
-        "temporary": "Temporary",
-        "internship": "Internship"
+        "gardening": "Gardening and Outdoor Work",
+        "warehouse": "Warehouse and Logistics",
+        "construction": "Construction and Maintenance",
+        "cleaning": "Cleaning and Janitorial",
+        "meatProduction": "Meat Production and Manufacturing",
+        "restaurant": "Restaurants and Customer Service",
+        "other": "Other"
       },
       "salary": {
         "upto13": "Up to $13/H",

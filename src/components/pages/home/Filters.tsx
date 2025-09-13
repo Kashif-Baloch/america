@@ -82,11 +82,13 @@ function FilterSection({
   };
 
   const jobTypeOptions = [
-    t("filters.jobTypes.full_time"),
-    t("filters.jobTypes.part_time"),
-    t("filters.jobTypes.contract"),
-    t("filters.jobTypes.temporary"),
-    t("filters.jobTypes.internship"),
+    t("filters.jobTypes.gardening"),
+    t("filters.jobTypes.warehouse"),
+    t("filters.jobTypes.construction"),
+    t("filters.jobTypes.cleaning"),
+    t("filters.jobTypes.meatProduction"),
+    t("filters.jobTypes.restaurant"),
+    t("filters.jobTypes.other"),
   ];
 
   const allSalaryOptions = [
