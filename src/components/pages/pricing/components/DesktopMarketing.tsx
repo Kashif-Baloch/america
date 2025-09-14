@@ -128,7 +128,9 @@ export default function DesktopMarketing({
             ) : (
               <Button
                 onClick={() => {
-                  window.location.href = `/sign-up`;
+                  window.location.href = `/sign-up?name=${plan.type}&price=${
+                    isQuarterly ? plan.quarterlyPrice : plan.monthlyPrice
+                  }&description=${plan.name} subscription`;
                 }}
                 className={`w-11/12 justify-center items-center rounded-full absolute bottom-6 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold cursor-pointer h-16 ${
                   plan.highlighted

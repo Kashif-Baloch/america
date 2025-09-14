@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useSession } from "@/lib/auth-client";
 import {
   Card,
   CardContent,
@@ -24,9 +22,6 @@ export default function MobileMarketing({
   isQuarterly,
   oldprice,
 }: MobileCardsProps) {
-  const router = useRouter();
-  const { data: session } = useSession();
-
   return (
     <div className="w-full min-xl:hidden relative flex items-center justify-center mt-10 overflow-x-auto scrollbar-hide">
       {plans.map((plan, index) => (
@@ -130,20 +125,9 @@ export default function MobileMarketing({
               ) : (
                 <Button
                   onClick={() => {
-                    if (!session) {
-                      router.push("/sign-up");
-                      return;
-                    }
-
-                    const params = new URLSearchParams({
-                      name: plan.type,
-                      price: isQuarterly
-                        ? plan.quarterlyPrice
-                        : plan.monthlyPrice,
-                      description: `${plan.name} subscription`,
-                    });
-
-                    window.location.href = `/api/payments/checkout?${params.toString()}`;
+                    window.location.href = `/sign-up?name=${plan.type}&price=${
+                      isQuarterly ? plan.quarterlyPrice : plan.monthlyPrice
+                    }&description=${plan.name} subscription`;
                   }}
                   className={`w-11/12 rounded-full absolute bottom-9 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold justify-center items-center cursor-pointer h-16 ${
                     plan.highlighted

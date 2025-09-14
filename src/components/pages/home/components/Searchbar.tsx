@@ -4,6 +4,7 @@ import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSession } from "@/lib/auth-client";
 
 const Searchbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,6 +12,7 @@ const Searchbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { data: session } = useSession();
 
   useEffect(() => {
     const q = searchParams.get("q") || "";
@@ -30,19 +32,18 @@ const Searchbar = () => {
 
   const handleSearch = () => {
     const params = new URLSearchParams();
-    
     // Only add 'q' parameter if there's a search query
     if (searchQuery.trim()) {
       params.set("q", searchQuery.trim());
     }
-    
+
     // Preserve other URL parameters
     searchParams?.forEach((value, key) => {
-      if (key !== 'q') {
+      if (key !== "q") {
         params.set(key, value);
       }
     });
-    
+
     router.push(`${pathname}?${params.toString()}`);
   };
 
@@ -69,7 +70,13 @@ const Searchbar = () => {
           />
         </div>
         <Button
-          onClick={handleSearch}
+          onClick={() => {
+            if (!session) {
+              router.push("/sign-up");
+            } else {
+              handleSearch();
+            }
+          }}
           className="bg-primary-blue md:tracking-[1.28px] blue-btn-shadow hover:bg-white hover:text-primary-blue border border-primary-blue text-white md:h-14 h-12 w-max sm:w-[193px] rounded-full font-semibold  cursor-pointer  xl:text-lg  px-5 sm:px-0"
         >
           {t("searchButton")}

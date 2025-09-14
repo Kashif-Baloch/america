@@ -184,7 +184,7 @@ function JobContentSection() {
             <h1 className="text-gray-600 font-bold">No Jobs Found</h1>
           </div>
         ) : (
-          <div className="flex gap-10 lg:flex-row flex-col w-full">
+          <div className="flex gap-10 xl:flex-row flex-col w-full">
             <JobCardsList
               AllJobsData={jobs}
               selectedCard={selectedCard}
@@ -258,7 +258,7 @@ export function JobCardsList({
       : true;
 
   return (
-    <div className="flex flex-col relative gap-y-7 sm:max-h-[780px] max-h-[800px]  overflow-y-auto  lg:w-[540px] w-full ">
+    <div className="flex flex-col relative gap-y-7 sm:max-h-[780px] max-h-[800px]  overflow-y-auto  xl:w-[540px] w-full ">
       {jobsToShow.map((job) => (
         <JobCard
           key={job.id}
@@ -304,7 +304,7 @@ export function JobDetails({
   const tr = getTranslation(job.translations, locale, "en");
   if (!tr) return null;
   return (
-    <div className="lg:grid gap-8 w-full lg:w-[calc(100%-420px)]">
+    <div className="lg:grid gap-8 w-full xl:w-[calc(100%-420px)]">
       <div className="sm:p-14 p-4 max-sm:py-8 border border-[#DADADA] rounded-2xl">
         <JobDetailsHeader
           t={t}

@@ -18,6 +18,16 @@ import { v4 as uuid } from "uuid";
 import { getSignedPDFUrl } from "@/lib/s3";
 import kyInstance from "@/lib/ky";
 
+interface PaymentParams {
+  name: string;
+  price: string;
+  description: string;
+}
+
+interface SignUpFormProps {
+  paymentParams?: PaymentParams;
+}
+
 interface SignUpFormValues {
   firstName: string;
   lastName: string;
@@ -28,7 +38,7 @@ interface SignUpFormValues {
   resume: File | null;
 }
 
-export default function SignUpForm() {
+export default function SignUpForm({ paymentParams }: SignUpFormProps) {
   const [showPassword, setShowPassword] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const t = useTranslations("signup");
@@ -173,7 +183,19 @@ export default function SignUpForm() {
                 toast.success(
                   "Registration complete. We've sent you a verification link. Please check your email."
                 );
-                router.replace(`/sign-up/success`);
+
+                // Redirect to payment if payment params exist
+                if (paymentParams) {
+                  const { name, price, description } = paymentParams;
+                  const params = new URLSearchParams({
+                    name,
+                    price,
+                    description,
+                  });
+                  window.location.href = `/api/payments/checkout?${params.toString()}`;
+                } else {
+                  router.replace(`/sign-up/success`);
+                }
               },
             }
           );
@@ -465,7 +487,10 @@ export default function SignUpForm() {
           </div>
 
           {/* Google Sign In */}
-          <SignInOauthButton text={t("button.google")} />
+          <SignInOauthButton
+            text={t("button.google")}
+            paymentParams={paymentParams}
+          />
 
           {/* Sign In Link */}
           <div className="text-center">

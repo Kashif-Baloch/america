@@ -1,13 +1,22 @@
+"use client";
 //Components
 import FormLeftSection from "@/components/shared/form-left-section";
 import SignUpForm from "@/Forms/SignUpForm";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 const SignUpPage = () => {
   const t = useTranslations("signup");
+  const searchParams = useSearchParams();
+  const name = searchParams.get("name") || "";
+  const price = searchParams.get("price") || "";
+  const description = searchParams.get("description") || "";
+
+  console.log(name, price, description);
+
   return (
     <div className="min-h-[117dvh] flex font-sf">
       {/* Left Side - Branding */}
@@ -43,10 +52,16 @@ const SignUpPage = () => {
               })}
             </h1>
 
-            <p className="text-xl text-gray-700"></p>
+            <p className="text-muted-foreground">{t("subtitle")}</p>
           </div>
 
-          <SignUpForm />
+          <SignUpForm
+            paymentParams={
+              name && price && description
+                ? { name, price, description }
+                : undefined
+            }
+          />
         </div>
       </div>
     </div>

@@ -158,9 +158,9 @@ export default function PricingTable() {
       {plans ? (
         <>
           {/* Desktop Cards */}
-          <DesktopCards plans={plans} isQuarterly={isQuarterly} />
+          <DesktopCards plans={plans.slice(0, 3)} isQuarterly={isQuarterly} />
           {/* Mobile Cards */}
-          <MobileCards plans={plans} isQuarterly={isQuarterly} />
+          <MobileCards plans={plans.slice(0, 3)} isQuarterly={isQuarterly} />
         </>
       ) : (
         <div className="flex items-center justify-center h-[50vh]">

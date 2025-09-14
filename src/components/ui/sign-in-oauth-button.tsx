@@ -7,16 +7,39 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { signIn } from "@/lib/auth-client";
 
-const SignInOauthButton = ({ text }: { text: string }) => {
+interface PaymentParams {
+  name: string;
+  price: string;
+  description: string;
+}
+
+interface SignInOauthButtonProps {
+  text: string;
+  paymentParams?: PaymentParams;
+}
+
+const SignInOauthButton = ({ text, paymentParams }: SignInOauthButtonProps) => {
   const [isPending, setIsPending] = useState<boolean>(false);
   const locale = useLocale();
   //Handle Google Sign In
   const handleGoogleSignIn = async () => {
     setIsPending(true);
     try {
+      // Build the callback URL with payment params if they exist
+      let callbackURL = `/${locale}/pricing`;
+
+      if (paymentParams) {
+        const params = new URLSearchParams({
+          name: paymentParams.name,
+          price: paymentParams.price,
+          description: paymentParams.description,
+        });
+        callbackURL = `/api/payments/checkout?${params.toString()}`;
+      }
+
       await signIn.social({
         provider: "google",
-        callbackURL: `/${locale}/pricing`,
+        callbackURL,
         errorCallbackURL: `/${locale}/login`,
         fetchOptions: {
           onError: (ctx) => {

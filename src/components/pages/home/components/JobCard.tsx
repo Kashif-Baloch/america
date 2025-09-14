@@ -106,7 +106,7 @@ export function JobCard({
       onClick={() => setSelectedCard(job.id)}
       className={`border ${
         selectedCard === job.id ? "border-primary-blue" : "border-[#DADADA]"
-      } rounded-2xl lg:h-[342px] lg:w-[448px] cursor-pointer w-full`}
+      } rounded-2xl lg:h-[342px] xl:w-[448px] cursor-pointer w-full`}
     >
       <CardContent className="p-4 relative">
         <div className="flex items-start justify-between mb-3">
