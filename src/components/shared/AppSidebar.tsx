@@ -12,6 +12,7 @@ import {
   Clock,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useSidebar } from "@/components/ui/sidebar";
 import {
   Sidebar,
   SidebarContent,
@@ -34,6 +35,7 @@ function stripLocale(pathname: string) {
 }
 
 export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
+  const { setOpenMobile } = useSidebar();
   const t = useTranslations("dashboardnavigation");
   const navMain = [
     // { title: t("dashboard"), url: "/admin/dashboard", icon: Home },
@@ -100,6 +102,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuButton className="h-10">
                     <Link
                       href={item.url}
+                      onClick={() => setOpenMobile(false)}
                       className={`flex items-center font-sf gap-3 px-3 py-3 w-full
                         text-lg tracking-wide capitalize rounded-lg transition-colors
                         ${

@@ -24,7 +24,7 @@ export default function DetailsSub() {
   }
 
   return (
-    <div className="bg-white  w-[98%] mb-20 mx-auto mt-28 md:mt-14 font-sf">
+    <div className="bg-white max-w-[1640px] w-full  mb-20 mx-auto mt-28 md:mt-14 font-sf">
       <JobContentSection />
     </div>
   );
