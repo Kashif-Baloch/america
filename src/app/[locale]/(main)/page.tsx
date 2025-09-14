@@ -13,21 +13,24 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const { data: sub, isLoading: isSubscriptionLoading } = useSubscriptionPlan();
+  const { data: sub } = useSubscriptionPlan();
 
   useEffect(() => {
-    if (!isSubscriptionLoading && sub) {
+    setIsLoading(true);
+    if (sub) {
       if (sub.plan !== "NONE" && sub.plan !== "FREE") {
         router.push("/jobs");
       } else {
         setIsLoading(false);
       }
+    } else {
+      setIsLoading(false);
     }
-  }, [sub, isSubscriptionLoading, router]);
+  }, [sub, router, setIsLoading]);
 
-  if (isLoading || isSubscriptionLoading) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <Loader2 size={24} className="animate-spin text-primary" />
