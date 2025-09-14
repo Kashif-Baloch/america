@@ -160,7 +160,6 @@ function JobContentSection() {
           filters={filters}
           setFilters={setFilters}
         />
-        {quotaReached ? <Banner /> : <div>Loading...</div>}
       </>
     );
   }
@@ -177,7 +176,7 @@ function JobContentSection() {
         />
         {isLoading ? (
           <div className="w-full min-h-[500px] flex items-center justify-center">
-            <Loader2 className="animate-spin" />
+            <Loader2 className="animate-spin" size={50} />
           </div>
         ) : jobs.length === 0 ? (
           <div className="flex items-center justify-center h-[200px] w-full">
