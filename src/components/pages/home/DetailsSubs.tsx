@@ -24,7 +24,7 @@ export default function DetailsSub() {
   }
 
   return (
-    <div className="bg-white max-w-[1640px] w-full  mb-20 mx-auto mt-28 md:mt-14 font-sf">
+    <div className="bg-white max-w-[1640px] w-full mb-20 mx-auto mt-28 md:mt-14 font-sf">
       <JobContentSection />
     </div>
   );
@@ -125,97 +125,107 @@ function JobContentSection() {
 
   const {
     data: jobs,
-    isLoading,
+    isLoading: isJobsLoading,
     isError,
     error,
   } = usePublicJobsQuery(apiFilters);
 
-  const quotaReached =
-    error &&
-    typeof error === "object" &&
-    "message" in error &&
-    typeof error.message === "string" &&
-    error.message.toLowerCase().includes("monthly search limit");
-
-  const Banner = () => (
-    <div className="w-full mb-4 p-4 rounded-lg border border-yellow-300 bg-yellow-50 text-yellow-900">
-      <div className="flex items-center justify-between gap-4">
-        <p className="text-sm sm:text-base">{t("quota.limitReached")}</p>
-        <Link
-          href="/pricing"
-          className="shrink-0 inline-flex items-center justify-center rounded-md bg-primary-blue text-white px-3 py-2 text-sm font-semibold hover:opacity-90"
-        >
-          {t("quota.upgradeCta")}
-        </Link>
-      </div>
-    </div>
-  );
-
-  if ((!isLoading && isError) || !jobs) {
+  const quotaReached = useMemo(() => {
     return (
-      <>
-        <SubFilterSection
-          t={t}
-          plan={plan}
-          filters={filters}
-          setFilters={setFilters}
-        />
-      </>
+      error &&
+      typeof error === "object" &&
+      "message" in error &&
+      typeof error.message === "string" &&
+      error.message.toLowerCase().includes("monthly search limit")
+    );
+  }, [error]);
+
+  // Show loading state while checking subscription or loading jobs
+  if (isJobsLoading || !jobs) {
+    return (
+      <div className="w-full min-h-[500px] flex items-center justify-center">
+        <Loader2 size={24} className="animate-spin " />
+      </div>
+    );
+  }
+
+  // Handle error state
+  if (isError || !jobs) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh] px-4">
+        <div className="text-center">
+          <p className="text-red-500 mb-4">
+            {quotaReached
+              ? t("quota.limitReached") ||
+                "You have reached your monthly search limit."
+              : t("errors.loadingJobs") ||
+                "Failed to load jobs. Please try again later."}
+          </p>
+          {quotaReached ? (
+            <Link
+              href="/pricing"
+              className="inline-flex items-center justify-center rounded-md bg-primary-blue text-white px-4 py-2 text-sm font-semibold hover:opacity-90"
+            >
+              {t("quota.upgradeCta") || "Upgrade Now"}
+            </Link>
+          ) : (
+            <button
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 transition-colors"
+            >
+              {t("common.retry") || "Retry"}
+            </button>
+          )}
+        </div>
+      </div>
     );
   }
 
   return (
-    <>
-      {quotaReached && <Banner />}
-      <div className="w-full flex gap-10 flex-wrap md:flex-nowrap">
-        <SubFilterSection
-          t={t}
-          plan={plan}
-          filters={filters}
-          setFilters={setFilters}
-        />
-        {isLoading ? (
-          <div className="w-full min-h-[500px] flex items-center justify-center">
-            <Loader2 className="animate-spin" size={50} />
-          </div>
-        ) : jobs.length === 0 ? (
-          <div className="flex items-center justify-center h-[200px] w-full">
-            <h1 className="text-gray-600 font-bold">No Jobs Found</h1>
-          </div>
-        ) : (
-          <div className="flex gap-10 xl:flex-row flex-col w-full">
-            <JobCardsList
-              AllJobsData={jobs}
-              selectedCard={selectedCard}
-              setSelectedCard={(id) => {
-                setSelectedCard(id);
-                if (isMobile) {
-                  setMobileModalOpen(true);
-                }
-              }}
-              plan={plan}
-            />
-            {jobs.length > 0 && plan && (
-              <>
-                {!isMobile && (
-                  <JobDetails
-                    t={t}
-                    job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
-                    plan={plan}
-                  />
-                )}
-                <JobDetailsModal
+    <div className="w-full flex gap-10 flex-wrap md:flex-nowrap">
+      <SubFilterSection
+        t={t}
+        plan={plan}
+        filters={filters}
+        setFilters={setFilters}
+      />
+      {jobs.length === 0 ? (
+        <div className="flex items-center justify-center h-[200px] w-full">
+          <h1 className="text-gray-600 font-bold">No Jobs Found</h1>
+        </div>
+      ) : (
+        <div className="flex gap-10 xl:flex-row flex-col w-full">
+          <JobCardsList
+            AllJobsData={jobs}
+            selectedCard={selectedCard}
+            setSelectedCard={(id) => {
+              setSelectedCard(id);
+              if (isMobile) {
+                setMobileModalOpen(true);
+              }
+            }}
+            plan={plan}
+          />
+          {jobs.length > 0 && plan && (
+            <>
+              {!isMobile && (
+                <JobDetails
+                  t={t}
                   job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
-                  isOpen={mobileModalOpen && isMobile}
-                  onOpenChange={setMobileModalOpen}
                   plan={plan}
                 />
-              </>
-            )}
-          </div>
-        )}
-      </div>
-    </>
+              )}
+              <JobDetailsModal
+                job={jobs.find((job) => job.id === selectedCard) || jobs[0]}
+                isOpen={mobileModalOpen && isMobile}
+                onOpenChange={setMobileModalOpen}
+                plan={plan}
+              />
+            </>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 

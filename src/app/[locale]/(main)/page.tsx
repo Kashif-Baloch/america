@@ -18,7 +18,6 @@ export default function Home() {
   const { data: sub } = useSubscriptionPlan();
 
   useEffect(() => {
-    setIsLoading(true);
     if (sub) {
       if (sub.plan !== "NONE" && sub.plan !== "FREE") {
         router.push("/jobs");
@@ -26,12 +25,15 @@ export default function Home() {
         setIsLoading(false);
       }
     } else {
-      setIsLoading(false);
-    }
-  }, [sub, router, setIsLoading]);
-  //atest
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
 
-  if (isLoading) {
+      return () => clearTimeout(timer);
+    }
+  }, [sub, router]);
+
+  if (isLoading || !sub) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <Loader2 size={24} className="animate-spin text-primary" />
