@@ -5,14 +5,12 @@ async function testPdfGeneration() {
   try {
     console.log("Testing PDF generation for PRO plan...");
     const proPdfPath = await generateWelcomePdf(
-      "test@example.com",
       SubscriptionPlan.PRO
     );
     console.log(`PRO PDF generated at: ${proPdfPath}`);
 
     console.log("\nTesting PDF generation for PRO+ plan...");
     const proPlusPdfPath = await generateWelcomePdf(
-      "test@example.com",
       SubscriptionPlan.PRO_PLUS
     );
     console.log(`PRO+ PDF generated at: ${proPlusPdfPath}`);

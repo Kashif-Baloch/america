@@ -1,7 +1,7 @@
 import { SubscriptionPlan } from '@prisma/client';
-import { generateWelcomePdf } from './pdf-generator';
+// import { generateWelcomePdf } from './pdf-generator';
 import transporter from './nodemailer';
-import path from 'path';
+// import path from 'path';
 
 interface SendWelcomeEmailParams {
   to: string;
@@ -16,13 +16,13 @@ export async function sendSubscriptionWelcomeEmail({
 }: SendWelcomeEmailParams) {
   try {
     // Generate the welcome PDF
-    const pdfPath = await generateWelcomePdf(to, plan);
-    const absolutePdfPath = path.join(process.cwd(), 'public', pdfPath);
+    // const pdfPath = await generateWelcomePdf(to, plan);
+    // const absolutePdfPath = path.join(process.cwd(), 'public', pdfPath);
 
     // Determine email subject and template based on plan
     const isProPlus = plan === 'PRO_PLUS';
-    const subject = isProPlus 
-      ? '🎉 Welcome to PRO+ - Your Premium Membership is Active!' 
+    const subject = isProPlus
+      ? '🎉 Welcome to PRO+ - Your Premium Membership is Active!'
       : '🎉 Welcome to PRO - Your Membership is Active!';
 
     // Send the email with PDF attachment
@@ -31,13 +31,13 @@ export async function sendSubscriptionWelcomeEmail({
       to,
       subject,
       html: getEmailTemplate(userName, plan),
-      attachments: [
-        {
-          filename: isProPlus ? 'PRO-Plus-Welcome-Guide.pdf' : 'PRO-Welcome-Guide.pdf',
-          path: absolutePdfPath,
-          contentType: 'application/pdf',
-        },
-      ],
+      // attachments: [
+      //   {
+      //     filename: isProPlus ? 'PRO-Plus-Welcome-Guide.pdf' : 'PRO-Welcome-Guide.pdf',
+      //     path: absolutePdfPath,
+      //     contentType: 'application/pdf',
+      //   },
+      // ],
     });
 
     console.log(`Welcome email sent to ${to} with ${plan} guide`);
@@ -50,7 +50,7 @@ export async function sendSubscriptionWelcomeEmail({
 
 function getEmailTemplate(userName: string, plan: SubscriptionPlan): string {
   const isProPlus = plan === 'PRO_PLUS';
-  
+
   return `
     <!DOCTYPE html>
     <html>
