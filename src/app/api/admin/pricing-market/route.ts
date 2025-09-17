@@ -18,7 +18,8 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { isActive, countdownTimer, oldPrice } = await request.json();
+    const { isActive, countdownTimer, oldPrice, newPrice } =
+      await request.json();
 
     // Deactivate all other active timers
     if (isActive) {
@@ -33,6 +34,7 @@ export async function POST(request: Request) {
         isActive,
         countdownTimer: new Date(countdownTimer),
         oldPrice,
+        newPrice,
       },
     });
 

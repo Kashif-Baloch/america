@@ -21,6 +21,7 @@ type PricingMarket = {
   isActive: boolean;
   countdownTimer: string;
   oldPrice: string;
+  newPrice?: string;
 };
 
 export default function PricingTimerPage() {
@@ -41,6 +42,7 @@ export default function PricingTimerPage() {
         isActive: false,
         countdownTimer: new Date().toISOString().slice(0, 16),
         oldPrice: "",
+        newPrice: "",
       },
     });
 
@@ -185,6 +187,15 @@ export default function PricingTimerPage() {
               </div>
 
               <div className="space-y-2">
+                <Label htmlFor="newPrice">{t("newPrice")}</Label>
+                <Input
+                  id="newPrice"
+                  placeholder={t("newPricePlaceholder")}
+                  {...register("newPrice")}
+                />
+              </div>
+
+              <div className="space-y-2">
                 <Label htmlFor="countdownTimer">{t("countdownEndTime")}</Label>
                 <Input
                   id="countdownTimer"
@@ -258,13 +269,18 @@ export default function PricingTimerPage() {
                     {t("timerInactive")}
                   </p>
                 )}
-                {watch("oldPrice") && (
-                  <div className="mt-4">
+                <div className="mt-4 space-y-2">
+                  {watch("oldPrice") && (
                     <p className="text-muted-foreground line-through">
                       {watch("oldPrice")}
                     </p>
-                  </div>
-                )}
+                  )}
+                  {watch("newPrice") && (
+                    <p className="text-2xl font-bold text-primary">
+                      {watch("newPrice")}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </CardContent>

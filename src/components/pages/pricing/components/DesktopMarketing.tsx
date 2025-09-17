@@ -14,14 +14,14 @@ import { useLocale } from "next-intl";
 //TS Interface
 interface DesktopCardsProps {
   plans: PricingPlan[];
-  isQuarterly: boolean;
   oldprice: string;
+  newprice: string;
 }
 
 export default function DesktopMarketing({
   plans,
-  isQuarterly,
   oldprice,
+  newprice,
 }: DesktopCardsProps) {
   const locale = useLocale();
 
@@ -69,7 +69,7 @@ export default function DesktopMarketing({
                       plan.highlighted ? "text-white" : "text-black"
                     }`}
                   >
-                    {isQuarterly ? plan.quarterlyPrice : plan.monthlyPrice}
+                    {newprice}
                     <span className="text-lg font-normal">/month</span>
                   </h3>
                   <div
@@ -77,9 +77,7 @@ export default function DesktopMarketing({
                       plan.highlighted ? "text-white/90" : "text-[#222222]"
                     } mt-1`}
                   >
-                    {isQuarterly
-                      ? plan.quarterlyUsdPrice
-                      : plan.monthlyUsdPrice}
+                    {newprice}
                   </div>
                 </>
               )}
@@ -128,9 +126,7 @@ export default function DesktopMarketing({
             ) : (
               <Button
                 onClick={() => {
-                  window.location.href = `/sign-up?name=${plan.type}&price=${
-                    isQuarterly ? plan.quarterlyPrice : plan.monthlyPrice
-                  }&description=${plan.name} subscription`;
+                  window.location.href = `/sign-up?name=${plan.type}&price=${newprice}&description=${plan.name} subscription`;
                 }}
                 className={`w-11/12 justify-center items-center rounded-full absolute bottom-6 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold cursor-pointer h-16 ${
                   plan.highlighted

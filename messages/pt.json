@@ -108,6 +108,7 @@
         "restaurant": "Restaurantes e atendimento ao cliente",
         "other": "Outro"
       },
+
       "salary": {
         "upto13": "Até $13/H",
         "upto26": "Até $26/H",
@@ -998,6 +999,8 @@
   "dashboardnavigation": {
     "dashboard": "Painel",
     "consultations": "Consultas",
+    "newPrice": "Preço Novo",
+    "newPricePlaceholder": "ex: R$ 99,99",
     "pricingTimer": "Temporizador de Preços",
     "pricingTimerTitle": "Gerenciamento do Temporizador de Preços",
     "pricingTimerDescription": "Configure o temporizador de contagem regressiva para ofertas especiais de preços",

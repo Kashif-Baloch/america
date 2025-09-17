@@ -129,7 +129,8 @@ model Verification {
   @@map("verifications")
 }
 
-// Seperate Models from authentication 
+
+
 
 model Job {
   id           String           @id @default(uuid())
@@ -260,6 +261,7 @@ model PricingMarket {
   isActive       Boolean  @default(false)
   countdownTimer DateTime @default(now())
   oldPrice       String
+  newPrice       String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 

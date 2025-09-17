@@ -16,6 +16,7 @@ type PricingMarket = {
   id?: string;
   isActive: boolean;
   countdownTimer: string;
+  newPrice: string;
   oldPrice: string;
 };
 
@@ -89,7 +90,6 @@ const CountPage = () => {
   const t = useTranslations("dashboardnavigation");
 
   const locale = useLocale();
-  const isQuarterly = false;
   const [plans, setPlans] = useState<PricingPlan[] | null>(null);
 
   useEffect(() => {
@@ -136,13 +136,13 @@ const CountPage = () => {
                 <DesktopMarketing
                   oldprice={pricingMarket.oldPrice}
                   plans={plans.slice(3, 4)}
-                  isQuarterly={isQuarterly}
+                  newprice={pricingMarket.newPrice}
                 />
                 {/* Mobile Cards */}
                 <MobileMarketing
                   oldprice={pricingMarket.oldPrice}
                   plans={plans.slice(3, 4)}
-                  isQuarterly={isQuarterly}
+                  newprice={pricingMarket.newPrice}
                 />
               </>
             ) : (

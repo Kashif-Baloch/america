@@ -974,6 +974,8 @@
   "dashboardnavigation": {
     "dashboard": "Tablero",
     "users": "Usuarios",
+    "newPrice": "Precio Nuevo",
+    "newPricePlaceholder": "ej. $99.99",
     "consultations": "Consultas",
     "pricingTimer": "Temporizador de Precios",
     "pricingTimerTitle": "Gestión del Temporizador de Precios",
