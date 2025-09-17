@@ -132,14 +132,18 @@ function SubFilterSection({
     <div className="mb-9 w-full md:w-fit">
       <div className="flex">
         <div className="md:w-72 w-full bg-gray-50 p-4 rounded-md border ">
-          <h3 className="text-lg font-semibold mb-4">{t("filter.title")}</h3>
-          <div className="flex flex-col gap-4">
+          <h3 className="text-lg font-semibold mb-4 max-md:text-center">
+            {t("filter.title")}
+          </h3>
+          <div className="flex flex-col gap-4 max-md:flex-wrap max-md:flex-row max-md:justify-center">
+            {/* <div className="flex flex-wrap gap-3 items-center justify-center"> */}
             <DropdownFilter
               label={t("filter.location")}
               options={USAStates}
               value={filters.location}
               onChange={(value) => handleSingleFilterChange("location", value)}
-              className="w-full"
+              className="md:w-full max-md:w-max"
+              // className="w-full"
             />
 
             <MultiDropdownFilter
@@ -151,6 +155,7 @@ function SubFilterSection({
                 t("filter.jobType"),
                 jobTypeOptions
               )}
+              className="md:min-w-full max-md:w-max"
               disabled={disabled.jobType}
             />
 
@@ -159,7 +164,8 @@ function SubFilterSection({
               options={salaryOptions}
               value={filters.salary}
               onChange={(value) => handleSingleFilterChange("salary", value)}
-              className="w-full"
+              className="md:min-w-full max-md:w-max"
+              // className="w-full"
               disabled={disabled.salary}
             />
 
@@ -170,7 +176,8 @@ function SubFilterSection({
               onChange={(value) =>
                 handleSingleFilterChange("contactOutside", value)
               }
-              className="w-full"
+              className="max-md:w-max w-full"
+              // className="w-full"
               disabled={disabled.contactOutside}
             />
 
@@ -183,6 +190,7 @@ function SubFilterSection({
                 t("filter.season"),
                 seasonOptions.map((opt) => opt.label)
               )}
+              className="md:min-w-full max-md:w-max"
               disabled={disabled.season}
             />
 
@@ -197,11 +205,14 @@ function SubFilterSection({
               onChange={(value) =>
                 handleSingleFilterChange("transportationHousing", value)
               }
-              className="w-full"
+              className="md:min-w-44 max-md:w-max max-md:col-span-2"
+              // className="w-full"
               disabled={disabled.transportationHousing}
             />
 
             {/* Clear filters button */}
+          </div>
+          <div className="mt-4 flex justify-center">
             <button
               type="button"
               onClick={handleClearFilters}
@@ -282,12 +293,14 @@ function MultiDropdownFilter({
   onChange,
   displayValue,
   disabled = false,
+  className,
 }: {
   options: string[];
   selectedValues: string[];
   onChange: (value: string) => void;
   displayValue: string;
   disabled?: boolean;
+  className?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -297,7 +310,7 @@ function MultiDropdownFilter({
   });
 
   return (
-    <div className="relative w-full" ref={dropdownRef}>
+    <div className={`relative w-full ${className}`} ref={dropdownRef}>
       <button
         className={`flex items-center w-full ${
           disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
@@ -411,12 +424,14 @@ function MultiDropdownFilterWithBadges({
   onChange,
   displayValue,
   disabled = false,
+  className,
 }: {
   options: FilterOptions[];
   selectedValues: string[];
   onChange: (value: string) => void;
   displayValue: string;
   disabled?: boolean;
+  className?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -426,7 +441,10 @@ function MultiDropdownFilterWithBadges({
   });
 
   return (
-    <div className="relative md:min-w-[135px] max-md:w-max" ref={dropdownRef}>
+    <div
+      className={`relative md:min-w-[135px] max-md:w-max ${className}`}
+      ref={dropdownRef}
+    >
       <button
         className={`flex w-full items-center ${
           disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"

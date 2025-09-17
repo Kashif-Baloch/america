@@ -2,8 +2,8 @@
 
 import { SubscriptionPlan } from "@prisma/client";
 import transporter from "@/lib/nodemailer";
-import { generateWelcomePdf } from "@/lib/pdf-generator";
-import path from "path";
+// import { generateWelcomePdf } from "@/lib/pdf-generator";
+// import path from "path";
 
 type EmailAttachment = {
   filename: string;
@@ -50,9 +50,9 @@ export async function sendSubscriptionWelcomeEmail(params: {
 
   try {
     // Generate the welcome PDF
-    const pdfPath = await generateWelcomePdf(plan);
+    // const pdfPath = await generateWelcomePdf(plan);
 
-    const absolutePdfPath = path.join(process.cwd(), "public", pdfPath);
+    // const absolutePdfPath = path.join(process.cwd(), "public", pdfPath);
 
     const subject = isProPlus
       ? "🎉 Welcome to PRO+ - Your Premium Membership is Active!"
@@ -64,15 +64,15 @@ export async function sendSubscriptionWelcomeEmail(params: {
       to,
       subject,
       html,
-      attachments: [
-        {
-          filename: isProPlus
-            ? "PRO-Plus-Welcome-Guide.pdf"
-            : "PRO-Welcome-Guide.pdf",
-          path: absolutePdfPath,
-          contentType: "application/pdf",
-        },
-      ],
+      // attachments: [
+      //   {
+      //     filename: isProPlus
+      //       ? "PRO-Plus-Welcome-Guide.pdf"
+      //       : "PRO-Welcome-Guide.pdf",
+      //     path: absolutePdfPath,
+      //     contentType: "application/pdf",
+      //   },
+      // ],
     });
 
     return { success: true };
@@ -118,9 +118,8 @@ function getSubscriptionEmailTemplate(
         
         <p>Your subscription includes:</p>
         <ul>
-          <li>${
-            isProPlus ? "Unlimited job searches" : "Limited job searches"
-          }</li>
+          <li>${isProPlus ? "Unlimited job searches" : "Limited job searches"
+    }</li>
           <li>Access to detailed job information</li>
           ${isProPlus ? "<li>Free 30-minute consultation session</li>" : ""}
           <li>Priority customer support</li>
@@ -129,9 +128,8 @@ function getSubscriptionEmailTemplate(
         <p>We've attached a welcome guide with more information about your subscription benefits.</p>
         
         <div style="text-align: center;">
-          <a href="${
-            process.env.NEXT_PUBLIC_APP_URL
-          }/settings" class="button">Go to Dashboard</a>
+          <a href="${process.env.NEXT_PUBLIC_APP_URL
+    }/settings" class="button">Go to Dashboard</a>
         </div>
       </div>
       
