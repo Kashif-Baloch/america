@@ -32,7 +32,7 @@ export default function DesktopCards({
         <Card
           key={plan.name}
           className={`relative ${
-            locale === "en" ? "min-h-[650px]" : "min-h-[780px]"
+            locale === "en" ? "min-h-[750px]" : "min-h-[880px]"
           }  rounded-[39px] ${
             plan.highlighted
               ? "bg-gradient-to-r from-[#CB9442] to-[#FEDC6E] text-white "
@@ -82,7 +82,7 @@ export default function DesktopCards({
 
           <CardContent className="pt-0 flex flex-col justify-between h-[90%]">
             <CardDescription
-              className={`text-left text-lg mb-4 ${
+              className={`text-left h-[700px] text-lg mb-4 ${
                 plan.highlighted ? "text-white/90" : "text-light-black"
               }`}
             >

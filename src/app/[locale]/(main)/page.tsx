@@ -9,31 +9,25 @@ import Testimonials from "@/components/pages/home/Testimonials";
 import FloatingBox from "@/components/shared/FloatingBox";
 import GiftProSubscription from "@/components/shared/GiftProSubscription";
 import { useSubscriptionPlan } from "@/lib/subscription-queries";
-import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
   const { data: sub } = useSubscriptionPlan();
 
+  console.log(sub);
+
   useEffect(() => {
-    if (sub) {
-      if (sub.plan !== "NONE" && sub.plan !== "FREE") {
-        router.push("/jobs");
-      } else {
-        setIsLoading(false);
-      }
+    if (!sub) {
+      setIsLoading(false);
     } else {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-
-      return () => clearTimeout(timer);
+      if (sub.plan !== "NONE" && sub.plan !== "FREE") {
+        window.location.href = "/jobs";
+      }
     }
-  }, [sub, router]);
+  }, [sub]);
 
-  if (isLoading || !sub) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <Loader2 size={24} className="animate-spin text-primary" />

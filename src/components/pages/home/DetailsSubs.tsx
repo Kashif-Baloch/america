@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { JobDetailsModal } from "./JobDetailsModal";
-import { redirect, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import DetailRow from "./components/DetailRow";
 import { JobApplicationButtons } from "./components/JobApplicationButtons";
 import { JobCard } from "./components/JobCard";
@@ -19,9 +19,11 @@ import { Filters } from "./Filters";
 
 export default function DetailsSub() {
   const { data: sub } = useSubscriptionPlan();
-  if (sub?.plan === "NONE" || sub?.plan === "FREE") {
-    redirect(`/`);
-  }
+  useEffect(() => {
+    if (sub?.plan === "NONE" || sub?.plan === "FREE") {
+      window.location.href = "/";
+    }
+  }, [sub]);
 
   return (
     <div className="bg-white max-w-[1640px] w-11/12 mb-20 mx-auto mt-28 md:mt-14 font-sf">

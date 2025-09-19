@@ -54,7 +54,7 @@ export default function Navbar() {
     setIsUserDropdownOpen2(false)
   );
 
-  const [showConsultation, setShowConsultation] = useState(false);
+  // const [showConsultation, setShowConsultation] = useState(false);
 
   const handleLogout = async () => {
     await LogoutUser({
@@ -62,28 +62,28 @@ export default function Navbar() {
         toast.success(
           tQ("successMessage", { action: tQ(`actions.logOut.label`) })
         );
-        setShowConsultation(false);
+        // setShowConsultation(false);
         window.location.href = "/";
       },
     });
   };
   const { data: sub } = useSubscriptionPlan();
 
-  useEffect(() => {
-    const checkSubscription = async () => {
-      if (session?.user?.id) {
-        try {
-          const res = await fetch("/api/check-pro-plus");
-          const data = await res.json();
-          setShowConsultation(data.hasProPlus);
-        } catch (error) {
-          console.error("Error checking subscription:", error);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const checkSubscription = async () => {
+  //     if (session?.user?.id) {
+  //       try {
+  //         const res = await fetch("/api/check-pro-plus");
+  //         const data = await res.json();
+  //         setShowConsultation(data.hasProPlus);
+  //       } catch (error) {
+  //         console.error("Error checking subscription:", error);
+  //       }
+  //     }
+  //   };
 
-    checkSubscription();
-  }, [session]);
+  //   checkSubscription();
+  // }, [session]);
 
   const navItems = [
     {
@@ -93,9 +93,9 @@ export default function Navbar() {
 
     ...(session?.user ? [{ name: t("favorites"), href: `/favorites` }] : []),
 
-    ...(showConsultation
-      ? [{ name: "Consultation", href: `/consultation` }]
-      : []),
+    // ...(showConsultation
+    //   ? [{ name: "Consultation", href: `/consultation` }]
+    //   : []),
 
     { name: t("pricing"), href: "/pricing" },
     { name: t("about"), href: "/about" },

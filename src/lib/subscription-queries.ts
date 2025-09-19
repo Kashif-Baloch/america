@@ -2,7 +2,11 @@
 
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import ky from "./ky";
-import { ApiResponse, SubscriptionMe, SubscriptionWithConsultations } from "./types";
+import {
+  ApiResponse,
+  SubscriptionMe,
+  SubscriptionWithConsultations,
+} from "./types";
 
 export const subscriptionKeys = {
   me: () => ["subscription", "me"] as const,
@@ -10,15 +14,19 @@ export const subscriptionKeys = {
 };
 
 export async function fetchSubscriptionMe(): Promise<SubscriptionMe> {
-  const res = await ky.get("/api/subscription/me").json<ApiResponse<SubscriptionMe>>();
-  if (!res.success || !res.data) throw new Error(res.message || "Failed to fetch subscription");
+  const res = await ky
+    .get("/api/subscription/me")
+    .json<ApiResponse<SubscriptionMe>>();
+  if (!res.success || !res.data)
+    throw new Error(res.message || "Failed to fetch subscription");
   return res.data;
 }
 
-
-
 export function useSubscriptionPlan(
-  options?: Omit<UseQueryOptions<SubscriptionMe, Error, SubscriptionMe>, "queryKey" | "queryFn">
+  options?: Omit<
+    UseQueryOptions<SubscriptionMe, Error, SubscriptionMe>,
+    "queryKey" | "queryFn"
+  >
 ) {
   return useQuery({
     queryKey: subscriptionKeys.me(),
@@ -43,7 +51,11 @@ export async function fetchSubscriptionMeDetails(): Promise<SubscriptionWithCons
 
 export function useSubscriptionMeDetails(
   options?: Omit<
-    UseQueryOptions<SubscriptionWithConsultations, Error, SubscriptionWithConsultations>,
+    UseQueryOptions<
+      SubscriptionWithConsultations,
+      Error,
+      SubscriptionWithConsultations
+    >,
     "queryKey" | "queryFn"
   >
 ) {
