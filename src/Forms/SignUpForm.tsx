@@ -185,9 +185,11 @@ export default function SignUpForm({ paymentParams }: SignUpFormProps) {
                 );
 
                 // Get callbackUrl from URL params
-                const searchParams = new URLSearchParams(window.location.search);
-                const callbackUrl = searchParams.get('callbackUrl');
-                
+                const searchParams = new URLSearchParams(
+                  window.location.search
+                );
+                const callbackUrl = searchParams.get("callbackUrl");
+
                 // Redirect to payment if payment params exist
                 if (paymentParams) {
                   const { name, price, description } = paymentParams;
@@ -199,10 +201,10 @@ export default function SignUpForm({ paymentParams }: SignUpFormProps) {
                   window.location.href = `/api/payments/checkout?${params.toString()}`;
                 } else {
                   // Redirect based on callbackUrl
-                  if (callbackUrl === 'pricing') {
-                    router.replace('/pricing');
+                  if (callbackUrl === "pricing") {
+                    router.replace("/pricing");
                   } else {
-                    router.replace('/');
+                    router.replace("/");
                   }
                 }
               },
