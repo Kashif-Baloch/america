@@ -51,6 +51,8 @@ export default function LoginForm() {
 
   //Handle Form Submit
   const handleSubmit = (values: LoginFormValues) => {
+    const callbackUrl = searchParams.get("callbackUrl");
+    
     startTransition(async () => {
       await signIn.email(
         {
@@ -77,7 +79,8 @@ export default function LoginForm() {
           },
           onSuccess: () => {
             toast.success("Login successful. Good to have you back.");
-            router.replace(`/pricing`);
+            const redirectPath = callbackUrl === 'pricing' ? '/pricing' : '/';
+            router.replace(redirectPath);
           },
         }
       );

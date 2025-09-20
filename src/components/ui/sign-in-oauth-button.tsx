@@ -25,8 +25,12 @@ const SignInOauthButton = ({ text, paymentParams }: SignInOauthButtonProps) => {
   const handleGoogleSignIn = async () => {
     setIsPending(true);
     try {
+      // Get callbackUrl from URL params
+      const searchParams = new URLSearchParams(window.location.search);
+      const callbackUrl = searchParams.get('callbackUrl');
+      
       // Build the callback URL with payment params if they exist
-      let callbackURL = `/${locale}/pricing`;
+      let callbackURL = `/${locale}${callbackUrl === 'pricing' ? '/pricing' : '/'}`;
 
       if (paymentParams) {
         const params = new URLSearchParams({
