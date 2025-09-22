@@ -24,10 +24,7 @@ const Hero = () => {
       </h1>
 
       <div className="mb-12 md:max-w-[478px] sm:max-w-[400px] mx-auto">
-        <p className="  w-full mx-auto leading-relaxed">
-          {t("description")}
-
-        </p>
+        <p className="  w-full mx-auto leading-relaxed">{t("description")}</p>
       </div>
       <div className="relative overflow-hidden mt-20">
         <div className="absolute  w-[1.5px] bg-[linear-gradient(to_bottom,transparent_0%,transparent_50%,#153cf5_50%,#153cf5_100%)] bg-[length:2px_15px] sm:left-8 left-7 -top-2 bottom-0 sm:h-[98%] h-[95%] " />

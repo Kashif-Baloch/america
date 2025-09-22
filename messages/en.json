@@ -1,18 +1,20 @@
 {
+  "tooltip": "These filters reflect data available from companies. They do not guarantee hiring, benefits, or visa approval. For more information, please review the terms and conditions.",
   "home": {
-    "headline": "Connect with <count></count> U.S. Government-certified Jobs and get your Work Visa.",
-    "subtext": "You don't need to pay a lawyer or get advice without results. Each company listed in our database has its own paid lawyers.",
-    "searchPlaceholder": "Search for jobs, e.g, H-2B Construction",
-    "searchButton": "SEARCH JOB",
+    "headline": "Explore <count></count> opportunities for direct contact with sponsoring companies in the U.S.",
+    "subtext": "Posibilities for Work visa sponsorship options; check requirements, opportunities, and visa programs with companies in the U.S.",
+    "searchPlaceholder": " Search for example: Construction, Cook",
+    "searchButton": "Search",
     "error": "Error loading jobs",
     "filter": {
       "title": "Filter",
       "location": "Location",
       "jobType": "Job Type",
-      "salary": "Salary",
-      "contactOutside": "Hiring Outside",
+      "salary": "Reported Salary",
+      "contactOutside": "Outside U.S. eligibility",
       "season": "Season",
-      "transportationHousing": "Transportation/Housing"
+      "transportationHousing": "Reported Benefits",
+      "clear": "Clear Filter"
     },
     "loadMoreJobs": "Load More Jobs",
     "quota": {
@@ -20,7 +22,7 @@
       "upgradeCta": "Upgrade Plan"
     },
     "testimonials": {
-      "title": "They already did it with",
+      "title": "They already used",
       "showcaseCountryNames": ["Mexico", "Honduras", "Colombia"],
       "testimonials": [
         {
@@ -68,21 +70,21 @@
         "marketingTitle": "Marketing Specialist",
         "basic": "Basic",
         "pro": "Pro",
-        "city": "Location",
-        "phone": "Phone number",
-        "hiresOutside": "Hires from outside the country",
-        "season": "Hiring Season",
-        "overtime": "Overtime Possibility",
+        "city": "Registered Location",
+        "phone": "Registered Phone",
+        "hiresOutside": "Can hire internationally",
+        "season": "Season",
+        "overtime": "Reported Overtime",
         "hiredLastYear": "Approved to hiring out of the country the last year",
-        "employeesHired": "Employees Hired in Last 5 Years",
-        "approvalRate": "Approval Rate",
-        "transportationHousing": "Transportation / Rent Included",
-        "legalProcess": "Type of legal representation",
-        "processDuration": "Duration of the Legal process",
-        "processSpeed": "Process speed rate",
-        "approvalEfficiency": "Approval Efficiency",
-        "visaEmployees": "Visa Employees Per Year",
-        "certifications": "Approved Certifications in 5 years",
+        "employeesHired": "Report on Hires in the Last 5 Years",
+        "approvalRate": "Reported Approval Rate",
+        "transportationHousing": "Report on Employee Benefits",
+        "legalProcess": "Declared Legal Representation",
+        "processDuration": "Reported Average Processing Time",
+        "processSpeed": "Reported Process Speed",
+        "approvalEfficiency": "Report Approval Efficiency",
+        "visaEmployees": "Report on Workers Granted Visa per Year",
+        "certifications": "Report on Certifications in the Last 5 Years",
         "accordion": {
           "general": "General Information",
           "international": "International Hiring",
@@ -129,22 +131,22 @@
       }
     },
     "benefits": [
-      "You don't need a university degree to find an employer",
-      "Sponsored jobs by real U.S. companies",
-      "No costly agencies or lawyers",
-      "Competitive salaries from $10 up to $25 per hour",
+      "Access employer information regardless of academic background",
+      "Database of U.S. companies with history of sponsoring workers",
+      "No intermediaries or hidden fees",
+      "Salary ranges reported historically by employers ($10–$25/hour)",
       "Access from any country",
-      "Employers verified by the U.S. government",
-      "Step-by-step support",
+      "Employers appear in official U.S. government certification lists",
+      "Guides and resources to navigate the platform",
       "Real-time updates",
       "Filter by salary, state, and job type",
-      "One-click job application",
+      "Direct access to employer contact channels",
       "No scams or shady intermediaries",
       "Mobile-optimized platform",
       "And many more benefits"
     ],
     "mainBenefits": "Main Benefits",
-    "monthlyIncomeTitle": "Monthly Income by Country (Estimated in USD)",
+    "monthlyIncomeTitle": "Average monthly income of H-2B visa workers",
     "presence": {
       "title": "We have a Presence in the",
       "country1": "US and",
@@ -187,7 +189,7 @@
     "pricing": "Pricing",
     "about": "About",
     "healthProfessionals": "Health Professionals",
-    "visa": "Visa",
+    "visa": "Visa Process",
     "faqs": "FAQs",
     "contact": "Contact",
     "login": "Login",
@@ -198,15 +200,15 @@
     "settings": "Settings"
   },
   "hero": {
-    "headline": "Connecting Global Talent with",
-    "highlight": "U.S. Opportunity",
-    "description": "America Working was created to bridge the gap between skilled international job seekers and real U.S. employers who offer legal, visa-sponsored employment.",
-    "subheadline": "We are building a legal and transparent bridge between foreign talent and real U.S. job opportunities.",
-    "body": "America Working was created to solve a real problem: thousands of global workers struggle to access visa-sponsored jobs in the U.S. Our platform connects qualified applicants with over <bold1>240K+</bold1> certified American employers—especially those hiring under <bold2>H-2B, H-2A</bold2> and healthcare visas. We’re headquartered in Jackson, Wyoming, with a strategic base in Bogotá, Colombia—uniting North and South America through technology and opportunity.",
+    "headline": "Connecting Global Talent with Reliable ",
+    "highlight": "U.S. Employer Information",
+    "description": "America Working was created to bridge the gap between skilled international job seekers and access to verified information about certified U.S. employers that, under U.S. law, may sponsor temporary work visas.",
+    "subheadline": "We are building a legal and transparent information bridge between foreign talent and certified U.S. employers.",
+    "body": "America Working was created to solve a real problem: thousands of global workers struggle to access accurate information on U.S. companies eligible to sponsor visas. Our platform provides access to data on ore than 240K+ certified employers—especially those active in H-2B, H-2A, and healthcare programs. We’re headquartered in Jackson, Wyoming, with a strategic base in Bogotá, Colombia—uniting North and South America through technology and information access.",
     "stats": [
       {
         "title": "240K+",
-        "subtitle": "Certified U.S. employers"
+        "subtitle": "Certified U.S. employers (publicly listed)"
       },
       {
         "title": "2 Offices",
@@ -214,7 +216,7 @@
       },
       {
         "title": "3 Visa Programs",
-        "subtitle": "H-2A, H-2B, Healthcare"
+        "subtitle": "H-2A, H-2B, Healthcare (informational focus)"
       },
       {
         "title": "Global Access",
@@ -228,28 +230,33 @@
     "cards": [
       {
         "image": "/images/card1.webp",
-        "title": "Mission-Driven Platform",
-        "description": "America Working was founded to solve the global challenge of connecting foreign workers with visa-sponsored jobs in the United States—legally, transparently, and efficiently."
+        "title": "Discover What Sets Us Apart",
+        "description": "Explore the unique mission, structure, and tools that make America Working a trusted information platform connecting international workers with verified data about certified U.S. employers"
       },
       {
         "image": "/images/card2.webp",
-        "title": "Global Connection Engine",
-        "description": "We link over 240k certified U.S. employers with international applicants through a secure, data-backed platform that enables real-time access to legal job opportunities."
+        "title": "Mission-Driven Platform",
+        "description": "America Working was founded to address the global challenge of accessing transparent information about U.S. visa programs—legally, clearly, and efficiently."
       },
       {
         "image": "/images/card3.webp",
-        "title": "Visa-Specific Focus",
-        "description": "Our platform supports programs like H-2A (agricultural), H-2B (non-agricultural), and healthcare visas—helping workers understand, apply, and succeed with clarity."
+        "title": "Global Connection Engine",
+        "description": "We organize and present data on over 240k certified U.S. employers through a secure, data-backed platform that enables real-time access to employer information"
       },
       {
         "image": "/images/card4.webp",
+        "title": "Visa-Specific Focus",
+        "description": "Our platform provides details on programs like H-2A (agricultural), H-2B (non-agricultural), and healthcare—helping workers better understand available information and requirements."
+      },
+      {
+        "image": "/images/card5.webp",
         "title": "Binational Operations",
-        "description": "With headquarters in Jackson, Wyoming and a strategic office in Bogotá, Colombia, we operate as a human and technological bridge between North and South America."
+        "description": "With headquarters in Jackson, Wyoming and a strategic office in Bogotá, Colombia, we operate as a technological bridge providing reliable data access across the Americas."
       },
       {
         "image": "/images/card5.webp",
         "title": "Empowerment Through Clarity",
-        "description": "We ensure every application counts by providing job seekers with verified employer data, legal hiring timelines, and direct access—no middlemen, no hidden processes."
+        "description": "We empower job seekers with verified employer data, official hiring timelines, and transparent resources—no middlemen, no hidden processes."
       }
     ]
   },
@@ -259,9 +266,9 @@
     "titleEnd": "in the United States soon."
   },
   "visaProcess": {
-    "headline": "Work Visa Application Process: What the Employer",
-    "highlight": "Does for You",
-    "description": "You just need to be ready for the consular interview. The companies take care of the rest. From the time you sign the job offer until you arrive in the US, the process takes 2 to 4 months.",
+    "headline": "Work Visa Process: Information on the",
+    "highlight": "Employer’s Role",
+    "description": "Your main responsibility is to attend the consular interview. According to U.S. regulations,certified employers are responsible for handling the official petition process. Based on public information, from the moment a contract is signed until arrival in the U.S., the process can take approximately 2 to 4 months.",
     "steps": [
       {
         "title": "ETA 9142B – Initial Request to the Department of Labor",
@@ -343,28 +350,28 @@
     "headline": "Choose Your",
     "highlight": "Access",
     "end": "Level",
-    "description": "From exploring job listings to unlocking visa-specific hiring data—find the plan that fits your job search journey in the U.S.",
+    "description": "From reviewing company information to unlocking contact details and certification statistics—find the plan that best fits your needs for accessing employer data in the U.S.",
     "subheadline": "Why Pay More?",
-    "subdescription": "Save Over 90% Compared to Others",
-    "disclaimer": "Recruiting agencies charge up to <strong>$2,500</strong> with no guarantee of results. Lawyers charge <strong>$200</strong> for just 30 minutes, without direct access to employers. With America Working, you pay only <strong>$28</strong> for 30 days of access to over <strong>240,000</strong> verified companies, certified jobs, and real support. <br></br> <strong>Save over 90% and work legally in the U.S.</strong>",
+    "subdescription": "Get over 90% savings compared to other information services.",
+    "disclaimer": "Recruiting agencies charge up to <strong>$2,500</strong> with no guarantee of results. Some lawyers charge <strong>$200</strong> for just 30 minutes, without providing employer contact information. With America Working, you pay only <strong>$28</strong> for 30 days of access to over <strong>240,000</strong> verified U.S. companies’ contact options, official certification data, and practical resources to support your search. <br></br> <strong>Save over <strong>90%</strong> and access reliable employer information.</strong>",
     "toggleHeadline": "Pay Monthly or<bold>Save 20%</bold>by Paying Quarterly",
     "monthly": "Monthly",
     "quarterly": "Quarterly",
     "benefits": {
       "title": "Main Benefits",
       "items": [
-        "Legal permission to work in the United States",
-        "Fair wage guaranteed by the government",
-        "Contract with clear working conditions",
-        "Free or low-cost housing (depending on the employer)",
-        "Partial or full reimbursement for travel to the job site",
-        "Legal access to services like banks, housing, and phone lines",
-        "Ability to obtain a Social Security Number",
-        "Ability to open a U.S. bank account",
-        "You can get a driver's license (depending on the state)",
-        "You can legally travel within the United States",
-        "Opportunity to extend your stay up to 3 years",
-        "Possibility to change employers with proper authorization",
+        "Information on legal pathways that allow the hiring of foreign workers in the United States",
+        "Government-published wage requirements applicable to certified labor programs",
+        "Standardized contractual conditions in accordance with U.S. law",
+        "Data on employers that have reported offering free or low-cost housing (when available)",
+        "Information on reimbursement practices for travel expenses to the job site (when offered by employers)",
+        "Access to public information, through companies, about services such as banks, housing, and telecommunications",
+        "Guidance on the process to obtain a Social Security Number (handled by U.S. authorities and employers)",
+        "Data on states where foreign workers may apply for a driver’s license",
+        "Information on legal mobility within the United States under visa conditions",
+        "Details on possibilities for extending authorized stays (up to 3 years, according to regulations)",
+        "Information on procedures to change employers with prior authorization from U.S. authorities",
+        "Records of employers with a history of rehiring workers season after season",
         "Option to return each year with the same employer"
       ],
       "chartTitle": "Cost Comparison: false intermediary vs Pro subscription",
@@ -419,9 +426,9 @@
       }
     },
     "book": {
-      "headline": "Did you receive a job offer in the US and need to apply for your <highlight>visa at the consulate?</highlight>",
-      "description": "Get our most reliable premium embassy appointment scheduling service here.",
-      "button": "Book appointment"
+      "headline": "Looking to schedule your U.S. consulate appointment?",
+      "description": "Access guidance and tools to help you find reliable information on official embassy scheduling procedures.",
+      "button": "Explore Resources"
     },
     "gift": {
       "title": "Gift a Pro Subscription",
