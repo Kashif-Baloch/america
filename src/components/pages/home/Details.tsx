@@ -16,6 +16,7 @@ import { useSubscriptionPlan } from "@/lib/subscription-queries";
 import type { Plan } from "@/lib/types";
 import type { Filters } from "./Filters";
 import Link from "next/link";
+import { Tooltipmsg } from "./Tooltipmsg";
 
 export default function Details() {
   return (
@@ -309,8 +310,34 @@ function JobDetails({
   const tr = getTranslation(job.translations, locale, "en");
   if (!tr) return null;
   return (
-    <div className="lg:grid gap-8 w-full hidden lg:w-[calc(100%-420px)]">
-      <div className="sm:p-14 p-4 max-sm:py-8 border border-[#DADADA] rounded-2xl">
+    <div className="lg:grid gap-8 w-full hidden lg:w-[calc(100%-420px)] relative">
+      <div className="absolute right-4 top-4 z-10">
+        <Tooltipmsg />
+        {/* <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                className="text-gray-400 hover:text-gray-600 transition-colors relative group"
+                aria-label="Information about job details"
+              >
+                <HelpCircle className="w-5 h-5" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent
+              side="top"
+              sideOffset={4}
+              align="center"
+              className="max-w-xs p-4 bg-white shadow-lg rounded-lg border border-gray-200"
+              avoidCollisions={true}
+            >
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {t("tooltip")}
+              </p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider> */}
+      </div>
+      <div className="sm:p-14 p-4 max-sm:py-8 border border-[#DADADA] rounded-2xl relative">
         <JobDetailsHeader
           t={t}
           title={tr.title}

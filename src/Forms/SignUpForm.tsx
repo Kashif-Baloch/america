@@ -184,6 +184,12 @@ export default function SignUpForm({ paymentParams }: SignUpFormProps) {
                   "Registration complete. We've sent you a verification link. Please check your email."
                 );
 
+                // Get callbackUrl from URL params
+                const searchParams = new URLSearchParams(
+                  window.location.search
+                );
+                const callbackUrl = searchParams.get("callbackUrl");
+
                 // Redirect to payment if payment params exist
                 if (paymentParams) {
                   const { name, price, description } = paymentParams;
@@ -194,7 +200,12 @@ export default function SignUpForm({ paymentParams }: SignUpFormProps) {
                   });
                   window.location.href = `/api/payments/checkout?${params.toString()}`;
                 } else {
-                  router.replace(`/sign-up/success`);
+                  // Redirect based on callbackUrl
+                  if (callbackUrl === "pricing") {
+                    router.replace("/pricing");
+                  } else {
+                    router.replace("/");
+                  }
                 }
               },
             }

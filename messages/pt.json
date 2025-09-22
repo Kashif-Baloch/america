@@ -1,19 +1,20 @@
 {
+  "tooltip": "Estos filtros reflejan datos disponibles de las empresas. No garantizan contratación, beneficios o aprobación de visa. Para más información, consulta los términos y condiciones.",
   "home": {
-    "headline": "Conecte-se com <count></count> empregos certificados pelo governo dos EUA e obtenha seu visto de trabalho.",
-    "subtext": "Você não precisa pagar um advogado nem obter conselhos sem resultados. Cada empresa listada em nosso banco de dados possui seus próprios advogados contratados.",
-    "searchPlaceholder": "Pesquise empregos, por exemplo, H-2B Construção",
-    "searchButton": "BUSCAR EMPREGO",
+    "headline": "Explore <count></count> oportunidades de contacto direto con empresas patrocinadoras nos EUA.",
+    "subtext": "Posibilities for Work visa sponsorship options; check requirements, opportunities, and visa programs with companies in the U.S.",
+    "searchPlaceholder": "Pesquisar por exemplo: Construção, Cozinheiro",
+    "searchButton": "Pesquisa",
     "error": "Erro ao carregar empregos",
     "filter": {
       "title": "Filtros",
       "location": "Localização",
       "jobType": "Tipo de Trabalho",
-
-      "salary": "Salário",
-      "contactOutside": "Contato Externo",
+      "salary": "Salário relatado",
+      "contactOutside": "Elegibilidade fora dos EUA",
       "season": "Temporada",
-      "transportationHousing": "Transporte/Alojamento"
+      "transportationHousing": "Benefícios relatados",
+      "clear": "Clear Filter"
     },
     "loadMoreJobs": "Carregar mais vagas",
     "quota": {
@@ -21,7 +22,7 @@
       "upgradeCta": "Fazer upgrade"
     },
     "testimonials": {
-      "title": "Eles já fizeram isso com",
+      "title": "Eles já usaram",
       "showcaseCountryNames": ["México", "Honduras", "Colômbia"],
       "testimonials": [
         {
@@ -69,21 +70,21 @@
         "marketingTitle": "Especialista em Marketing",
         "basic": "Básico",
         "pro": "Pro",
-        "city": "Cidade",
-        "phone": "Número de telefone",
-        "hiresOutside": "Contrata de fora do país",
-        "season": "Temporada de Contratação",
-        "overtime": "Possibilidade de Horas Extras",
-        "hiredLastYear": "Aprovado para contratar fora do país no último ano",
-        "employeesHired": "Funcionários Contratados nos Últimos 5 Anos",
-        "approvalRate": "Taxa de Aprovação",
-        "transportationHousing": "Transporte / Alojamento Incluído",
-        "legalProcess": "Tipo de representação legal",
-        "processDuration": "Duração do processo legal",
-        "processSpeed": "Velocidade do processo",
-        "approvalEfficiency": "Eficiência de Aprovação",
-        "visaEmployees": "Funcionários com Visto por Ano",
-        "certifications": "Certificações Aprovadas em 5 Anos",
+        "city": "Localização Registrada",
+        "phone": "Telefone Registrado",
+        "hiresOutside": "Pode contratar internacionalmente",
+        "season": "Temporada",
+        "overtime": "Horas Extras Reportadas",
+        "hiredLastYear": "Aprovado para contratar fora do país no ano passado",
+        "employeesHired": "Relatório de Contratações nos Últimos 5 Anos",
+        "approvalRate": "Taxa de Aprovação Reportada",
+        "transportationHousing": "Relatório sobre Benefícios aos Funcionários",
+        "legalProcess": "Representação Legal Declarada",
+        "processDuration": "Tempo Médio de Processamento Reportado",
+        "processSpeed": "Velocidade de Processamento Reportada",
+        "approvalEfficiency": "Eficiência de Aprovação Reportada",
+        "visaEmployees": "Relatório de Trabalhadores com Visto Concedido por Ano",
+        "certifications": "Relatório de Certificações nos Últimos 5 Anos",
         "accordion": {
           "general": "Informações gerais",
           "international": "Contratação internacional",
@@ -137,7 +138,7 @@
       "Salários competitivos de $10 até $25 por hora",
       "Acesso de qualquer país",
       "Empregadores verificados pelo governo dos EUA",
-      "Suporte passo a passo",
+      "Guias e recursos para navegar a plataforma",
       "Atualizações em tempo real",
       "Filtre por salário, estado e tipo de trabalho",
       "Candidatura com um clique",
@@ -146,7 +147,7 @@
       "E muitos outros benefícios"
     ],
     "mainBenefits": "Principais benefícios",
-    "monthlyIncomeTitle": "Renda mensal por país (estimada em USD)",
+    "monthlyIncomeTitle": "Rendimento médio mensal dos trabalhadores com visto H-2B",
     "presence": {
       "title": "Temos presença nos",
       "country1": "EUA e",
@@ -163,7 +164,7 @@
     "favorites": "Meus Favoritos",
     "about": "Sobre",
     "healthProfessionals": "Profissionais de saúde",
-    "visa": "Visto",
+    "visa": "Visa Process",
     "faqs": "FAQs",
     "contact": "Contato",
     "login": "Entrar",
@@ -174,15 +175,15 @@
     "settings": "configurações"
   },
   "hero": {
-    "headline": "Conectando Talentos Globais com",
-    "highlight": "Oportunidades nos EUA",
-    "description": "A America Working foi criada para preencher a lacuna entre trabalhadores internacionais qualificados e empregadores reais nos EUA que oferecem emprego legal com visto patrocinado.",
-    "subheadline": "Estamos construindo uma ponte legal e transparente entre talentos estrangeiros e oportunidades reais de trabalho nos EUA.",
-    "body": "A America Working foi criada para resolver um problema real: milhares de trabalhadores globais têm dificuldade em acessar empregos com visto nos EUA. Nossa plataforma conecta candidatos qualificados a mais de <bold1>240 mil</bold1> empregadores americanos certificados — especialmente aqueles que contratam sob os vistos <bold2>H-2B, H-2A</bold2> e da área de saúde. Nossa sede fica em Jackson, Wyoming, com uma base estratégica em Bogotá, Colômbia — unindo América do Norte e do Sul por meio da tecnologia e oportunidade.",
+    "headline": "Conectando Talentos Globais com Informações Confiáveis ",
+    "highlight": "Informações de Empregadores nos EUA",
+    "description": "A America Working foi criada para reduzir a distância entre profissionais internacionais qualificados e o acesso a informações verificadas sobre empregadores certificados nos EUA que, de acordo com a lei norte-americana, podem patrocinar vistos de trabalho temporários.",
+    "subheadline": "Estamos construindo uma ponte de informação legal e transparente entre talentos estrangeiros e empregadores certificados nos EUA.",
+    "body": "A America Working foi criada para resolver um problema real: milhares de trabalhadores globais enfrentam dificuldades para acessar informações precisas sobre empresas dos EUA elegíveis para patrocinar vistos. Nossa plataforma fornece acesso a dados de mais de 240 mil empregadores certificados, especialmente aqueles ativos nos programas H-2B, H-2A e de saúde. Nossa sede fica em Jackson, Wyoming, com uma base estratégica em Bogotá, Colômbia, unindo a América do Norte e do Sul por meio da tecnologia e do acesso à informação.",
     "stats": [
       {
         "title": "240K+",
-        "subtitle": "Empregadores certificados nos EUA"
+        "subtitle": "Empregadores certificados nos EUA (listados publicamente)"
       },
       {
         "title": "2 Escritórios",
@@ -190,7 +191,7 @@
       },
       {
         "title": "3 Programas de Visto",
-        "subtitle": "H-2A, H-2B, Saúde"
+        "subtitle": "H-2A, H-2B, Saúde (foco informativo)"
       },
       {
         "title": "Acesso Global",
@@ -204,28 +205,33 @@
     "cards": [
       {
         "image": "/images/card1.webp",
-        "title": "Plataforma Orientada por Missão",
-        "description": "A America Working foi criada para resolver o desafio global de conectar trabalhadores estrangeiros com empregos nos EUA patrocinados por visto—de forma legal, transparente e eficiente."
+        "title": "Descubra o Que Nos Diferencia",
+        "description": "Explore a missão, a estrutura e as ferramentas exclusivas que fazem da America Working uma plataforma de informação confiável que conecta trabalhadores internacionais a dados verificados sobre empregadores certificados nos EUA."
       },
       {
         "image": "/images/card2.webp",
-        "title": "Motor de Conexão Global",
-        "description": "Conectamos mais de 240 mil empregadores certificados nos EUA com candidatos internacionais por meio de uma plataforma segura e baseada em dados, permitindo acesso em tempo real a oportunidades de emprego legais."
+        "title": "Plataforma Orientada pela Missão",
+        "description": "A America Working foi fundada para enfrentar o desafio global de acessar informações transparentes sobre os programas de visto dos EUA—de forma legal, clara e eficiente."
       },
       {
         "image": "/images/card3.webp",
-        "title": "Foco em Tipos Específicos de Visto",
-        "description": "Nossa plataforma oferece suporte a programas como H-2A (agrícola), H-2B (não agrícola) e vistos de saúde—ajudando os trabalhadores a entender, se inscrever e ter sucesso com clareza."
+        "title": "Motor de Conexão Global",
+        "description": "Organizamos e apresentamos dados de mais de 240 mil empregadores certificados nos EUA por meio de uma plataforma segura e baseada em dados que permite acesso em tempo real às informações dos empregadores."
       },
       {
         "image": "/images/card4.webp",
-        "title": "Operações Binacionais",
-        "description": "Com sede em Jackson, Wyoming, e um escritório estratégico em Bogotá, Colômbia, operamos como uma ponte humana e tecnológica entre a América do Norte e a do Sul."
+        "title": "Foco Específico em Vistos",
+        "description": "Nossa plataforma fornece detalhes sobre programas como H-2A (agrícola), H-2B (não agrícola) e saúde, ajudando os trabalhadores a entender melhor as informações e os requisitos disponíveis."
       },
       {
         "image": "/images/card5.webp",
-        "title": "Empoderamento com Clareza",
-        "description": "Garantimos que cada candidatura seja válida, fornecendo aos candidatos dados verificados de empregadores, cronogramas legais de contratação e acesso direto—sem intermediários ou processos ocultos."
+        "title": "Operações Binacionais",
+        "description": "Com sede em Jackson, Wyoming, e um escritório estratégico em Bogotá, Colômbia, operamos como uma ponte tecnológica que oferece acesso confiável a dados em toda a América."
+      },
+      {
+        "image": "/images/card5.webp",
+        "title": "Empoderamento Através da Clareza",
+        "description": "Empoderamos os candidatos a emprego com dados verificados de empregadores, cronogramas oficiais de contratação e recursos transparentes—sem intermediários, sem processos ocultos."
       }
     ]
   },
@@ -235,9 +241,9 @@
     "titleEnd": "nos Estados Unidos em breve."
   },
   "visaProcess": {
-    "headline": "Processo de solicitação de visto de trabalho: O que o empregador",
-    "highlight": "faz por você",
-    "description": "Você só precisa estar pronto para a entrevista consular. As empresas cuidam do resto. Desde o momento em que você assina a oferta de trabalho até a chegada nos EUA, o processo leva de 2 a 4 meses.",
+    "headline": "Processo de Visto de Trabalho: Informações sobre o",
+    "highlight": "Papel do Empregador",
+    "description": "Sua principal responsabilidade é comparecer à entrevista consular. De acordo com as regulamentações dos EUA, os empregadores certificados são responsáveis por conduzir o processo oficial de petição. Com base em informações públicas, desde o momento da assinatura do contrato até a chegada aos EUA, o processo pode levar aproximadamente de 2 a 4 meses.",
     "steps": [
       {
         "title": "ETA 9142B – Solicitação inicial ao Departamento de Trabalho",
@@ -372,29 +378,29 @@
     "headline": "Escolha Seu",
     "highlight": "Nível de Acesso",
     "end": "",
-    "description": "Desde explorar vagas de emprego até desbloquear dados de contratação específicos de visto—encontre o plano ideal para sua jornada de trabalho nos EUA.",
+    "description": "Desde explorar ofertas de trabajo hasta desbloquear datos de contratación específicos de visa—encuentra el plan que se adapte a tu búsqueda laboral en EE. UU.",
     "subheadline": "Por que pagar mais?",
-    "subdescription": "Economize mais de 90% em comparação com outros",
-    "disclaimer": "As agências de recrutamento cobram até <strong>$2.500</strong> sem garantia de resultados. Advogados cobram <strong>$200</strong> por apenas 30 minutos, sem acesso direto aos empregadores. Com a America Working, você paga apenas <strong>$28</strong> por 30 dias de acesso a mais de <strong>240.000</strong> empresas verificadas, empregos certificados e suporte real.<br></br><strong>Economize mais de 90% e trabalhe legalmente nos EUA.</strong>",
-    "toggleHeadline": "Pague mensalmente ou<bold>economize 20%</bold>pagando trimestralmente",
+    "subdescription": "Obtenha mais de 90% de poupança em comparação com outros serviços de informação.",
+    "disclaimer": "As agências de recrutamento cobram até <strong>$2.500</strong> sem garantia de resultados. Alguns advogados cobram <strong>$200</strong> por apenas 30 minutos, sem fornecer informações de contacto do empregador. Com a America Working, paga apenas <strong>$28</strong> por 30 dias de acesso a mais de <strong>240.000</strong> opções de contacto de empresas americanas verificadas, dados de certificação oficiais e recursos práticos para auxiliar a sua pesquisa. <br></br> <strong>Save over <strong>90%</strong> and access reliable employer information.</strong>",
+    "toggleHeadline": "Poupe mais de <strong>90%</strong> e aceda a informações fidedignas sobre empregadores.",
     "monthly": "Mensal",
     "quarterly": "Trimestral",
     "benefits": {
       "title": "Principais Benefícios",
       "items": [
-        "Permissão legal para trabalhar nos Estados Unidos",
-        "Salário justo garantido pelo governo",
-        "Contrato com condições de trabalho claras",
-        "Acomodação gratuita ou de baixo custo (dependendo do empregador)",
-        "Reembolso parcial ou total da viagem até o local de trabalho",
-        "Acesso legal a serviços como bancos, moradia e linhas telefônicas",
-        "Capacidade de obter um Número de Seguro Social",
-        "Capacidade de abrir uma conta bancária nos EUA",
-        "Você pode obter uma carteira de motorista (dependendo do estado)",
-        "Você pode viajar legalmente dentro dos Estados Unidos",
-        "Oportunidade de estender sua estadia por até 3 anos",
-        "Possibilidade de mudar de empregador com autorização adequada",
-        "Opção de retornar todos os anos com o mesmo empregador"
+        "Informações sobre vias legais que permitem a contratação de trabalhadores estrangeiros nos Estados Unidos",
+        "Requisitos salariais publicados pelo governo aplicáveis a programas de trabalho certificados",
+        "Condições contratuais padronizadas de acordo com a lei dos EUA",
+        "Dados sobre empregadores que relataram oferecer moradia gratuita ou de baixo custo (quando disponível)",
+        "Informações sobre práticas de reembolso de despesas de viagem até o local de trabalho (quando oferecidas pelos empregadores)",
+        "Acesso a informações públicas, por meio de empresas, sobre serviços como bancos, habitação e telecomunicações",
+        "Orientação sobre o processo para obter um Número de Seguro Social (tratado pelas autoridades e empregadores dos EUA)",
+        "Dados sobre os estados onde trabalhadores estrangeiros podem solicitar uma carteira de motorista",
+        "Informações sobre mobilidade legal dentro dos Estados Unidos sob as condições do visto",
+        "Detalhes sobre as possibilidades de estender as estadias autorizadas (até 3 anos, de acordo com as regulamentações)",
+        "Informações sobre os procedimentos para mudar de empregador com autorização prévia das autoridades dos EUA",
+        "Registros de empregadores com histórico de recontratação de trabalhadores temporada após temporada",
+        "Opção de retornar a cada ano com o mesmo empregador"
       ],
       "chartTitle": "Comparação de custos: intermediário falso vs assinatura Pro",
       "chartNote": "Os altos preços de intermediários falsos não garantem resultados. Com nosso motor de busca inteligente de baixo custo, você encontrará exatamente o trabalho que deseja."
@@ -448,9 +454,9 @@
       }
     },
     "book": {
-      "headline": "Você recebeu uma oferta de trabalho nos EUA e precisa solicitar seu <highlight>visto no consulado?</highlight>",
-      "description": "Obtenha aqui nosso serviço premium mais confiável para agendar uma consulta na embaixada.",
-      "button": "Agendar consulta"
+      "headline": "Quer agendar sua entrevista no consulado dos EUA?",
+      "description": "Acesse orientações e ferramentas para ajudá-lo a encontrar informações confiáveis sobre os procedimentos oficiais de agendamento na embaixada.",
+      "button": "Explorar recursos"
     },
     "gift": {
       "title": "Presenteie uma assinatura Pro",

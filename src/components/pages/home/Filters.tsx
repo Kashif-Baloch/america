@@ -91,6 +91,8 @@ function FilterSection({
     t("filters.jobTypes.other"),
   ];
 
+  const t2 = useTranslations("home.filter");
+
   const allSalaryOptions = [
     { label: t("filters.salary.upto13"), plan: "Basic" },
     { label: t("filters.salary.upto26"), plan: "Pro" },
@@ -204,7 +206,7 @@ function FilterSection({
           onClick={handleClearFilters}
           className="text-primary-blue underline text-base"
         >
-          Clear filters
+          {t2("clear")}
         </button>
       </div>
     </div>

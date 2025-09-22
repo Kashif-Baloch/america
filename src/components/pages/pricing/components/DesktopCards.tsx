@@ -123,7 +123,7 @@ export default function DesktopCards({
               <Button
                 onClick={() => {
                   if (!session) {
-                    router.push("/sign-up");
+                    router.push("/sign-up?callbackUrl=pricing");
                     return;
                   }
 

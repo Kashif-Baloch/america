@@ -174,7 +174,7 @@ export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
                 <Button
                   onClick={() => {
                     if (!session) {
-                      router.push("/sign-up");
+                      router.push("/sign-up?callbackUrl=pricing");
                       return;
                     }
 
