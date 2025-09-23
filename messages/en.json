@@ -93,8 +93,8 @@
         }
       },
       "apply": {
-        "website": "WEB SITE APPLY",
-        "email": "EMAIL APPLY"
+        "website": "WEBSITE CONTACT",
+        "email": "EMAIL CONTACT"
       },
       "favorite": "Add to favorites",
       "unfavorite": "Remove from favorites"
@@ -355,6 +355,7 @@
     "subdescription": "Get over 90% savings compared to other information services.",
     "disclaimer": "Recruiting agencies charge up to <strong>$2,500</strong> with no guarantee of results. Some lawyers charge <strong>$200</strong> for just 30 minutes, without providing employer contact information. With America Working, you pay only <strong>$28</strong> for 30 days of access to over <strong>240,000</strong> verified U.S. companies’ contact options, official certification data, and practical resources to support your search. <br></br> <strong>Save over <strong>90%</strong> and access reliable employer information.</strong>",
     "toggleHeadline": "Pay Monthly or<bold>Save 20%</bold>by Paying Quarterly",
+    "month": "month",
     "monthly": "Monthly",
     "quarterly": "Quarterly",
     "benefits": {
