@@ -16,14 +16,20 @@ const Hero = () => {
 
   return (
     <div className="helmet text-center md:pt-20 pt-10 font-sf">
-      <h1 className="md:text-[48px] sm:text-4xl text-3xl font-bold max-w-[657px] mx-auto leading-[1.2] mb-7">
+      <h1
+        style={{ maxWidth: "900px" }}
+        className="md:text-[48px] sm:text-4xl text-3xl font-bold mx-auto leading-[1.2] mb-7"
+      >
         {t("headline")}
         <span className="inline-block text-primary-blue px-1 rounded-sm">
           {t("highlight")}
         </span>
       </h1>
 
-      <div className="mb-12 md:max-w-[478px] sm:max-w-[400px] mx-auto">
+      <div
+        style={{ maxWidth: "650px" }}
+        className="mb-12 md:max-w-[478px] sm:max-w-[400px] mx-auto"
+      >
         <p className="  w-full mx-auto leading-relaxed">{t("description")}</p>
       </div>
       <div className="relative overflow-hidden mt-20">

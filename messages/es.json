@@ -94,8 +94,8 @@
         }
       },
       "apply": {
-        "website": "APLICAR EN SITIO WEB",
-        "email": "APLICAR POR CORREO"
+        "website": "CONTACTO DEL SITIO WEB",
+        "email": "CONTACTO POR CORREO ELECTRÓNICO"
       },
       "favorite": "Agregar a favoritos",
       "unfavorite": "Quitar de favoritos"
@@ -355,7 +355,8 @@
     "subheadline": "Por qué pagar más?",
     "subdescription": "Obtenga más del 90% de ahorro en comparación con otros servicios de información.",
     "disclaimer": "Las agencias de reclutamiento cobran hasta <strong>$2,500</strong> sin garantía de resultados. Algunos abogados cobran <strong>$200</strong> por solo 30 minutos, sin proporcionar la información de contacto del empleador. Con America Working, pagas solo <strong>$28</strong> por 30 días de acceso a las opciones de contacto de más de <strong>240,000</strong> empresas estadounidenses verificadas, datos oficiales de certificación y recursos prácticos para ayudarte en tu búsqueda. <br></br> <strong>Save over <strong>90%</strong> and access reliable employer information.</strong>",
-    "toggleHeadline": "Ahorre más del <strong>90%</strong> y acceda a información confiable sobre empleadores.",
+    "toggleHeadline": "Paga Mensualmente o <bold>Ahorra 20%</bold> pagando Trimestralmente",
+    "month": "mes",
     "monthly": "Mensual",
     "quarterly": "Trimestral",
     "benefits": {

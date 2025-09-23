@@ -13,6 +13,7 @@ import {
 import { GoCheckCircleFill } from "react-icons/go";
 import { Button } from "@/components/ui/button";
 import { PricingPlan } from "@/Data/PricingPlan";
+import { useTranslations } from "next-intl";
 
 interface MobileCardsProps {
   plans: PricingPlan[];
@@ -21,6 +22,7 @@ interface MobileCardsProps {
 
 export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("pricing");
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
@@ -118,7 +120,7 @@ export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
                       }`}
                     >
                       {isQuarterly ? plan.quarterlyPrice : plan.monthlyPrice}
-                      <span className="text-lg font-normal">/month</span>
+                      <span className="text-lg font-normal">/{t("month")}</span>
                     </h3>
                     <div
                       className={`text-sm text-left ${

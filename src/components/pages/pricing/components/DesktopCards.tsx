@@ -12,7 +12,7 @@ import { PricingPlan } from "@/Data/PricingPlan";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useSession } from "@/lib/auth-client";
-
+import { useTranslations } from "next-intl";
 //TS Interface
 interface DesktopCardsProps {
   plans: PricingPlan[];
@@ -26,6 +26,7 @@ export default function DesktopCards({
   const locale = useLocale();
   const router = useRouter();
   const { data: session } = useSession();
+  const t = useTranslations("pricing");
   return (
     <div className="grid max-xl:hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
       {plans.map((plan, index) => (
@@ -64,7 +65,7 @@ export default function DesktopCards({
                     }`}
                   >
                     {isQuarterly ? plan.quarterlyPrice : plan.monthlyPrice}
-                    <span className="text-lg font-normal">/month</span>
+                    <span className="text-lg font-normal">/{t("month")}</span>
                   </h3>
                   <div
                     className={`text-sm text-left ${
