@@ -183,7 +183,7 @@
     "noJobType": "No job type"
   },
   "navbar": {
-    "searchJobs": "Search jobs",
+    "searchJobs": "Search",
     "jobs": "Jobs",
     "favorites": "My Favorites",
     "pricing": "Pricing",
@@ -491,7 +491,7 @@
       },
       "q6": {
         "question": "Which countries are eligible?",
-        "answer": "From Nov 7, 2024 to Nov 8, 2025, nationals of 89 countries (e.g., Mexico, Guatemala, Colombia, Spain, the Philippines) are eligible. Employers may also request workers from non-listed countries on a case-by-case basis."
+        "answer": "Currently, nationals of the following countries are eligible for the H-2B program (effective from November 7, 2024, to November 7, 2025): Andorra, Argentina, Australia, Austria, Barbados, Belgium, Belize, Bolivia, Bosnia and Herzegovina, Brazil, Brunei, Bulgaria, Canada, Chile, Colombia, Costa Rica, Croatia, Republic of Cyprus, Czech Republic, Denmark, Dominican Republic, Ecuador, El Salvador, Estonia, Eswatini, Fiji, Finland, France, Germany, Greece, Grenada, Guatemala, Haiti, Honduras, Hungary, Iceland, Ireland, Israel, Italy, Jamaica, Japan, Kiribati, Latvia, Liechtenstein, Lithuania, Luxembourg, North Macedonia, Madagascar, Malta, Monaco, Mongolia (H-2B only), Montenegro, Nauru, Netherlands, New Zealand, Norway, Panama, Papua New Guinea, Peru, Philippines (H-2B only), Poland, Portugal, Romania, San Marino, Serbia, Singapore, Slovakia, Slovenia, Solomon Islands, South Africa, South Korea, Spain, Sweden, Switzerland, Taiwan, Thailand, Timor-Leste, Turkey, Tuvalu, Ukraine, United Kingdom, Uruguay, Vanuatu. For more details, see our terms and conditions."
       },
       "q7": {
         "question": "What is the Temporary Worker Program?",

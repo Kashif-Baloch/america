@@ -158,13 +158,13 @@
     }
   },
   "navbar": {
-    "searchJobs": "Procurar empregos",
+    "searchJobs": "Pesquisar",
     "pricing": "Preços",
     "jobs": "Empregos",
     "favorites": "Meus Favoritos",
     "about": "Sobre",
     "healthProfessionals": "Profissionais de saúde",
-    "visa": "Visa Process",
+    "visa": "Processo de visto",
     "faqs": "FAQs",
     "contact": "Contato",
     "login": "Entrar",
@@ -175,7 +175,7 @@
     "settings": "configurações"
   },
   "hero": {
-    "headline": "Conectando Talentos Globais com Informações Confiáveis ",
+    "headline": "Conectando Talentos Globais com Confiáveis ",
     "highlight": "Informações de Empregadores nos EUA",
     "description": "A America Working foi criada para reduzir a distância entre profissionais internacionais qualificados e o acesso a informações verificadas sobre empregadores certificados nos EUA que, de acordo com a lei norte-americana, podem patrocinar vistos de trabalho temporários.",
     "subheadline": "Estamos construindo uma ponte de informação legal e transparente entre talentos estrangeiros e empregadores certificados nos EUA.",
@@ -519,7 +519,7 @@
       },
       "q6": {
         "question": "Quais países são elegíveis?",
-        "answer": "De 7 de novembro de 2024 a 8 de novembro de 2025, cidadãos de 89 países (como México, Guatemala, Colômbia, Espanha e Filipinas) são elegíveis. Os empregadores ainda podem solicitar trabalhadores de países fora da lista, caso a caso."
+        "answer": "Atualmente, os cidadãos dos seguintes países são elegíveis para o programa H-2B (em vigor de 7 de novembro de 2024 a 7 de novembro de 2025): Andorra, Argentina, Austrália, Áustria, Barbados, Bélgica, Belize, Bolívia, Bósnia e Herzegovina, Brasil, Brunei, Bulgária, Canadá, Chile, Colômbia, Costa Rica, Croácia, República de Chipre, República Tcheca, Dinamarca, República Dominicana, Equador, El Salvador, Estônia, Eswatini, Fiji, Finlândia, França, Alemanha, Grécia, Granada, Guatemala, Haiti, Honduras, Hungria, Islândia, Irlanda, Israel, Itália, Jamaica, Japão, Kiribati, Letônia, Liechtenstein, Lituânia, Luxemburgo, Macedônia do Norte, Madagascar, Malta, Mônaco, Mongólia (somente H-2B), Montenegro, Nauru, Holanda, Nova Zelândia, Noruega, Panamá, Papua Nova Guiné, Peru, Filipinas (somente H-2B), Polônia, Portugal, Romênia, San Marino, Sérvia, Cingapura, Eslováquia, Eslovênia, Ilhas Salomão, África do Sul, Coreia do Sul, Espanha, Suécia, Suíça, Taiwan, Tailândia, Timor-Leste, Turquia, Tuvalu, Ucrânia, Reino Unido, Uruguai, Vanuatu. Para mais detalhes, consulte nossos termos e condições."
       },
       "q7": {
         "question": "O que é o Programa de Trabalhadores Temporários?",

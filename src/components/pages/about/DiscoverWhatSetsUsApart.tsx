@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -6,11 +6,15 @@ import React from "react";
 
 const DiscoverWhatSetsUsApart = () => {
   const t = useTranslations("discover");
-  const cards = t.raw("cards") as { title: string; description: string; image: string }[];
+  const cards = t.raw("cards") as {
+    title: string;
+    description: string;
+    image: string;
+  }[];
 
   return (
     <div className="helmet font-sf mt-10">
-      <h1 className="md:text-[48px] sm:text-4xl text-center text-3xl font-medium max-w-[657px] mx-auto leading-[1.2] mb-7">
+      <h1 className="md:text-[48px]  sm:text-4xl text-center text-3xl font-medium max-w-[657px] mx-auto leading-[1.2] mb-7">
         {t("title")}
       </h1>
 
