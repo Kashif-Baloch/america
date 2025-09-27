@@ -1,5 +1,5 @@
 {
-  "tooltip": "Estos filtros reflejan datos disponibles de las empresas. No garantizan contratación, beneficios o aprobación de visa. Para más información, consulta los términos y condiciones.",
+  "tooltip": "Estos filtros muestran la información que las empresas han publicado en los portales oficiales del Gobierno de EE. UU. Recuerda que los resultados son datos de cada empleador para ayudarte a contactar de manera más precisa. La contratación, beneficios o aprobación de visa dependen siempre del empleador y de las autoridades correspondientes. Para más detalles, revisa nuestros términos y condiciones.",
   "home": {
     "headline": "Explore <count></count> oportunidades de contacto directo con empresas patrocinadoras en EE. UU.",
     "subtext": "Posibilidades de patrocinio para visas de trabajo; consulte requisitos, oportunidades y programas de visas con empresas en EE. UU.",
@@ -22,7 +22,7 @@
       "upgradeCta": "Mejorar plan"
     },
     "testimonials": {
-      "title": "Ya lo usaron",
+      "title": "Ellos ya usaron",
       "showcaseCountryNames": ["México", "Honduras", "Colombia"],
       "testimonials": [
         {
@@ -95,7 +95,7 @@
       },
       "apply": {
         "website": "CONTACTO DEL SITIO WEB",
-        "email": "CONTACTO POR CORREO ELECTRÓNICO"
+        "email": "CONTACTAR POR E-MAIL"
       },
       "favorite": "Agregar a favoritos",
       "unfavorite": "Quitar de favoritos"
@@ -158,13 +158,13 @@
     }
   },
   "navbar": {
-    "searchJobs": "Buscar empleos",
+    "searchJobs": "Buscar",
     "pricing": "Precios",
     "favorites": "Mis Favoritos",
     "jobs": "Empleos",
     "about": "Acerca de",
     "healthProfessionals": "Enfermería",
-    "visa": "Visa Proceso",
+    "visa": "Proceso de Visa",
     "faqs": "Preguntas frecuentes",
     "contact": "Contacto",
     "login": "Iniciar sesión",
@@ -175,7 +175,7 @@
     "settings": "ajustes"
   },
   "hero": {
-    "headline": "Conectando Talento Global con Información Confiable ",
+    "headline": "Conectando Talento Global con Confiable ",
     "highlight": "Información de Empleadores en EE. UU.",
     "description": "America Working fue creado para cerrar la brecha entre buscadores de empleo internacionales calificados y el acceso a información verificada sobre empleadores certificados en EE. UU. que, según la ley estadounidense, pueden patrocinar visas de trabajo temporales.",
     "subheadline": "Estamos construyendo un puente de información legal y transparente entre talento extranjero y empleadores certificados en EE. UU.",
@@ -200,7 +200,7 @@
     ]
   },
   "discover": {
-    "title": "Descubre Lo Que Nos Distingue",
+    "title": "Descubre lo que nos Distingue",
     "description": "Explora la misión única, estructura y herramientas que hacen de America Working un puente confiable entre empleadores certificados de EE. UU. y trabajadores extranjeros en todo el mundo.",
     "cards": [
       {
@@ -495,7 +495,7 @@
       },
       "q6": {
         "question": "Qué países son elegibles?",
-        "answer": "Del 7 de noviembre de 2024 al 8 de noviembre de 2025, los nacionales de 89 países (como México, Guatemala, Colombia, España y Filipinas) son elegibles. Los empleadores también pueden solicitar trabajadores de países no incluidos caso por caso."
+        "answer": "Actualmente, los nacionales de los siguientes países son elegibles para el programa H-2B (vigencia del 7 de noviembre de 2024 al 7 de noviembre de 2025): Andorra, Argentina, Australia, Austria, Barbados, Bélgica,  Belize, Bolivia, Bosnia y Herzegovina, Brasil, Brunei, Bulgaria, Canadá, Chile, Colombia, Costa Rica, Croacia, República de Chipre, República Checa, Dinamarca, República Dominicana, Ecuador, El Salvador, Estonia, Esuatini, Fiji, Finlandia, Francia, Alemania, Grecia, Granada, Guatemala, Haití, Honduras, Hungría, Islandia, Irlanda, Israel, Italia, Jamaica, Japón, Kiribati,  Letonia,  Liechtenstein,  Lituania,  Luxemburgo,  Macedonia  del  Norte, Madagascar, Malta, Mónaco, Mongolia (solo H-2B), Montenegro, Nauru, Países Bajos, Nueva Zelanda, Noruega, Panamá, Papúa Nueva Guinea, Perú, Filipinas (solo H-2B), Polonia, Portugal, Rumanía, San Marino, Serbia, Singapur, Eslovaquia, Eslovenia, Islas Solomon, Sudáfrica, Corea del Sur, España, Suecia, Suiza, Taiwán, Tailandia, Timor- Leste, Turquía, Tuvalu, Ucrania, Reino Unido, Uruguay, Vanuatu. Para más detalles, revisa nuestros términos y condiciones."
       },
       "q7": {
         "question": "Qué es el Programa de Trabajadores Temporales?",

@@ -10,8 +10,7 @@ const AboutUs = () => {
     <>
       <Hero />
       <DiscoverWhatSetsUsApart />
-      <FloatingBox
-      />
+      <FloatingBox />
     </>
   );
 };

@@ -16,6 +16,7 @@ import type { Plan } from "@/lib/types";
 import Link from "next/link";
 import SubFilterSection from "./DetailsSubFilters";
 import { Filters } from "./Filters";
+import { Tooltipmsg } from "./Tooltipmsg";
 
 export default function DetailsSub() {
   const { data: sub } = useSubscriptionPlan();
@@ -317,6 +318,7 @@ export function JobDetails({
   return (
     <div className="lg:grid gap-8 w-full xl:w-[calc(100%-420px)]">
       <div className="sm:p-14 p-4 max-sm:py-8 border border-[#DADADA] rounded-2xl">
+        <Tooltipmsg />
         <JobDetailsHeader
           t={t}
           title={tr.title}
