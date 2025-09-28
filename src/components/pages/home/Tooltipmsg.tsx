@@ -13,20 +13,13 @@ export function Tooltipmsg() {
         <div className="w-7">
           <Tooltip
             content={
-              <div
-                className="p-3 text-sm bg-white dark:bg-[#21222D] text-black dark:text-white rounded-md shadow-lg"
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: "280px",
-                  zIndex: 50,
-                }}
-              >
+              <div className="p-3 text-sm bg-white text-black  rounded-md shadow-lg">
                 {t("tooltip")}
               </div>
             }
-            side="top"
+            side="bottom"
+            align="start"
+            className="w-[280px] sm:w-auto"
           >
             <button
               className="text-gray-400 hover:text-gray-600 transition-colors flex items-center justify-center w-[28px] h-[28px]"

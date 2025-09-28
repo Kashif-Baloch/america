@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect, useState } from "react";
 import CountdownTimer from "./CountdownTimer";
-import { Loader2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { getPricingPlansForLanguage } from "@/lib/pricing-plans";
 import { PricingPlan } from "@/Data/PricingPlan";
@@ -20,18 +19,28 @@ type PricingMarket = {
   oldPrice: string;
 };
 
-const CountPage = () => {
+export default function CountPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
-  const [pricingMarket, setPricingMarket] = useState<PricingMarket | null>(
-    null
-  );
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [pricingMarket, setPricingMarket] = useState<PricingMarket | null>();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
+
+  // const validateEmail = (email: string) => {
+  //   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   return re.test(email);
+  // };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    if (emailError) setEmailError("");
+  };
 
   useEffect(() => {
     fetchPricingMarket();
@@ -120,41 +129,55 @@ const CountPage = () => {
   if (!pricingMarket?.isActive) {
     return null; // or a loading/redirecting message
   }
+
   return (
-    <div className="min-h-[120dvh]  flex font-sf">
+    <div className="min-h-[120dvh] flex font-sf">
       {/* Left Side - Branding */}
       <PriceLeftSection />
       {/* Right Side - Form */}
       <div className="flex-1 bg-white md:mt-16 flex items-center justify-center p-8 flex-col">
         <div className="w-full sm:max-w-lg">
-          <Suspense fallback={<>Loading...</>}>
+          <Suspense fallback={<div>Loading...</div>}>
             <CountdownTimer timeLeft={timeLeft} />
 
-            {plans ? (
+            {/* Email Input */}
+            <div className="mt-6 w-full max-w-md mx-auto">
+              <div className="relative">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  placeholder="Enter your email to get started"
+                  className="w-full px-4 mt-10 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                  required
+                />
+                {emailError && (
+                  <p className="mt-1 text-sm text-red-500">{emailError}</p>
+                )}
+              </div>
+            </div>
+
+            {plans && (
               <>
                 {/* Desktop Cards */}
                 <DesktopMarketing
+                  email={email}
                   oldprice={pricingMarket.oldPrice}
                   plans={plans.slice(3, 4)}
                   newprice={pricingMarket.newPrice}
                 />
                 {/* Mobile Cards */}
                 <MobileMarketing
+                  email={email}
                   oldprice={pricingMarket.oldPrice}
                   plans={plans.slice(3, 4)}
                   newprice={pricingMarket.newPrice}
                 />
               </>
-            ) : (
-              <div className="flex items-center justify-center h-[50vh]">
-                <Loader2 size={30} className="animate-spin" />
-              </div>
             )}
           </Suspense>
         </div>
       </div>
     </div>
   );
-};
-
-export default CountPage;
+}

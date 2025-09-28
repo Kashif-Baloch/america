@@ -186,9 +186,10 @@ export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
                         ? plan.quarterlyPrice
                         : plan.monthlyPrice,
                       description: `${plan.name} subscription`,
+                      email: encodeURIComponent(session.user.email),
                     });
 
-                    window.location.href = `/api/payments/checkout?${params.toString()}`;
+                    window.location.href = `/api/payments/checkout?${params.toString()}?debug=1`;
                   }}
                   className={`w-11/12 rounded-full absolute bottom-9 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold justify-center items-center cursor-pointer h-16 ${
                     plan.highlighted

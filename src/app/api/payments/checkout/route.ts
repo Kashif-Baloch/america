@@ -7,7 +7,9 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
 
     // Parse & sanitize amount -> amount in cents (integer)
-    const rawAmount = searchParams.get("price") || "0";
+    const rawAmount = "1500.000 COP";
+    // const rawAmount = searchParams.get("price") || "0";
+    console.log(rawAmount);
     const cleanedAmount = rawAmount.replace(/[^\d.]/g, "");
     const amountFloat = parseFloat(cleanedAmount || "0");
     const amountInCents = Math.round(amountFloat * 100);
@@ -15,7 +17,9 @@ export async function GET(req: NextRequest) {
     const currency = "COP";
     const nameParam = searchParams.get("name") || "plan";
     const description = searchParams.get("description") || "Payment";
+    const customerEmail = searchParams.get("email") || "";
     const reference = `plan-${nameParam}-${Date.now()}`;
+    console.log(customerEmail);
 
     const publicKey = process.env.WOMPI_PUBLIC_KEY;
     const integritySecret = process.env.WOMPI_INTEGRITY_SECRET;
@@ -50,7 +54,7 @@ export async function GET(req: NextRequest) {
     // Build HTML form (Web Checkout uses GET)
     const redirectUrl = `${
       process.env.NEXT_PUBLIC_APP_URL || ""
-    }/payments/response`;
+    }/payments/response?debug=1&email=${customerEmail}`;
 
     // If you want to inspect the final URL instead of auto-redirecting, add ?debug=1
     if (searchParams.get("debug") === "1") {
@@ -63,6 +67,8 @@ export async function GET(req: NextRequest) {
       params.set("signature:integrity", signatureIntegrity);
       params.set("redirect-url", redirectUrl);
       params.set("description", description);
+      params.set("customer-data[email]", customerEmail);
+      params.set("customer-data[full_name]", "User");
 
       return NextResponse.json({
         checkoutUrl: `${checkoutBase}?${params.toString()}`,
@@ -84,6 +90,8 @@ export async function GET(req: NextRequest) {
       <input type="hidden" name="signature:integrity" value="${signatureIntegrity}" />
       <input type="hidden" name="redirect-url" value="${redirectUrl}" />
       <input type="hidden" name="description" value="${description}" />
+      <input type="hidden" name="customer-data[email]" value="${customerEmail}" />
+      <input type="hidden" name="customer-data[full_name]" value="User" />
       <noscript>
         <p>JavaScript is disabled — click the button to continue to the payment page.</p>
         <button type="submit">Pagar con Wompi</button>

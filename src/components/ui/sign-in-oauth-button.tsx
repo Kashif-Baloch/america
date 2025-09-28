@@ -11,6 +11,7 @@ interface PaymentParams {
   name: string;
   price: string;
   description: string;
+  email: string;
 }
 
 interface SignInOauthButtonProps {
@@ -27,16 +28,19 @@ const SignInOauthButton = ({ text, paymentParams }: SignInOauthButtonProps) => {
     try {
       // Get callbackUrl from URL params
       const searchParams = new URLSearchParams(window.location.search);
-      const callbackUrl = searchParams.get('callbackUrl');
-      
+      const callbackUrl = searchParams.get("callbackUrl");
+
       // Build the callback URL with payment params if they exist
-      let callbackURL = `/${locale}${callbackUrl === 'pricing' ? '/pricing' : '/'}`;
+      let callbackURL = `/${locale}${
+        callbackUrl === "pricing" ? "/pricing" : "/"
+      }`;
 
       if (paymentParams) {
         const params = new URLSearchParams({
           name: paymentParams.name,
           price: paymentParams.price,
           description: paymentParams.description,
+          email: paymentParams.email,
         });
         callbackURL = `/api/payments/checkout?${params.toString()}`;
       }
