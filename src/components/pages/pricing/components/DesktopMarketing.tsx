@@ -16,12 +16,14 @@ interface DesktopCardsProps {
   plans: PricingPlan[];
   oldprice: string;
   newprice: string;
+  email: string;
 }
 
 export default function DesktopMarketing({
   plans,
   oldprice,
   newprice,
+  email,
 }: DesktopCardsProps) {
   const locale = useLocale();
 
@@ -56,7 +58,7 @@ export default function DesktopMarketing({
                   Free
                 </div>
               ) : (
-                <>
+                <div>
                   <h3
                     className={`sm:text-[31px] text-center line-through text-2xl font-bold leading-[1.2] ${
                       plan.highlighted ? "text-white" : "text-black"
@@ -64,22 +66,11 @@ export default function DesktopMarketing({
                   >
                     {`${oldprice}.000`} COP
                   </h3>
-                  <h3
-                    className={`sm:text-[31px] text-2xl font-bold leading-[1.2] text-center ${
-                      plan.highlighted ? "text-white" : "text-black"
-                    }`}
-                  >
-                    {newprice}
+                  <h3 className="text-4xl font-bold text-center my-2">
+                    ${newprice}
                     <span className="text-lg font-normal">/month</span>
                   </h3>
-                  <div
-                    className={`text-sm text-center ${
-                      plan.highlighted ? "text-white/90" : "text-[#222222]"
-                    } mt-1`}
-                  >
-                    {newprice}
-                  </div>
-                </>
+                </div>
               )}
             </div>
           </CardHeader>
@@ -125,8 +116,13 @@ export default function DesktopMarketing({
               </Button>
             ) : (
               <Button
-                onClick={() => {
-                  window.location.href = `/sign-up?name=${plan.type}&price=${newprice}&description=${plan.name} subscription`;
+                onClick={(e) => {
+                  if (!email) {
+                    e.preventDefault();
+                    alert('Please enter your email first');
+                    return;
+                  }
+                  window.location.href = `/sign-up?name=${plan.type}&price=${newprice}&description=${plan.name} subscription&email=${encodeURIComponent(email)}`;
                 }}
                 className={`w-11/12 justify-center items-center rounded-full absolute bottom-6 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold cursor-pointer h-16 ${
                   plan.highlighted

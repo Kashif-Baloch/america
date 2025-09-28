@@ -21,6 +21,7 @@ import kyInstance from "@/lib/ky";
 interface PaymentParams {
   name: string;
   price: string;
+  email: string;
   description: string;
 }
 

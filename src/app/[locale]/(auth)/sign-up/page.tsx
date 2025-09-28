@@ -14,8 +14,9 @@ const SignUpPage = () => {
   const name = searchParams.get("name") || "";
   const price = searchParams.get("price") || "";
   const description = searchParams.get("description") || "";
+  const email = searchParams.get("email") || "";
 
-  console.log(name, price, description);
+  console.log(name, price, description, email);
 
   return (
     <div className="min-h-[117dvh] flex font-sf">
@@ -57,8 +58,8 @@ const SignUpPage = () => {
 
           <SignUpForm
             paymentParams={
-              name && price && description
-                ? { name, price, description }
+              name && price && description && email
+                ? { name, price, description, email }
                 : undefined
             }
           />

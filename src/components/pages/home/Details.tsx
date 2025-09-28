@@ -310,9 +310,11 @@ function JobDetails({
   const tr = getTranslation(job.translations, locale, "en");
   if (!tr) return null;
   return (
-    <div className="lg:grid gap-8 w-full hidden lg:w-[calc(100%-420px)] relative">
+    <div className="lg:grid  gap-8 w-full hidden lg:w-[calc(100%-420px)] relative">
       <div className="absolute right-4 top-4 z-10">
-        <Tooltipmsg />
+        <div className="relative">
+          <Tooltipmsg />
+        </div>
         {/* <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
