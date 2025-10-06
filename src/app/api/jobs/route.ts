@@ -36,6 +36,8 @@ export async function POST(req: Request) {
         await db.job.create({
             data: {
                 userId: session.user.id,
+                websiteLink: staticFields.websiteLink || null,
+                companyEmails: staticFields.companyEmails,
                 translations: {
                     createMany: {
                         data: (["en", "es", "pt"] as const).map((lang) => {

@@ -56,6 +56,14 @@
       ]
     },
     "job": {
+      "common": {
+        "copy": "Copiar",
+        "copied": "Copiado ao portapapeis",
+        "allCopied": "Todos os emails copiados ao portapapeis",
+        "noEmails": "Nenhum email encontrado",
+        "availableEmails": "Emails disponiveis",
+        "copyAll": "Copiar tudo"
+      },
       "requirements": {
         "label": "Requisitos Especiais:",
         "marketingReq": "Deve ter mais de 3 anos de experiência em marketing e portfólio.",

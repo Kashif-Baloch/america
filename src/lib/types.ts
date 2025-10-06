@@ -31,6 +31,8 @@ export interface JobStaticFields {
     overtime: OvertimeAvailability
     processSpeed: ProcessSpeed
     approvalEfficiency: ApprovalEfficiency
+    websiteLink?: string
+    companyEmails: string[]
 }
 
 export interface JobFormData {

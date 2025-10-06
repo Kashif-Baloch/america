@@ -34,6 +34,8 @@ export const jobStaticSchema = z.object({
     overtime: z.nativeEnum(OvertimeAvailability),
     processSpeed: z.nativeEnum(ProcessSpeed),
     approvalEfficiency: z.nativeEnum(ApprovalEfficiency),
+    websiteLink: z.string().url("Please enter a valid URL").or(z.literal("")).optional(),
+    companyEmails: z.array(z.string().email("Please enter valid email addresses")).min(1, "At least one company email is required"),
 })
 
 export const jobFormSchema = z.object({
