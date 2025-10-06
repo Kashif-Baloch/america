@@ -73,7 +73,7 @@ export function JobApplicationButtons({
         <Dialog open={isEmailDialogOpen} onOpenChange={setIsEmailDialogOpen}>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle className="text-center text-xl font-bold">
+              <DialogTitle className="text-center text-lg font-bold">
                 {t("job.common.availableEmails")}
               </DialogTitle>
               {job.companyEmails?.length > 0 && (

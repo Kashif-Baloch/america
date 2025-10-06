@@ -270,7 +270,7 @@ export function JobCardsList({
       : true;
 
   return (
-    <div className="flex flex-col relative gap-y-7 sm:max-h-[780px] max-h-[800px]  overflow-y-auto  xl:w-[540px] w-full ">
+    <div className="flex flex-col relative gap-y-7 sm:max-h-[780px] max-h-[800px]  overflow-y-auto  xl:w-[490px] w-full ">
       {jobsToShow.map((job) => (
         <JobCard
           key={job.id}
