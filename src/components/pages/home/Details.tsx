@@ -354,7 +354,7 @@ function JobDetails({
           <JobRequirements t={t} requirements={tr.requirements} />
         )}
         <JobDetailsList t={t} job={job} plan={plan} />
-        <JobApplicationButtons t={t} plan={plan} />
+        <JobApplicationButtons t={t} plan={plan} job={job} />
       </div>
     </div>
   );

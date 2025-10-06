@@ -56,6 +56,14 @@
       ]
     },
     "job": {
+      "common": {
+        "copy": "Copy",
+        "copied": "Copied to clipboard",
+        "allCopied": "All emails copied to clipboard",
+        "noEmails": "No emails found",
+        "availableEmails": "Available Emails",
+        "copyAll": "Copy All"
+      },
       "requirements": {
         "label": "Special Requirements:",
         "marketingReq": "Must have 3+ years of marketing experience and portfolio.",

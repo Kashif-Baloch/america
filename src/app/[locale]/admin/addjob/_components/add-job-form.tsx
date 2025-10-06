@@ -82,6 +82,8 @@ export default function JobForm() {
         overtime: OvertimeAvailability.not_available,
         processSpeed: ProcessSpeed.medium,
         approvalEfficiency: ApprovalEfficiency.medium,
+        websiteLink: '',
+        companyEmails: [''],
       },
       translations: {
         en: {
@@ -731,6 +733,86 @@ export default function JobForm() {
                           )}
                         </SelectContent>
                       </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              {/* Website and Emails Section */}
+              <div className="space-y-4 pt-4">
+                <h3 className="text-lg font-semibold text-gray-900">Company Information</h3>
+                
+                <FormField
+                  control={form.control}
+                  name="staticFields.websiteLink"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg font-medium text-gray-700">
+                        Company Website
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="https://example.com"
+                          {...field}
+                          value={field.value || ''}
+                          className="w-full border rounded px-4 !py-0 !h-[50px] text-base placeholder:text-lg focus:ring focus:ring-blue-200 focus:border-blue-400 transition"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="staticFields.companyEmails"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg font-medium text-gray-700">
+                        Company Email Addresses
+                      </FormLabel>
+                      <div className="space-y-2">
+                        {field.value?.map((email, index) => (
+                          <div key={index} className="flex gap-2">
+                            <FormControl>
+                              <Input
+                                placeholder="email@example.com"
+                                value={email}
+                                onChange={(e) => {
+                                  const newEmails = [...(field.value || [])];
+                                  newEmails[index] = e.target.value;
+                                  field.onChange(newEmails);
+                                }}
+                                className="w-full border rounded px-4 !py-0 !h-[50px] text-base placeholder:text-lg focus:ring focus:ring-blue-200 focus:border-blue-400 transition"
+                              />
+                            </FormControl>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="icon"
+                              className="h-[50px] w-[50px]"
+                              onClick={() => {
+                                const newEmails = [...(field.value || [])];
+                                newEmails.splice(index, 1);
+                                field.onChange(newEmails.length ? newEmails : ['']);
+                              }}
+                            >
+                              -
+                            </Button>
+                          </div>
+                        ))}
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="mt-2"
+                          onClick={() => {
+                            field.onChange([...(field.value || []), '']);
+                          }}
+                        >
+                          + Add Another Email
+                        </Button>
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
