@@ -6,7 +6,16 @@ const nextConfig: NextConfig = {
   typescript: { ignoreBuildErrors: true },
   serverExternalPackages: ["@node-rs/argon2"],
   images: {
-    unoptimized: true
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+      {
+        protocol: "http",
+        hostname: "**",
+      }
+    ]
   }
 };
 
