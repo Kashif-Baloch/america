@@ -20,7 +20,7 @@ const Presence = () => {
             {t("presence_colombia_bogota")}
           </div>
           <Link
-            href={"https://ruesfront.rues.org.co/buscar/RM/AmericaWorking"}
+            href={"https://www.rues.org.co/detalle/04/0003767572"}
             target="_blank"
           >
             <Image
