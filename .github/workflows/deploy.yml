@@ -1,0 +1,28 @@
+name: 🚀 Auto Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚀 Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            echo "📥 Pulling latest code..."
+            cd /var/www/americaworking.co
+            GIT_SSH_COMMAND="ssh -i /var/www/my_ssh_key" git pull
+
+            echo "🔑 Setting execute permission to deploy script..."
+            chmod +x .scripts/deploy.sh
+
+            echo "🚀 Running deploy script..."
+            .scripts/deploy.sh
