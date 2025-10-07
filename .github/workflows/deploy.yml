@@ -3,7 +3,7 @@ name: 🚀 Auto Deploy to VPS
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
