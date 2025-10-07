@@ -38,7 +38,7 @@ pnpm run build || {
   echo "❌ Build failed. Restoring previous .next folder..."
   rm -rf .next
   mv .next_backup .next || echo "⚠️ Failed to restore .next from backup."
-  pm2 restart americaworking.co.ports=3001
+  pm2 restart americaworking.co.3001
   exit 1
 }
 
@@ -46,7 +46,7 @@ echo "🧹 Removing .next_backup backup..."
 rm -rf .next_backup
 
 echo "🟢 Restarting PM2 apps..."
-pm2 restart americaworking.co.ports=3001
+pm2 restart americaworking.co.3001
 
 echo "💾 Saving PM2 process list..."
 pm2 save
