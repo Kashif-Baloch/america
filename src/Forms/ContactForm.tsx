@@ -53,14 +53,13 @@ const ContactForm = () => {
         body: JSON.stringify(values),
       });
 
-      // const data = await res.json();
+      const data = await res.json();
 
       if (res.ok) {
         toast.success(t("success"));
         resetForm();
       } else {
-        locale
-        toast.error("Failed to send message.");
+        toast.error(data?.error?.[locale] || "Failed to send message.");
       }
     } catch (error) {
       toast.error("Failed to send message. Please try again.");
