@@ -1,14 +1,14 @@
 "use client";
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
+import { Textarea } from "@/components/ui/textarea";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
+import { useState } from "react";
 
-import * as Yup from "yup";
-import { toast } from "sonner";
 import { useLocale, useTranslations } from "next-intl";
+import { toast } from "sonner";
+import * as Yup from "yup";
 
 interface ContactFormValues {
   name: string;
@@ -60,7 +60,7 @@ const ContactForm = () => {
         resetForm();
       } else {
         locale
-        toast.error(data?.error[locale] || "Failed to send message.");
+        toast.error(data?.error?.[locale] || "Failed to send message.");
       }
     } catch (error) {
       toast.error("Failed to send message. Please try again.");
