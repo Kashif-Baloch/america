@@ -8,7 +8,7 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 
 import * as Yup from "yup";
 import { toast } from "sonner";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 interface ContactFormValues {
   name: string;
@@ -21,7 +21,7 @@ interface ContactFormValues {
 const ContactForm = () => {
   const t = useTranslations("contact.form");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const locale = useLocale() as "en" | "es" | "pt"
   // Yup validation schema
   const ContactFormSchema = Yup.object().shape({
     name: Yup.string()
@@ -47,8 +47,21 @@ const ContactForm = () => {
   ) => {
     setIsSubmitting(true);
     try {
-      console.log("Form submitted:", values);
-      toast.success("Message sent successfully!");
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success(t("success"));
+        resetForm();
+      } else {
+        locale
+        toast.error(data?.error[locale] || "Failed to send message.");
+      }
     } catch (error) {
       toast.error("Failed to send message. Please try again.");
       console.log(error);
@@ -85,11 +98,10 @@ const ContactForm = () => {
                 id="name"
                 name="name"
                 placeholder={t("namePlaceholder")}
-                className={`sm:h-[68px] h-[55px] text-[#686781] !text-lg placeholder:text-[#686781] placeholder:text-base rounded-full ${
-                  touched.name && errors.name
-                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-[#E4E4ED] focus:border-primary-blue focus:ring-blue-500"
-                }`}
+                className={`sm:h-[68px] h-[55px] text-[#686781] !text-lg placeholder:text-[#686781] placeholder:text-base rounded-full ${touched.name && errors.name
+                  ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                  : "border-[#E4E4ED] focus:border-primary-blue focus:ring-blue-500"
+                  }`}
               />
               <ErrorMessage
                 name="name"
@@ -109,11 +121,10 @@ const ContactForm = () => {
                 name="email"
                 type="email"
                 placeholder={t("emailPlaceholder")}
-                className={`sm:h-[68px] h-[55px] text-[#686781] !text-lg placeholder:text-[#686781] placeholder:text-base rounded-full ${
-                  touched.email && errors.email
-                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-[#E4E4ED] focus:border-primary-blue focus:ring-blue-500"
-                }`}
+                className={`sm:h-[68px] h-[55px] text-[#686781] !text-lg placeholder:text-[#686781] placeholder:text-base rounded-full ${touched.email && errors.email
+                  ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                  : "border-[#E4E4ED] focus:border-primary-blue focus:ring-blue-500"
+                  }`}
               />
               <ErrorMessage
                 name="email"
@@ -134,11 +145,10 @@ const ContactForm = () => {
                 id="phone"
                 name="phone"
                 placeholder={t("phonePlaceholder")}
-                className={`sm:h-[68px] h-[55px] text-[#686781] !text-lg placeholder:text-[#686781] placeholder:text-base rounded-full ${
-                  touched.phone && errors.phone
-                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-[#E4E4ED] focus:border-primary-blue focus:ring-blue-500"
-                }`}
+                className={`sm:h-[68px] h-[55px] text-[#686781] !text-lg placeholder:text-[#686781] placeholder:text-base rounded-full ${touched.phone && errors.phone
+                  ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                  : "border-[#E4E4ED] focus:border-primary-blue focus:ring-blue-500"
+                  }`}
               />
               <ErrorMessage
                 name="phone"
@@ -157,11 +167,10 @@ const ContactForm = () => {
                 id="subject"
                 name="subject"
                 placeholder={t("subjectPlaceholder")}
-                className={`sm:h-[68px] h-[55px] text-[#686781] !text-lg placeholder:text-[#686781] placeholder:text-base rounded-full ${
-                  touched.subject && errors.subject
-                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                    : "border-[#E4E4ED] focus:border-primary-blue focus:ring-blue-500"
-                }`}
+                className={`sm:h-[68px] h-[55px] text-[#686781] !text-lg placeholder:text-[#686781] placeholder:text-base rounded-full ${touched.subject && errors.subject
+                  ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                  : "border-[#E4E4ED] focus:border-primary-blue focus:ring-blue-500"
+                  }`}
               />
               <ErrorMessage
                 name="subject"
@@ -182,11 +191,10 @@ const ContactForm = () => {
               name="message"
               rows={6}
               placeholder={t("messagePlaceholder")}
-              className={`resize-none pt-4 rounded-2xl !text-lg placeholder:text-lg min-h-[126px] ${
-                touched.message && errors.message
-                  ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                  : "border-[#E4E4ED] focus:border-primary-blue focus:ring-blue-500"
-              }`}
+              className={`resize-none pt-4 rounded-2xl !text-lg placeholder:text-lg min-h-[126px] ${touched.message && errors.message
+                ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                : "border-[#E4E4ED] focus:border-primary-blue focus:ring-blue-500"
+                }`}
             />
             <ErrorMessage
               name="message"

@@ -301,6 +301,7 @@
     "emailLabel": "letstart@americaworking.co",
     "form": {
       "name": "Nome",
+      "success": "Mensagem enviada com sucesso!",
       "namePlaceholder": "Qual é o seu nome?",
       "email": "Email",
       "emailPlaceholder": "Qual é o seu email?",
