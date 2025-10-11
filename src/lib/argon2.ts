@@ -1,20 +1,21 @@
-import { hash, verify, type Options } from "@node-rs/argon2";
-
-const opts: Options = {
-    memoryCost: 19456,
-    timeCost: 2,
-    outputLen: 32,
-    parallelism: 1,
-};
+import argon2 from "argon2";
 
 export async function hashPassword(password: string) {
-    const result = await hash(password, opts);
-    return result;
+    // Uses sensible defaults: Argon2id with secure parameters
+    return await argon2.hash(password, {
+        type: argon2.argon2id, // ✅ safest version
+        memoryCost: 2 ** 16,   // 64 MB
+        timeCost: 3,           // iterations
+        parallelism: 1,        // threads
+    });
 }
 
-export async function verifyPassword(data: { password: string; hash: string }) {
-    const { password, hash } = data;
-
-    const result = await verify(hash, password, opts);
-    return result;
+export async function verifyPassword({
+    password,
+    hash,
+}: {
+    password: string;
+    hash: string;
+}) {
+    return await argon2.verify(hash, password);
 }

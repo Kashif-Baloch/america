@@ -325,6 +325,7 @@
     "description": "Need help or have a question? We're here to guide you through every step of your job search and visa journey.",
     "emailLabel": "letstart@americaworking.co",
     "form": {
+      "success": "Message sent successfully!",
       "name": "Name",
       "namePlaceholder": "What's your name?",
       "email": "Email Address",
