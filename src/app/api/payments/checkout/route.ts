@@ -1,7 +1,8 @@
 // /app/api/payments/checkout/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
-
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -17,9 +18,11 @@ export async function GET(req: NextRequest) {
     const currency = "COP";
     const nameParam = searchParams.get("name") || "plan";
     const description = searchParams.get("description") || "Payment";
-    const customerEmail = searchParams.get("email") || "";
     const reference = `plan-${nameParam}-${Date.now()}`;
-    console.log(customerEmail);
+
+    const session = await auth.api.getSession({ headers: await headers() });
+    const customerEmail =
+      session?.user?.email || searchParams.get("email") || "";
 
     const publicKey = process.env.WOMPI_PUBLIC_KEY;
     const integritySecret = process.env.WOMPI_INTEGRITY_SECRET;

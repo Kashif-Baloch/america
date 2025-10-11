@@ -163,6 +163,13 @@ export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
               </CardDescription>
               {plan.name === "Free" ? (
                 <Button
+                  onClick={() => {
+                    if (!session) {
+                      router.push("/sign-up");
+                      return;
+                    }
+                    router.push("/");
+                  }}
                   className={`w-11/12 rounded-full absolute bottom-9 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold cursor-pointer h-16 ${
                     plan.highlighted
                       ? "bg-white text-black hover:bg-black hover:text-white"
@@ -176,7 +183,13 @@ export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
                 <Button
                   onClick={() => {
                     if (!session) {
-                      router.push("/sign-up?callbackUrl=pricing");
+                      router.push(
+                        `/sign-up?name=${plan.type}&price=${
+                          isQuarterly ? plan.quarterlyPrice : plan.monthlyPrice
+                        }&description=${
+                          plan.name
+                        } subscription&email=${"unkown@gmail.com"}`
+                      );
                       return;
                     }
 

@@ -84,7 +84,7 @@ export async function POST(req: Request) {
 
     // ✅ Fetch transaction details from Wompi
     const wompiRes = await fetch(
-      `https://production.wompi.co/v1/transactions/${transactionId}`
+      `https://sandbox.wompi.co/v1/transactions/${transactionId}`
     );
 
     if (!wompiRes.ok) throw new Error("Failed to fetch Wompi transaction");
@@ -95,7 +95,7 @@ export async function POST(req: Request) {
     const referenceCode = data.reference || "";
     // extracting email from redirect url
     const email = new URL(data.redirect_url).searchParams.get("email") || "";
-
+    console.log(email);
     if (status !== "APPROVED") {
       return NextResponse.json(
         { ok: false, message: "Payment not approved" },
