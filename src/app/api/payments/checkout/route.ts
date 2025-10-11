@@ -7,9 +7,9 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
 
     // Parse & sanitize amount -> amount in cents (integer)
-    // const rawAmount = "1500.000 COP";
-    const rawAmount = searchParams.get("price") || "0";
-    console.log(rawAmount);
+    const rawAmount = "1500.000 COP";
+    // const rawAmount = searchParams.get("price") || "0";
+    // console.log(rawAmount);
     const cleanedAmount = rawAmount.replace(/[^\d.]/g, "");
     const amountFloat = parseFloat(cleanedAmount || "0");
     const amountInCents = Math.round(amountFloat * 100);

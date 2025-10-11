@@ -84,7 +84,7 @@ export async function POST(req: Request) {
 
     // ✅ Fetch transaction details from Wompi
     const wompiRes = await fetch(
-      `https://sandbox.wompi.co/v1/transactions/${transactionId}`
+      `https://production.wompi.co/v1/transactions/${transactionId}`
     );
 
     if (!wompiRes.ok) throw new Error("Failed to fetch Wompi transaction");
