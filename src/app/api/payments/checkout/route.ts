@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);

@@ -15,8 +15,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const { data: sub } = useSubscriptionPlan();
 
-  console.log(sub);
-
   useEffect(() => {
     if (!sub) {
       setIsLoading(false);

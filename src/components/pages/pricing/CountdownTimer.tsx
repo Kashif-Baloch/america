@@ -74,7 +74,7 @@ const CountdownTimer = ({
             </div>
           </div>
 
-          <button className="bg-golden text-white w-full md:scale-[1.3] md:mb-[-33px] font-bold py-3 px-8 rounded-md transition-colors duration-300">
+          <button className="bg-gradient-to-r from-[#CB9442] to-[#FEDC6E] text-white w-full md:scale-[1.3] md:mb-[-33px] font-bold py-3 px-8 rounded-md transition-colors duration-300">
             ACCEDE A +240.000 EMPLEOS EN EE.UU
           </button>
         </div>

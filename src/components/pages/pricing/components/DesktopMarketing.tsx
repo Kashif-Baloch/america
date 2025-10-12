@@ -16,14 +16,12 @@ interface DesktopCardsProps {
   plans: PricingPlan[];
   oldprice: string;
   newprice: string;
-  email: string;
 }
 
 export default function DesktopMarketing({
   plans,
   oldprice,
   newprice,
-  email,
 }: DesktopCardsProps) {
   const locale = useLocale();
 
@@ -117,12 +115,7 @@ export default function DesktopMarketing({
             ) : (
               <Button
                 onClick={(e) => {
-                  if (!email) {
-                    e.preventDefault();
-                    alert('Please enter your email first');
-                    return;
-                  }
-                  window.location.href = `/sign-up?name=${plan.type}&price=${newprice}&description=${plan.name} subscription&email=${encodeURIComponent(email)}`;
+                  window.location.href = `/sign-up?name=${plan.type}&price=${newprice}&description=${plan.name} subscription&email=unknown@gmail.com`;
                 }}
                 className={`w-11/12 justify-center items-center rounded-full absolute bottom-6 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold cursor-pointer h-16 ${
                   plan.highlighted

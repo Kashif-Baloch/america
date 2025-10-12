@@ -22,8 +22,6 @@ type PricingMarket = {
 export default function CountPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
   const [pricingMarket, setPricingMarket] = useState<PricingMarket | null>();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -31,16 +29,6 @@ export default function CountPage() {
     minutes: 0,
     seconds: 0,
   });
-
-  // const validateEmail = (email: string) => {
-  //   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   return re.test(email);
-  // };
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    if (emailError) setEmailError("");
-  };
 
   useEffect(() => {
     fetchPricingMarket();
@@ -140,35 +128,16 @@ export default function CountPage() {
           <Suspense fallback={<div>Loading...</div>}>
             <CountdownTimer timeLeft={timeLeft} />
 
-            {/* Email Input */}
-            <div className="mt-6 w-full max-w-md mx-auto">
-              <div className="relative">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  placeholder="Enter your email to get started"
-                  className="w-full px-4 mt-10 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"
-                  required
-                />
-                {emailError && (
-                  <p className="mt-1 text-sm text-red-500">{emailError}</p>
-                )}
-              </div>
-            </div>
-
             {plans && (
               <>
                 {/* Desktop Cards */}
                 <DesktopMarketing
-                  email={email}
                   oldprice={pricingMarket.oldPrice}
                   plans={plans.slice(3, 4)}
                   newprice={pricingMarket.newPrice}
                 />
                 {/* Mobile Cards */}
                 <MobileMarketing
-                  email={email}
                   oldprice={pricingMarket.oldPrice}
                   plans={plans.slice(3, 4)}
                   newprice={pricingMarket.newPrice}

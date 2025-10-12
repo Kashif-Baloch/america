@@ -15,14 +15,12 @@ interface MobileCardsProps {
   plans: PricingPlan[];
   oldprice: string;
   newprice: string;
-  email: string;
 }
 
 export default function MobileMarketing({
   plans,
   oldprice,
   newprice,
-  email,
 }: MobileCardsProps) {
   return (
     <div className="w-full min-xl:hidden relative flex items-center justify-center mt-10 overflow-x-auto scrollbar-hide">
@@ -60,7 +58,7 @@ export default function MobileMarketing({
                     {/* making it cut like a cut line on price */}
                     <h3
                       className={`sm:text-[31px] line-through text-2xl font-bold leading-[1.2] text-left ${
-                        plan.highlighted ? 'text-white' : 'text-black'
+                        plan.highlighted ? "text-white" : "text-black"
                       }`}
                     >
                       {`${oldprice}.000`} COP
@@ -114,12 +112,7 @@ export default function MobileMarketing({
               ) : (
                 <Button
                   onClick={(e) => {
-                    if (!email) {
-                      e.preventDefault();
-                      alert('Please enter your email first');
-                      return;
-                    }
-                    window.location.href = `/sign-up?name=${plan.type}&price=${newprice}&description=${plan.name} subscription&email=${encodeURIComponent(email)}`;
+                    window.location.href = `/sign-up?name=${plan.type}&price=${newprice}&description=${plan.name} subscription&email=unknown@gmail.com`;
                   }}
                   className={`w-11/12 rounded-full absolute bottom-9 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold justify-center items-center cursor-pointer h-16 ${
                     plan.highlighted

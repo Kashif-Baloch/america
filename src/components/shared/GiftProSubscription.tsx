@@ -17,10 +17,14 @@ export default function GiftProSubscription() {
 
   const plans = [t("dropdown.monthly"), t("dropdown.quarterly")];
   const dropdownRef = useRef<HTMLDivElement>(null);
-
+  const params = new URLSearchParams({
+    name: "Pro",
+    price: "10000",
+    description: "Pro subscription",
+  });
   const paymentLinks = {
-    0: "https://biz.payulatam.com/L0fa642D7F9270D",
-    1: "https://biz.payulatam.com/L0fa6427CA70875",
+    0: `/api/payments/checkout?${params.toString()}`,
+    1: `/api/payments/checkout?${params.toString()}`,
   };
 
   const validateEmail = (email: string) => {
