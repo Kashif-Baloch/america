@@ -112,6 +112,7 @@ export default function MobileMarketing({
               ) : (
                 <Button
                   onClick={(e) => {
+                    e.preventDefault();
                     window.location.href = `/sign-up?name=${plan.type}&price=${newprice}&description=${plan.name} subscription&email=unknown@gmail.com`;
                   }}
                   className={`w-11/12 rounded-full absolute bottom-9 left-1/2 -translate-x-1/2 duration-300 flex text-[17px] font-bold justify-center items-center cursor-pointer h-16 ${
