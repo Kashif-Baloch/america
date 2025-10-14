@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
     const session = await auth.api.getSession({ headers: await headers() });
     const customerEmail =
       session?.user?.email || searchParams.get("email") || "";
+    const giftRecipient = searchParams.get("giftRecipient") || "";
 
     const publicKey = process.env.WOMPI_PUBLIC_KEY;
     const integritySecret = process.env.WOMPI_INTEGRITY_SECRET;
@@ -56,9 +57,11 @@ export async function GET(req: NextRequest) {
       .digest("hex");
 
     // Build HTML form (Web Checkout uses GET)
-    const redirectUrl = `${
-      process.env.NEXT_PUBLIC_APP_URL || ""
-    }/payments/response?debug=1&email=${customerEmail}`;
+    const redirectParams = new URLSearchParams();
+    redirectParams.set("debug", "1");
+    redirectParams.set("email", customerEmail);
+    if (giftRecipient) redirectParams.set("giftRecipient", giftRecipient);
+    const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL || ""}/payments/response?${redirectParams.toString()}`;
 
     // If you want to inspect the final URL instead of auto-redirecting, add ?debug=1
     if (searchParams.get("debug") === "1") {

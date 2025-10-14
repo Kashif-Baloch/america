@@ -169,6 +169,47 @@ export const auth = betterAuth({
               },
             });
           }
+
+          // Auto-redeem any pending gift for this email
+          const pendingGift = await db.gift.findFirst({
+            where: { recipientEmail: user.email, status: "sent" },
+          });
+
+          if (pendingGift) {
+            const now = new Date();
+            const endsAt = new Date();
+            endsAt.setMonth(now.getMonth() + 1);
+
+            const planToApply = pendingGift.plan;
+
+            await db.subscription.upsert({
+              where: { userId: user.id },
+              update: {
+                plan: planToApply,
+                status: "active",
+                searchCount: 0,
+                startedAt: now,
+                endsAt,
+              },
+              create: {
+                userId: user.id,
+                plan: planToApply,
+                status: "active",
+                searchCount: 0,
+                startedAt: now,
+                endsAt,
+              },
+            });
+
+            await db.gift.update({
+              where: { id: pendingGift.id },
+              data: {
+                recipientUserId: user.id,
+                status: "redeemed",
+                redeemedAt: new Date(),
+              },
+            });
+          }
           // No return needed as the function returns Promise<void>
         },
       },

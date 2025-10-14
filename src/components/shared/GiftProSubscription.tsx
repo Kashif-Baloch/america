@@ -61,8 +61,9 @@ export default function GiftProSubscription() {
 
     if (paymentLink) {
       localStorage.setItem("giftSubscriptionEmail", email);
+      const link = `${paymentLink}&giftRecipient=${encodeURIComponent(email)}`;
       setTimeout(() => {
-        window.location.href = paymentLink;
+        window.location.href = link;
       }, 2000);
     } else {
       toast.error("Invalid payment link configuration", {

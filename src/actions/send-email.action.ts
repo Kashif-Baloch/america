@@ -39,6 +39,35 @@ export async function sendEmailAction(params: SendEmailParams) {
   }
 }
 
+export async function sendGiftInvitationEmail(params: {
+  to: string;
+  giverName: string;
+  plan: SubscriptionPlan;
+  signupUrl: string;
+}) {
+  const { to, giverName, plan, signupUrl } = params;
+
+  console.log("Sending gift invitation email to:", to);
+
+  const subject = "🎁 Has recibido un regalo de suscripción";
+  const html = `
+    <!DOCTYPE html>
+    <html>
+    <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <h2>¡Tienes un regalo de ${giverName}!</h2>
+      <p>Has recibido una suscripción <strong>${plan}</strong> en America Working.</p>
+      <p>Crea tu cuenta o inicia sesión con este mismo correo para activar tu plan.</p>
+      <div style="text-align:center; margin: 24px 0;">
+        <a href="${signupUrl}" style="display:inline-block;padding:12px 20px;background:#2563eb;color:#fff;text-decoration:none;border-radius:6px;">Crear cuenta</a>
+      </div>
+      <p>Si ya tienes cuenta, inicia sesión y tu suscripción se activará automáticamente.</p>
+      <p style="color:#666;font-size:12px;">Si no solicitaste este correo, puedes ignorarlo.</p>
+    </body>
+    </html>
+  `;
+
+  return sendEmailAction({ to, subject, html });
+}
 // For subscription welcome emails
 export async function sendSubscriptionWelcomeEmail(params: {
   to: string;
@@ -118,8 +147,9 @@ function getSubscriptionEmailTemplate(
         
         <p>Your subscription includes:</p>
         <ul>
-          <li>${isProPlus ? "Unlimited job searches" : "Limited job searches"
-    }</li>
+          <li>${
+            isProPlus ? "Unlimited job searches" : "Limited job searches"
+          }</li>
           <li>Access to detailed job information</li>
           ${isProPlus ? "<li>Free 30-minute consultation session</li>" : ""}
           <li>Priority customer support</li>
@@ -128,8 +158,9 @@ function getSubscriptionEmailTemplate(
         <p>We've attached a welcome guide with more information about your subscription benefits.</p>
         
         <div style="text-align: center;">
-          <a href="${process.env.NEXT_PUBLIC_APP_URL
-    }/settings" class="button">Go to Dashboard</a>
+          <a href="${
+            process.env.NEXT_PUBLIC_APP_URL
+          }/settings" class="button">Go to Dashboard</a>
         </div>
       </div>
       

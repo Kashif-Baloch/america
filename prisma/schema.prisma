@@ -403,3 +403,21 @@ model ContactSubmission {
 
   @@map("contact_submissions")
 }
+
+// Gifts: track when a user purchases a gift for a recipient email
+model Gift {
+  id              String           @id @default(cuid())
+  giverUserId     String
+  recipientEmail  String
+  recipientUserId String?
+  plan            SubscriptionPlan
+  status          String           @default("sent") // sent, redeemed, canceled
+  referenceCode   String?
+  transactionId   String?
+  redeemedAt      DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([recipientEmail])
+}
