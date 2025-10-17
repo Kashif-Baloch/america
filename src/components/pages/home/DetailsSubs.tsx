@@ -21,7 +21,7 @@ import { Tooltipmsg } from "./Tooltipmsg";
 export default function DetailsSub() {
   const { data: sub } = useSubscriptionPlan();
   useEffect(() => {
-    if (sub?.plan === "NONE" || sub?.plan === "FREE") {
+    if (sub?.plan === "NONE") {
       window.location.href = "/";
     }
   }, [sub]);
@@ -325,7 +325,6 @@ export function JobDetails({
           rating={`${ratingToNumber(tr.rating).toFixed(1)}`}
         />
         <JobSalaryInfo t={t} salary={tr.salary} />
-        {/* FREE and above can see Special Requirements */}
         {(plan === "FREE" ||
           plan === "BASIC" ||
           plan === "PRO" ||

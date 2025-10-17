@@ -19,7 +19,7 @@ export default function Home() {
     if (!sub) {
       setIsLoading(false);
     } else {
-      if (sub.plan !== "NONE" && sub.plan !== "FREE") {
+      if (sub.plan !== "NONE") {
         window.location.href = "/jobs";
       }
     }

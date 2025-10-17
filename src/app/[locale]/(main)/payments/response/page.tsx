@@ -211,13 +211,13 @@ export default function ThankYouPage() {
         <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-12">
           <button
             onClick={() => (window.location.href = "/")}
-            className="hidden md:inline-flex justify-center items-center bg-primary-blue cursor-pointer text-white w-60 md:h-14 h-12 text-lg py-2 rounded-full font-semibold hover:bg-white hover:text-primary-blue border border-primary-blue duration-300"
+            className="hidden md:inline-flex justify-center items-center bg-primary-blue cursor-pointer text-white w-fit md:h-14 h-12 text-lg py-2 rounded-full font-semibold hover:bg-white hover:text-primary-blue border border-primary-blue duration-300 px-4"
           >
             {t("button_job_search")}
           </button>
           <Link
             href="/settings"
-            className="hidden md:inline-flex justify-center items-center hover:bg-primary-blue cursor-pointer hover:text-white w-44 md:h-14 h-12 text-lg py-2 rounded-full font-semibold bg-white text-primary-blue border border-primary-blue duration-300"
+            className="hidden md:inline-flex justify-center items-center hover:bg-primary-blue cursor-pointer hover:text-white w-fit md:h-14 h-12 text-lg py-2 rounded-full font-semibold bg-white text-primary-blue border border-primary-blue duration-300 px-4"
           >
             {t("button_user_panel")}
           </Link>

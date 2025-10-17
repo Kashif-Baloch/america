@@ -40,7 +40,7 @@ export function JobApplicationButtons({
   };
 
   return (
-    <div className="flex gap-4 w-full justify-between flex-wrap">
+    <div className="flex gap-4 w-full justify-between  flex-wrap md:flex-nowrap">
       <div className="flex items-center sm:flex-row flex-col-reverse max-sm:w-full gap-2">
         <Button
           disabled={!canUseWebsite}
