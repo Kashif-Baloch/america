@@ -199,7 +199,7 @@ export default function MobileCards({ plans, isQuarterly }: MobileCardsProps) {
                         ? plan.quarterlyPrice
                         : plan.monthlyPrice,
                       description: `${plan.name} subscription`,
-                      email: encodeURIComponent(session.user.email),
+                      email: session.user.email,
                     });
 
                     window.location.href = `/api/payments/checkout?${params.toString()}?debug=1`;

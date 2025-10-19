@@ -147,7 +147,7 @@ export default function DesktopCards({
                       ? plan.quarterlyPrice
                       : plan.monthlyPrice,
                     description: `${plan.name} subscription`,
-                    email: encodeURIComponent(session.user.email),
+                    email: session.user.email,
                   });
 
                   window.location.href = `/api/payments/checkout?${params.toString()}`;

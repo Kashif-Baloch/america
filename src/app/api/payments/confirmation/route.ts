@@ -9,7 +9,6 @@ import {
 export async function POST(req: Request) {
   try {
     const { transactionId } = await req.json();
-    console.log(transactionId);
     if (!transactionId) {
       return NextResponse.json(
         { ok: false, message: "Missing transactionId" },
@@ -19,6 +18,7 @@ export async function POST(req: Request) {
 
     // ✅ Fetch transaction details from Wompi
     const wompiRes = await fetch(
+      // `https://sandbox.wompi.co/v1/transactions/${transactionId}`
       `https://production.wompi.co/v1/transactions/${transactionId}`
     );
 
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     const redirect = new URL(data.redirect_url);
     const email = redirect.searchParams.get("email") || "";
     const giftRecipient = redirect.searchParams.get("giftRecipient") || "";
-    // console.log("email", email, "giftRecipient", giftRecipient);
+    console.log("email", email, "giftRecipient", giftRecipient);
     if (status !== "APPROVED") {
       return NextResponse.json(
         { ok: false, message: "Payment not approved" },

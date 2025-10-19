@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SignInOauthButton from "@/components/ui/sign-in-oauth-button";
 import { Link, useRouter } from "@/i18n/navigation";
-import { signUp } from "@/lib/auth-client";
+import { signUp, signIn } from "@/lib/auth-client";
 import { computeSHA256 } from "@/lib/utils";
 import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
 import { Eye, EyeOff, Loader2, Upload, X } from "lucide-react";
@@ -191,6 +191,24 @@ export default function SignUpForm({ paymentParams }: SignUpFormProps) {
                 );
                 const callbackUrl = searchParams.get("callbackUrl");
 
+                // Try to create a session so the user is logged in through checkout and on return
+                try {
+                  await signIn.email(
+                    {
+                      email: values.email,
+                      password: values.password,
+                    } as any,
+                    {
+                      onError: (ctx) => {
+                        // proceed anyway; we'll still send email in params to checkout
+                        console.error("Auto sign-in failed:", ctx?.error?.message);
+                      },
+                    }
+                  );
+                } catch (e) {
+                  console.error("Auto sign-in exception:", e);
+                }
+
                 // Redirect to payment if payment params exist
                 if (paymentParams) {
                   const { name, price, description } = paymentParams;
@@ -198,6 +216,7 @@ export default function SignUpForm({ paymentParams }: SignUpFormProps) {
                     name,
                     price,
                     description,
+                    email: values.email,
                   });
                   window.location.href = `/api/payments/checkout?${params.toString()}`;
                 } else {
