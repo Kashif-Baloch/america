@@ -26,9 +26,9 @@ export async function POST(req: Request) {
 
     const responseData = await wompiRes.json();
     const { data } = responseData;
-    const status = data.status; // APPROVED, DECLINED, etc.
+    const status = data.status;
     const referenceCode = data.reference || "";
-    // extracting email and optional gift recipient from redirect url
+
     const redirect = new URL(data.redirect_url);
     const email = redirect.searchParams.get("email") || "";
     const giftRecipient = redirect.searchParams.get("giftRecipient") || "";

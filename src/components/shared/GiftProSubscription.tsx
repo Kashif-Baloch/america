@@ -17,9 +17,11 @@ export default function GiftProSubscription() {
 
   const plans = [t("dropdown.monthly"), t("dropdown.quarterly")];
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const monthlyPrice = "120.000 COP";
+  const quarterlyPrice = "96.600 COP";
   const params = new URLSearchParams({
     name: "Pro",
-    price: "10000",
+    price: plan === 0 ? monthlyPrice : quarterlyPrice,
     description: "Pro subscription",
   });
   const paymentLinks = {

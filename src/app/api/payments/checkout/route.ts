@@ -8,10 +8,7 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
 
-    // Parse & sanitize amount -> amount in cents (integer)
-    const rawAmount = "1500.000 COP";
-    // const rawAmount = searchParams.get("price") || "0";
-    // console.log(rawAmount);
+    const rawAmount = searchParams.get("price") || "0";
     const cleanedAmount = rawAmount.replace(/[^\d.]/g, "");
     const amountFloat = parseFloat(cleanedAmount || "0");
     const amountInCents = Math.round(amountFloat * 100);
@@ -61,7 +58,9 @@ export async function GET(req: NextRequest) {
     redirectParams.set("debug", "1");
     redirectParams.set("email", customerEmail);
     if (giftRecipient) redirectParams.set("giftRecipient", giftRecipient);
-    const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL || ""}/payments/response?${redirectParams.toString()}`;
+    const redirectUrl = `${
+      process.env.NEXT_PUBLIC_APP_URL || ""
+    }/payments/response?${redirectParams.toString()}`;
 
     // If you want to inspect the final URL instead of auto-redirecting, add ?debug=1
     if (searchParams.get("debug") === "1") {
