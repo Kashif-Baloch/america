@@ -35,7 +35,7 @@ const SignInOauthButton = ({ text, paymentParams }: SignInOauthButtonProps) => {
         callbackUrl === "pricing" ? "/pricing" : "/"
       }`;
 
-      if (paymentParams) {
+      if (paymentParams && paymentParams.name !== "free") {
         const params = new URLSearchParams({
           name: paymentParams.name,
           price: paymentParams.price,
