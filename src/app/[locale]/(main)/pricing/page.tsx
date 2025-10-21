@@ -1,4 +1,3 @@
-//Components
 import Benefits from "@/components/pages/pricing/Benefits";
 import BookAppointment from "@/components/pages/pricing/BookAppointment";
 import Hero from "@/components/pages/pricing/Hero";
