@@ -201,7 +201,10 @@ export default function SignUpForm({ paymentParams }: SignUpFormProps) {
                     {
                       onError: (ctx) => {
                         // proceed anyway; we'll still send email in params to checkout
-                        console.error("Auto sign-in failed:", ctx?.error?.message);
+                        console.error(
+                          "Auto sign-in failed:",
+                          ctx?.error?.message
+                        );
                       },
                     }
                   );
@@ -210,7 +213,7 @@ export default function SignUpForm({ paymentParams }: SignUpFormProps) {
                 }
 
                 // Redirect to payment if payment params exist
-                if (paymentParams) {
+                if (paymentParams && paymentParams.name !== "free") {
                   const { name, price, description } = paymentParams;
                   const params = new URLSearchParams({
                     name,

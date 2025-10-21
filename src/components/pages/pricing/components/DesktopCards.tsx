@@ -46,9 +46,7 @@ export default function DesktopCards({
                 plan.highlighted ? "text-white" : "text-gray-900"
               }`}
             >
-              {plan.name === "Free" ||
-              plan.name == "Free Plan" ||
-              plan.name == "Free Package" ? (
+              {plan.name === "Free" ? (
                 <span className="invisible">Free</span>
               ) : (
                 plan?.name
